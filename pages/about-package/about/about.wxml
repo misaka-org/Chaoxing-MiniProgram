@@ -1,0 +1,26 @@
+<!--pages/about/about.wxml-->
+
+<view class="box">
+    <view class="title">关于我们</view>
+    <image class="logo {{animation}}" src="/static/svg/home-互助.svg" mode="aspectFill" bindtap="click"></image>
+
+    <view class="text-box">
+        <view bindtap="click">
+            <text class="author-title">Developer Core</text>
+            <text class="author-title-info">（排名不分先后）</text>
+            <text class="author-item" wx:for="{{author}}" wx:key="index">@{{item.name}}（{{item.email}}）</text>
+        </view>
+        <view style="height: 30rpx"></view>
+        <view>
+            <text class="open-source-title">GitHub Repository</text>
+            <text class="open-source-info" bind:tap="copyUrl">Misaka-OpenSource/Chaoxing-WechatMiniProgram</text>
+			<text class="open-source-info">诚邀您帮助我们优化改进！</text>
+        </view>
+    </view>
+
+    <view class="feedback">
+        <button class="feedback-button" open-type='feedback' hover-class="none" plain="true">问题反馈</button>
+        <text class="feedback-info">感谢您帮助我们做的更好！</text>
+    </view>
+
+</view>

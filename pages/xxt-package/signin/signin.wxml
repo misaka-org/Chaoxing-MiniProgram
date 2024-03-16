@@ -1,0 +1,118 @@
+<!--pages/signin/signin.wxml-->
+<!-- ["拍照签到", "普通签到", "二维码签到", "手势签到", "位置签到", "签到码签到"] -->
+<view class="notice" bind:tap="log">
+	<t-notice-bar visible="true" marquee="{{config.notice}}" content="{{notice}}" prefixIcon="sound">
+		<view slot="prefix-icon">
+			<image class="avatar" src="https://photo.chaoxing.com/p/{{data.uid}}_80" mode="aspectFill"></image>
+		</view>
+	</t-notice-bar>
+</view>
+
+<view class='main'>
+	<view class="container" animation="{{animationMain}}" bindtap='rotateFn' data-id="1">
+		<view class="container-text">
+			<view class="title">
+				<text class="title-text">{{config.typeConfig[data.type]}}</text>
+			</view>
+			<view class="info-item">
+				<view class="info-tag">签到名</view>
+				<view class="info-content">{{data.name}}</view>
+			</view>
+			<view class="info-item">
+				<view class="info-tag">签到账号</view>
+				<view class="info-content">{{data.username}}</view>
+			</view>
+			<view class="info-item">
+				<view class="info-tag">课程ID</view>
+				<view class="info-content">{{data.courseId}}</view>
+			</view>
+			<view class="info-item">
+				<view class="info-tag">活动ID</view>
+				<view class="info-content">{{data.activeId}}</view>
+			</view>
+			<view class="info-item">
+				<view class="info-tag">结束时间</view>
+				<view class="info-content">{{data.time}}</view>
+			</view>
+			<view class="info-item">
+				<view class="info-tag">签到类型</view>
+				<view class="info-content">{{config.typeConfig[data.type]}}</view>
+			</view>
+			<view class="info-item">
+				<view class="info-tag">签到结果</view>
+				<view class="info-content">{{result}}</view>
+			</view>
+		</view>
+	</view>
+	<view class="container back" animation="{{animationBack}}" catch:tap='rotateFn' data-id="2">
+		<map class="map" catch:tap="rotateFn" longitude="{{location.longitude}}" latitude="{{location.latitude}}" markers="{{[location]}}"></map>
+	</view>
+</view>
+
+<view style="height: 550rpx"></view>
+
+<view class="box-picker">
+	<t-cell title="签到类型" arrow hover note="{{config.typeConfig[data.type]}}" bind:click="onPicker"></t-cell>
+</view>
+<t-picker visible="{{pickerVisible}}" value="{{[data.type]}}" data-key="city" title="签到类型" cancelBtn="取消" confirmBtn="确认" bindchange="pickerChange">
+	<t-picker-item options="{{pickerList}}"></t-picker-item>
+</t-picker>
+
+<!-- 普通/图片 -->
+<view wx:if="{{data.type==0 || data.type==1}}">
+	<view class="box">
+		<view class="image-box">
+			<view class="image-info">上传图片</view>
+			<t-upload t-class="image" mediaType="{{['image']}}" max="1" files="{{fileList}}" bind:add="handleAdd" bind:remove="handleRemove"></t-upload>
+		</view>
+		<view class="button-box">
+			<t-button t-class="button" wx:if="{{type!='help'}}" theme="primary" size="large" open-type="share" variant="outline">请人代签</t-button>
+			<t-button t-class="button" theme="primary" size="large" bindtap="signin" data-type="picture">立即签到</t-button>
+		</view>
+	</view>
+</view>
+
+<!-- 签到码/手势 -->
+<view wx:if="{{data.type==3 || data.type==5}}">
+	<view class="box">
+		<view class="input-box">
+			<t-input type="number" label="签到码" placeholder="请输入..." bind:change="input" data-input="signCode"></t-input>
+		</view>
+		<view class="button-box">
+			<t-button t-class="button" wx:if="{{type!='help'}}" theme="primary" size="large" open-type="share" variant="outline">请人代签</t-button>
+			<t-button t-class="button" theme="primary" size="large" bindtap="signin" data-type="code">立即签到</t-button>
+		</view>
+	</view>
+</view>
+
+<!-- 位置 -->
+<view wx:if="{{data.type==4}}">
+	<view class="box">
+		<view class="input-box">
+			<t-input type="digit" label="纬度" value="{{location.latitude}}" placeholder="Latitude (选填)" bind:change="input" data-input="location.latitude"></t-input>
+			<t-input type="digit" label="经度" value="{{location.longitude}}" placeholder="Longitude (选填)" bind:change="input" data-input="location.longitude"></t-input>
+			<t-input type="digit" label="位置" value="{{location.name}}" placeholder="Address (选填, 教师端可见)" bind:change="input" data-input="location.name"></t-input>
+		</view>
+		<view class="button-box">
+			<t-button t-class="button" wx:if="{{type!='help'}}" theme="primary" size="large" open-type="share" variant="outline">请人代签</t-button>
+			<t-button t-class="button" theme="primary" size="large" bindtap="chooseLocation">选择位置</t-button>
+			<t-button t-class="button" theme="primary" size="large" bindtap="signin" data-type="position">提交签到</t-button>
+		</view>
+	</view>
+</view>
+
+<!-- 二维码 -->
+<view wx:if="{{data.type==2}}">
+	<view class="box">
+		<view class="input-box">
+			<t-input type="digit" label="纬度" value="{{location.latitude}}" placeholder="Latitude (选填)" bind:change="input" data-input="location.latitude"></t-input>
+			<t-input type="digit" label="经度" value="{{location.longitude}}" placeholder="Longitude (选填)" bind:change="input" data-input="location.longitude"></t-input>
+			<t-input type="digit" label="位置" value="{{location.name}}" placeholder="Address (选填)" bind:change="input" data-input="location.name"></t-input>
+		</view>
+		<view class="button-box">
+			<t-button t-class="button" wx:if="{{type!='help'}}" theme="primary" size="large" open-type="share" variant="outline">请人代签</t-button>
+			<t-button t-class="button" theme="primary" size="large" bindtap="chooseLocation">选择位置</t-button>
+			<t-button t-class="button" theme="primary" size="large" bindtap="signin" data-type="qrcode">扫码签到</t-button>
+		</view>
+	</view>
+</view>

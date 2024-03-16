@@ -1,0 +1,8 @@
+{
+	"navigationBarTitleText": "帐号管理",
+	"usingComponents": {
+		"t-button": "tdesign-miniprogram/button/button",
+		"t-popup": "tdesign-miniprogram/popup/popup",
+		"t-input": "tdesign-miniprogram/input/input"
+	}
+}

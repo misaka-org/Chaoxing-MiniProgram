@@ -1,0 +1,10 @@
+<!--pages/login/login.wxml-->
+
+<view class="swiper">
+    <t-swiper duration="500" interval="5000" list="{{swiperList}}" bind:click="lookImage" navigation="{{ {type: 'dots-bar'} }}"></t-swiper>
+</view>
+
+<!-- 电脑端弹窗 -->
+<t-dialog visible="{{visibleDialog}}" title="提示" content="请使用手机微信继续体验" confirm-btn="知道了" bind:confirm="closeDialog">
+	<t-image slot="middle" mode="aspectFit" t-class="dialog-image" src="/static/image/qrcode.jpg"></t-image>
+</t-dialog>

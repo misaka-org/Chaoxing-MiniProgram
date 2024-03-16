@@ -1,0 +1,157 @@
+/* pages/signin/signin.wxss */
+
+text {
+	display: block;
+}
+
+.notice {
+	width: 100%;
+	overflow: hidden;
+	background-color: #f2f3ff;
+}
+
+.container-text {
+	margin: 30rpx 45rpx;
+	position: relative;
+}
+
+.title {
+	position: relative;
+	height: 60rpx;
+	line-height: 60rpx;
+	margin: 15rpx auto;
+}
+
+.title-text {
+	font-size: 40rpx;	
+	text-align: center;
+}
+
+.avatar {
+	width: 60rpx;
+	height: 60rpx;
+	border-radius: 999rpx;
+	position: absolute;
+	display: inline-block;
+	top: 18rpx;
+	left: 18rpx;
+}
+
+.info-item {
+	float: right;
+	font-size: 26rpx;
+	margin: 1rpx 0;
+}
+
+.info-tag {
+	position: absolute;
+	color: black;
+	left: -10rpx;
+	width: 4em;
+	display: inline-block;
+	text-align: justify;
+	text-align-last: justify;
+}
+
+.info-content {
+	width: 480rpx;
+	min-height: 40rpx;
+	color: gray;
+}
+
+.main {
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: translate(-50%, -50%);
+}
+
+.container {
+	margin: 130rpx 30rpx 30rpx;
+	border-radius: 20rpx;
+	width: 690rpx;
+	height: 500rpx;
+	overflow: hidden;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	background: white;
+	font-size: 28rpx;
+	line-height: 50rpx;
+	color: #555555;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transition: all 1s;
+	backface-visibility: hidden;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.back {
+	padding: 0;
+	transform: rotateY(-180deg);
+}
+
+.map {
+	width: 690rpx;
+	height: 500rpx;
+}
+
+.radio-group {
+	margin: 30rpx;
+	border-radius: 24rpx;
+	overflow: hidden;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.box-picker {
+	margin: 30rpx;
+	box-shadow: 3rpx 3rpx 12rpx rgba(0, 0, 0, 0.15);
+	background-color: white;
+	border-radius: 20rpx;
+	overflow: hidden;
+}
+
+.box {
+	margin: 30rpx;
+	padding: 30rpx;
+	box-shadow: 3rpx 3rpx 12rpx rgba(0, 0, 0, 0.15);
+	background-color: white;
+	border-radius: 20rpx;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.image-info {
+	color: gray;
+	font-size: 28rpx;
+	margin-bottom: 20rpx;
+	display: block;
+}
+
+.image-box {
+	width: 100%;
+	margin: 20rpx;
+}
+
+.image {
+	display: block;
+	height: 200rpx;
+}
+
+.input-box {
+	width: 100%;
+	margin: 0 0 30rpx;
+}
+
+.button-box {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	gap: 40rpx;
+}
+
+.button {
+	display: inline-block;
+	flex: 1;
+}

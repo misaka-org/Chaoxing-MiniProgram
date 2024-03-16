@@ -1,0 +1,44 @@
+<!--pages/home/home.wxml-->
+
+<view class="notice">
+	<t-notice-bar visible="true" marquee="{{config.notice}}" content="{{notice}}" prefixIcon="sound"></t-notice-bar>
+</view>
+
+<view class="swiper shadow-radius">
+	<t-swiper duration="500" interval="5000" list="{{swiperList}}" bind:click="lookImage" navigation="{{ {type: 'dots-bar'} }}"></t-swiper>
+</view>
+
+<view class="grid shadow-radius">
+	<t-grid column="2" align="left">
+		<t-grid-item text="立即签到" description="便捷学习通签到" layout="horizontal" image="/static/svg/home-签到.svg" bindtap="navigate" data-url="/pages/xxt-package/course/course"></t-grid-item>
+		<t-grid-item text="扫码签到" description="批量二维码签到" layout="horizontal" image="/static/svg/home-历史.svg" bindtap="navigate" data-url="/pages/xxt-package/qrcodesignin/qrcodesignin"></t-grid-item>
+	</t-grid>
+	<t-grid column="2" align="left">
+		<t-grid-item text="绑定账号" description="支持多账号登录" layout="horizontal" image="/static/svg/home-互助.svg" bindtap="navigate" data-url="/pages/user-package/bind/bind"></t-grid-item>
+		<t-grid-item text="使用帮助" description="常见问题解答" layout="horizontal" image="/static/svg/home-签到.svg" bind:tap="navigate" data-url="/pages/about-package/help/help"></t-grid-item>
+	</t-grid>
+</view>
+
+<view class="official-box shadow-radius">
+	<official-account class="official" bindload="showOfficial"></official-account>
+	<view wx:if="{{!showOfficial}}" class="official">
+		<image class="official-img" src="/static/image/official.png" mode="aspectFit" show-menu-by-longpress="true"></image>
+	</view>
+</view>
+
+<view class="products shadow-radius" wx:if="{{products.length}}">
+	<view class="products-title">友情推荐</view>
+	<view class="products-box">
+		<view class="products-item" wx:for="{{products}}" wx:key="index" bind:tap="toMiniProgram" data-appid="{{item.appid}}">
+			<image class="products-image" src="{{item.img}}" mode="aspectFit"></image>
+			<view class="products-text">{{item.title}}</view>
+		</view>
+	</view>
+</view>
+
+<view style="height: 200rpx"></view>
+
+<t-tab-bar value="home" bindchange="changeTabbar" shape="round" theme="tag" style="bottom: 50rpx">
+	<t-tab-bar-item value="home" icon="home">首页</t-tab-bar-item>
+	<t-tab-bar-item value="user" icon="user">用户</t-tab-bar-item>
+</t-tab-bar>

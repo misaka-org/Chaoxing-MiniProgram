@@ -1,0 +1,80 @@
+{
+    "pages": [
+        "pages/tabbar-package/login/login",
+        "pages/tabbar-package/home/home",
+        "pages/tabbar-package/user/user"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "我真的超爱学习~",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#f6f6f6"
+    },
+    "tabBar": {
+        "custom": true,
+        "list": [
+            {
+                "pagePath": "pages/tabbar-package/home/home"
+            },
+            {
+                "pagePath": "pages/tabbar-package/user/user"
+            },
+            {
+                "pagePath": "pages/tabbar-package/login/login"
+            }
+        ]
+    },
+    "usingComponents": {
+        "t-message": "tdesign-miniprogram/message/message",
+        "t-tab-bar": "tdesign-miniprogram/tab-bar/tab-bar",
+        "t-tab-bar-item": "tdesign-miniprogram/tab-bar-item/tab-bar-item",
+        "t-input": "tdesign-miniprogram/input/input",
+        "t-fab": "tdesign-miniprogram/fab/fab",
+        "t-button": "tdesign-miniprogram/button/button"
+    },
+    "requiredPrivateInfos": [
+        "chooseLocation",
+        "getLocation"
+    ],
+    "permission": {
+        "scope.userLocation": {
+            "desc": "获取您的位置用于签到"
+        }
+    },
+    "subpackages": [
+        {
+            "root": "pages/about-package",
+            "pages": [
+                "help/help",
+                "about/about",
+                "protocol/protocol",
+                "qqchat/qqchat"
+            ]
+        },
+        {
+            "root": "pages/xxt-package",
+            "pages": [
+                "course/course",
+                "activity/activity",
+                "signin/signin",
+				"qrcodesignin/qrcodesignin"
+            ]
+        },
+        {
+            "root": "pages/user-package",
+            "pages": [
+                "bind/bind",
+                "history/history"
+            ]
+        }
+    ],
+    "preloadRule": {
+        "pages/tabbar-package/home/home": {
+            "network": "all",
+            "packages": [
+                "pages/xxt-package"
+            ]
+        }
+    }
+}

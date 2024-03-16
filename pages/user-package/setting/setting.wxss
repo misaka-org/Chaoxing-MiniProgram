@@ -1,0 +1,59 @@
+/* pages/user-package/setting/setting.wxss */
+
+page {
+	background: #EDEDED;
+}
+
+.item {
+	height: 112rpx;
+	line-height: 112rpx;
+	border-bottom: 0.4px solid #E7E7E7;
+	background: white;
+	display: flex;
+	font-size: 32rpx;
+	position: relative;
+}
+
+.label {
+	height: 112rpx;
+	position: absolute;
+	left: 32rpx;
+}
+
+.value {
+	height: 112rpx;
+	line-height: 112rpx;
+	width: 480rpx;
+	position: absolute;
+	text-align: right;
+	right: 32rpx;
+	color: #575757;
+}
+
+.avatar {
+	height: 80rpx;
+	width: 80rpx;
+	border-radius: 10rpx;
+}
+
+.button {
+	width: 450rpx;
+	height: 80rpx;
+	line-height: 80rpx;
+	font-size: 42rpx;
+	color: white;
+	text-align: center;
+	border-radius: 999rpx;
+	background-color: #4284ff;
+	margin: 100rpx auto;
+}
+
+.choose-avatar {
+	border: none;
+	background: none;
+	padding: 20rpx 0rpx;
+}
+
+button::after {
+	border: none;
+}

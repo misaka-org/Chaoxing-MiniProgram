@@ -1,0 +1,9 @@
+{
+	"usingComponents": {
+		"t-dialog": "tdesign-miniprogram/dialog/dialog",
+		"t-swiper": "tdesign-miniprogram/swiper/swiper",
+		"t-notice-bar": "tdesign-miniprogram/notice-bar/notice-bar",
+		"t-image": "tdesign-miniprogram/image/image"
+	},
+	"navigationBarTitleText": "正在登录..."
+}

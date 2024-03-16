@@ -1,0 +1,49 @@
+<!--pages/user/user.wxml-->
+
+<view class="user" bindtap="navigate" data-url="/pages/user-package/bind/bind">
+	<image class="user-avatar" mode="aspectFill" wx:if="{{userInfo.uid}}" src="https://photo.chaoxing.com/p/{{userInfo.uid}}_80"></image>
+	<image class="user-avatar" mode="aspectFill" wx:else="{{userInfo.uid}}" src="https://www.loliapi.com/acg/pp"></image>
+	<view class="user-info">
+		<text class="user-name">{{userInfo.nickname?userInfo.nickname:'请先登录'}}</text>
+		<text class="user-id">学习通手动签到助手 开源版</text>
+	</view>
+</view>
+
+<view class="box">
+	<view class="statistics shadow-radius">
+		<t-grid column="4">
+			<t-grid-item t-class-image="more-icon" text="999位" description="用户总数" image="/static/svg/user-icon (1).svg"></t-grid-item>
+			<t-grid-item t-class-image="more-icon" text="{{accountNum}}个" description="绑定账号" image="/static/svg/user-icon (2).svg"></t-grid-item>
+			<t-grid-item t-class-image="more-icon" text="999天" description="会员天数" image="/static/svg/user-icon (3).svg"></t-grid-item>
+			<t-grid-item t-class-image="more-icon" text="999位" description="邀请人数" image="/static/svg/user-icon (4).svg"></t-grid-item>
+		</t-grid>
+	</view>
+
+	<view class="more shadow-radius">
+		<button hover-class="none" class="more-button" bindtap="navigate" data-url="/pages/user-package/bind/bind">账号管理</button>
+		<t-divider class="divider"></t-divider>
+		<button hover-class="none" class="more-button" bindtap="navigate" data-url="/pages/xxt-package/course/course">所有课程</button>
+		<t-divider class="divider"></t-divider>
+		<button hover-class="none" class="more-button" bindtap="navigate" data-url="/pages/user-package/setting/setting">账号详情</button>
+		<t-divider class="divider"></t-divider>
+		<button hover-class="none" class="more-button" bindtap="navigate" data-url="/pages/user-package/history/history">签到记录</button>
+	</view>
+
+	<view class="more shadow-radius">
+		<button hover-class="none" class="more-button" bindtap="navigate" data-url="/pages/about-package/help/help">疑难解答</button>
+		<t-divider class="divider"></t-divider>
+		<button hover-class="none" class="more-button" bindtap="navigate" data-url="/pages/about-package/protocol/protocol">用户协议</button>
+		<t-divider class="divider"></t-divider>
+		<button hover-class="none" class="more-button" bindtap="navigate" data-url="/pages/about-package/qqchat/qqchat">使用交流</button>
+		<t-divider class="divider"></t-divider>
+		<button hover-class="none" class="more-button" bindtap="navigate" data-url="/pages/about-package/about/about">关于我们</button>
+	</view>
+
+	<view style="height: 200rpx;"></view>
+</view>
+
+
+<t-tab-bar value="user" bindchange="changeTabbar" shape="round" theme="tag" style="bottom: 50rpx">
+	<t-tab-bar-item value="home" icon="home">首页</t-tab-bar-item>
+	<t-tab-bar-item value="user" icon="user">用户</t-tab-bar-item>
+</t-tab-bar>

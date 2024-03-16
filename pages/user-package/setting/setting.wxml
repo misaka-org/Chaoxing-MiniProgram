@@ -1,0 +1,28 @@
+<!--pages/user-package/setting/setting.wxml-->
+
+<view class="item">
+	<text class="label font-heavy">头像</text>
+	<button class="value choose-avatar" bind:tap="info">
+		<image class="avatar" src="https://photo.chaoxing.com/p/{{userInfo.uid}}_80" mode="aspectFill"></image>
+	</button>
+</view>
+<view class="item">
+	<text class="label font-heavy">学习通账号</text>
+	<text class="value font-medium" bind:tap="info">{{userInfo.username}}</text>
+</view>
+<view class="item">
+	<text class="label font-heavy">学习通ID</text>
+	<text class="value font-medium" bind:tap="info">{{userInfo.uid}}</text>
+</view>
+<view class="item">
+	<text class="label font-heavy">昵称</text>
+	<text class="value font-medium" bind:tap="info">{{userInfo.nickname}}</text>
+</view>
+<view class="item">
+	<text class="label font-heavy">性别</text>
+	<text class="value font-medium" bind:tap="info">{{userInfo.sex?userInfo.sex:'未设置'}}</text>
+</view>
+<view class="item">
+	<text class="label font-heavy">学校</text>
+	<text class="value font-medium" bind:tap="info">{{userInfo.school?userInfo.school:'未设置'}}</text>
+</view>

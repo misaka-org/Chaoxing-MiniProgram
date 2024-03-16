@@ -1,0 +1,95 @@
+<!--pages/bind/bind.wxml-->
+
+<wxs module="wxs">
+    var fuzzyPhone = function (phone) {
+        if (phone.length == 11)
+            return phone.substring(0, 3) + '****' + phone.substring(7, 11);
+        else
+            return phone;
+	}
+    module.exports.fuzzyPhone = fuzzyPhone;
+</wxs>
+
+<view class="box" wx:if="{{account.length}}">
+	<text class="account-title" bind:tap="log">{{account.length==1?'帐号管理':'切换账号'}}</text>
+	<view class="account-list">
+		<view class="account-item {{index==activeIndex?'active-item':''}}" wx:for="{{account}}" wx:if="{{index<2}}" wx:key="index" catch:tap="changeAccount" data-index="{{index}}">
+			<image class="account-item-avatar" src="http://photo.chaoxing.com/p/{{item.uid}}_80" mode="aspectFill"></image>
+			<view class="account-item-info">
+				<text class="account-item-nickname">{{item.nickname}}</text>
+				<text class="account-item-username">XXT #{{wxs.fuzzyPhone(item.username)}}</text>
+			</view>
+			<image class="more" catch:tap="menu" data-index="{{index}}" src="/static/svg/bind-菜单.svg" mode="aspectFit"></image>
+		</view>
+	</view>
+</view>
+
+<view class="box" wx:if="{{account.length<2}}">
+	<text class="login-title">添加学习通帐号</text>
+	<view class="input">
+		<image class="input-icon" src="/static/svg/bind-账户.svg" mode="aspectFill"></image>
+		<input class="input-value" value="{{usernameValue}}" type="number" placeholder="帐号 (手机号)" bindinput="input" data-key="username"></input>
+	</view>
+	<view class="input">
+		<image class="input-icon" src="/static/svg/bind-密码.svg" mode="aspectFill"></image>
+		<input class="input-value" value="{{passwordValue}}" type="text" password="{{!showPassword}}" placeholder="密码" bindinput="input" data-key="password"></input>
+		<image class="password-icon" wx:if="{{passwordValue && type!='share'}}" src="/static/svg/bind-{{showPassword?'显示':'隐藏'}}密码.svg" mode="aspectFill" bind:tap="showPassword"></image>
+	</view>
+
+	<view class="privacy">
+		<button class="privacy-btn" open-type="agreePrivacyAuthorization" bind:tap="agreePrivacy">
+			<image class="privacy-icon" src="/static/svg/bind-{{agreePrivacy?'勾选':'未勾选'}}.svg" mode="aspectFill"></image>
+		</button>
+		<text>阅读并同意</text>
+		<text class="openPrivacyContract" bind:tap="openPrivacyContract" data-type="fuwu">《用户服务协议》</text>
+		<text>和</text>
+		<text class="openPrivacyContract" bind:tap="openPrivacyContract" data-type="yinsi">《隐私政策》</text>
+	</view>
+
+	<view class="login-button">
+		<t-button t-class="login-button-item" theme="primary" size="large" variant="outline" bind:tap="menu" data-index="{{activeIndex}}" wx:if="{{type!='share'}}">分享账号</t-button>
+		<t-button t-class="login-button-item" theme="primary" size="large" bindtap="login">添加账号</t-button>
+	</view>
+</view>
+
+<t-popup visible="{{visiblePopupPrivacy}}" bind:visible-change="closePopup" data-key="Privacy" placement="bottom">
+	<view class="popup">
+		<view class="privacy-title">请您阅读以下协议</view>
+		<view class="popup-privacy">
+			<text>为了保障您的合法权益，请您先阅读并同意</text>
+			<text class="openPrivacyContract" bind:tap="openPrivacyContract" data-type="fuwu">《用户服务协议》</text>
+			<text>以及</text>
+			<text class="openPrivacyContract" bind:tap="openPrivacyContract" data-type="yinsi">《隐私政策》</text>
+		</view>
+		<view class="privacy-button">
+			<t-button t-class="privacy-button-item" theme="primary" size="large" variant="outline" data-key="Privacy" bind:tap="closePopup">不同意并关闭</t-button>
+			<t-button t-class="privacy-button-item" theme="primary" size="large" open-type="agreePrivacyAuthorization" bind:tap="agreePrivacy">已阅读并同意</t-button>
+		</view>
+	</view>
+</t-popup>
+
+
+<t-popup visible="{{visiblePopupMenu}}" bind:visible-change="closePopup" data-key="Menu" placement="bottom">
+	<view class="popup">
+		<view class="account-popup">
+			<image class="account-popup-avatar" src="http://photo.chaoxing.com/p/{{account[menuTemp.index].uid}}_80" mode="aspectFill"></image>
+			<view class="account-item-info">
+				<text class="account-popup-nickname">{{account[menuTemp.index].nickname}}</text>
+				<text class="account-popup-info">账号：{{account[menuTemp.index].username}}</text>
+				<text class="account-popup-info">性别：{{account[menuTemp.index].sex ? account[menuTemp.index].sex : '未设置'}}</text>
+				<text class="account-popup-info">学校：{{account[menuTemp.index].school ? account[menuTemp.index].school : '未设置'}}</text>
+				<text class="account-popup-info" bind:tap="showPassword">密码：{{showPassword ? account[menuTemp.index].password : '********'}}</text>
+				<text class="account-popup-info" wx:if="{{menuTemp.status!=false && menuTemp!=true}}">账号状态：{{menuTemp.status?'正常':'异常，请检查密码是否正确'}}</text>
+			</view>
+		</view>
+		<view class="menu-button">
+			<t-button t-class="menu-button-item" theme="primary" size="large" variant="outline" bind:tap="logout" data-index="{{menuTemp.index}}">删除账号</t-button>
+			<t-button t-class="menu-button-item" theme="primary" size="large" open-type="share">分享账号</t-button>
+		</view>
+	</view>
+</t-popup>
+
+<view class="box" wx:if="{{account.length>=2}}">
+	<button class="contact-button" open-type='contact' hover-class="none" plain="true">联系客服</button>
+	<view class="contact-info">联系客服, 绑定更多账号</view>
+</view>

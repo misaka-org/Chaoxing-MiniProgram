@@ -1,0 +1,68 @@
+/* pages/xxt-package/qrcodesignin/qrcodesignin.wxss */
+
+.box {
+	margin: 0rpx;
+}
+
+.scroll-view {
+	max-height: 800rpx;
+	width: 100%;
+	border-radius: 20rpx;
+}
+
+.users-item {
+	margin: 30rpx;
+	min-height: 100rpx;
+	box-shadow: 3rpx 3rpx 12rpx rgba(0, 0, 0, 0.15);
+	background-color: white;
+	border-radius: 20rpx;
+	padding: 30rpx;
+	display: flex;
+	position: relative;
+}
+
+.users-item-image {
+	width: 120rpx;
+	height: 120rpx;
+	border-radius: 15rpx;
+}
+
+.users-item-info {
+	margin: 0rpx 20rpx;
+	max-width: 450rpx;
+}
+
+.users-item-title {
+	font-size: 30rpx;
+	display: block;
+	margin-bottom: 10rpx;
+}
+
+.users-item-other {
+	color: gray;
+	font-size: 24rpx;
+	display: block;
+}
+
+.users-item-index {
+	position: absolute;
+	font-size: 24rpx;
+	right: 20rpx;
+	bottom: 20rpx;
+}
+
+.button-box {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	gap: 40rpx;
+}
+
+.button {
+	margin: 30rpx;
+	width: 690rpx;
+}
+
+.input-box {
+	margin: 30rpx;
+}

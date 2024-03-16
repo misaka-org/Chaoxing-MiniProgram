@@ -1,0 +1,225 @@
+/* pages/bind/bind.wxss */
+
+
+.box {
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 25rpx;
+	border: 1px solid #E7E7E7;
+	box-shadow: 4rpx 4rpx 10rpx rgba(0, 0, 0, 0.15);
+	border-radius: 15px;
+	text-align: center;
+	padding: 40rpx;
+}
+
+.contact-button {
+	display: block;
+	font-size: 30rpx;
+	color: #003FE0;
+	border: none;
+	width: 300rpx;
+	margin: 20rpx;
+}
+
+.privacy-title,
+.login-title,
+.account-title {
+	font-size: 36rpx;
+	display: block;
+	text-align: center;
+	margin-bottom: 15rpx;
+}
+
+.input {
+	width: 600rpx;
+	height: 100rpx;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	align-items: center;
+	padding: 0px 0px 0px 32rpx;
+	gap: 16px;
+	background: #f6f6f6;
+	border: 1px solid #E7E7E7;
+	border-radius: 15rpx;
+	margin: 25rpx 0rpx;
+	position: relative;
+}
+
+.input-icon {
+	width: 40rpx;
+	height: 40rpx;
+}
+
+.input-value {
+	width: 340rpx;
+	text-align: left;
+	font-size: 30rpx;
+	margin: 0rpx 50rpx;
+	background-color: rgb(0, 0, 0, 0);
+}
+
+.password-icon {
+	position: absolute;
+	width: 50rpx;
+	height: 50rpx;
+	z-index: 999;
+	top: calc(50% - 25rpx);
+	right: 20rpx;
+}
+
+.privacy {
+	font-size: 24rpx;
+	position: relative;
+	top: -20rpx;
+}
+
+.privacy-icon {
+	width: 30rpx;
+	height: 30rpx;
+	display: inline-block;
+	margin: 0;
+	line-height: 30rpx;
+}
+
+.privacy-btn {
+	background: none;
+	display: inline-block;
+	width: 60rpx;
+	height: 80rpx;
+	position: relative;
+	top: 26rpx;
+	padding: 0;
+}
+
+.privacy-btn::after {
+	border: none;
+}
+
+.openPrivacyContract {
+	color: #0b7dff;
+}
+
+.popup {
+	height: 500rpx;
+	padding: 60rpx 30rpx;
+}
+
+.popup-privacy {
+	font-size: 28rpx;
+	margin: 50rpx auto;
+	text-align: center;
+	width: 600rpx;
+}
+
+.menu-button,
+.privacy-button,
+.login-button {
+	width: 600rpx;
+	display: flex;
+	justify-content: space-between;
+	margin: 20rpx auto;
+	gap: 40rpx;
+}
+
+.menu-button-item,
+.privacy-button-item,
+.login-button-item {
+	display: inline-block;
+	flex: 1;
+}
+
+.account-list {
+	display: block;
+	width: 640rpx;
+	text-align: left;
+}
+
+.account-item {
+	margin: 20rpx;
+	display: flex;
+	border: 1px solid #c9c9c9;
+	border-radius: 15rpx;
+	padding: 10rpx;
+	position: relative;
+}
+
+.account-popup {
+	margin: 15rpx 42rpx 45rpx;
+	display: flex;
+	border: 1px solid #c9c9c9;
+	border-radius: 15rpx;
+	padding: 10rpx;
+	position: relative;
+}
+
+.account-item-info {
+	margin: 20rpx;
+}
+.account-popup-avatar,
+.account-item-avatar {
+	width: 100rpx;
+	height: 100rpx;
+	margin: 10rpx;
+	display: inline-block;
+	border-radius: 10rpx;
+}
+
+.account-item-username,
+.account-item-nickname {
+	display: block;
+	font-size: 32rpx;
+	color: #3b3b3b;
+}
+
+.account-popup-nickname {
+	display: block;
+	font-size: 30rpx;
+	color: black;
+}
+
+.account-popup-info {
+	display: block;
+	font-size: 32rpx;
+	color: gray;
+	margin-top: 5rpx;
+	font-size: 24rpx;
+}
+
+.account-item-username {
+	color: gray;
+	margin-top: 5rpx;
+	font-size: 28rpx;
+}
+
+.more {
+	position: absolute;
+	right: 5rpx;
+	top: 0rpx;
+	width: 40rpx;
+	height: 40rpx;
+	padding: 20rpx;
+	border-radius: 10rpx;
+}
+
+.more:active {
+	background: gray;
+}
+
+.login-remark {
+	font-size: 28rpx;
+	color: gray;
+}
+
+.active-item {
+	background-color: #f2f3ff;
+}
+
+.contact-info {
+	font-size: 26rpx;
+	color: gray;
+}

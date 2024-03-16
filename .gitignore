@@ -1,0 +1,10 @@
+miniprogram_npm
+node_modules
+.vscode
+.DS_Store
+
+*.html
+
+*.bak
+
+project.private.config.json

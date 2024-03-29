@@ -8,8 +8,16 @@
 	</t-notice-bar>
 </view>
 
+
+<wxs module="wxs">
+	var hasNewline = function (text) { // 检查是否换行
+		return text.indexOf('\n') !== -1;
+	}
+	module.exports.hasNewline = hasNewline;
+</wxs>
+
 <view class='main'>
-	<view class="container" animation="{{animationMain}}" bindtap='rotateFn' data-id="1">
+	<view class="container shadow-radius" animation="{{animationMain}}" catch:tap='rotateFn' data-id="1">
 		<view class="container-text">
 			<view class="title">
 				<text class="title-text">{{config.typeConfig[data.type]}}</text>
@@ -17,14 +25,6 @@
 			<view class="info-item">
 				<view class="info-tag">签到名</view>
 				<view class="info-content">{{data.name}}</view>
-			</view>
-			<view class="info-item">
-				<view class="info-tag">签到账号</view>
-				<view class="info-content">{{data.username}}</view>
-			</view>
-			<view class="info-item">
-				<view class="info-tag">课程ID</view>
-				<view class="info-content">{{data.courseId}}</view>
 			</view>
 			<view class="info-item">
 				<view class="info-tag">活动ID</view>
@@ -35,8 +35,8 @@
 				<view class="info-content">{{data.time}}</view>
 			</view>
 			<view class="info-item">
-				<view class="info-tag">签到类型</view>
-				<view class="info-content">{{config.typeConfig[data.type]}}</view>
+				<view class="info-tag">考勤名单</view>
+				<view class="info-content">开源版不支持查看</view>
 			</view>
 			<view class="info-item">
 				<view class="info-tag">签到结果</view>
@@ -44,75 +44,65 @@
 			</view>
 		</view>
 	</view>
-	<view class="container back" animation="{{animationBack}}" catch:tap='rotateFn' data-id="2">
-		<map class="map" catch:tap="rotateFn" longitude="{{location.longitude}}" latitude="{{location.latitude}}" markers="{{[location]}}"></map>
+	<view class="container back shadow-radius" animation="{{animationBack}}" catch:tap='rotateFn' data-id="2">
+		<map class="map" catch:tap="rotateFn" longitude="{{mapLocation.longitude}}" latitude="{{mapLocation.latitude}}" markers="{{[mapLocation]}}"></map>
 	</view>
 </view>
 
-<view style="height: 550rpx"></view>
+<view style="height: 436rpx"></view>
 
-<view class="box-picker">
-	<t-cell title="签到类型" arrow hover note="{{config.typeConfig[data.type]}}" bind:click="onPicker"></t-cell>
+<view class="box-picker shadow-radius">
+	<t-cell title="签到类型" arrow hover note="{{config.typeConfig[data.type]}}" bind:click="openPopup" data-key="typePickerVisible"></t-cell>
 </view>
-<t-picker visible="{{pickerVisible}}" value="{{[data.type]}}" data-key="city" title="签到类型" cancelBtn="取消" confirmBtn="确认" bindchange="pickerChange">
+<t-picker visible="{{typePickerVisible}}" value="{{[data.type]}}" title="签到类型" cancelBtn="取消" confirmBtn="确认" bindchange="typeChange">
 	<t-picker-item options="{{pickerList}}"></t-picker-item>
 </t-picker>
 
 <!-- 普通/图片 -->
 <view wx:if="{{data.type==0 || data.type==1}}">
-	<view class="box">
-		<view class="image-box">
-			<view class="image-info">上传图片</view>
-			<t-upload t-class="image" mediaType="{{['image']}}" max="1" files="{{fileList}}" bind:add="handleAdd" bind:remove="handleRemove"></t-upload>
-		</view>
-		<view class="button-box">
-			<t-button t-class="button" wx:if="{{type!='help'}}" theme="primary" size="large" open-type="share" variant="outline">请人代签</t-button>
-			<t-button t-class="button" theme="primary" size="large" bindtap="signin" data-type="picture">立即签到</t-button>
-		</view>
+	<view class="image-box shadow-radius">
+		<view class="image-info"><text space="emsp">上传图片，教师端可见 普通签到可不传图片</text></view>
+		<t-upload grid-config="{{ {width: 110, height: 110, column: 5} }}" mediaType="{{['image']}}" max="{{chooseAccounts.length}}" files="{{fileList}}" bind:add="handleAdd" bind:remove="handleRemove"></t-upload>
+	</view>
+	<view class="button-box">
+		<t-button block t-class="shadow-radius" theme="primary" size="large" bindtap="signin">立即签到</t-button>
 	</view>
 </view>
 
 <!-- 签到码/手势 -->
 <view wx:if="{{data.type==3 || data.type==5}}">
-	<view class="box">
-		<view class="input-box">
-			<t-input type="number" label="签到码" placeholder="请输入..." bind:change="input" data-input="signCode"></t-input>
-		</view>
-		<view class="button-box">
-			<t-button t-class="button" wx:if="{{type!='help'}}" theme="primary" size="large" open-type="share" variant="outline">请人代签</t-button>
-			<t-button t-class="button" theme="primary" size="large" bindtap="signin" data-type="code">立即签到</t-button>
-		</view>
+	<view class="input-box shadow-radius">
+		<t-input type="number" label="签到码" placeholder="请输入..." bind:change="input" data-input="signCode"></t-input>
+	</view>
+	<view class="button-box">
+		<t-button block t-class="shadow-radius" theme="primary" size="large" bindtap="signin">立即签到</t-button>
 	</view>
 </view>
 
 <!-- 位置 -->
 <view wx:if="{{data.type==4}}">
-	<view class="box">
-		<view class="input-box">
-			<t-input type="digit" label="纬度" value="{{location.latitude}}" placeholder="Latitude (选填)" bind:change="input" data-input="location.latitude"></t-input>
-			<t-input type="digit" label="经度" value="{{location.longitude}}" placeholder="Longitude (选填)" bind:change="input" data-input="location.longitude"></t-input>
-			<t-input type="digit" label="位置" value="{{location.name}}" placeholder="Address (选填, 教师端可见)" bind:change="input" data-input="location.name"></t-input>
-		</view>
-		<view class="button-box">
-			<t-button t-class="button" wx:if="{{type!='help'}}" theme="primary" size="large" open-type="share" variant="outline">请人代签</t-button>
-			<t-button t-class="button" theme="primary" size="large" bindtap="chooseLocation">选择位置</t-button>
-			<t-button t-class="button" theme="primary" size="large" bindtap="signin" data-type="position">提交签到</t-button>
-		</view>
+	<view class="input-box shadow-radius">
+		<t-input type="digit" label="纬度" value="{{signLocation.latitude}}" placeholder="Latitude (选填)" bind:change="input" data-input="signLocation.latitude"></t-input>
+		<t-input type="digit" label="经度" value="{{signLocation.longitude}}" placeholder="Longitude (选填)" bind:change="input" data-input="signLocation.longitude"></t-input>
+		<t-input type="digit" label="位置" value="{{signLocation.name}}" placeholder="Address (选填, 教师端可见)" bind:change="input" data-input="signLocation.name"></t-input>
+	</view>
+	<view class="button-box">
+		<t-button block t-class="shadow-radius" theme="primary" size="large" bindtap="chooseLocation">地图选点</t-button>
+		<t-button block t-class="shadow-radius" theme="primary" size="large" bindtap="signin">立即签到</t-button>
 	</view>
 </view>
 
 <!-- 二维码 -->
 <view wx:if="{{data.type==2}}">
-	<view class="box">
-		<view class="input-box">
-			<t-input type="digit" label="纬度" value="{{location.latitude}}" placeholder="Latitude (选填)" bind:change="input" data-input="location.latitude"></t-input>
-			<t-input type="digit" label="经度" value="{{location.longitude}}" placeholder="Longitude (选填)" bind:change="input" data-input="location.longitude"></t-input>
-			<t-input type="digit" label="位置" value="{{location.name}}" placeholder="Address (选填)" bind:change="input" data-input="location.name"></t-input>
-		</view>
-		<view class="button-box">
-			<t-button t-class="button" wx:if="{{type!='help'}}" theme="primary" size="large" open-type="share" variant="outline">请人代签</t-button>
-			<t-button t-class="button" theme="primary" size="large" bindtap="chooseLocation">选择位置</t-button>
-			<t-button t-class="button" theme="primary" size="large" bindtap="signin" data-type="qrcode">扫码签到</t-button>
-		</view>
+	<view class="input-box shadow-radius">
+		<t-input type="shadow-radius" label="纬度" value="{{signLocation.latitude}}" placeholder="Latitude (选填)" bind:change="input" data-input="signLocation.latitude"></t-input>
+		<t-input type="shadow-radius" label="经度" value="{{signLocation.longitude}}" placeholder="Longitude (选填)" bind:change="input" data-input="signLocation.longitude"></t-input>
+		<t-input type="shadow-radius" label="位置" value="{{signLocation.name}}" placeholder="Address (选填)" bind:change="input" data-input="signLocation.name"></t-input>
+	</view>
+	<view class="button-box">
+		<t-button block t-class="shadow-radius" theme="primary" size="large" bindtap="chooseLocation">地图选点</t-button>
+		<t-button block t-class="shadow-radius" theme="primary" size="large" bindtap="signin">扫码签到</t-button>
 	</view>
 </view>
+
+<view style="height: 150rpx"></view>

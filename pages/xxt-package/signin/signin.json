@@ -1,13 +1,19 @@
 {
-    "component": true,
-    "usingComponents": {
-        "t-upload": "tdesign-miniprogram/upload/upload",
-        "t-notice-bar": "tdesign-miniprogram/notice-bar/notice-bar",
-        "t-button": "tdesign-miniprogram/button/button",
-        "t-radio": "tdesign-miniprogram/radio/radio",
-        "t-radio-group": "tdesign-miniprogram/radio-group/radio-group",
-        "t-cell": "tdesign-miniprogram/cell/cell",
-        "t-picker": "tdesign-miniprogram/picker/picker",
-        "t-picker-item": "tdesign-miniprogram/picker-item/picker-item"
-    }
+	"component": true,
+	"usingComponents": {
+		"t-dialog": "tdesign-miniprogram/dialog/dialog",
+		"t-switch": "tdesign-miniprogram/switch/switch",
+		"t-icon": "tdesign-miniprogram/icon/icon",
+		"t-upload": "tdesign-miniprogram/upload/upload",
+		"t-notice-bar": "tdesign-miniprogram/notice-bar/notice-bar",
+		"t-button": "tdesign-miniprogram/button/button",
+		"t-radio": "tdesign-miniprogram/radio/radio",
+		"t-radio-group": "tdesign-miniprogram/radio-group/radio-group",
+		"t-cell": "tdesign-miniprogram/cell/cell",
+		"t-picker": "tdesign-miniprogram/picker/picker",
+		"t-picker-item": "tdesign-miniprogram/picker-item/picker-item",
+		"t-popup": "tdesign-miniprogram/popup/popup",
+		"t-checkbox": "tdesign-miniprogram/checkbox/checkbox",
+		"t-checkbox-group": "tdesign-miniprogram/checkbox-group/checkbox-group"
+	}
 }

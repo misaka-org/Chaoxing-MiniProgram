@@ -1,14 +1,27 @@
 const util = require('./util.js');
 const log = require('./log.js');
+const config = require('./config.js');
 
 class API {
 	constructor(username = "", password = "") {
 		this.cookies = util.getStorage(`cookies-${username}`, {});
+		this.updatetime = util.getStorage(`cookies-updatetime-${username}`, 0)
 		this.uid = "";
 		this.username = username;
 		this.password = password;
-		if (this.cookies == {}) {
-			this.login();
+	}
+
+	/**
+	 * 检查登录
+	 */
+	checkLogin = async () => {
+		if (!Object.keys(this.cookies).length) {
+			console.log("自动登录 未登录")
+			await this.login();
+		}
+		if (this.updatetime + 6 * 24 * 3600 * 1000 <= new Date().getTime()) {
+			console.log("自动登录 登录过期")
+			await this.login();
 		}
 	}
 
@@ -16,10 +29,6 @@ class API {
 	 * 登录
 	 */
 	login = async () => {
-		wx.showLoading({
-			title: '正在登录...',
-			mask: true,
-		})
 		const account = await util.get('https://passport2-api.chaoxing.com/v11/loginregister', {
 			"cx_xxt_passport": "json",
 			"roleSelect": "true",
@@ -27,13 +36,12 @@ class API {
 			"code": this.password,
 			"loginType": "1",
 		})
-		wx.hideLoading({
-			noConflict: true,
-		})
-		console.log("登录", account);
 		Object.assign(this.cookies, account.cookies);
-		await this.getUID();
 		util.setStorage(`cookies-${this.username}`, this.cookies);
+		this.updatetime = new Date().getTime();
+		util.setStorage(`cookies-updatetime-${this.username}`, this.updatetime);
+		console.log("登录", account, this.updatetime);
+		await this.getUID();
 		return account;
 	}
 
@@ -41,6 +49,7 @@ class API {
 	 * 获取UID
 	 */
 	getUID = async () => {
+		await this.checkLogin();
 		this.uid = this.cookies.UID != undefined ? this.cookies.UID : this.cookies._uid;
 		return this.uid;
 	}
@@ -49,6 +58,7 @@ class API {
 	 * 获取课程
 	 */
 	getCourse = async () => {
+		await this.checkLogin();
 		const url = 'https://mooc1-api.chaoxing.com/mycourse/backclazzdata';
 		const res = await util.get(url, {
 			'view': 'json',
@@ -82,6 +92,7 @@ class API {
 	 * @param {*} classId 
 	 */
 	getActivity = async (courseId, classId) => {
+		await this.checkLogin();
 		const url = 'https://mobilelearn.chaoxing.com/v2/apis/active/student/activelist'
 		const res = await util.get(url, {
 			'fid': '0',
@@ -91,7 +102,7 @@ class API {
 		}, this.cookies)
 		Object.assign(this.cookies, res.cookies);
 		var data = res['data']['activeList'];
-		var data = data.map(item => {
+		var data = data.sort((a, b) => b.startTime - a.startTime).map(item => {
 			return {
 				'type': Number(item.otherId),
 				'name': item.nameOne,
@@ -115,6 +126,7 @@ class API {
 	 * @param {*} activeId 
 	 */
 	getActivityInfo = async (activeId) => {
+		await this.checkLogin();
 		const url = 'https://mobilelearn.chaoxing.com/v2/apis/active/getPPTActiveInfo'
 		const res = await util.get(url, {
 			'activeId': activeId,
@@ -126,14 +138,70 @@ class API {
 	}
 
 	/**
-	 * 预签到
+	 * 获取活动结果 HTML
+	 * @param {*} activeId 
+	 * @param {*} courseId 
+	 * @param {*} classId 
+	 */
+	getActivityResult = async (activeId, courseId, classId) => {
+		await this.checkLogin();
+		const url = 'https://mobilelearn.chaoxing.com/widget/sign/pcStuSignController/preSign'
+		const html = await util.getText(url, {
+			'activeId': activeId,
+			'courseId': courseId,
+			'classId': classId,
+		}, this.cookies)
+		return html;
+	}
+
+	/**
+	 * 获取考勤名单
+	 * @param {*} activeId
+	 * @param {*} classId 
+	 */
+	getAttendList = async (activeId, classId) => {
+		await this.checkLogin();
+		const url = 'https://mobilelearn.chaoxing.com/widget/sign/pcTeaSignController/getAttendList'
+		const res = await util.get(url, {
+			'activeId': activeId,
+			'classId': classId,
+			'appType': 15,
+			'fid': 0,
+		}, this.cookies)
+		const typeConfig = ["未签", "已签", "教师代签", null, null, "缺勤", null, null, "事假", "迟到", "早退", null, "公假"];
+		const data = {
+			'未签名单': res.data.weiqianList.map(item => {
+				return {
+					'name': item.name,
+					'uid': item.uid,
+					'status': typeConfig[item.status],
+					'submittime': "",
+				}
+			}),
+			'已签名单': res.data.yiqianList.map(item => {
+				return {
+					'name': item.name,
+					'uid': item.uid,
+					'submittime': item.submittime,
+					'address': item.title,
+					'status': typeConfig[item.status],
+				}
+			}),
+		}
+		console.log("获取考勤名单", data, res)
+		return data;
+	}
+
+	/**
+	 * 预签到 HTML
 	 * @param {*} activeId 
 	 * @param {*} courseId 
 	 * @param {*} classId 
 	 */
 	beforeSign = async (activeId, courseId, classId) => {
+		await this.checkLogin();
 		const url = 'https://mobilelearn.chaoxing.com/newsign/preSign'
-		const res = await util.getText(url, {
+		const html = await util.getText(url, {
 			'activePrimaryId': activeId,
 			'courseId': courseId,
 			'classId': classId,
@@ -146,7 +214,7 @@ class API {
 			'ut': 's',
 		}, this.cookies)
 		console.log("预签到, 访问签到页面")
-		return res;
+		return html;
 	}
 
 	/**
@@ -164,8 +232,11 @@ class API {
 	 * @param {*} enc 
 	 */
 	defaultSign = async (activeId, objectId = null, longitude = null, latitude = null, addressText = null, signCode = null, role = null, enc = null, nickname = null) => {
+		await this.checkLogin();
 		const url = 'https://mobilelearn.chaoxing.com/pptSign/stuSignajax';
 		const randomNickname = ['龙傲天', '聂云竹', '君莫邪', '唐舞麟', '叶青雨', '江玉饵'];
+		if (!addressText)
+			addressText = "中华人民共和国";
 		const data = {
 			'activeId': activeId,
 			'objectId': objectId,
@@ -189,7 +260,7 @@ class API {
 			'fid': '0',
 		};
 		const res = await util.getText(url, data, this.cookies)
-		console.log("通用签到", res, data);
+		log.info("通用签到", res, data);
 		return res;
 	}
 
@@ -201,8 +272,8 @@ class API {
 			return null;
 		else if (msg == 'success')
 			return '签到成功';
-		else if (msg == 'success1')
-			return '签到过期';
+		else if (msg == 'success2')
+			return '签到已过期，迟到';
 		else if (msg.startsWith('validate'))
 			return '您已被风控';
 		else if (msg == 'errorLocation1' || msg == 'errorLocation2')
@@ -212,10 +283,11 @@ class API {
 	}
 
 	/**
-	 * 访问错误位置页面
+	 * 访问错误位置页面 HTML
 	 * @param {*} activeId 
 	 */
 	errorLocation = async (activeId) => {
+		await this.checkLogin();
 		const url = 'https://mobilelearn.chaoxing.com/pptSign/errorLocation';
 		const data = {
 			'DB_STRATEGY': "PRIMARY_KEY",
@@ -225,15 +297,16 @@ class API {
 			'location': JSON.stringify({ 'result': 1, 'latitude': 39.5426, 'longitude': 116.2329, 'address': '中国北京市' }),
 			'errortype': "errorLocation2",
 		};
-		const res = await util.getText(url, data, this.cookies)
-		console.log("访问错误位置页面", data)
-		return res;
+		const html = await util.getText(url, data, this.cookies)
+		console.log("访问错误位置页面")
+		return html;
 	}
 
 	/**
 	 * 获取超星云盘token
 	 */
 	getToken = async () => {
+		await this.checkLogin();
 		const url = 'https://pan-yz.chaoxing.com/api/token/uservalid';
 		const res = await util.get(url, {}, this.cookies);
 		return res._token;
@@ -243,6 +316,7 @@ class API {
 	 * 获取账号信息
 	 */
 	getUserInfo = async () => {
+		await this.checkLogin();
 		const url = 'https://sso.chaoxing.com/apis/login/userLogin4Uname.do'
 		const res = await util.get(url, {}, this.cookies)
 		const data = {
@@ -270,6 +344,61 @@ class API {
 		});
 		console.log("上传文件", res)
 		return res;
+	}
+
+	/**
+	 * 使用腾讯云获取位置文本
+	 * @param {*} longitude 
+	 * @param {*} latitude 
+	 */
+	static getAddressText = async (longitude = null, latitude = null) => {
+		const url = 'https://apis.map.qq.com/ws/geocoder/v1/';
+		const res = await util.get(url, {
+			'location': `${latitude},${longitude}`,
+			'key': config.tententMapKey,
+		})
+		log.info("坐标转文本", res)
+		return res.result;
+	}
+
+	/**
+	 * GPS坐标系 转 国测局gcj02
+	 * @param {*} longitude 
+	 * @param {*} latitude 
+	 */
+	static Wgs84ToGcj02 = async (longitude = null, latitude = null) => {
+		const url = 'https://apis.map.qq.com/ws/coord/v1/translate';
+		const res = await util.get(url, {
+			'locations': `${latitude},${longitude}`,
+			'key': config.tententMapKey,
+			'type': 1,
+		})
+		log.info("GPS坐标转国测局坐标", res)
+		return res.locations[0];
+	}
+
+	/**
+	 * 任意坐标系 转换
+	 * @param {*} longitude 
+	 * @param {*} latitude 
+	 */
+	static allToBaidu = async (longitude = null, latitude = null, from = 'gcj02', to = 'bd09ll') => {
+		const list = ['wgs4', 'sougou', 'gcj02', null, 'bd09ll']
+		const fromId = list.indexOf(from) + 1;
+		const toId = list.indexOf(to) + 1;
+		if (fromId <= 0 || toId <= 0) return;
+		const url = 'https://api.map.baidu.com/geoconv/v1/';
+		const data = {
+			'coords': `${longitude},${latitude}`,
+			'from': fromId,
+			'to': toId,
+		}
+		const res = await util.get(url, {
+			...data,
+			'ak': config.baiduMapKey,
+		})
+		log.info("任意坐标转百度坐标", res, data)
+		return res.result[0];
 	}
 }
 

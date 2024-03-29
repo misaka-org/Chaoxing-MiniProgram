@@ -5,7 +5,7 @@
 </view>
 
 <view class="swiper shadow-radius">
-	<t-swiper duration="500" interval="5000" list="{{swiperList}}" bind:click="lookImage" navigation="{{ {type: 'dots-bar'} }}"></t-swiper>
+	<t-swiper duration="500" height="300rpx" interval="5000" list="{{swiperList}}" bind:click="toQQ" bind:longtap="lookImage" navigation="{{ {type: 'dots-bar'} }}"></t-swiper>
 </view>
 
 <view class="grid shadow-radius">
@@ -14,8 +14,8 @@
 		<t-grid-item text="扫码签到" description="批量二维码签到" layout="horizontal" image="/static/svg/home-历史.svg" bindtap="navigate" data-url="/pages/xxt-package/qrcodesignin/qrcodesignin"></t-grid-item>
 	</t-grid>
 	<t-grid column="2" align="left">
-		<t-grid-item text="绑定账号" description="支持多账号登录" layout="horizontal" image="/static/svg/home-互助.svg" bindtap="navigate" data-url="/pages/user-package/bind/bind"></t-grid-item>
-		<t-grid-item text="使用帮助" description="常见问题解答" layout="horizontal" image="/static/svg/home-签到.svg" bind:tap="navigate" data-url="/pages/about-package/help/help"></t-grid-item>
+		<t-grid-item text="账号管理" description="支持多账号登录" layout="horizontal" image="/static/svg/home-互助.svg" bindtap="navigate" data-url="/pages/user-package/bind/bind"></t-grid-item>
+		<t-grid-item text="使用帮助" description="查看常见问题" layout="horizontal" image="/static/svg/home-帮助.svg" bindtap="navigate" data-url="/pages/about-package/help/help"></t-grid-item>
 	</t-grid>
 </view>
 
@@ -27,7 +27,7 @@
 </view>
 
 <view class="products shadow-radius" wx:if="{{products.length}}">
-	<view class="products-title">友情推荐</view>
+	<view class="products-title">友情推荐小程序</view>
 	<view class="products-box">
 		<view class="products-item" wx:for="{{products}}" wx:key="index" bind:tap="toMiniProgram" data-appid="{{item.appid}}">
 			<image class="products-image" src="{{item.img}}" mode="aspectFit"></image>

@@ -24,6 +24,7 @@ Page({
 		const activeIndex = util.getStorage('activeIndex', 0);
 		this.setData({
 			'userInfo': accounts[activeIndex],
+			'accountNum': accounts.length,
 		})
 	},
 

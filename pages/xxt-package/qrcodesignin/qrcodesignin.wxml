@@ -13,7 +13,7 @@
 
 <view class="box">
 	<scroll-view class="scroll-view" scroll-y="true">
-		<view class="users-item" wx:for="{{wxs.reserve(results)}}" wx:key="index">
+		<view class="users-item shadow-radius" wx:for="{{wxs.reserve(results)}}" wx:key="index">
 			<image class="users-item-image" src="https://photo.chaoxing.com/p/{{item.uid}}_80" bind:longtap="toBind" mode="aspectFill"></image>
 			<view class="users-item-info">
 				<text class="users-item-title">{{item.nickname}}：{{item.result}}</text>
@@ -25,14 +25,15 @@
 	</scroll-view>
 </view>
 
-<view class="input-box shadow-radius">
-	<t-input type="digit" label="纬度" value="{{location.latitude}}" placeholder="Latitude (选填)" bind:change="input" data-input="location.latitude"></t-input>
-	<t-input type="digit" label="经度" value="{{location.longitude}}" placeholder="Longitude (选填)" bind:change="input" data-input="location.longitude"></t-input>
-	<t-input type="text" label="位置" value="{{location.name}}" placeholder="Address (教师端可见)" bind:change="input" data-input="location.name"></t-input>
-</view>
-
-<view class="button-box">
-	<t-button wx:if="{{showSetting}}" t-class="button" theme="primary" size="large" variant="outline" open-type="openSetting">授权定位</t-button>
-	<t-button t-class="button" theme="primary" size="large" bindtap="chooseLocation">选择位置</t-button>
-	<t-button t-class="button" theme="primary" size="large" bindtap="scan">扫码签到</t-button>
+<view>
+	<view class="input-box shadow-radius">
+		<t-input type="digit" label="纬度" value="{{location.latitude}}" placeholder="Latitude (选填)" bind:change="input" data-input="location.latitude"></t-input>
+		<t-input type="digit" label="经度" value="{{location.longitude}}" placeholder="Longitude (选填)" bind:change="input" data-input="location.longitude"></t-input>
+		<t-input type="text" label="位置" value="{{location.name}}" placeholder="Address (教师端可见)" bind:change="input" data-input="location.name"></t-input>
+	</view>
+	<view class="button-box">
+		<t-button t-class="shadow-radius" block wx:if="{{showSetting}}" theme="light" size="large" open-type="openSetting" bindopensetting="onLoad">授权定位</t-button>
+		<t-button t-class="shadow-radius" block theme="light" size="large" bindtap="chooseLocation">选择位置</t-button>
+		<t-button t-class="shadow-radius" block theme="primary" size="large" bindtap="scan">扫码签到</t-button>
+	</view>
 </view>

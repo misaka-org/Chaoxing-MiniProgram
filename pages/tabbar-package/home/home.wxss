@@ -7,6 +7,7 @@
 
 .swiper {
 	margin: 25rpx;
+	height: 300rpx;
 }
 
 .grid {
@@ -36,14 +37,14 @@
 .products {
 	background-color: white;
 	margin: 25rpx;
-	padding: 25rpx;
+	padding: 25rpx 15rpx 10rpx;
 	min-height: 250rpx;
 }
 
 .products-title {
-	font-size: 28rpx;
-	color: #333333;
+	font-size: 32rpx;
 	text-align: center;
+	color: #333333;
 }
 
 .products-box {
@@ -64,8 +65,8 @@
 	border: solid 1px #dfdfdf;
 	border-radius: 20rpx;
 	overflow: hidden;
-	width: 120rpx;
-	height: 120rpx;
+	width: 100rpx;
+	height: 100rpx;
 }
 
 .products-text {

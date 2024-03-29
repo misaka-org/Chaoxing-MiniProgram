@@ -1,8 +1,7 @@
+import config from '../../../api/config';
 import util from '../../../api/util';
 import API from '../../../api/api';
 import log from '../../../api/log';
-import config from '../../../api/config';
-
 
 Page({
 	data: {
@@ -29,15 +28,32 @@ Page({
 			return;
 		}
 
-		wx.getLocation()
-			.then(res => {
+		wx.getLocation({
+			'type': 'gcj02',
+		})
+			.then(gcj02 => {
+				log.info("获取用户位置", gcj02)
+
+				API.allToBaidu(gcj02.longitude, gcj02.latitude)
+					.then(bd09ll => this.setData({
+						'location.longitude': bd09ll.x,
+						'location.latitude': bd09ll.y,
+					}))
+
+				API.getAddressText(gcj02.longitude, gcj02.latitude)
+					.then(res => {
+						this.setData({
+							'location.name': res.address,
+						})
+					})
+
 				this.setData({
-					'location': Object.assign(this.data.location, res),
 					'showSetting': false,
 				})
 			})
 			.catch(e => {
 				util.showInfo("用户拒绝定位")
+				console.log("用户拒绝定位", e)
 				this.setData({
 					'showSetting': true,
 				})
@@ -45,15 +61,20 @@ Page({
 	},
 
 	chooseLocation() { // 手动选择位置
-		wx.chooseLocation()
-			.then(res => {
-				log.info("用户选择位置", res)
-				this.setData({
-					'location': res,
-				})
+		wx.chooseLocation() // 国测局坐标系 gcj02
+			.then(gcj02 => {
+				log.info("用户选择位置", gcj02)
+
+				API.allToBaidu(gcj02.longitude, gcj02.latitude)
+					.then(bd09ll => this.setData({
+						'location.latitude': bd09ll.y,
+						'location.longitude': bd09ll.x,
+						'location.name': gcj02.name ? gcj02.name : gcj02.address,
+					}))
 			})
 			.catch(e => {
 				util.showInfo("取消位置选择")
+				console.log("取消位置选择", e)
 			})
 	},
 
@@ -75,8 +96,8 @@ Page({
 				accounts.forEach(async account => {
 					const api = new API(account.username, account.password);
 					const html = await api.beforeSign(activeId, null, null);
-					const longitude = Number(this.data.location.longitude) + 0.0065; // 家人们谁懂啊, 学习通定位有偏差
-					const latitude = Number(this.data.location.latitude) + 0.0060;
+					const longitude = Number(this.data.location.longitude);
+					const latitude = Number(this.data.location.latitude);
 					const addressText = this.data.location.name;
 					const res = await api.defaultSign(activeId, null, longitude, latitude, addressText, null, null, enc, account.nickname);
 					this.setData({

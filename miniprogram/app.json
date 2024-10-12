@@ -1,0 +1,29 @@
+{
+	"pages": [
+		"pages/home/home"
+	],
+	"resolveAlias": {
+		"~/*": "/*",
+		"@utils/*": "utils/*"
+	},
+	"requiredPrivateInfos": [
+		"chooseLocation",
+		"getLocation"
+	],
+	"permission": {
+		"scope.userLocation": {
+			"desc": "获取您的位置用于签到"
+		}
+	},
+	"usingComponents": {
+		"watermark": "watermark/watermark"
+	},
+	"window": {
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#fff",
+		"navigationBarTitleText": "早八不迟到 · XXT",
+		"navigationBarTextStyle": "black"
+	},
+	"sitemapLocation": "sitemap.json",
+	"lazyCodeLoading": "requiredComponents"
+}

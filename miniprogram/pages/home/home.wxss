@@ -1,0 +1,153 @@
+/* 公用样式 */
+
+.container {
+	margin: 30rpx;
+	min-height: 100rpx;
+	padding: 20rpx;
+	background: white;
+}
+
+/* 登录页 */
+
+.input {
+	width: 600rpx;
+	height: 100rpx;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	align-items: center;
+	padding: 0px 0px 0px 32rpx;
+	gap: 16px;
+	background: #f6f6f6;
+	border: 0.5px solid #e4e4e4;
+	border-radius: 15rpx;
+	margin: 25rpx auto;
+	position: relative;
+}
+
+.input-icon {
+	width: 40rpx;
+	height: 40rpx;
+}
+
+.input-value {
+	width: 340rpx;
+	text-align: left;
+	font-size: 30rpx;
+	margin: 0rpx 50rpx;
+	background-color: rgb(0, 0, 0, 0);
+}
+
+.login-button {
+	width: 600rpx;
+	display: flex;
+	justify-content: space-between;
+	margin: 20rpx auto;
+	gap: 40rpx;
+}
+
+/* 课程列表页 */
+
+.course-item {
+	min-height: 100rpx;
+	background: white;
+	padding: 30rpx;
+	display: flex;
+	position: relative;
+}
+
+.inside {
+	opacity: 0.5;
+}
+
+.course-item-image {
+	width: 60px;
+	height: 60px;
+}
+
+.course-item-info {
+	margin: 0rpx 20rpx;
+	max-width: 480rpx;
+}
+
+.course-item-title {
+	font-size: 30rpx;
+	display: block;
+	margin-bottom: 10rpx;
+	color: black;
+}
+
+.course-item-other {
+	color: #535353;
+	font-size: 24rpx;
+	display: block;
+}
+
+/* 签到页 */
+
+.container-text {
+	margin: 30rpx 45rpx;
+	position: relative;
+}
+
+.title {
+	position: relative;
+	height: 60rpx;
+	line-height: 60rpx;
+	margin: 15rpx auto;
+	text-align: center;
+}
+
+.title-text {
+	font-size: 40rpx;
+	text-align: center;
+}
+
+.info-item {
+	float: right;
+	font-size: 26rpx;
+	margin: 1rpx 0;
+}
+
+.info-tag {
+	position: absolute;
+	color: black;
+	left: -10rpx;
+	width: 4em;
+	display: inline-block;
+	text-align: justify;
+	text-align-last: justify;
+}
+
+.info-content {
+	width: 450rpx;
+	height: 50rpx;
+	color: gray;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.image-box {
+	margin: 30rpx;
+	background: none;
+	align-items: left;
+	padding: 20rpx;
+	background: white;
+}
+
+.input-box {
+	width: 660rpx;
+	margin: 0 auto 30rpx;
+	padding-right: 30rpx;
+	background: white;
+}
+
+.button-box {
+	width: 690rpx;
+	display: flex;
+	justify-content: space-between;
+	gap: 15rpx;
+	margin: 30rpx auto;
+}

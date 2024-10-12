@@ -1,0 +1,146 @@
+<!-- 登录页 -->
+<view wx:if="{{tab=='login'}}">
+	<view class="container shadow-radius">
+		<view class="input">
+			<image class="input-icon" src="/static/svg/icon/username.svg" mode="aspectFill"></image>
+			<input class="input-value" value="{{username}}" type="number" placeholder="帐号 (手机号)" bindinput="input" data-input="username"></input>
+		</view>
+		<view class="input">
+			<image class="input-icon" src="/static/svg/icon/password.svg" mode="aspectFill"></image>
+			<input class="input-value" value="{{password}}" type="text" placeholder="密码" bindinput="input" data-input="password" bindconfirm="login"></input>
+		</view>
+		<view class="login-button">
+			<t-button block theme="primary" size="large" variant="outline" open-type="share">分享</t-button>
+			<t-button block theme="primary" size="large" bindtap="login">登录</t-button>
+		</view>
+	</view>
+</view>
+
+
+<!-- 课程列表页 -->
+<view wx:if="{{tab=='courses'}}">
+	<view class="container shadow-radius">
+		<view class="course-item" wx:for="{{courses}}" wx:key="index" bindtap="get_activities" data-item="{{item}}">
+			<view class="course-item-image">
+				<t-image src="{{item.img}}" width="60" height="60" shape="round" mode="aspectFill"></t-image>
+			</view>
+			<view class="course-item-info {{item.folder?'inside':''}}">
+				<text class="course-item-title">{{item.courseName}}</text>
+				<text class="course-item-other">教师：{{item.teacherName}}</text>
+				<text class="course-item-other">班级：{{item.className}}</text>
+				<text class="course-item-other" wx:if="{{item.folder}}">文件夹：{{item.folder}}</text>
+				<text class="course-item-other" wx:if="{{item.isTeach}}">身份：教师/助教</text>
+			</view>
+			<t-divider></t-divider>
+		</view>
+		<view wx:if="{{!courses || courses.length==0}}">
+			<no-data text="暂无签到/活动"></no-data>
+		</view>
+	</view>
+</view>
+
+
+<!-- 签到列表页 -->
+<view wx:if="{{tab=='activities'}}">
+	<view class="container shadow-radius">
+		<view class="course-item" wx:for="{{activities}}" wx:key="index" bindtap="to_signin" data-item="{{item}}">
+			<view class="course-item-image">
+				<t-image src="{{item.img}}" width="60" height="60" shape="round" mode="aspectFill"></t-image>
+			</view>
+			<view class="course-item-info {{item.folder?'inside':''}}">
+				<text class="course-item-title">{{typeDefine[item.type]}}</text>
+				<text class="course-item-other">截止时间：{{item.time}}</text>
+				<text class="course-item-other">签到名称：{{item.name}}</text>
+			</view>
+			<t-divider></t-divider>
+		</view>
+		<view wx:if="{{!courses || courses.length==0}}">
+			<no-data text="暂无签到/活动"></no-data>
+		</view>
+	</view>
+</view>
+
+
+<!-- 签到页 -->
+<view wx:if="{{tab=='signin'}}">
+	<view class="container shadow-radius">
+		<view class="container-text">
+			<view class="title">
+				<text class="title-text">{{typeDefine[info.type]}}</text>
+			</view>
+			<view class="info-item">
+				<view class="info-tag">签到名</view>
+				<view class="info-content">{{info.name}}</view>
+			</view>
+			<view class="info-item">
+				<view class="info-tag">已签人数</view>
+				<view class="info-content">{{info.attendNum}}</view>
+			</view>
+			<view class="info-item">
+				<view class="info-tag">活动ID</view>
+				<view class="info-content">{{info.activeId}}</view>
+			</view>
+			<view class="info-item">
+				<view class="info-tag">结束时间</view>
+				<view class="info-content">{{info.endtimeStr}}</view>
+			</view>
+			<view class="info-item">
+				<view class="info-tag">签到结果</view>
+				<view class="info-content result">{{result}}</view>
+			</view>
+		</view>
+	</view>
+	<!-- 普通 -->
+	<view wx:if="{{info.type==1}}">
+		<view class="button-box">
+			<t-button block t-class="shadow-radius" theme="primary" size="large" bindtap="signin">一键签到</t-button>
+		</view>
+	</view>
+	<!-- 拍照 -->
+	<view wx:if="{{info.type==0}}">
+		<view class="image-box shadow-radius">
+			<t-upload grid-config="{{ {width: 110, height: 110, column: 5} }}" mediaType="{{['image']}}" source="{{uploadMode}}" max="1" files="{{fileList}}" bind:add="handleAdd" bind:remove="handleRemove"></t-upload>
+		</view>
+		<view class="button-box">
+			<t-button block t-class="shadow-radius" theme="primary" size="large" bindtap="signin">立即签到</t-button>
+		</view>
+	</view>
+	<!-- 签到码/手势 -->
+	<view wx:if="{{info.type==3 || info.type==5}}">
+		<view class="input-box shadow-radius">
+			<view class="signcode-info"><text space="emsp">提示：签到码与手势签到的区别，请参考数字9键</text></view>
+			<t-input type="number" label="签到码" value="{{signCode}}" placeholder="签到码/手势" bind:change="input" data-input="signCode" bind:blur="checkSignCode" suffixIcon="{{signCodeIcon}}"></t-input>
+		</view>
+		<view class="button-box">
+			<t-button block t-class="shadow-radius" theme="primary" size="large" bindtap="signin" disabled="{{signCodeIcon!='check-circle'}}">{{signCodeIcon!='check-circle'?'请先输入':'立即签到'}}</t-button>
+		</view>
+	</view>
+	<!-- 位置 -->
+	<view wx:if="{{info.type==4}}">
+		<view class="input-box shadow-radius">
+			<t-input type="digit" label="纬度" value="{{location.latitude}}" placeholder="点击下方地图选点" bind:change="input" data-input="location.latitude"></t-input>
+			<t-input type="digit" label="经度" value="{{location.longitude}}" placeholder="点击下方地图选点" bind:change="input" data-input="location.longitude"></t-input>
+			<t-input label="位置" value="{{location.name}}" placeholder="教师端可见，留空时不上传位置" bind:change="input" data-input="location.name"></t-input>
+		</view>
+		<view class="button-box">
+			<t-button block t-class="shadow-radius" theme="light" size="large" bindtap="chooseLocation">地图选点</t-button>
+			<t-button block t-class="shadow-radius" theme="primary" size="large" bindtap="signin">立即签到</t-button>
+		</view>
+	</view>
+	<!-- 二维码 -->
+	<view wx:if="{{info.type==2}}">
+		<view class="input-box shadow-radius">
+			<t-input type="digit" label="纬度" value="{{location.latitude}}" placeholder="点击下方地图选点" bind:change="input" data-input="location.latitude"></t-input>
+			<t-input type="digit" label="经度" value="{{location.longitude}}" placeholder="点击下方地图选点" bind:change="input" data-input="location.longitude"></t-input>
+			<t-input label="位置" value="{{location.name}}" placeholder="教师端可见，留空时不上传位置" bind:change="input" data-input="location.name"></t-input>
+		</view>
+		<view class="button-box">
+			<t-button block t-class="shadow-radius" theme="light" size="large" bindtap="chooseLocation">地图选点</t-button>
+			<t-button block t-class="shadow-radius" theme="primary" size="large" bindtap="signin">扫码签到</t-button>
+		</view>
+	</view>
+</view>
+
+
+<!-- 页尾 -->
+<view style="height: 200rpx"></view>

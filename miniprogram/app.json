@@ -15,9 +15,6 @@
 			"desc": "获取您的位置用于签到"
 		}
 	},
-	"usingComponents": {
-		"watermark": "watermark/watermark"
-	},
 	"window": {
 		"backgroundTextStyle": "light",
 		"navigationBarBackgroundColor": "#fff",

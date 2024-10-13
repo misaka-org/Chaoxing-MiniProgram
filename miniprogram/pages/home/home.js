@@ -150,7 +150,7 @@ Page({
 	},
 
 	async signin(e) { // 提交签到
-		const objectId = this.data.srcList.length != 0 ? this.data.srcList[0] : 0;
+		const objectId = (this.data.srcList || []).length ? this.data.srcList[0] : "";
 		const location = this.data.location;
 		const info = this.data.info;
 		const userinfo = this.data.userinfo;
@@ -224,12 +224,18 @@ Page({
 				},
 				success: res => {
 					const data = JSON.parse(res.data);
-					log.debug("图片上传成功", data)
-					util.showInfo("图片上传成功")
-					this.setData({
-						[`fileList[${length}].status`]: 'done',
-						[`srcList[${length}]`]: data.objectId,
-					});
+					if (data.result) {
+						log.debug("图片上传结果", data)
+						util.showInfo("图片上传成功")
+						this.setData({
+							[`fileList[${length}].status`]: 'done',
+							[`srcList[${length}]`]: data.objectId,
+						});
+					} else {
+						util.showInfo(data.msg)
+						this.handleRemove()
+					}
+
 				},
 			});
 			task.onProgressUpdate((res) => {
@@ -240,13 +246,20 @@ Page({
 		})
 	},
 	handleRemove(e) { // 删除图片
-		const index = e.detail.index;
+		const index = e?.detail?.index || this.data.fileList.length - 1;
 		this.data.fileList.splice(index, 1);
 		this.data.srcList.splice(index, 1);
 		this.setData({
 			'fileList': this.data.fileList,
 			'srcList': this.data.srcList,
 		});
+	},
+
+	back() { // 返回
+		const tabs = ["login", "courses", "activities", "signin"];
+		this.setData({
+			'tab': tabs[(tabs.indexOf(this.data.tab) || 1) - 1],
+		})
 	},
 
 	onShareAppMessage() { // 分享

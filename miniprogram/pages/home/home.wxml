@@ -143,4 +143,5 @@
 
 
 <!-- 页尾 -->
+<t-fab icon="rollback" bind:click="back" aria-label="返回" wx:if="{{tab!='login'}}"></t-fab>
 <view style="height: 200rpx"></view>

@@ -9,7 +9,20 @@
 2. 设置小程序名称、类目等 (不能选游戏类目)
 3. 小程序备案 + 小程序微信认证 (非企业30元/年)
 4. 申请小程序开发接口 (需要 `wx.chooseLocation` 和 `wx.getLocation`，可去淘宝代开通)
-5. 设置小程序服务器域名 (需要已备案的域名)
+5. 设置小程序服务器域名 (需要已备案的域名用于反代官方服务器)
+
+> 服务器域名
+> 1. request域名
+> https://api.map.baidu.com
+> https://api.misaka-network.top
+> https://api.tianditu.gov.cn
+> https://cx.misaka-network.top
+> https://mooc1-api.chaoxing.com
+> https://pan-yz.chaoxing.com
+> https://passport2-api.chaoxing.com
+> https://sso.chaoxing.com
+> 2. uploadFile域名
+> https://pan-yz.chaoxing.com
 
 ### 上传小程序代码
 
@@ -18,12 +31,12 @@
 	```js
 	const config = {
 		baseUrl: "https://example.com", // 服务器域名
-		cdn: "https://testingcf.jsdelivr.net/gh/Misaka-org/Chaoxing-WechatMiniProgram@static", // GitHub代理地址
+		repository: "Misaka-org/Chaoxing-WechatMiniProgram", // 开源地址
 
 		baiduMapKey: '', // 百度地图开发平台
 		tianMapKey: '', // 天地图开放平台
 
-		swiperList: [
+		swiperList: [ // 轮播图
 			"/static/swiper/1.jpg",
 			"/static/swiper/2.jpg",
 			"/static/swiper/3.jpg",

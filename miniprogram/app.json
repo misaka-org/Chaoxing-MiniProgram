@@ -17,9 +17,7 @@
 	},
 	"window": {
 		"backgroundTextStyle": "light",
-		"navigationBarBackgroundColor": "#fff",
-		"navigationBarTitleText": "早八不迟到 · XXT",
-		"navigationBarTextStyle": "black"
+		"navigationStyle": "custom"
 	},
 	"sitemapLocation": "sitemap.json",
 	"lazyCodeLoading": "requiredComponents"

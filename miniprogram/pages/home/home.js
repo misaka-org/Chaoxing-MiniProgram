@@ -1,9 +1,7 @@
 import config from '@utils/config';
 import util from '@utils/util';
 import API from '@utils/api';
-import log, {
-	info
-} from '@utils/log';
+import log from '@utils/log';
 
 let api = null;
 
@@ -11,6 +9,7 @@ Page({
 	data: {
 		tab: 'login', // login / courses / activities / signin
 		typeDefine: ["拍照签到", "普通签到", "二维码签到", "手势签到", "位置签到", "签到码签到"],
+		swiperList: config.swiperList.map(item => `https://testingcf.jsdelivr.net/gh/${config.repository}@static${item}`),
 	},
 
 	onLoad(options) {

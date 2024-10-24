@@ -1,5 +1,6 @@
 {
 	"usingComponents": {
+        "t-swiper": "tdesign-miniprogram/swiper/swiper",
 		"t-dialog": "tdesign-miniprogram/dialog/dialog",
 		"t-switch": "tdesign-miniprogram/switch/switch",
 		"t-icon": "tdesign-miniprogram/icon/icon",

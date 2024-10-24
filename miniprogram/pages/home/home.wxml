@@ -1,5 +1,10 @@
+<view style="height: 180rpx"></view>
+
 <!-- 登录页 -->
 <view wx:if="{{tab=='login'}}">
+	<view class="swiper shadow-radius">
+		<t-swiper duration="1000" height="300rpx" interval="3000" list="{{swiperList}}" navigation="{{ {type: 'dots-bar'} }}"></t-swiper>
+	</view>
 	<view class="container shadow-radius">
 		<view class="input">
 			<image class="input-icon" src="/static/svg/icon/username.svg" mode="aspectFill"></image>
@@ -13,6 +18,10 @@
 			<t-button block theme="primary" size="large" variant="outline" open-type="share">分享</t-button>
 			<t-button block theme="primary" size="large" bindtap="login">登录</t-button>
 		</view>
+	</view>
+	<view class="license">
+		<view>本小程序使用 AGPLv3 协议</view>
+		<view>仓库地址：misaka-org/Chaoxing-MiniProgram</view>
 	</view>
 </view>
 

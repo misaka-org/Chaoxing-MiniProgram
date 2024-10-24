@@ -8,6 +8,19 @@
 }
 
 /* 登录页 */
+.license {
+	text-align: center;
+	color: gray;
+	position: fixed;
+	bottom: 30rpx;
+	width: 100vw;
+	font-size: 24rpx;
+}
+
+.swiper {
+	margin: 30rpx;
+	height: 300rpx;
+}
 
 .input {
 	width: 600rpx;

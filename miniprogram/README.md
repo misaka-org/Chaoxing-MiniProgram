@@ -12,17 +12,18 @@
 5. 设置小程序服务器域名 (需要已备案的域名用于反代官方服务器)
 
 > 服务器域名
-> 1. request域名
-> https://api.map.baidu.com
-> https://api.misaka-network.top
-> https://api.tianditu.gov.cn
-> https://cx.misaka-network.top
-> https://mooc1-api.chaoxing.com
-> https://pan-yz.chaoxing.com
-> https://passport2-api.chaoxing.com
-> https://sso.chaoxing.com
-> 2. uploadFile域名
-> https://pan-yz.chaoxing.com
+> 1. request域名  
+> https://api.map.baidu.com  
+> https://api.tianditu.gov.cn  
+> https://mooc1-api.chaoxing.com  
+> https://pan-yz.chaoxing.com  
+> https://passport2-api.chaoxing.com  
+> https://passport2.chaoxing.com  
+> https://sso.chaoxing.com  
+> https://mobilewx.chaoxing.com  
+> https://cx-proxy.example.com // 更换为你的反代域名  
+> 2. uploadFile域名  
+> https://pan-yz.chaoxing.com  
 
 ### 上传小程序代码
 
@@ -30,8 +31,8 @@
 2. 在 `miniprogram/utils` 目录下创建 `config.js` 并填入下面的内容。
 	```js
 	const config = {
-		baseUrl: "https://example.com", // 服务器域名
-		repository: "Misaka-org/Chaoxing-WechatMiniProgram", // 开源地址
+		baseUrl: "https://cx-proxy.example.com", // 更换为你的反代域名
+		repository: "misaka-org/Chaoxing-WechatMiniProgram", // 开源仓库地址
 
 		baiduMapKey: '', // 百度地图开发平台
 		tianMapKey: '', // 天地图开放平台
@@ -46,4 +47,11 @@
 	module.exports = config;
 	```
 3. 安装 [TDesign组件库](https://tdesign.tencent.com/miniprogram/getting-started)
+   
+   注意：请进入 `miniprogram` 目录下 再安装组件库
+
 4. 上传代码
+
+### 使用交流
+
+[前往](https://github.com/misaka-org/Chaoxing-MiniProgram#concat)

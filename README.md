@@ -100,6 +100,8 @@
 
 ## 🎗️ 交流学习
 
+<div style="display: none;" id="concat"></div>
+
 + [QQ频道](https://pd.qq.com/s/f1mli0e35)
 
 ## 🏆 特别鸣谢

@@ -3,6 +3,8 @@
 > 本教程仅供有小程序开发基础的人阅读，不提供任何形式的指导！
 > Issue 或 Discussion 仅处理 Bug或功能请求！
 
+[非开源版部署教程](./no-open.md)
+
 ### 前置步骤
 
 1. 注册小程序 [微信公众平台](https://mp.weixin.qq.com)

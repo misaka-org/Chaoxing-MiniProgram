@@ -28,7 +28,7 @@
 
 > 2022年2月11日，教育部等五部门关于加强普通高校在线客服课程教学管理的若干意见要求，严禁以任何形式传播考试内容及答案作弊手法。本项目不提供考试或作业答案！
 
-> 默认您有基本的JavaSript、Python基础，能熟练部署服务器软件，我们不会提供任何形式的指导，任何部署问题都会被直接关闭！
+> 本项目默认您有基本的JavaSript、Python基础，能熟练部署服务器软件，部署交流请到 QQ频道 或 Discussion，过于简单的问题可能被直接关闭！
 
 > 项目贡献者不对您使用本项目造成的任何后果 (如封号、被教师约谈等) 负责！
 
@@ -90,7 +90,7 @@
     <tr>
         <td>小程序端</td>
         <td>自行部署<a href="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/main/miniprogram/README.md">教程</a></td>
-        <td>填写问卷，提供小程序代码上传密钥 (问卷链接在<a href="https://github.com/misaka-org/Chaoxing-MiniProgram/discussions">讨论区置顶</a>)</td>
+        <td>填写问卷，提供小程序代码上传密钥 (<a href="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/main/miniprogram/no-open.md">填写教程</a>)</td>
     </tr>
 </table>
 
@@ -102,7 +102,8 @@
 
 <div style="display: none;" id="concat"></div>
 
-+ [QQ频道](https://pd.qq.com/s/f1mli0e35)
++ [QQ频道](https://pd.qq.com/s/f1mli0e35)（推荐）
++ [Discussion](https://github.com/misaka-org/Chaoxing-MiniProgram/discussions)
 
 ## 🏆 特别鸣谢
 

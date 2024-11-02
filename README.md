@@ -84,12 +84,12 @@
     <tr>
         <td rowspan=2>部署教程</td>
         <td>服务端</td>
-        <td>自行部署<a href="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/main/miniprogram/README.md">教程</a></td>
+        <td>自行部署<a href="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/main/server/README.md">教程</a></td>
         <td>默认使用我们的服务器 (可<a href="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/main/server/README.md">自行部署</a>)</td>
     </tr>
     <tr>
         <td>小程序端</td>
-        <td>自行部署<a href="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/main/server/README.md">教程</a></td>
+        <td>自行部署<a href="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/main/miniprogram/README.md">教程</a></td>
         <td>填写问卷，提供小程序代码上传密钥 (问卷链接在<a href="https://github.com/misaka-org/Chaoxing-MiniProgram/discussions">讨论区置顶</a>)</td>
     </tr>
 </table>
@@ -97,6 +97,10 @@
 > 请注意：GPLv3具有“传染性”，即在您开发的软件中使用GPLv3自由软件的整体或部分，都将使您的软件也变成GPLv3自由软件。
 
 > 无论选择哪种版本，部署过程均未收取任何费用，如果您遭到欺骗，请立即申请退款！
+
+## 🎗️ 交流学习
+
++ [QQ频道](https://pd.qq.com/s/f1mli0e35)
 
 ## 🏆 特别鸣谢
 

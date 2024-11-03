@@ -96,7 +96,25 @@
 
 > 请注意：GPLv3具有“传染性”，即在您开发的软件中使用GPLv3自由软件的整体或部分，都将使您的软件也变成GPLv3自由软件。
 
-> 无论选择哪种版本，部署过程均未收取任何费用，如果您遭到欺骗，请立即申请退款！
+> 无论选择哪种版本，部署及使用过程均未收取任何费用，如果您遭到欺骗，请立即申请退款！
+
+## 🗒️ 页面展示
+
+#### 开源版
+
+| **登录页** | **课程列表页** | **签到列表页** | **定位签到页** |
+|:---:|:---:|:---:|:---:|
+| <div align="center"> <img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/开源版/1.png?raw=true"/> </div> | <div align="center"> <img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/开源版/2.png?raw=true"/> </div> | <div align="center"> <img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/开源版/3.png?raw=true"/> </div> | <div align="center"> <img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/开源版/4.png?raw=true"/> </div> |
+
+#### 非开源版
+
+| **首页** | **登录页** | **批量扫码签到页** | **课程列表页** |
+|:---:|:---:|:---:|:---:|
+| <div align="center"> <img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/非开源版/1.png?raw=true"/> </div> | <div align="center"> <img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/非开源版/2.png?raw=true"/> </div> | <div align="center"> <img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/非开源版/3.png?raw=true"/> </div> | <div align="center"> <img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/非开源版/4.png?raw=true"/> </div> |
+
+| **签到列表页** | **手势签到页** | **拍照签到页** | **定位签到页** |
+|:---:|:---:|:---:|:---:|
+| <div align="center"> <img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/非开源版/5.png?raw=true"/> </div> | <div align="center"> <img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/非开源版/6.png?raw=true"/> </div> | <div align="center"> <img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/非开源版/7.png?raw=true"/> </div> | <div align="center"> <img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/非开源版/8.png?raw=true"/> </div> |
 
 ## 🎗️ 交流学习
 

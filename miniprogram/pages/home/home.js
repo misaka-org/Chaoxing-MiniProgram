@@ -111,8 +111,8 @@ Page({
 
 	getUserLocation() { // 获取用户位置
 		wx.getLocation({
-				'type': 'gcj02',
-			})
+			'type': 'gcj02',
+		})
 			.then(gcj02 => {
 				log.info("获取用户位置", gcj02)
 				API.allToBaidu(gcj02.longitude, gcj02.latitude)
@@ -156,7 +156,7 @@ Page({
 
 		let res = "";
 		if (this.data.hasValidate)
-			this.data.validate = await API.getValidate();
+			this.data.validate = ""; // 课后作业：此处请自行实现 GET请求 https://cx-api.yangrucheng.top/get_captcha
 
 		if (info.type == 0 || info.type == 1) { // 图片/普通
 			if (objectId == 0 && info.type == 0) {
@@ -175,14 +175,14 @@ Page({
 		}
 
 		if (info.type == 4) { // 位置
-			res = await api.defaultSign(info.activeId, null, signLocation.longitude, signLocation.latitude, signLocation.name, null, null, null, userinfo.name, this.data.validate);
+			res = await api.defaultSign(info.activeId, null, location.longitude, location.latitude, location.name, null, null, null, userinfo.name, this.data.validate);
 		}
 
 		if (info.type == 2) { // 二维码
 			const qrcode = await wx.scanCode();
 			log.debug("扫码结果", qrcode)
 			let params = {};
-			qrcode.result.split('?')[1].split('&').forEach(function (param) {
+			qrcode.result.split('?')[1].split('&').forEach(param => {
 				const parts = param.split('=');
 				const key = decodeURIComponent(parts[0]);
 				const value = decodeURIComponent(parts[1]);

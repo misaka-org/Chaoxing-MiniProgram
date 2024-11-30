@@ -37,4 +37,4 @@ jobs:
       - name: 执行小程序编译上传
         run: |
           cd miniprogram
-          miniprogram-ci upload --pp ./ --pkp ./private.${{ secrets.APPID }}.key --appid ${{ secrets.APPID }} --enable-es6 true -r 30
+          miniprogram-ci upload --pp ./ --pkp ./private.${{ secrets.APPID }}.key --appid ${{ secrets.APPID }} --enable-es6 true --robot 30 --upload-version misaka-org --upload-description "自动上传 By GitHub Actions，开源仓库：misaka-org/Chaoxing-MiniProgram"

@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "miniprogram-ci": "^2.0.10"
+  }
+}

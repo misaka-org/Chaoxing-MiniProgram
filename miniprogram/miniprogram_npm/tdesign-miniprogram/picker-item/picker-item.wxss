@@ -1,0 +1,52 @@
+.t-float-left {
+  float: left;
+}
+.t-float-right {
+  float: right;
+}
+@keyframes tdesign-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.hotspot-expanded.relative {
+  position: relative;
+}
+.hotspot-expanded::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  transform: scale(1.5);
+}
+:host {
+  display: flex;
+}
+.t-picker-item__group {
+  height: var(--td-picker-group-height, 400rpx);
+  overflow: hidden;
+  flex: 1;
+  z-index: 1;
+}
+.t-picker-item__wrapper {
+  padding: 144rpx 0;
+}
+.t-picker-item__item {
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: var(--td-picker-item-height, 80rpx);
+  line-height: var(--td-picker-item-height, 80rpx);
+  color: var(--td-picker-item-color, var(--td-font-gray-2, rgba(0, 0, 0, 0.6)));
+}
+.t-picker-item__item--active {
+  color: var(--td-picker-item-active-color, var(--td-font-gray-1, rgba(0, 0, 0, 0.9)));
+  font-weight: 600;
+}

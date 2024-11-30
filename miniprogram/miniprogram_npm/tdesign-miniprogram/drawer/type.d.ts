@@ -1,0 +1,38 @@
+export interface TdDrawerProps {
+    closeOnOverlayClick?: {
+        type: BooleanConstructor;
+        value?: boolean;
+    };
+    destroyOnClose?: {
+        type: BooleanConstructor;
+        value?: boolean;
+    };
+    items?: {
+        type: ArrayConstructor;
+        value?: DrawerItem[];
+    };
+    placement?: {
+        type: StringConstructor;
+        value?: 'left' | 'right';
+    };
+    showOverlay?: {
+        type: BooleanConstructor;
+        value?: boolean;
+    };
+    title?: {
+        type: StringConstructor;
+        value?: string;
+    };
+    visible?: {
+        type: BooleanConstructor;
+        value?: boolean;
+    };
+    zIndex?: {
+        type: NumberConstructor;
+        value?: number;
+    };
+}
+export interface DrawerItem {
+    title: string;
+    icon: string;
+}

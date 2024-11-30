@@ -1,0 +1,40 @@
+name: 构建并上传小程序代码
+
+on:
+  workflow_call:
+    secrets:
+      APPID:
+        required: true
+      KEY:
+        required: true
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          repository: misaka-org/Chaoxing-MiniProgram
+
+      - name: 安装 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 写入私钥
+        run: |
+          cd miniprogram
+          echo "${{ secrets.KEY }}" > ./private.${{ secrets.APPID }}.key
+
+      - name: 安装依赖
+        run: |
+          cd miniprogram
+          npm install --omit=dev --no-audit
+          npm install -g miniprogram-ci
+
+      - name: 执行小程序编译上传
+        run: |
+          cd miniprogram
+          miniprogram-ci upload --pp ./ --pkp ./private.${{ secrets.APPID }}.key --appid ${{ secrets.APPID }} --enable-es6 true -r 30

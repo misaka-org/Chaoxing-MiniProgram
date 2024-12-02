@@ -102,19 +102,22 @@
 
 #### 开源版
 
-| **登录页** | **课程列表页** | **签到列表页** | **定位签到页** |
-|:---:|:---:|:---:|:---:|
+|                                                             **登录页**                                                             |                                                           **课程列表页**                                                           |                                                           **签到列表页**                                                           |                                                           **定位签到页**                                                           |
+| :--------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------: |
 | <div align="center"> <img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/开源版/1.png?raw=true"/> </div> | <div align="center"> <img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/开源版/2.png?raw=true"/> </div> | <div align="center"> <img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/开源版/3.png?raw=true"/> </div> | <div align="center"> <img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/开源版/4.png?raw=true"/> </div> |
 
 #### 非开源版
 
-| **首页** | **登录页** | **批量扫码签到页** | **课程列表页** |
-|:---:|:---:|:---:|:---:|
+|                                                               **首页**                                                               |                                                              **登录页**                                                              |                                                          **批量扫码签到页**                                                          |                                                            **课程列表页**                                                            |
+| :----------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------: |
 | <div align="center"> <img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/非开源版/1.png?raw=true"/> </div> | <div align="center"> <img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/非开源版/2.png?raw=true"/> </div> | <div align="center"> <img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/非开源版/3.png?raw=true"/> </div> | <div align="center"> <img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/非开源版/4.png?raw=true"/> </div> |
 
-| **签到列表页** | **手势签到页** | **拍照签到页** | **定位签到页** |
-|:---:|:---:|:---:|:---:|
+|                                                            **签到列表页**                                                            |                                                            **手势签到页**                                                            |                                                            **拍照签到页**                                                            |                                                            **定位签到页**                                                            |
+| :----------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------: |
 | <div align="center"> <img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/非开源版/5.png?raw=true"/> </div> | <div align="center"> <img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/非开源版/6.png?raw=true"/> </div> | <div align="center"> <img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/非开源版/7.png?raw=true"/> </div> | <div align="center"> <img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/非开源版/8.png?raw=true"/> </div> |
+
+<div align="center" style="font-weight:bold">扫码体验非开源版</div>  
+<img src="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/static/show/体验二维码.png?raw=true" width="250" height="250" style="border-radius: 50%"></img>
 
 ## 🎗️ 交流学习
 

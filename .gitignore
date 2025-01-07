@@ -6,7 +6,6 @@ tmp
 .vscode
 .DS_Store
 
-*.html
 *yml
 *.log
 *.sh

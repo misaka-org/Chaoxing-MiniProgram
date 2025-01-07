@@ -1,0 +1,5 @@
+httpx
+httpx[http2]
+starlette
+uvicorn
+fastapi

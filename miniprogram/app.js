@@ -2,6 +2,8 @@ import config from '@utils/config';
 import util from '@utils/util';
 import log from '@utils/log';
 
+import baidu_sdk from '@utils/sdk/mtj-wx-sdk';
+
 App({
 	onLaunch(options) {
 		log.info("App 启动参数", options)

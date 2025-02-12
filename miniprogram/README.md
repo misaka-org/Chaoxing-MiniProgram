@@ -39,11 +39,6 @@
 		baiduMapKey: '', // 百度地图开发平台
 		tianMapKey: '', // 天地图开放平台
 
-		swiperList: [ // 轮播图
-			"/static/swiper/1.jpg",
-			"/static/swiper/2.jpg",
-			"/static/swiper/3.jpg",
-		],
 		notice: "本小程序由公众号御坂网络Misaka免费提供，谨防倒卖！",
 	}
 	module.exports = config;

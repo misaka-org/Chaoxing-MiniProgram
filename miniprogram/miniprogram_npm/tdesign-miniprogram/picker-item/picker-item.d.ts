@@ -1,6 +1,7 @@
-import { SuperComponent, RelationsOptions } from '../common/src/index';
+import { SuperComponent, RelationsOptions, ComponentsOptionsType } from '../common/src/index';
 export default class PickerItem extends SuperComponent {
     relations: RelationsOptions;
+    options: ComponentsOptionsType;
     externalClasses: string[];
     properties: import("./type").TdPickerItemProps;
     observers: {
@@ -17,6 +18,9 @@ export default class PickerItem extends SuperComponent {
         labelAlias: string;
         valueAlias: string;
     };
+    lifetimes: {
+        created(): void;
+    };
     methods: {
         onTouchStart(event: any): void;
         onTouchMove(event: any): void;
@@ -25,6 +29,5 @@ export default class PickerItem extends SuperComponent {
         resetOrigin(): void;
         getCount(): any;
     };
-    calculateViewDeltaY(touchDeltaY: number): number;
-    created(): void;
+    calculateViewDeltaY(touchDeltaY: number, itemHeight: number): number;
 }

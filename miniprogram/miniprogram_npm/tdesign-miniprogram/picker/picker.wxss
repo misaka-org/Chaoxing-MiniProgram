@@ -44,7 +44,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  color: var(--td-picker-title-color, var(--td-font-gray-1, rgba(0, 0, 0, 0.9)));
+  color: var(--td-picker-title-color, var(--td-text-color-primary, var(--td-font-gray-1, rgba(0, 0, 0, 0.9))));
   line-height: var(--td-picker-title-line-height, 52rpx);
   font-weight: var(--td-picker-title-font-weight, 600);
   font-size: var(--td-picker-title-font-size, 36rpx);
@@ -60,7 +60,7 @@
   padding: 0 32rpx;
 }
 .t-picker__cancel {
-  color: var(--td-picker-cancel-color, var(--td-font-gray-2, rgba(0, 0, 0, 0.6)));
+  color: var(--td-picker-cancel-color, var(--td-text-color-secondary, var(--td-font-gray-2, rgba(0, 0, 0, 0.6))));
 }
 .t-picker__confirm {
   color: var(--td-picker-confirm-color, var(--td-brand-color, var(--td-primary-color-7, #0052d9)));
@@ -83,15 +83,14 @@
 }
 .t-picker__mask--top {
   top: 0;
-  background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(180deg, var(--td-picker-bg-color, var(--td-bg-color-container, var(--td-font-white-1, #ffffff))) 0%, var(--td-picker-transparent-color) 100%);
 }
 .t-picker__mask--bottom {
   bottom: 0;
-  background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(180deg, var(--td-picker-bg-color, var(--td-bg-color-container, var(--td-font-white-1, #ffffff))) 0%, var(--td-picker-transparent-color) 100%);
   transform: matrix(1, 0, 0, -1, 0, 0);
 }
 .t-picker__indicator {
-  height: var(--td-picker-item-height, 80rpx);
   position: absolute;
   left: 32rpx;
   right: 32rpx;

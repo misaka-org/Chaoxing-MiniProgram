@@ -14,7 +14,6 @@ let Divider = class Divider extends SuperComponent {
         super(...arguments);
         this.externalClasses = [`${prefix}-class`, `${prefix}-class-content`];
         this.options = {
-            addGlobalClass: true,
             multipleSlots: true,
         };
         this.properties = props;

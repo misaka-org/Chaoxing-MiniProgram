@@ -31,13 +31,14 @@ let Textarea = class Textarea extends SuperComponent {
         };
         this.observers = {
             value(val) {
-                this.updateCount(val);
+                this.updateCount(val !== null && val !== void 0 ? val : this.properties.defaultValue);
             },
         };
         this.lifetimes = {
             ready() {
-                const { value } = this.properties;
-                this.updateValue(value == null ? '' : value);
+                var _a;
+                const { value, defaultValue } = this.properties;
+                this.updateValue((_a = value !== null && value !== void 0 ? value : defaultValue) !== null && _a !== void 0 ? _a : '');
             },
         };
         this.methods = {

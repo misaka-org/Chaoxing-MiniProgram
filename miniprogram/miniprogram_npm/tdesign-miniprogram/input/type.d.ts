@@ -1,47 +1,76 @@
 export interface TdInputProps {
+    adjustPosition?: {
+        type: BooleanConstructor;
+        value?: boolean;
+    };
     align?: {
         type: StringConstructor;
         value?: 'left' | 'center' | 'right';
     };
-    layout?: {
-        type: StringConstructor;
-        value?: 'horizontal' | 'vertical';
+    alwaysEmbed?: {
+        type: BooleanConstructor;
+        value?: boolean;
+    };
+    autoFocus?: {
+        type: BooleanConstructor;
+        value?: boolean;
     };
     borderless?: {
         type: BooleanConstructor;
         value?: boolean;
     };
-    clearable?: {
-        type: null;
-        value?: boolean | object;
-    };
     clearTrigger?: {
         type: StringConstructor;
         value?: 'always' | 'focus';
     };
-    style?: {
+    clearable?: {
+        type: null;
+        value?: boolean | object;
+    };
+    confirmHold?: {
+        type: BooleanConstructor;
+        value?: boolean;
+    };
+    confirmType?: {
+        type: StringConstructor;
+        value?: 'send' | 'search' | 'next' | 'go' | 'done';
+    };
+    cursor: {
+        type: NumberConstructor;
+        value?: number;
+        required?: boolean;
+    };
+    cursorColor?: {
         type: StringConstructor;
         value?: string;
+    };
+    cursorSpacing?: {
+        type: NumberConstructor;
+        value?: number;
     };
     disabled?: {
         type: BooleanConstructor;
         value?: boolean;
     };
-    errorMessage?: {
-        type: StringConstructor;
-        value?: string;
-    };
-    externalClasses?: {
-        type: ArrayConstructor;
-        value?: ['t-class', 't-class-input', 't-class-placeholder', 't-class-error-msg'];
+    focus?: {
+        type: BooleanConstructor;
+        value?: boolean;
     };
     format?: {
-        type: null;
+        type: undefined;
         value?: InputFormatType;
+    };
+    holdKeyboard?: {
+        type: BooleanConstructor;
+        value?: boolean;
     };
     label?: {
         type: StringConstructor;
         value?: string;
+    };
+    layout?: {
+        type: StringConstructor;
+        value?: 'vertical' | 'horizontal';
     };
     maxcharacter?: {
         type: NumberConstructor;
@@ -55,6 +84,15 @@ export interface TdInputProps {
         type: StringConstructor;
         value?: string;
     };
+    placeholderClass?: {
+        type: StringConstructor;
+        value?: string;
+    };
+    placeholderStyle: {
+        type: StringConstructor;
+        value?: string;
+        required?: boolean;
+    };
     prefixIcon?: {
         type: null;
         value?: string | object;
@@ -63,9 +101,37 @@ export interface TdInputProps {
         type: BooleanConstructor;
         value?: boolean;
     };
-    size?: {
+    safePasswordCertPath?: {
         type: StringConstructor;
-        value?: 'medium' | 'small';
+        value?: string;
+    };
+    safePasswordCustomHash?: {
+        type: StringConstructor;
+        value?: string;
+    };
+    safePasswordLength?: {
+        type: NumberConstructor;
+        value?: number;
+    };
+    safePasswordNonce?: {
+        type: StringConstructor;
+        value?: string;
+    };
+    safePasswordSalt?: {
+        type: StringConstructor;
+        value?: string;
+    };
+    safePasswordTimeStamp?: {
+        type: NumberConstructor;
+        value?: number;
+    };
+    selectionEnd?: {
+        type: NumberConstructor;
+        value?: number;
+    };
+    selectionStart?: {
+        type: NumberConstructor;
+        value?: number;
     };
     status?: {
         type: StringConstructor;
@@ -88,91 +154,9 @@ export interface TdInputProps {
         value?: 'text' | 'number' | 'idcard' | 'digit' | 'safe-password' | 'password' | 'nickname';
     };
     value?: {
-        type: StringConstructor;
-        optionalTypes: Array<NumberConstructor>;
+        type: null;
         value?: InputValue;
-    };
-    defaultValue?: {
-        type: StringConstructor;
-        optionalTypes: Array<NumberConstructor>;
-        value?: InputValue;
-    };
-    placeholderStyle: {
-        type: StringConstructor;
-        value?: string;
-    };
-    placeholderClass?: {
-        type: StringConstructor;
-        value?: string;
-    };
-    cursorSpacing?: {
-        type: NumberConstructor;
-        value?: number;
-    };
-    autoFocus?: {
-        type: BooleanConstructor;
-        value?: boolean;
-    };
-    focus?: {
-        type: BooleanConstructor;
-        value?: boolean;
-    };
-    confirmType?: {
-        type: StringConstructor;
-        value?: 'send' | 'search' | 'next' | 'go' | 'done';
-    };
-    alwaysEmbed?: {
-        type: BooleanConstructor;
-        value?: boolean;
-    };
-    confirmHold?: {
-        type: BooleanConstructor;
-        value?: boolean;
-    };
-    cursor: {
-        type: NumberConstructor;
-        value?: number;
-    };
-    selectionStart?: {
-        type: NumberConstructor;
-        value?: number;
-    };
-    selectionEnd?: {
-        type: NumberConstructor;
-        value?: number;
-    };
-    adjustPosition?: {
-        type: BooleanConstructor;
-        value?: boolean;
-    };
-    holdKeyboard?: {
-        type: BooleanConstructor;
-        value?: boolean;
-    };
-    safePasswordCertPath?: {
-        type: StringConstructor;
-        value?: string;
-    };
-    safePasswordLength?: {
-        type: NumberConstructor;
-        value?: number;
-    };
-    safePasswordTimeStamp?: {
-        type: NumberConstructor;
-        value?: number;
-    };
-    safePasswordNonce?: {
-        type: StringConstructor;
-        value?: string;
-    };
-    safePasswordSalt?: {
-        type: StringConstructor;
-        value?: string;
-    };
-    safePasswordCustomHash?: {
-        type: StringConstructor;
-        value?: string;
     };
 }
-export declare type InputFormatType = (value: InputValue) => number | string;
+export declare type InputFormatType = (value: InputValue) => string;
 export declare type InputValue = string | number;

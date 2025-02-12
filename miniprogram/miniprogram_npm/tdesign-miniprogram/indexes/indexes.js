@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { SuperComponent, wxComponent } from '../common/src/index';
 import config from '../common/config';
 import props from './props';
-import { getRect, throttle } from '../common/utils';
+import { getRect, throttle, systemInfo } from '../common/utils';
 import pageScrollMixin from '../mixins/page-scroll';
 const { prefix } = config;
 const name = `${prefix}-indexes`;
@@ -34,6 +34,7 @@ let Indexes = class Indexes extends SuperComponent {
         this.timer = null;
         this.groupTop = [];
         this.sidebar = null;
+        this.currentTouchAnchor = null;
         this.observers = {
             indexList(v) {
                 this.setIndexList(v);
@@ -45,6 +46,9 @@ let Indexes = class Indexes extends SuperComponent {
         };
         this.lifetimes = {
             ready() {
+                this.timer = null;
+                this.groupTop = [];
+                this.sidebar = null;
                 if (this.data._height === 0) {
                     this.setHeight();
                 }
@@ -56,7 +60,7 @@ let Indexes = class Indexes extends SuperComponent {
         this.methods = {
             setHeight(height) {
                 if (!height) {
-                    const { windowHeight } = wx.getSystemInfoSync();
+                    const { windowHeight } = systemInfo;
                     height = windowHeight;
                 }
                 this.setData({
@@ -124,22 +128,21 @@ let Indexes = class Indexes extends SuperComponent {
                 }
             },
             setAnchorByIndex(index) {
-                if (this.preIndex != null && this.preIndex === index)
-                    return;
-                const { _indexList } = this.data;
+                const { _indexList, stickyOffset } = this.data;
                 const activeAnchor = _indexList[index];
+                if (this.data.activeAnchor !== null && this.data.activeAnchor === activeAnchor)
+                    return;
                 const target = this.groupTop.find((item) => item.anchor === activeAnchor);
                 if (target) {
+                    this.currentTouchAnchor = activeAnchor;
+                    const scrollTop = target.top - stickyOffset;
                     wx.pageScrollTo({
-                        scrollTop: target.top,
+                        scrollTop,
                         duration: 0,
                     });
-                }
-                this.preIndex = index;
-                this.toggleTips(true);
-                this.triggerEvent('select', { index: activeAnchor });
-                if (activeAnchor !== this.data.activeAnchor) {
-                    this.triggerEvent('change', { index: activeAnchor });
+                    this.toggleTips(true);
+                    this.triggerEvent('select', { index: activeAnchor });
+                    this.setData({ activeAnchor });
                 }
             },
             onClick(e) {
@@ -174,37 +177,46 @@ let Indexes = class Indexes extends SuperComponent {
                 if (!this.groupTop) {
                     return;
                 }
-                const { sticky, stickyOffset } = this.data;
+                const { sticky, stickyOffset, activeAnchor } = this.data;
                 scrollTop += stickyOffset;
                 const curIndex = this.groupTop.findIndex((group) => scrollTop >= group.top - group.height && scrollTop <= group.top + group.totalHeight - group.height);
                 if (curIndex === -1)
                     return;
                 const curGroup = this.groupTop[curIndex];
-                if (this.data.activeAnchor !== curGroup.anchor) {
+                if (this.currentTouchAnchor !== null) {
                     this.triggerEvent('change', { index: curGroup.anchor });
+                    this.currentTouchAnchor = null;
                 }
-                this.setData({
-                    activeAnchor: curGroup.anchor,
-                });
+                else if (activeAnchor !== curGroup.anchor) {
+                    this.triggerEvent('change', { index: curGroup.anchor });
+                    this.setData({ activeAnchor: curGroup.anchor });
+                }
                 if (sticky) {
                     const offset = curGroup.top - scrollTop;
                     const betwixt = offset < curGroup.height && offset > 0 && scrollTop > stickyOffset;
                     this.$children.forEach((child, index) => {
                         if (index === curIndex) {
-                            child.setData({
-                                sticky: scrollTop > stickyOffset,
-                                active: true,
-                                style: `height: ${curGroup.height}px`,
-                                anchorStyle: `transform: translate3d(0, ${betwixt ? offset : 0}px, 0); top: ${stickyOffset}px`,
-                            });
+                            const sticky = scrollTop > stickyOffset;
+                            const anchorStyle = `transform: translate3d(0, ${betwixt ? offset : 0}px, 0); top: ${stickyOffset}px`;
+                            if (anchorStyle !== child.data.anchorStyle || sticky !== child.data.sticky) {
+                                child.setData({
+                                    sticky,
+                                    active: true,
+                                    style: `height: ${curGroup.height}px`,
+                                    anchorStyle,
+                                });
+                            }
                         }
                         else if (index + 1 === curIndex) {
-                            child.setData({
-                                sticky: true,
-                                active: true,
-                                style: `height: ${curGroup.height}px`,
-                                anchorStyle: `transform: translate3d(0, ${betwixt ? offset - curGroup.height : 0}px, 0); top: ${stickyOffset}px`,
-                            });
+                            const anchorStyle = `transform: translate3d(0, ${betwixt ? offset - curGroup.height : 0}px, 0); top: ${stickyOffset}px`;
+                            if (anchorStyle !== child.data.anchorStyle) {
+                                child.setData({
+                                    sticky: true,
+                                    active: true,
+                                    style: `height: ${curGroup.height}px`,
+                                    anchorStyle,
+                                });
+                            }
                         }
                         else {
                             child.setData({ active: false, sticky: false, anchorStyle: '' });

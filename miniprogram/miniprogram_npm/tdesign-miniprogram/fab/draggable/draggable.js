@@ -16,8 +16,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { SuperComponent, wxComponent } from '../../common/src/index';
 import config from '../../common/config';
 import props from './props';
-import { getRect } from '../../common/utils';
-const systemInfo = wx.getSystemInfoSync();
+import { getRect, systemInfo } from '../../common/utils';
 const { prefix } = config;
 const name = `${prefix}-draggable`;
 let Draggable = class Draggable extends SuperComponent {
@@ -66,7 +65,11 @@ let Draggable = class Draggable extends SuperComponent {
             computedRect() {
                 return __awaiter(this, void 0, void 0, function* () {
                     this.rect = { right: 0, bottom: 0, width: 0, height: 0 };
-                    this.rect = yield getRect(this, `.${this.data.classPrefix}`);
+                    try {
+                        this.rect = yield getRect(this, `.${this.data.classPrefix}`);
+                    }
+                    catch (e) {
+                    }
                 });
             },
         };

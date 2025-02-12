@@ -1,7 +1,7 @@
 <wxs src="../common/utils.wxs" module="_" />
 <view
-  style="{{_._style([style, customStyle, !text ? ('width: ' + _.addUnit(size) + '; height: ' + _.addUnit(size)) : '', show ? '' : 'display: none', inheritColor ? 'color: inherit' : ''])}}"
-  class="class {{prefix}}-class {{classPrefix}} {{classPrefix + '--' + layout}}"
+  style="{{_._style([style, customStyle, show ? '' : 'display: none', inheritColor ? 'color: inherit' : ''])}}"
+  class="class {{prefix}}-class {{classPrefix}} {{classPrefix + '--' + layout}} {{fullscreen ? classPrefix + '--fullscreen' : ''}}"
 >
   <view
     wx:if="{{indicator}}"
@@ -10,7 +10,12 @@
     aria-role="{{ariaRole  || 'img'}}"
     aria-label="{{ ariaLabel || text || '加载中'  }}"
   >
-    <view wx:if="{{ theme === 'spinner' }}" wx:for="{{12}}" wx:key="index" class="{{classPrefix}}__dot" />
+    <view
+      wx:if="{{ theme === 'spinner' }}"
+      wx:for="{{12}}"
+      wx:key="index"
+      class="{{classPrefix}}__dot {{classPrefix}}__dot-{{index}}"
+    />
     <view wx:if="{{ theme === 'circular' }}" class="{{classPrefix}}__circular" />
     <block wx:if="{{ theme === 'dots' }}">
       <view

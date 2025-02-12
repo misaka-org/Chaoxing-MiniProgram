@@ -11,6 +11,7 @@ export default class CheckBoxGroup extends SuperComponent {
     observers: {
         value(): void;
         options(): void;
+        disabled(v: any): void;
     };
     lifetimes: {
         ready(): void;

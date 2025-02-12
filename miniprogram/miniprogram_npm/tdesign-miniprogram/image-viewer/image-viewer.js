@@ -4,7 +4,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { styles, calcIcon } from '../common/utils';
+import { styles, calcIcon, systemInfo } from '../common/utils';
 import { SuperComponent, wxComponent } from '../common/src/index';
 import config from '../common/config';
 import props from './props';
@@ -35,10 +35,12 @@ let ImageViewer = class ImageViewer extends SuperComponent {
             },
         ];
         this.observers = {
-            visible(value) {
-                this.setData({
-                    currentSwiperIndex: value ? this.properties.initialIndex : 0,
-                });
+            'visible,initialIndex,images'(visible, initialIndex, images) {
+                if (visible && (images === null || images === void 0 ? void 0 : images.length)) {
+                    this.setData({
+                        currentSwiperIndex: initialIndex >= images.length ? images.length - 1 : initialIndex,
+                    });
+                }
             },
             closeBtn(v) {
                 this.setData({
@@ -55,7 +57,7 @@ let ImageViewer = class ImageViewer extends SuperComponent {
             calcMaskTop() {
                 if (this.data.usingCustomNavbar) {
                     const rect = (wx === null || wx === void 0 ? void 0 : wx.getMenuButtonBoundingClientRect()) || null;
-                    const { statusBarHeight } = wx.getSystemInfoSync();
+                    const { statusBarHeight } = systemInfo;
                     if (rect && statusBarHeight) {
                         this.setData({
                             maskTop: rect.top - statusBarHeight + rect.bottom,
@@ -64,7 +66,7 @@ let ImageViewer = class ImageViewer extends SuperComponent {
                 }
             },
             saveScreenSize() {
-                const { windowHeight, windowWidth } = wx.getSystemInfoSync();
+                const { windowHeight, windowWidth } = systemInfo;
                 this.setData({
                     windowHeight,
                     windowWidth,

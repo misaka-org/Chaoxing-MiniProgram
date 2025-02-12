@@ -6,15 +6,15 @@ const props = {
     collapseAvatar: {
         type: String,
     },
-    externalClasses: {
-        type: Array,
-    },
     max: {
         type: Number,
     },
+    shape: {
+        type: String,
+    },
     size: {
         type: String,
-        value: 'medium',
+        value: '',
     },
 };
 export default props;

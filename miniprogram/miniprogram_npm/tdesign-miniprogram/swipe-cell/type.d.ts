@@ -1,8 +1,4 @@
 export interface TdSwipeCellProps {
-    style?: {
-        type: StringConstructor;
-        value?: string;
-    };
     disabled?: {
         type: BooleanConstructor;
         value?: boolean;
@@ -12,18 +8,21 @@ export interface TdSwipeCellProps {
         value?: Array<SwipeActionItem>;
     };
     opened?: {
-        type: BooleanConstructor;
-        optionalTypes: Array<ArrayConstructor>;
+        type: null;
         value?: boolean | Array<boolean>;
-        required?: boolean;
     };
     right?: {
         type: ArrayConstructor;
         value?: Array<SwipeActionItem>;
     };
+    style?: {
+        type: StringConstructor;
+        value?: string;
+    };
 }
 export interface SwipeActionItem {
-    text: string;
+    text?: string;
+    icon?: string | object;
     className?: string;
     style?: string;
     onClick?: () => void;

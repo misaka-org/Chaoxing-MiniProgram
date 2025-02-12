@@ -7,8 +7,9 @@ const props = {
         type: Number,
         value: 800,
     },
-    externalClasses: {
-        type: Array,
+    fullscreen: {
+        type: Boolean,
+        value: false,
     },
     indicator: {
         type: Boolean,
@@ -38,7 +39,7 @@ const props = {
     },
     size: {
         type: String,
-        value: '40rpx',
+        value: '20px',
     },
     text: {
         type: String,

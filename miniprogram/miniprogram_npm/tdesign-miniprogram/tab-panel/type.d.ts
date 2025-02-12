@@ -4,10 +4,6 @@ export interface TdTabPanelProps {
         type: ObjectConstructor;
         value?: object;
     };
-    destroyOnHide?: {
-        type: BooleanConstructor;
-        value?: boolean;
-    };
     disabled?: {
         type: BooleanConstructor;
         value?: boolean;

@@ -10,9 +10,6 @@ const props = {
         type: Boolean,
         value: false,
     },
-    externalClasses: {
-        type: Array,
-    },
     hideOnLoadFailed: {
         type: Boolean,
         value: false,
@@ -29,11 +26,10 @@ const props = {
     },
     shape: {
         type: String,
-        value: 'circle',
     },
     size: {
         type: String,
-        value: 'medium',
+        value: '',
     },
 };
 export default props;

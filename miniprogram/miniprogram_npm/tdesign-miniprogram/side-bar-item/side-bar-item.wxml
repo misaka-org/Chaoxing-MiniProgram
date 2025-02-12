@@ -3,6 +3,7 @@
 <wxs src="../common/utils.wxs" module="_" />
 
 <view
+  id="{{tId}}"
   class="{{_.cls(classPrefix, [['active', active], ['disabled', disabled]])}} class {{prefix}}-class"
   style="{{_._style([style, customStyle])}}"
   bind:tap="handleClick"
@@ -16,7 +17,7 @@
     <view class="{{classPrefix}}__prefix"></view>
     <view class="{{classPrefix}}__suffix"></view>
   </block>
-  <template wx:if="{{_icon}}" is="icon" data="{{ class: classPrefix + '__icon', ..._icon }}" />
+  <template wx:if="{{_icon}}" is="icon" data="{{ tClass: classPrefix + '__icon', ..._icon }}" />
   <block wx:if="{{badgeProps}}">
     <template is="badge" data="{{ ...badgeProps, content: label }}" />
   </block>

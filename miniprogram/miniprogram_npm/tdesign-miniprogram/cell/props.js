@@ -14,9 +14,6 @@ const props = {
     description: {
         type: String,
     },
-    externalClasses: {
-        type: Array,
-    },
     hover: {
         type: Boolean,
     },

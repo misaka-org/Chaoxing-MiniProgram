@@ -31,6 +31,7 @@
 }
 .t-tree-select__column {
   width: var(--td-tree-colum-width, 206rpx);
+  color: var(--td-tree-colum-text-color, var(--td-text-color-primary, var(--td-font-gray-1, rgba(0, 0, 0, 0.9))));
 }
 .t-tree-select__column--left {
   background: var(--td-tree-root-bg-color, var(--td-bg-color-secondarycontainer, var(--td-gray-color-1, #f3f3f3)));
@@ -38,7 +39,7 @@
 .t-tree-select__column--right {
   flex: 1;
 }
-.t-tree-select__column ::-webkit-scrollbar {
+.t-tree-select__column::-webkit-scrollbar {
   display: none;
   width: 0;
   height: 0;

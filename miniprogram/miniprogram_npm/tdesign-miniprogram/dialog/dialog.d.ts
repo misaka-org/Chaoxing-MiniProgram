@@ -1,8 +1,8 @@
 import { SuperComponent } from '../common/src/index';
 export default class Dialog extends SuperComponent {
+    behaviors: string[];
     options: {
         multipleSlots: boolean;
-        addGlobalClass: boolean;
     };
     externalClasses: string[];
     properties: import("./type").TdDialogProps;

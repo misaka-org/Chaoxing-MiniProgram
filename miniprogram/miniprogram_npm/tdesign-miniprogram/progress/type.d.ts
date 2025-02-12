@@ -3,14 +3,6 @@ export interface TdProgressProps {
         type: null;
         value?: string | Array<string> | Record<string, string>;
     };
-    style?: {
-        type: StringConstructor;
-        value?: string;
-    };
-    externalClasses?: {
-        type: ArrayConstructor;
-        value?: ['t-class', 't-class-bar', 't-class-label'];
-    };
     label?: {
         type: null;
         value?: string | boolean;
@@ -21,20 +13,24 @@ export interface TdProgressProps {
     };
     status?: {
         type: StringConstructor;
-        value?: StatusEnum;
+        value?: ProgressStatus;
     };
     strokeWidth?: {
         type: null;
         value?: string | number;
     };
+    style?: {
+        type: StringConstructor;
+        value?: string;
+    };
     theme?: {
         type: StringConstructor;
-        value?: ThemeEnum;
+        value?: ProgressTheme;
     };
     trackColor?: {
         type: StringConstructor;
         value?: string;
     };
 }
-export declare type StatusEnum = 'success' | 'error' | 'warning' | 'active';
-export declare type ThemeEnum = 'line' | 'plump' | 'circle';
+export declare type ProgressStatus = 'success' | 'error' | 'warning' | 'active';
+export declare type ProgressTheme = 'line' | 'plump' | 'circle';

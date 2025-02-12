@@ -5,7 +5,7 @@ const props = {
     },
     cancelText: {
         type: String,
-        value: '取消',
+        value: '',
     },
     count: {
         type: Number,
@@ -17,6 +17,7 @@ const props = {
     },
     items: {
         type: Array,
+        required: true,
     },
     popupProps: {
         type: Object,
@@ -34,13 +35,19 @@ const props = {
         type: String,
         value: 'list',
     },
+    usingCustomNavbar: {
+        type: Boolean,
+        value: false,
+    },
     visible: {
         type: Boolean,
         value: null,
+        required: true,
     },
     defaultVisible: {
         type: Boolean,
         value: false,
+        required: true,
     },
 };
 export default props;

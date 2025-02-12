@@ -4,13 +4,9 @@ export interface TdTabBarItemProps {
         type: ObjectConstructor;
         value?: BadgeProps;
     };
-    style?: {
-        type: StringConstructor;
-        value?: string;
-    };
     icon?: {
-        type: StringConstructor;
-        value?: string;
+        type: null;
+        value?: string | object;
     };
     subTabBar?: {
         type: ArrayConstructor;

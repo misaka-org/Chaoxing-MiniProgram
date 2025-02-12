@@ -20,9 +20,13 @@ declare type dataType = {
     prefix: string;
     isVisibleToScreenReader: boolean;
     identifier: number[];
+    __inited: boolean;
 };
 export default class Slider extends SuperComponent {
     externalClasses: string[];
+    options: {
+        pureDataPattern: RegExp;
+    };
     properties: import("./type").TdSliderProps;
     controlledProps: {
         key: string;

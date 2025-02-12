@@ -1,10 +1,7 @@
 const props = {
     disabled: {
-        type: Boolean,
-        value: false,
-    },
-    externalClasses: {
-        type: Array,
+        type: null,
+        value: undefined,
     },
     label: {
         type: null,

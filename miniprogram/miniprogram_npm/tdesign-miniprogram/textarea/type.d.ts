@@ -9,7 +9,14 @@ export interface TdTextareaProps {
     };
     autosize?: {
         type: null;
-        value?: boolean | object;
+        value?: boolean | {
+            maxHeight?: number;
+            minHeight?: number;
+        };
+    };
+    bordered?: {
+        type: BooleanConstructor;
+        value?: boolean;
     };
     confirmHold?: {
         type: BooleanConstructor;
@@ -19,27 +26,35 @@ export interface TdTextareaProps {
         type: StringConstructor;
         value?: 'return' | 'send' | 'search' | 'next' | 'go' | 'done';
     };
+    cursor?: {
+        type: NumberConstructor;
+        value?: number;
+    };
     cursorSpacing?: {
         type: NumberConstructor;
         value?: number;
     };
-    style?: {
-        type: StringConstructor;
-        value?: string;
+    disableDefaultPadding?: {
+        type: BooleanConstructor;
+        value?: boolean;
     };
     disabled?: {
         type: BooleanConstructor;
         value?: boolean;
-    };
-    externalClasses?: {
-        type: ArrayConstructor;
-        value?: ['t-class', 't-class-textarea', 't-class-label'];
     };
     fixed?: {
         type: BooleanConstructor;
         value?: boolean;
     };
     focus?: {
+        type: BooleanConstructor;
+        value?: boolean;
+    };
+    holdKeyboard?: {
+        type: BooleanConstructor;
+        value?: boolean;
+    };
+    indicator?: {
         type: BooleanConstructor;
         value?: boolean;
     };
@@ -59,48 +74,29 @@ export interface TdTextareaProps {
         type: StringConstructor;
         value?: string;
     };
-    placeholderStyle: {
-        type: StringConstructor;
-        value: string;
-    };
-    value?: {
+    placeholderStyle?: {
         type: StringConstructor;
         value?: string;
-    };
-    defaultValue?: {
-        type: StringConstructor;
-        value?: string;
-    };
-    bordered?: {
-        type: BooleanConstructor;
-        value?: boolean;
-    };
-    indicator?: {
-        type: BooleanConstructor;
-        value?: boolean;
-    };
-    cursor: {
-        type: NumberConstructor;
-        value?: number;
-    };
-    showConfirmBar: {
-        type: BooleanConstructor;
-        value?: boolean;
-    };
-    selectionStart?: {
-        type: NumberConstructor;
-        value?: number;
     };
     selectionEnd?: {
         type: NumberConstructor;
         value?: number;
     };
-    disableDefaultPadding?: {
+    selectionStart?: {
+        type: NumberConstructor;
+        value?: number;
+    };
+    showConfirmBar?: {
         type: BooleanConstructor;
         value?: boolean;
     };
-    holdKeyboard?: {
-        type: BooleanConstructor;
-        value?: boolean;
+    value?: {
+        type: null;
+        value?: TextareaValue;
+    };
+    defaultValue?: {
+        type: null;
+        value?: TextareaValue;
     };
 }
+export declare type TextareaValue = string | number;

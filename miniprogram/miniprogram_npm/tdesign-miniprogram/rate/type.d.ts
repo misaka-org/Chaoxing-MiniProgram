@@ -11,30 +11,25 @@ export interface TdRateProps {
         type: NumberConstructor;
         value?: number;
     };
-    style?: {
-        type: StringConstructor;
-        value?: string;
-    };
     disabled?: {
         type: BooleanConstructor;
         value?: boolean;
-    };
-    externalClasses?: {
-        type: ArrayConstructor;
-        value?: ['t-class', 't-class-icon', 't-class-text'];
     };
     gap?: {
         type: null;
         value?: string | number;
     };
-    iconPrefix?: {
-        type: StringConstructor;
-        value?: string;
-        reuqired?: boolean;
-    };
     icon?: {
         type: null;
         value?: string | string[];
+    };
+    iconPrefix?: {
+        type: StringConstructor;
+        value?: string;
+    };
+    placement?: {
+        type: StringConstructor;
+        value?: 'top' | 'bottom' | '';
     };
     showText?: {
         type: BooleanConstructor;
@@ -56,8 +51,8 @@ export interface TdRateProps {
         type: NumberConstructor;
         value?: number;
     };
-    placement?: {
+    variant?: {
         type: StringConstructor;
-        value?: 'top' | 'bottom';
+        value?: 'outline' | 'filled';
     };
 }

@@ -6,16 +6,9 @@ const props = {
     content: {
         type: String,
     },
-    style: {
-        type: String,
-        value: '',
-    },
     dashed: {
         type: Boolean,
         value: false,
-    },
-    externalClasses: {
-        type: Array,
     },
     layout: {
         type: String,

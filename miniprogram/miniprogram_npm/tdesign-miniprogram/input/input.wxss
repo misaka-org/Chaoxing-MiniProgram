@@ -28,9 +28,10 @@
 .t-input {
   background-color: var(--td-input-bg-color, var(--td-bg-color-container, var(--td-font-white-1, #ffffff)));
   display: flex;
-  align-items: center;
+  align-items: var(--td-input-align-items, center);
   flex: 1;
   padding: var(--td-input-vertical-padding, 32rpx);
+  overflow: hidden;
 }
 .t-input--border {
   position: relative;
@@ -64,14 +65,14 @@
 }
 .t-input__icon--prefix {
   font-size: 48rpx;
-  color: var(--td-input-prefix-icon-color, var(--td-font-gray-1, rgba(0, 0, 0, 0.9)));
+  color: var(--td-input-prefix-icon-color, var(--td-text-color-primary, var(--td-font-gray-1, rgba(0, 0, 0, 0.9))));
 }
 .t-input__label:not(:empty) {
   min-width: var(--td-input-label-min-width, 2em);
   max-width: var(--td-input-label-max-width, 5em);
   font-size: var(--td-font-size-m, 32rpx);
   line-height: 48rpx;
-  color: var(--td-input-label-text-color, var(--td-font-gray-1, rgba(0, 0, 0, 0.9)));
+  color: var(--td-input-label-text-color, var(--td-text-color-primary, var(--td-font-gray-1, rgba(0, 0, 0, 0.9))));
   margin-right: var(--td-spacer-2, 32rpx);
   word-wrap: break-word;
 }
@@ -99,6 +100,7 @@
 }
 .t-input__wrap .t-input__content {
   display: flex;
+  width: 100%;
   align-items: center;
   line-height: 48rpx;
   font-size: var(--td-font-size-m, 32rpx);
@@ -117,11 +119,11 @@
 .t-input__wrap--clearable-icon,
 .t-input__wrap--suffix-icon {
   font-size: 48rpx;
-  color: var(--td-input-suffix-icon-color, var(--td-font-gray-3, rgba(0, 0, 0, 0.4)));
+  color: var(--td-input-suffix-icon-color, var(--td-text-color-placeholder, var(--td-font-gray-3, rgba(0, 0, 0, 0.4))));
 }
 .t-input__wrap--suffix {
   font-size: var(--td-font-size-m, 32rpx);
-  color: var(--td-input-suffix-text-color, var(--td-font-gray-1, rgba(0, 0, 0, 0.9)));
+  color: var(--td-input-suffix-text-color, var(--td-text-color-primary, var(--td-font-gray-1, rgba(0, 0, 0, 0.9))));
 }
 .t-input__icon--prefix:empty,
 .t-input__tips:empty,
@@ -138,7 +140,7 @@
   min-height: 48rpx;
   margin: 0;
   padding: 0;
-  color: var(--td-input-default-text-color, var(--td-font-gray-1, rgba(0, 0, 0, 0.9)));
+  color: var(--td-input-default-text-color, var(--td-text-color-primary, var(--td-font-gray-1, rgba(0, 0, 0, 0.9))));
   line-height: inherit;
   background-color: transparent;
   border: 0;
@@ -165,7 +167,10 @@
 }
 .t-input__placeholder {
   color: var(--td-input-placeholder-text-color, var(--td-text-color-placeholder, var(--td-font-gray-3, rgba(0, 0, 0, 0.4))));
-  font-size: var(--td-font-size-m, 32rpx);
+  font-size: var(--td-input-placeholder-text-font-size, var(--td-font-size-m, 32rpx));
+}
+.t-input__placeholder--disabled {
+  color: var(--td-input-disabled-text-color, var(--td-text-color-disabled, var(--td-font-gray-4, rgba(0, 0, 0, 0.26))));
 }
 .t-input__tips {
   font-size: var(--td-font-size-s, 24rpx);
@@ -173,7 +178,7 @@
   padding-top: 8rpx;
 }
 .t-input--default + .t-input__tips {
-  color: var(--td-input-default-tips-color, var(--td-font-gray-3, rgba(0, 0, 0, 0.4)));
+  color: var(--td-input-default-tips-color, var(--td-text-color-placeholder, var(--td-font-gray-3, rgba(0, 0, 0, 0.4))));
 }
 .t-input--success + .t-input__tips {
   color: var(--td-input-success-tips-color, var(--td-success-color, var(--td-success-color-5, #2ba471)));

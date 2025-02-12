@@ -9,8 +9,7 @@ export default class Grid extends SuperComponent {
         contentStyle: string;
     };
     observers: {
-        'column,hover,align'(): void;
-        'gutter,border'(): void;
+        'column,hover,align,gutter,border'(): void;
     };
     lifetimes: {
         attached(): void;

@@ -7,9 +7,6 @@ const props = {
         type: Number,
         value: 1,
     },
-    externalClasses: {
-        type: Array,
-    },
     fixed: {
         type: Boolean,
         value: true,

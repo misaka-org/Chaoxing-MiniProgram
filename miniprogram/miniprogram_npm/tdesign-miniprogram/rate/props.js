@@ -12,21 +12,23 @@ const props = {
         value: 5,
     },
     disabled: {
-        type: Boolean,
-    },
-    externalClasses: {
-        type: Array,
+        type: null,
+        value: undefined,
     },
     gap: {
         type: null,
         value: 8,
     },
+    icon: {
+        type: null,
+    },
     iconPrefix: {
         type: String,
         value: undefined,
     },
-    icon: {
-        type: null,
+    placement: {
+        type: String,
+        value: 'top',
     },
     showText: {
         type: Boolean,
@@ -48,9 +50,9 @@ const props = {
         type: Number,
         value: 0,
     },
-    placement: {
+    variant: {
         type: String,
-        value: 'top',
+        value: 'outline',
     },
 };
 export default props;

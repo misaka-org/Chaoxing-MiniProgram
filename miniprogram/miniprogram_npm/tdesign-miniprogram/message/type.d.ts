@@ -1,21 +1,13 @@
 export interface TdMessageProps {
-    action?: {
-        type: StringConstructor;
-        value?: string;
-    };
     align?: {
         type: StringConstructor;
         value?: MessageAlignType;
     };
     closeBtn?: {
         type: null;
-        value?: string | boolean;
+        value?: string | boolean | object;
     };
     content?: {
-        type: StringConstructor;
-        value?: string;
-    };
-    style?: {
         type: StringConstructor;
         value?: string;
     };
@@ -23,21 +15,29 @@ export interface TdMessageProps {
         type: NumberConstructor;
         value?: number;
     };
-    externalClasses?: {
-        type: ArrayConstructor;
-        value?: ['t-class', 't-class-content', 't-class-icon', 't-class-action', 't-class-close-btn'];
+    gap?: {
+        type: null;
+        value?: string | number | boolean;
     };
     icon?: {
         type: null;
-        value?: boolean | 'info' | 'bell';
+        value?: string | boolean | object;
+    };
+    link?: {
+        type: null;
+        value?: string | object;
     };
     marquee?: {
         type: null;
-        value?: boolean | DrawMarquee;
+        value?: boolean | MessageMarquee;
     };
     offset?: {
         type: ArrayConstructor;
         value?: Array<string | number>;
+    };
+    single?: {
+        type: BooleanConstructor;
+        value?: boolean;
     };
     theme?: {
         type: StringConstructor;
@@ -55,13 +55,9 @@ export interface TdMessageProps {
         type: NumberConstructor;
         value?: number;
     };
-    link?: {
-        type: null;
-        value?: string | object;
-    };
 }
 export declare type MessageAlignType = 'left' | 'center';
-export interface DrawMarquee {
+export interface MessageMarquee {
     speed?: number;
     loop?: number;
     delay?: number;

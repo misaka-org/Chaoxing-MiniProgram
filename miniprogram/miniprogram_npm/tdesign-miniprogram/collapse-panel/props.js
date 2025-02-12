@@ -3,11 +3,11 @@ const props = {
         type: String,
     },
     disabled: {
-        type: Boolean,
+        type: null,
         value: undefined,
     },
     expandIcon: {
-        type: Boolean,
+        type: null,
         value: undefined,
     },
     externalClasses: {

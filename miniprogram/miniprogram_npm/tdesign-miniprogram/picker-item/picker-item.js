@@ -9,10 +9,7 @@ import config from '../common/config';
 import props from './props';
 const { prefix } = config;
 const name = `${prefix}-picker-item`;
-const itemHeight = 80;
 const DefaultDuration = 240;
-const { windowWidth } = wx.getSystemInfoSync();
-const rpx2px = (rpx) => Math.floor((windowWidth * rpx) / 750);
 const range = function (num, min, max) {
     return Math.min(Math.max(num, min), max);
 };
@@ -33,6 +30,9 @@ let PickerItem = class PickerItem extends SuperComponent {
                 },
             },
         };
+        this.options = {
+            multipleSlots: true,
+        };
         this.externalClasses = [`${prefix}-class`];
         this.properties = props;
         this.observers = {
@@ -51,6 +51,12 @@ let PickerItem = class PickerItem extends SuperComponent {
             labelAlias: 'label',
             valueAlias: 'value',
         };
+        this.lifetimes = {
+            created() {
+                this.StartY = 0;
+                this.StartOffset = 0;
+            },
+        };
         this.methods = {
             onTouchStart(event) {
                 this.StartY = event.touches[0].clientY;
@@ -58,24 +64,25 @@ let PickerItem = class PickerItem extends SuperComponent {
                 this.setData({ duration: 0 });
             },
             onTouchMove(event) {
-                const { StartY, StartOffset, itemHeight } = this;
+                const { pickItemHeight } = this.data;
+                const { StartY, StartOffset } = this;
                 const touchDeltaY = event.touches[0].clientY - StartY;
-                const deltaY = this.calculateViewDeltaY(touchDeltaY);
+                const deltaY = this.calculateViewDeltaY(touchDeltaY, pickItemHeight);
                 this.setData({
-                    offset: range(StartOffset + deltaY, -(this.getCount() * itemHeight), 0),
+                    offset: range(StartOffset + deltaY, -(this.getCount() * pickItemHeight), 0),
                     duration: DefaultDuration,
                 });
             },
             onTouchEnd() {
-                const { offset, labelAlias, valueAlias, columnIndex } = this.data;
+                const { offset, labelAlias, valueAlias, columnIndex, pickItemHeight } = this.data;
                 const { options } = this.properties;
                 if (offset === this.StartOffset) {
                     return;
                 }
-                const index = range(Math.round(-offset / this.itemHeight), 0, this.getCount() - 1);
+                const index = range(Math.round(-offset / pickItemHeight), 0, this.getCount() - 1);
                 this.setData({
                     curIndex: index,
-                    offset: -index * this.itemHeight,
+                    offset: -index * pickItemHeight,
                 });
                 if (index === this._selectedIndex) {
                     return;
@@ -93,11 +100,11 @@ let PickerItem = class PickerItem extends SuperComponent {
             },
             update() {
                 var _a, _b;
-                const { options, value, labelAlias, valueAlias } = this.data;
+                const { options, value, labelAlias, valueAlias, pickItemHeight } = this.data;
                 const index = options.findIndex((item) => item[valueAlias] === value);
                 const selectedIndex = index > 0 ? index : 0;
                 this.setData({
-                    offset: -selectedIndex * this.itemHeight,
+                    offset: -selectedIndex * pickItemHeight,
                     curIndex: selectedIndex,
                 });
                 this._selectedIndex = selectedIndex;
@@ -113,13 +120,8 @@ let PickerItem = class PickerItem extends SuperComponent {
             },
         };
     }
-    calculateViewDeltaY(touchDeltaY) {
+    calculateViewDeltaY(touchDeltaY, itemHeight) {
         return Math.abs(touchDeltaY) > itemHeight ? 1.2 * touchDeltaY : touchDeltaY;
-    }
-    created() {
-        this.StartY = 0;
-        this.StartOffset = 0;
-        this.itemHeight = rpx2px(itemHeight);
     }
 };
 PickerItem = __decorate([

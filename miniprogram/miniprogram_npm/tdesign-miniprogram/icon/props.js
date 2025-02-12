@@ -8,13 +8,12 @@ const props = {
         value: '',
         required: true,
     },
-    size: {
+    prefix: {
         type: String,
         value: '',
     },
-    prefix: {
-        type: String,
-        value: undefined,
+    size: {
+        type: null,
     },
 };
 export default props;

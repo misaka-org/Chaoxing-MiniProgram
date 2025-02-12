@@ -38,7 +38,6 @@ let AvatarGroup = class AvatarGroup extends SuperComponent {
                     length: this.$children.length,
                 });
                 this.handleMax();
-                this.handleChildCascading();
             },
         };
         this.observers = {
@@ -53,7 +52,8 @@ let AvatarGroup = class AvatarGroup extends SuperComponent {
                 const classList = [
                     name,
                     `${prefix}-class`,
-                    `${name}-offset-${direction}-${size.indexOf('px') > -1 ? 'medium' : size}`,
+                    `${name}-offset-${direction}`,
+                    `${name}-offset-${direction}-${size.indexOf('px') > -1 ? 'medium' : size || 'medium'}`,
                 ];
                 this.setData({
                     className: classList.join(' '),
@@ -69,13 +69,8 @@ let AvatarGroup = class AvatarGroup extends SuperComponent {
                     child.hide();
                 });
             },
-            handleChildCascading() {
-                if (this.properties.cascading === 'right-up')
-                    return;
-                const defaultZIndex = 100;
-                this.$children.forEach((child, index) => {
-                    child.updateCascading(defaultZIndex - index * 10);
-                });
+            onCollapsedItemClick(e) {
+                this.triggerEvent('collapsed-item-click', e.detail);
             },
         };
     }

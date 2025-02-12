@@ -9,7 +9,7 @@ export default class Avatar extends SuperComponent {
         classPrefix: string;
         isShow: boolean;
         zIndex: number;
-        borderedWithGroup: boolean;
+        systemInfo: WechatMiniprogram.WindowInfo | WechatMiniprogram.SystemInfo;
     };
     relations: RelationsOptions;
     observers: {
@@ -17,7 +17,6 @@ export default class Avatar extends SuperComponent {
     };
     methods: {
         hide(): void;
-        updateCascading(zIndex: any): void;
         onLoadError(e: WechatMiniprogram.CustomEvent): void;
     };
 }

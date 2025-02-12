@@ -29,6 +29,8 @@ const props = {
     },
     time: {
         type: Number,
+        value: 0,
+        required: true,
     },
 };
 export default props;

@@ -6,12 +6,15 @@ const props = {
         type: Array,
     },
     opened: {
-        type: Boolean,
-        optionalTypes: [Array],
+        type: null,
         value: false,
     },
     right: {
         type: Array,
+    },
+    style: {
+        type: String,
+        value: '',
     },
 };
 export default props;

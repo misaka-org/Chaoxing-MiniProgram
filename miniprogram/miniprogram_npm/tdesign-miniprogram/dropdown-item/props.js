@@ -25,9 +25,9 @@ const props = {
         type: null,
         value: 1,
     },
-    optionsLayout: {
+    placement: {
         type: String,
-        value: 'columns',
+        value: 'left',
     },
     value: {
         type: null,

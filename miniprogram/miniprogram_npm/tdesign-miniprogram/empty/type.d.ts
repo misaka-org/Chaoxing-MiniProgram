@@ -1,8 +1,4 @@
 export interface TdEmptyProps {
-    style?: {
-        type: StringConstructor;
-        value?: string;
-    };
     description?: {
         type: StringConstructor;
         value?: string;

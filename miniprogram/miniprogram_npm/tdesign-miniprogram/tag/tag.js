@@ -23,7 +23,6 @@ let Tag = class Tag extends SuperComponent {
         this.externalClasses = [`${prefix}-class`];
         this.options = {
             multipleSlots: true,
-            styleIsolation: 'apply-shared',
         };
         this.lifetimes = {
             attached() {

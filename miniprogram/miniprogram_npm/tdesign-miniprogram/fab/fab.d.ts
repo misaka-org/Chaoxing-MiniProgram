@@ -1,5 +1,6 @@
 import { SuperComponent } from '../common/src/index';
 export default class Fab extends SuperComponent {
+    behaviors: string[];
     properties: import("./type").TdFabProps;
     externalClasses: string[];
     data: {
@@ -9,16 +10,18 @@ export default class Fab extends SuperComponent {
             size: string;
             shape: string;
             theme: string;
-            externalClass: string;
+            tClass: string;
         };
         moveStyle: any;
     };
     observers: {
-        'buttonProps.**, icon, text, ariaLabel'(): void;
+        'buttonProps.**, icon, text, ariaLabel, yBounds'(): void;
     };
     methods: {
         onTplButtonTap(e: any): void;
+        onStart(e: any): void;
         onMove(e: any): void;
+        onEnd(e: any): void;
         computedSize(): void;
     };
 }

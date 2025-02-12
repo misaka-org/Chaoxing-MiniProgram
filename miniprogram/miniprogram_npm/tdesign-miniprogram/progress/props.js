@@ -3,9 +3,6 @@ const props = {
         type: null,
         value: '',
     },
-    externalClasses: {
-        type: Array,
-    },
     label: {
         type: null,
         value: true,
@@ -19,6 +16,10 @@ const props = {
     },
     strokeWidth: {
         type: null,
+    },
+    style: {
+        type: String,
+        value: '',
     },
     theme: {
         type: String,

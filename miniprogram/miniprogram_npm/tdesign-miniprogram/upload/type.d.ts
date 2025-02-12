@@ -16,9 +16,12 @@ export interface TdUploadProps {
         type: BooleanConstructor;
         value?: boolean;
     };
-    style?: {
-        type: StringConstructor;
-        value?: string;
+    draggable?: {
+        type: null;
+        value?: boolean | {
+            vibrate?: boolean;
+            collisionVibrate?: boolean;
+        };
     };
     files?: {
         type: ArrayConstructor;
@@ -53,7 +56,7 @@ export interface TdUploadProps {
         value?: Array<MediaType>;
     };
     requestMethod?: {
-        type: null;
+        type: undefined;
         value?: null;
     };
     sizeLimit?: {
@@ -64,13 +67,9 @@ export interface TdUploadProps {
         type: StringConstructor;
         value?: 'media' | 'messageFile';
     };
-    draggable?: {
-        type: null;
-        value?: boolean | Draggable;
-    };
     transition?: {
         type: ObjectConstructor;
-        value: Transition;
+        value?: Transition;
     };
 }
 export declare type UploadMpConfig = ImageConfig | VideoConfig;
@@ -86,12 +85,6 @@ export interface VideoConfig {
     compressed?: boolean;
     maxDuration?: number;
     camera?: 'back' | 'front';
-}
-export interface UploadDisplayDragEvents {
-    onDrop?: (event: DragEvent) => void;
-    onDragenter?: (event: DragEvent) => void;
-    onDragover?: (event: DragEvent) => void;
-    onDragleave?: (event: DragEvent) => void;
 }
 export interface UploadFile {
     url: string;
@@ -109,10 +102,6 @@ export interface SizeLimitObj {
 }
 export declare type SizeUnitArray = ['B', 'KB', 'MB', 'GB'];
 export declare type SizeUnit = SizeUnitArray[number];
-export interface Draggable {
-    vibrate?: boolean;
-    collisionVibrate?: boolean;
-}
 export interface Transition {
     backTransition?: boolean;
     duration?: number;

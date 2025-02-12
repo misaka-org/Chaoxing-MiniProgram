@@ -11,10 +11,6 @@ export interface TdStepsProps {
         type: StringConstructor;
         value?: 'default' | 'process' | 'finish' | 'error';
     };
-    externalClasses?: {
-        type: ArrayConstructor;
-        value?: ['t-class'];
-    };
     layout?: {
         type: StringConstructor;
         value?: 'horizontal' | 'vertical';
@@ -22,10 +18,6 @@ export interface TdStepsProps {
     readonly?: {
         type: BooleanConstructor;
         value?: boolean;
-    };
-    separator?: {
-        type: StringConstructor;
-        value?: 'line' | 'dashed' | 'arrow';
     };
     sequence?: {
         type: StringConstructor;

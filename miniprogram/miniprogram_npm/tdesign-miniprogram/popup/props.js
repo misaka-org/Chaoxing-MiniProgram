@@ -32,8 +32,9 @@ const props = {
         type: Boolean,
         value: true,
     },
-    transitionProps: {
-        type: Object,
+    usingCustomNavbar: {
+        type: Boolean,
+        value: false,
     },
     visible: {
         type: Boolean,
@@ -41,7 +42,6 @@ const props = {
     },
     defaultVisible: {
         type: Boolean,
-        value: false,
     },
     zIndex: {
         type: Number,

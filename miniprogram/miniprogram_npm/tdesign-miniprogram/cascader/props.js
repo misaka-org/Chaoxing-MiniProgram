@@ -1,4 +1,8 @@
 const props = {
+    checkStrictly: {
+        type: Boolean,
+        value: false,
+    },
     closeBtn: {
         type: Boolean,
         value: true,

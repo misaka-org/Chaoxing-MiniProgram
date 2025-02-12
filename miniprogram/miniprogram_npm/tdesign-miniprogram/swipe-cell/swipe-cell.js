@@ -26,6 +26,7 @@ let SwiperCell = class SwiperCell extends SuperComponent {
             wrapperStyle: '',
             closed: true,
             classPrefix: name,
+            skipMove: false,
         };
         this.observers = {
             'left, right'() {
@@ -57,6 +58,16 @@ let SwiperCell = class SwiperCell extends SuperComponent {
                 rightWidth: rightRect.width,
             });
         });
+    }
+    skipMove() {
+        if (!this.data.skipMove) {
+            this.setData({ skipMove: true });
+        }
+    }
+    catchMove() {
+        if (this.data.skipMove) {
+            this.setData({ skipMove: false });
+        }
     }
     open() {
         this.setData({ opened: true });

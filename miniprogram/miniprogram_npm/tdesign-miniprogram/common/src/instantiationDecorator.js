@@ -130,9 +130,6 @@ export const wxComponent = function wxComponent() {
         }
         const current = new WxComponent();
         current.options = current.options || {};
-        if (current.options.addGlobalClass === undefined) {
-            current.options.addGlobalClass = true;
-        }
         if (canUseVirtualHost()) {
             current.options.virtualHost = true;
         }

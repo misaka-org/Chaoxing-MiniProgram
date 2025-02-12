@@ -31,7 +31,7 @@
 .t-cell-group__title {
   font-family: PingFangSC-Regular;
   font-size: var(--td-cell-group-title-font-size, 28rpx);
-  color: var(--td-cell-group-title-color, var(--td-font-gray-3, rgba(0, 0, 0, 0.4)));
+  color: var(--td-cell-group-title-color, var(--td-text-color-placeholder, var(--td-font-gray-3, rgba(0, 0, 0, 0.4))));
   text-align: left;
   line-height: var(--td-cell-group-title-line-height, 90rpx);
   background-color: var(--td-cell-group-title-bg-color, var(--td-bg-color-secondarycontainer, var(--td-gray-color-1, #f3f3f3)));
@@ -45,8 +45,10 @@
   right: 0;
   left: 0;
   top: 0;
-  border-top: 1px solid var(--td-cell-group-border-color, var(--td-border-color, var(--td-gray-color-3, #e7e7e7)));
+  border-top: 1px solid var(--td-cell-group-border-color, var(--td-component-stroke, var(--td-gray-color-3, #e7e7e7)));
   transform: scaleY(0.5);
+  transform-origin: 0 0;
+  transform-origin: top;
   z-index: 1;
 }
 .t-cell-group--bordered::after {
@@ -57,8 +59,9 @@
   right: 0;
   left: 0;
   bottom: 0;
-  border-bottom: 1px solid var(--td-cell-group-border-color, var(--td-border-color, var(--td-gray-color-3, #e7e7e7)));
+  border-bottom: 1px solid var(--td-cell-group-border-color, var(--td-component-stroke, var(--td-gray-color-3, #e7e7e7)));
   transform: scaleY(0.5);
+  transform-origin: bottom;
   z-index: 1;
 }
 .t-cell-group--card {

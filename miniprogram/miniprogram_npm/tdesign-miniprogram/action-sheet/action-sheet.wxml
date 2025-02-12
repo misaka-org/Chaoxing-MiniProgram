@@ -7,6 +7,7 @@
   <t-popup
     visible="{{visible}}"
     placement="bottom"
+    usingCustomNavbar="{{usingCustomNavbar}}"
     bind:visible-change="onPopupVisibleChange"
     show-overlay="{{showOverlay}}"
     z-index="{{ popupProps.zIndex || defaultPopUpzIndex }}"
@@ -41,7 +42,7 @@
         bind:tap="onCancel"
         aria-role="button"
       >
-        {{ cancelText }}
+        {{ cancelText || '取消' }}
       </view>
     </view>
   </t-popup>

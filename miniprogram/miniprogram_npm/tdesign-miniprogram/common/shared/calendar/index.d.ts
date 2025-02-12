@@ -8,7 +8,7 @@ export default class TCalendar {
     format: (day: TDate) => TDate;
     constructor(options?: {});
     getTrimValue(): Date | Date[];
-    getDays(): any[];
+    getDays(weekdays: string[]): any[];
     getMonths(): any[];
     select({ cellType, year, month, date }: {
         cellType: any;

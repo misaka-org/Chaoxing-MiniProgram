@@ -1,17 +1,12 @@
-import { RadioValue } from '../radio/type';
 import { KeysType } from '../common/common';
 export interface TdRadioGroupProps<T = RadioValue> {
-    placement?: {
-        type: StringConstructor;
-        value?: 'left' | 'right';
+    allowUncheck?: {
+        type: BooleanConstructor;
+        value?: boolean;
     };
     borderless?: {
         type: BooleanConstructor;
         value?: boolean;
-    };
-    style?: {
-        type: StringConstructor;
-        value?: string;
     };
     disabled?: {
         type: BooleanConstructor;
@@ -33,6 +28,10 @@ export interface TdRadioGroupProps<T = RadioValue> {
         type: ArrayConstructor;
         value?: Array<RadioOption>;
     };
+    placement?: {
+        type: StringConstructor;
+        value?: 'left' | 'right';
+    };
     value?: {
         type: null;
         value?: T;
@@ -50,3 +49,4 @@ export interface RadioOptionObj {
     disabled?: boolean;
     allowUncheck?: boolean;
 }
+export declare type RadioValue = string | number | boolean;

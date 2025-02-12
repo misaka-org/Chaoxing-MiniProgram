@@ -1,4 +1,5 @@
 <wxs src="../common/utils.wxs" module="_" />
+<wxs src="./search.wxs" module="this"></wxs>
 
 <view style="{{_._style([style, customStyle])}}" class="class {{classPrefix}} {{prefix}}-class">
   <view
@@ -9,7 +10,6 @@
     <t-icon
       wx:if="{{leftIcon}}"
       name="{{leftIcon}}"
-      size="24"
       class="{{prefix}}-icon {{prefix}}-class-left"
       aria-hidden="{{true}}"
     />
@@ -19,8 +19,8 @@
       type="{{type}}"
       name="input"
       maxlength="{{maxlength}}"
-      disabled="{{disabled}}"
-      class="{{prefix}}-input__keyword {{prefix}}-class-input"
+      disabled="{{disabled || readonly}}"
+      class="{{prefix}}-input__keyword {{prefix}}-class-input {{ disabled ? prefix + '-input--disabled' : ''}}"
       focus="{{focus}}"
       value="{{value}}"
       confirm-type="{{confirmType}}"
@@ -41,13 +41,13 @@
       bind:confirm="onConfirm"
     />
     <view
-      wx:if="{{value !=='' && clearable}}"
+      wx:if="{{value !=='' && clearable && showClearIcon}}"
       class="{{classPrefix}}__clear {{prefix}}-class-clear"
       catch:tap="handleClear"
       aria-role="button"
       aria-label="清除"
     >
-      <t-icon name="close-circle-filled" size="24" />
+      <t-icon name="close-circle-filled" size="inherit" color="inherit" />
     </view>
   </view>
   <view
@@ -59,4 +59,18 @@
     {{action}}
   </view>
   <slot wx:else name="action" />
+</view>
+
+<view wx:if="{{isShowResultList && !isSelected}}" class="{{classPrefix}}__result-list" aria-role="listbox">
+  <t-cell
+    wx:for="{{resultList}}"
+    wx:key="index"
+    data-index="{{index}}"
+    class="{{classPrefix}}__result-item"
+    hover
+    bind:tap="onSelectResultItem"
+    aria-role="option"
+  >
+    <rich-text slot="title" nodes="{{this.highLight(item, value)}}"></rich-text>
+  </t-cell>
 </view>

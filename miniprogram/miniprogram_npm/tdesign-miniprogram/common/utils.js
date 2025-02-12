@@ -1,5 +1,8 @@
 import { prefix } from './config';
-const systemInfo = wx.getSystemInfoSync();
+import { getWindowInfo, getAppBaseInfo, getDeviceInfo } from './wechat';
+export const systemInfo = getWindowInfo();
+export const appBaseInfo = getAppBaseInfo();
+export const deviceInfo = getDeviceInfo();
 export const debounce = function (func, wait = 500) {
     let timerId;
     return function (...rest) {
@@ -67,9 +70,8 @@ export const styles = function (styleObj) {
         .join('; ');
 };
 export const getAnimationFrame = function (context, cb) {
-    return wx
+    return context
         .createSelectorQuery()
-        .in(context)
         .selectViewport()
         .boundingClientRect()
         .exec(() => {
@@ -78,8 +80,8 @@ export const getAnimationFrame = function (context, cb) {
 };
 export const getRect = function (context, selector, needAll = false) {
     return new Promise((resolve, reject) => {
-        wx.createSelectorQuery()
-            .in(context)[needAll ? 'selectAll' : 'select'](selector)
+        context
+            .createSelectorQuery()[needAll ? 'selectAll' : 'select'](selector)
             .boundingClientRect((rect) => {
             if (rect) {
                 resolve(rect);
@@ -100,6 +102,10 @@ export const isNull = function (value) {
 export const isUndefined = (value) => typeof value === 'undefined';
 export const isDef = function (value) {
     return !isUndefined(value) && !isNull(value);
+};
+export const isIOS = function () {
+    var _a;
+    return !!(((_a = deviceInfo === null || deviceInfo === void 0 ? void 0 : deviceInfo.system) === null || _a === void 0 ? void 0 : _a.toLowerCase().search('ios')) + 1);
 };
 export const addUnit = function (value) {
     if (!isDef(value)) {
@@ -173,7 +179,7 @@ export const unitConvert = (value) => {
         }
         return parseInt(value, 10);
     }
-    return value;
+    return value !== null && value !== void 0 ? value : 0;
 };
 export const setIcon = (iconName, icon, defaultIcon) => {
     if (icon) {
@@ -214,7 +220,7 @@ export const uniqueFactory = (compName) => {
     return () => `${prefix}_${compName}_${number++}`;
 };
 export const calcIcon = (icon, defaultIcon) => {
-    if ((isBool(icon) && icon && defaultIcon) || isString(icon)) {
+    if (icon && ((isBool(icon) && defaultIcon) || isString(icon))) {
         return { name: isBool(icon) ? defaultIcon : icon };
     }
     if (isObject(icon)) {
@@ -235,4 +241,12 @@ export const isOverSize = (size, sizeLimit) => {
     };
     const computedSize = typeof sizeLimit === 'number' ? sizeLimit * base : (sizeLimit === null || sizeLimit === void 0 ? void 0 : sizeLimit.size) * unitMap[(_a = sizeLimit === null || sizeLimit === void 0 ? void 0 : sizeLimit.unit) !== null && _a !== void 0 ? _a : 'KB'];
     return size > computedSize;
+};
+export const rpx2px = (rpx) => Math.floor((systemInfo.windowWidth * rpx) / 750);
+export const nextTick = () => {
+    return new Promise((resolve) => {
+        wx.nextTick(() => {
+            resolve();
+        });
+    });
 };

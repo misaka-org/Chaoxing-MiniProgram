@@ -1,4 +1,8 @@
 const props = {
+    disabled: {
+        type: Boolean,
+        value: false,
+    },
     enableBackToTop: {
         type: Boolean,
         value: true,
@@ -44,6 +48,10 @@ const props = {
     upperThreshold: {
         type: null,
         value: 50,
+    },
+    usingCustomNavbar: {
+        type: Boolean,
+        value: false,
     },
     value: {
         type: Boolean,

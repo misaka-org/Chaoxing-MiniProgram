@@ -1,5 +1,5 @@
 const props = {
-    tId: {
+    appParameter: {
         type: String,
         value: '',
     },
@@ -14,18 +14,34 @@ const props = {
         type: null,
     },
     disabled: {
-        type: Boolean,
-        value: false,
-    },
-    externalClasses: {
-        type: Array,
+        type: null,
+        value: undefined,
     },
     ghost: {
         type: Boolean,
         value: false,
     },
+    hoverClass: {
+        type: String,
+        value: '',
+    },
+    hoverStartTime: {
+        type: Number,
+        value: 20,
+    },
+    hoverStayTime: {
+        type: Number,
+        value: 70,
+    },
+    hoverStopPropagation: {
+        type: Boolean,
+        value: false,
+    },
     icon: {
         type: null,
+    },
+    lang: {
+        type: String,
     },
     loading: {
         type: Boolean,
@@ -34,13 +50,48 @@ const props = {
     loadingProps: {
         type: Object,
     },
+    openType: {
+        type: String,
+    },
+    phoneNumberNoQuotaToast: {
+        type: Boolean,
+        value: true,
+    },
+    sendMessageImg: {
+        type: String,
+        value: '截图',
+    },
+    sendMessagePath: {
+        type: String,
+        value: '当前分享路径',
+    },
+    sendMessageTitle: {
+        type: String,
+        value: '当前标题',
+    },
+    sessionFrom: {
+        type: String,
+        value: '',
+    },
     shape: {
         type: String,
         value: 'rectangle',
     },
+    showMessageCard: {
+        type: Boolean,
+        value: false,
+    },
     size: {
         type: String,
         value: 'medium',
+    },
+    style: {
+        type: String,
+        value: '',
+    },
+    tId: {
+        type: String,
+        value: '',
     },
     theme: {
         type: String,
@@ -52,53 +103,6 @@ const props = {
     variant: {
         type: String,
         value: 'base',
-    },
-    openType: {
-        type: String,
-    },
-    hoverClass: {
-        type: String,
-        value: '',
-    },
-    hoverStopPropagation: {
-        type: Boolean,
-        value: false,
-    },
-    hoverStartTime: {
-        type: Number,
-        value: 20,
-    },
-    hoverStayTime: {
-        type: Number,
-        value: 70,
-    },
-    lang: {
-        type: String,
-        value: 'en',
-    },
-    sessionFrom: {
-        type: String,
-        value: '',
-    },
-    sendMessageTitle: {
-        type: String,
-        value: '',
-    },
-    sendMessagePath: {
-        type: String,
-        value: '',
-    },
-    sendMessageImg: {
-        type: String,
-        value: '',
-    },
-    appParameter: {
-        type: String,
-        value: '',
-    },
-    showMessageCard: {
-        type: Boolean,
-        value: false,
     },
 };
 export default props;

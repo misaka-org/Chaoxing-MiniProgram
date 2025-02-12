@@ -41,7 +41,7 @@
   justify-content: center;
   flex-wrap: nowrap;
   font-size: var(--td-switch-label-font-size, 28rpx);
-  color: var(--td-switch-label-color, var(--td-font-gray-4, rgba(0, 0, 0, 0.26)));
+  color: var(--td-switch-label-color, var(--td-bg-color-secondarycontainer-active, var(--td-gray-color-4, #dcdcdc)));
   overflow: hidden;
 }
 .t-switch__label--checked {
@@ -79,7 +79,7 @@
   width: var(--td-switch-width, 90rpx);
   height: var(--td-switch-height, 56rpx);
   border-radius: var(--td-switch-radius, calc(var(--td-switch-height, 56rpx) / 2));
-  background-color: var(--td-switch-unchecked-color, var(--td-font-gray-4, rgba(0, 0, 0, 0.26)));
+  background-color: var(--td-switch-unchecked-color, var(--td-bg-color-secondarycontainer-active, var(--td-gray-color-4, #dcdcdc)));
   position: relative;
   transition: all 0.3s ease;
   overflow: hidden;
@@ -110,7 +110,7 @@
   width: var(--td-switch-dot-size, 44rpx);
   height: var(--td-switch-dot-size, 44rpx);
   border-radius: 50%;
-  background-color: var(--td-bg-color-container, var(--td-font-white-1, #ffffff));
+  background-color: var(--td-text-color-anti, var(--td-font-white-1, #ffffff));
   transition: all 0.3s;
   transform: translateY(-50%);
   box-shadow: var(--td-switch-dot-shadow, var(--td-shadow-1, 0 1px 10px rgba(0, 0, 0, 0.05), 0 4px 5px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.12)));
@@ -123,7 +123,7 @@
   top: 0;
   width: 200%;
   height: 200%;
-  border: 1px solid var(--td-switch-dot-border-color, var(--td-bg-color-secondarycontainer, var(--td-gray-color-1, #f3f3f3)));
+  border: 1px solid var(--td-switch-dot-border-color, var(--td-gray-color-4, #dcdcdc));
   border-radius: 50%;
   transform: scale(0.5);
   transform-origin: 0 0;

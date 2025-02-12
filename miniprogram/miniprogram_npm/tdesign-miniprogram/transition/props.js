@@ -3,16 +3,12 @@ const props = {
         type: Boolean,
         value: false,
     },
-    customClass: {
-        type: String,
-        value: '',
-    },
-    destoryOnClose: {
+    destoryOnHide: {
         type: Boolean,
         value: false,
     },
-    duration: {
-        type: Number,
+    durations: {
+        type: null,
     },
     name: {
         type: String,

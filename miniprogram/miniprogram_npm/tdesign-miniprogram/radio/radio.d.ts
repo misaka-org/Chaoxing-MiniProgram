@@ -14,9 +14,8 @@ export default class Radio extends SuperComponent {
             type: BooleanConstructor;
             value: boolean;
         };
-        placement?: {
+        tId: {
             type: StringConstructor;
-            value?: "left" | "right";
         };
         allowUncheck?: {
             type: BooleanConstructor;
@@ -42,25 +41,13 @@ export default class Radio extends SuperComponent {
             type: BooleanConstructor;
             value?: boolean;
         };
-        style?: {
-            type: StringConstructor;
-            value?: string;
-        };
-        readonly?: {
-            type: BooleanConstructor;
-            value?: boolean;
-        };
         disabled?: {
             type: BooleanConstructor;
             value?: boolean;
         };
-        externalClasses?: {
-            type: ArrayConstructor;
-            value?: ["t-class", "t-class-icon", "t-class-label", "t-class-content", "t-class-border"];
-        };
         icon?: {
             type: null;
-            value?: string[] | "circle" | "line";
+            value?: string[] | "circle" | "line" | "dot";
         };
         label?: {
             type: StringConstructor;
@@ -77,6 +64,14 @@ export default class Radio extends SuperComponent {
         name?: {
             type: StringConstructor;
             value?: string;
+        };
+        placement?: {
+            type: StringConstructor;
+            value?: "left" | "right";
+        };
+        readonly?: {
+            type: BooleanConstructor;
+            value?: boolean;
         };
         value?: {
             type: null;
@@ -95,6 +90,10 @@ export default class Radio extends SuperComponent {
         optionLinked: boolean;
         iconVal: any[];
         _placement: string;
+        _disabled: boolean;
+    };
+    observers: {
+        disabled(v: any): void;
     };
     methods: {
         handleTap(e: any): void;

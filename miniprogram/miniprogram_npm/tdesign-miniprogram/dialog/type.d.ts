@@ -1,4 +1,5 @@
 import { ButtonProps } from '../button/index';
+import { TdOverlayProps as OverlayProps } from '../overlay/type';
 export interface TdDialogProps {
     actions?: {
         type: ArrayConstructor;
@@ -14,7 +15,7 @@ export interface TdDialogProps {
     };
     closeBtn?: {
         type: null;
-        value?: boolean | object;
+        value?: boolean | ButtonProps | null;
     };
     closeOnOverlayClick?: {
         type: BooleanConstructor;
@@ -28,17 +29,13 @@ export interface TdDialogProps {
         type: StringConstructor;
         value?: string;
     };
-    style?: {
-        type: StringConstructor;
-        value?: string;
-    };
     externalClasses?: {
         type: ArrayConstructor;
         value?: ['t-class', 't-class-content', 't-class-confirm', 't-class-cancel'];
     };
     overlayProps?: {
         type: ObjectConstructor;
-        value?: object;
+        value?: OverlayProps;
     };
     preventScrollThrough?: {
         type: BooleanConstructor;
@@ -48,9 +45,17 @@ export interface TdDialogProps {
         type: BooleanConstructor;
         value?: boolean;
     };
+    style?: {
+        type: StringConstructor;
+        value?: string;
+    };
     title?: {
         type: StringConstructor;
         value?: string;
+    };
+    usingCustomNavbar?: {
+        type: BooleanConstructor;
+        value?: boolean;
     };
     visible?: {
         type: BooleanConstructor;

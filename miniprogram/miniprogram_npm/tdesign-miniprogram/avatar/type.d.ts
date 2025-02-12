@@ -1,4 +1,6 @@
 import { BadgeProps } from '../badge/index';
+import { ImageProps } from '../image/index';
+import { ShapeEnum } from '../common/common';
 export interface TdAvatarProps {
     alt?: {
         type: StringConstructor;
@@ -11,14 +13,6 @@ export interface TdAvatarProps {
     bordered?: {
         type: BooleanConstructor;
         value?: boolean;
-    };
-    style?: {
-        type: StringConstructor;
-        value?: string;
-    };
-    externalClasses?: {
-        type: ArrayConstructor;
-        value?: ['t-class', 't-class-image', 't-class-icon', 't-class-alt', 't-class-content'];
     };
     hideOnLoadFailed?: {
         type: BooleanConstructor;
@@ -34,7 +28,7 @@ export interface TdAvatarProps {
     };
     imageProps?: {
         type: ObjectConstructor;
-        value?: object;
+        value?: ImageProps;
     };
     shape?: {
         type: StringConstructor;
@@ -45,4 +39,3 @@ export interface TdAvatarProps {
         value?: string;
     };
 }
-export declare type ShapeEnum = 'circle' | 'round';

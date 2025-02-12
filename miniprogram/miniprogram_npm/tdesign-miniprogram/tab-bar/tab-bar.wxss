@@ -43,8 +43,9 @@
   right: 0;
   left: 0;
   top: 0;
-  border-top: 1px solid var(--td-tab-bar-border-color, var(--td-border-color, var(--td-gray-color-3, #e7e7e7)));
+  border-top: 1px solid var(--td-tab-bar-border-color, var(--td-border-level-1-color, var(--td-gray-color-3, #e7e7e7)));
   transform: scaleY(0.5);
+  transform-origin: 0 0;
 }
 .t-tab-bar--fixed {
   position: fixed;

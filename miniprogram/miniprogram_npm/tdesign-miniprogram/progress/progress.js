@@ -8,7 +8,7 @@ import { SuperComponent, wxComponent } from '../common/src/index';
 import config from '../common/config';
 import props from './props';
 import { getBackgroundColor } from './utils';
-import { unitConvert, getRect } from '../common/utils';
+import { unitConvert, deviceInfo } from '../common/utils';
 const { prefix } = config;
 const name = `${prefix}-progress`;
 let Progress = class Progress extends SuperComponent {
@@ -50,42 +50,18 @@ let Progress = class Progress extends SuperComponent {
                     heightBar: unitConvert(strokeWidth),
                 });
             },
-            theme(theme) {
-                if (theme === 'circle') {
-                    this.getInnerDiameter();
-                }
-            },
             trackColor(trackColor) {
                 this.setData({
                     bgColorBar: trackColor,
                 });
             },
         };
-        this.methods = {
-            getInnerDiameter() {
-                const { strokeWidth } = this.properties;
-                const wrapID = `.${name}__canvas--circle`;
-                if (strokeWidth) {
-                    getRect(this, wrapID).then((wrapRect) => {
-                        this.setData({
-                            innerDiameter: wrapRect.width - unitConvert(strokeWidth) * 2,
-                        });
-                    });
-                }
-            },
-        };
     }
     attached() {
-        wx.getSystemInfo({
-            success: (res) => {
-                const isIOS = !!(res.system.toLowerCase().search('ios') + 1);
-                this.setData({
-                    isIOS,
-                });
-            },
-            fail: (err) => {
-                console.error('progress 获取系统信息失败', err);
-            },
+        var _a;
+        const isIOS = !!(((_a = deviceInfo === null || deviceInfo === void 0 ? void 0 : deviceInfo.system) === null || _a === void 0 ? void 0 : _a.toLowerCase().search('ios')) + 1);
+        this.setData({
+            isIOS,
         });
     }
 };

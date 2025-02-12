@@ -49,6 +49,7 @@ let TabPanel = class TabPanel extends SuperComponent {
         (_a = this.$parent) === null || _a === void 0 ? void 0 : _a.updateTabs();
     }
     render(active, parent) {
+        this.initialized = this.initialized || active;
         this.setData({
             active,
             hide: !parent.data.animation && !active,

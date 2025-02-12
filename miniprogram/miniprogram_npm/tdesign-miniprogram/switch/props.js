@@ -4,8 +4,8 @@ const props = {
         value: [true, false],
     },
     disabled: {
-        type: Boolean,
-        value: false,
+        type: null,
+        value: undefined,
     },
     icon: {
         type: Array,

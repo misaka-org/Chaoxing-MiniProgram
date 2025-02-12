@@ -39,7 +39,7 @@
   margin-bottom: 0;
 }
 .t-skeleton__col {
-  background-color: var(--td-skeleton-bg-color, var(--td-bg-color-page, var(--td-gray-color-1, #f3f3f3)));
+  background-color: var(--td-skeleton-bg-color, var(--td-bg-color-secondarycontainer, var(--td-gray-color-1, #f3f3f3)));
   display: flex;
   align-items: center;
   justify-content: center;

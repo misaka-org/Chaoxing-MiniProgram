@@ -4,7 +4,11 @@ const props = {
         value: false,
     },
     disabled: {
-        type: Boolean,
+        type: null,
+        value: undefined,
+    },
+    keys: {
+        type: Object,
     },
     max: {
         type: Number,

@@ -1,9 +1,5 @@
 import { KeysType } from '../common/common';
 export interface TdDropdownItemProps {
-    style?: {
-        type: StringConstructor;
-        value?: string;
-    };
     disabled?: {
         type: BooleanConstructor;
         value?: boolean;
@@ -39,9 +35,9 @@ export interface TdDropdownItemProps {
         type: null;
         value?: string | number;
     };
-    optionsLayout?: {
+    placement?: {
         type: StringConstructor;
-        value?: string;
+        value?: 'left' | 'right';
     };
     value?: {
         type: null;

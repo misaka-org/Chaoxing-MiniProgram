@@ -3,17 +3,9 @@ export interface TdNavbarProps {
         type: BooleanConstructor;
         value?: boolean;
     };
-    style?: {
-        type: StringConstructor;
-        value?: string;
-    };
     delta?: {
         type: NumberConstructor;
         value?: number;
-    };
-    externalClasses?: {
-        type: ArrayConstructor;
-        value?: ['t-class', 't-class-title', 't-class-left-icon', 't-class-home-icon', 't-class-capsule'];
     };
     fixed?: {
         type: BooleanConstructor;

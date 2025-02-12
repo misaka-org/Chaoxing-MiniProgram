@@ -1,40 +1,73 @@
 const props = {
+    adjustPosition: {
+        type: Boolean,
+        value: true,
+    },
     align: {
         type: String,
         value: 'left',
     },
-    layout: {
-        type: String,
-        value: 'horizontal',
-    },
-    borderless: {
+    alwaysEmbed: {
         type: Boolean,
         value: false,
     },
-    clearable: {
-        type: null,
+    autoFocus: {
+        type: Boolean,
+        value: false,
+    },
+    borderless: {
+        type: Boolean,
         value: false,
     },
     clearTrigger: {
         type: String,
         value: 'always',
     },
-    disabled: {
+    clearable: {
+        type: null,
+        value: false,
+    },
+    confirmHold: {
         type: Boolean,
         value: false,
     },
-    errorMessage: {
+    confirmType: {
         type: String,
-        value: '',
+        value: 'done',
     },
-    externalClasses: {
-        type: Array,
+    cursor: {
+        type: Number,
+        required: true,
+    },
+    cursorColor: {
+        type: String,
+        value: '#0052d9',
+    },
+    cursorSpacing: {
+        type: Number,
+        value: 0,
+    },
+    disabled: {
+        type: null,
+        value: undefined,
+    },
+    focus: {
+        type: Boolean,
+        value: false,
     },
     format: {
         type: null,
     },
+    holdKeyboard: {
+        type: Boolean,
+        value: false,
+    },
     label: {
         type: String,
+    },
+    layout: {
+        type: String,
+        value: 'horizontal',
     },
     maxcharacter: {
         type: Number,
@@ -47,104 +80,31 @@ const props = {
         type: String,
         value: undefined,
     },
-    prefixIcon: {
-        type: null,
-        value: null,
-    },
-    readonly: {
-        type: Boolean,
-        value: false,
-    },
-    size: {
-        type: String,
-        value: 'medium',
-    },
-    status: {
-        type: String,
-        value: 'default',
-    },
-    suffix: {
-        type: String,
-    },
-    suffixIcon: {
-        type: null,
-        value: null,
-    },
-    tips: {
-        type: String,
-    },
-    value: {
-        type: String,
-        optionalTypes: [Number],
-        value: null,
-    },
-    defaultValue: {
-        type: String,
-        optionalTypes: [Number],
-    },
-    type: {
-        type: String,
-        value: 'text',
-    },
-    placeholderStyle: {
-        type: String,
-        value: '',
-    },
     placeholderClass: {
         type: String,
         value: 'input-placeholder',
     },
-    cursorSpacing: {
-        type: Number,
-        value: 0,
-    },
-    autoFocus: {
-        type: Boolean,
-        value: false,
-    },
-    focus: {
-        type: Boolean,
-        value: false,
-    },
-    confirmType: {
+    placeholderStyle: {
         type: String,
-        value: 'done',
+        value: '',
+        required: true,
     },
-    alwaysEmbed: {
-        type: Boolean,
-        value: false,
+    prefixIcon: {
+        type: null,
     },
-    confirmHold: {
-        type: Boolean,
-        value: false,
-    },
-    cursor: {
-        type: Number,
-    },
-    selectionStart: {
-        type: Number,
-        value: -1,
-    },
-    selectionEnd: {
-        type: Number,
-        value: -1,
-    },
-    adjustPosition: {
-        type: Boolean,
-        value: true,
-    },
-    holdKeyboard: {
-        type: Boolean,
-        value: false,
+    readonly: {
+        type: null,
+        value: undefined,
     },
     safePasswordCertPath: {
         type: String,
         value: '',
     },
-    safePasswordLength: {
-        type: Number,
+    safePasswordCustomHash: {
+        type: String,
+        value: '',
     },
-    safePasswordTimeStamp: {
+    safePasswordLength: {
         type: Number,
     },
     safePasswordNonce: {
@@ -155,9 +115,36 @@ const props = {
         type: String,
         value: '',
     },
-    safePasswordCustomHash: {
+    safePasswordTimeStamp: {
+        type: Number,
+    },
+    selectionEnd: {
+        type: Number,
+        value: -1,
+    },
+    selectionStart: {
+        type: Number,
+        value: -1,
+    },
+    status: {
         type: String,
-        value: '',
+        value: 'default',
+    },
+    suffix: {
+        type: String,
+    },
+    suffixIcon: {
+        type: null,
+    },
+    tips: {
+        type: String,
+    },
+    type: {
+        type: String,
+        value: 'text',
+    },
+    value: {
+        type: null,
     },
 };
 export default props;

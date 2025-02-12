@@ -1,7 +1,6 @@
 import { LoadingProps } from '../loading/index';
-import { SizeEnum } from '../common/common';
 export interface TdButtonProps {
-    tId?: {
+    appParameter?: {
         type: StringConstructor;
         value?: string;
     };
@@ -14,64 +13,20 @@ export interface TdButtonProps {
         value?: string;
     };
     customDataset?: {
-        type: ObjectConstructor;
-        value?: any;
+        type: null;
+        value?: null;
     };
     disabled?: {
         type: BooleanConstructor;
         value?: boolean;
     };
-    externalClasses?: {
-        type: ArrayConstructor;
-        value?: ['t-class', 't-class-icon', 't-class-loading'];
-    };
     ghost?: {
         type: BooleanConstructor;
         value?: boolean;
     };
-    icon?: {
-        type: null;
-        value?: string | object;
-    };
-    loading?: {
-        type: BooleanConstructor;
-        value?: boolean;
-    };
-    loadingProps?: {
-        type: ObjectConstructor;
-        value?: LoadingProps;
-    };
-    shape?: {
-        type: StringConstructor;
-        value?: 'rectangle' | 'square' | 'round' | 'circle';
-    };
-    size?: {
-        type: StringConstructor;
-        value?: SizeEnum;
-    };
-    theme?: {
-        type: StringConstructor;
-        value?: 'default' | 'primary' | 'danger';
-    };
-    type?: {
-        type: StringConstructor;
-        value?: 'submit' | 'reset';
-    };
-    variant?: {
-        type: StringConstructor;
-        value?: 'base' | 'outline' | 'text';
-    };
-    openType?: {
-        type: StringConstructor;
-        value?: 'contact' | 'share' | 'getPhoneNumber' | 'getUserInfo' | 'launchApp' | 'openSetting' | 'feedback' | 'chooseAvatar' | 'agreePrivacyAuthorization';
-    };
     hoverClass?: {
         type: StringConstructor;
         value?: string;
-    };
-    hoverStopPropagation?: {
-        type: BooleanConstructor;
-        value?: boolean;
     };
     hoverStartTime?: {
         type: NumberConstructor;
@@ -81,15 +36,35 @@ export interface TdButtonProps {
         type: NumberConstructor;
         value?: number;
     };
+    hoverStopPropagation?: {
+        type: BooleanConstructor;
+        value?: boolean;
+    };
+    icon?: {
+        type: null;
+        value?: string | object;
+    };
     lang?: {
         type: StringConstructor;
         value?: 'en' | 'zh_CN' | 'zh_TW';
     };
-    sessionFrom?: {
-        type: StringConstructor;
-        value?: string;
+    loading?: {
+        type: BooleanConstructor;
+        value?: boolean;
     };
-    sendMessageTitle?: {
+    loadingProps?: {
+        type: ObjectConstructor;
+        value?: LoadingProps;
+    };
+    openType?: {
+        type: StringConstructor;
+        value?: 'contact' | 'share' | 'getPhoneNumber' | 'getUserInfo' | 'launchApp' | 'openSetting' | 'feedback' | 'chooseAvatar' | 'agreePrivacyAuthorization';
+    };
+    phoneNumberNoQuotaToast?: {
+        type: BooleanConstructor;
+        value?: boolean;
+    };
+    sendMessageImg?: {
         type: StringConstructor;
         value?: string;
     };
@@ -97,16 +72,44 @@ export interface TdButtonProps {
         type: StringConstructor;
         value?: string;
     };
-    sendMessageImg?: {
+    sendMessageTitle?: {
         type: StringConstructor;
         value?: string;
     };
-    appParameter?: {
+    sessionFrom?: {
         type: StringConstructor;
         value?: string;
+    };
+    shape?: {
+        type: StringConstructor;
+        value?: 'rectangle' | 'square' | 'round' | 'circle';
     };
     showMessageCard?: {
         type: BooleanConstructor;
         value?: boolean;
+    };
+    size?: {
+        type: StringConstructor;
+        value?: 'extra-small' | 'small' | 'medium' | 'large';
+    };
+    style?: {
+        type: StringConstructor;
+        value?: string;
+    };
+    tId?: {
+        type: StringConstructor;
+        value?: string;
+    };
+    theme?: {
+        type: StringConstructor;
+        value?: 'default' | 'primary' | 'danger' | 'light';
+    };
+    type?: {
+        type: StringConstructor;
+        value?: 'submit' | 'reset';
+    };
+    variant?: {
+        type: StringConstructor;
+        value?: 'base' | 'outline' | 'dashed' | 'text';
     };
 }

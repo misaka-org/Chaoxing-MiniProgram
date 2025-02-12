@@ -1,5 +1,9 @@
 import { LoadingProps } from '../loading/index';
 export interface TdPullDownRefreshProps {
+    disabled?: {
+        type: BooleanConstructor;
+        value?: boolean;
+    };
     enableBackToTop?: {
         type: BooleanConstructor;
         value?: boolean;
@@ -47,6 +51,10 @@ export interface TdPullDownRefreshProps {
     upperThreshold?: {
         type: null;
         value?: string | number;
+    };
+    usingCustomNavbar?: {
+        type: BooleanConstructor;
+        value?: boolean;
     };
     value?: {
         type: BooleanConstructor;

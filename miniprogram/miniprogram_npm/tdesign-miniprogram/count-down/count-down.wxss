@@ -101,36 +101,37 @@
   font-size: var(--td-font-size-base, 28rpx);
 }
 .t-count-down {
-  font-family: 'DIN Alternate', 'Courier New', Courier, monospace;
+  font-family: TCloudNumber, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Hiragino Sans GB, Microsoft YaHei UI, Microsoft YaHei, Source Han Sans CN, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  display: flex;
 }
 .t-count-down .t-count-down__item,
 .t-count-down .t-count-down__split {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 .t-count-down--square > .t-count-down__split--dot,
 .t-count-down--round > .t-count-down__split--dot {
-  color: var(--td-error-color-6, #d54941);
+  color: var(--td-error-color, var(--td-error-color-6, #d54941));
 }
 .t-count-down--square > .t-count-down__split--text,
 .t-count-down--round > .t-count-down__split--text {
-  color: var(--td-font-gray-1, rgba(0, 0, 0, 0.9));
+  color: var(--td-text-color-primary, var(--td-font-gray-1, rgba(0, 0, 0, 0.9)));
 }
 .t-count-down--default {
-  color: var(--td-countdown-default-color, var(--td-font-gray-1, rgba(0, 0, 0, 0.9)));
+  color: var(--td-countdown-default-color, var(--td-text-color-primary, var(--td-font-gray-1, rgba(0, 0, 0, 0.9))));
 }
 .t-count-down--square {
-  color: var(--td-countdown-round-color, var(--td-font-white-1, #ffffff));
+  color: var(--td-countdown-round-color, var(--td-text-color-anti, var(--td-font-white-1, #ffffff)));
 }
 .t-count-down--square > .t-count-down__item {
   border-radius: var(--td-countdown-square-border-radius, var(--td-radius-small, 6rpx));
-  background: var(--td-countdown-bg-color, var(--td-error-color-6, #d54941));
+  background: var(--td-countdown-bg-color, var(--td-error-color, var(--td-error-color-6, #d54941)));
 }
 .t-count-down--round {
-  color: var(--td-countdown-round-color, var(--td-font-white-1, #ffffff));
+  color: var(--td-countdown-round-color, var(--td-text-color-anti, var(--td-font-white-1, #ffffff)));
 }
 .t-count-down--round > .t-count-down__item {
   border-radius: var(--td-countdown-round-border-radius, var(--td-radius-circle, 50%));
-  background: var(--td-countdown-bg-color, var(--td-error-color-6, #d54941));
+  background: var(--td-countdown-bg-color, var(--td-error-color, var(--td-error-color-6, #d54941)));
 }

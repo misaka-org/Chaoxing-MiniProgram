@@ -41,6 +41,8 @@ let Radio = class Radio extends SuperComponent {
         this.properties = Object.assign(Object.assign({}, Props), { borderless: {
                 type: Boolean,
                 value: false,
+            }, tId: {
+                type: String,
             } });
         this.controlledProps = [
             {
@@ -56,23 +58,30 @@ let Radio = class Radio extends SuperComponent {
             optionLinked: false,
             iconVal: [],
             _placement: '',
+            _disabled: false,
+        };
+        this.observers = {
+            disabled(v) {
+                this.setData({ _disabled: v });
+            },
         };
         this.methods = {
             handleTap(e) {
-                if (this.data.disabled || this.data.readonly)
-                    return;
+                const { _disabled, readonly, contentDisabled } = this.data;
                 const { target } = e.currentTarget.dataset;
-                if (target === 'text' && this.data.contentDisabled)
+                if (_disabled || readonly || (target === 'text' && contentDisabled))
                     return;
                 this.doChange();
             },
             doChange() {
+                var _a;
                 const { value, checked, allowUncheck } = this.data;
+                const isAllowUncheck = Boolean(allowUncheck || ((_a = this.$parent) === null || _a === void 0 ? void 0 : _a.data.allowUncheck));
                 if (this.$parent) {
-                    this.$parent.updateValue(checked && allowUncheck ? null : value);
+                    this.$parent.updateValue(checked && isAllowUncheck ? null : value);
                 }
                 else {
-                    this._trigger('change', { checked: checked && allowUncheck ? false : !checked });
+                    this._trigger('change', { checked: isAllowUncheck ? !checked : true });
                 }
             },
             init() {
@@ -88,7 +97,7 @@ let Radio = class Radio extends SuperComponent {
             },
             setDisabled(disabled) {
                 this.setData({
-                    disabled: this.data.disabled || disabled,
+                    _disabled: this.data.disabled || disabled,
                 });
             },
         };

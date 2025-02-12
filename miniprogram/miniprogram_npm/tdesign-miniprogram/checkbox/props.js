@@ -29,9 +29,6 @@ const props = {
         type: null,
         value: undefined,
     },
-    externalClasses: {
-        type: Array,
-    },
     icon: {
         type: null,
         value: 'circle',

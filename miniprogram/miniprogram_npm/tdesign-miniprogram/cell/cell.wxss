@@ -30,7 +30,6 @@
   display: flex;
   box-sizing: border-box;
   width: 100%;
-  overflow: hidden;
   padding: var(--td-cell-vertical-padding, 32rpx) var(--td-cell-horizontal-padding, 32rpx);
   line-height: var(--td-cell-line-height, 48rpx);
   height: var(--td-cell-height, auto);
@@ -46,6 +45,7 @@
   bottom: 0;
   border-bottom: var(--td-cell-border-width, 1px) solid var(--td-cell-border-color, var(--td-component-stroke, var(--td-gray-color-3, #e7e7e7)));
   transform: scaleY(0.5);
+  transform-origin: bottom;
   left: var(--td-cell-border-left-space, var(--td-cell-horizontal-padding, 32rpx));
   right: var(--td-cell-border-right-space, 0);
 }
@@ -55,7 +55,7 @@
 .t-cell__description {
   font-size: var(--td-cell-description-font-size, var(--td-font-size-base, 28rpx));
   line-height: var(--td-cell-description-line-height, 44rpx);
-  color: var(--td-cell-description-color, var(--td-font-gray-2, rgba(0, 0, 0, 0.6)));
+  color: var(--td-cell-description-color, var(--td-text-color-secondary, var(--td-font-gray-2, rgba(0, 0, 0, 0.6))));
 }
 .t-cell__description-text {
   margin-top: calc(var(--td-spacer, 16rpx) / 2);
@@ -64,7 +64,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  color: var(--td-cell-note-color, var(--td-font-gray-3, rgba(0, 0, 0, 0.4)));
+  color: var(--td-cell-note-color, var(--td-text-color-placeholder, var(--td-font-gray-3, rgba(0, 0, 0, 0.4))));
   font-size: var(--td-cell-note-font-size, var(--td-font-size-m, 32rpx));
 }
 .t-cell__title,
@@ -78,7 +78,7 @@
 .t-cell__title-text {
   display: flex;
   font-size: var(--td-cell-title-font-size, var(--td-font-size-m, 32rpx));
-  color: var(--td-cell-title-color, var(--td-font-gray-1, rgba(0, 0, 0, 0.9)));
+  color: var(--td-cell-title-color, var(--td-text-color-primary, var(--td-font-gray-1, rgba(0, 0, 0, 0.9))));
   font-weight: 400;
 }
 .t-cell__left,
@@ -101,7 +101,7 @@
   margin-left: calc(var(--td-spacer, 16rpx) / 2);
 }
 .t-cell__right-icon {
-  color: var(--td-cell-right-icon-color, var(--td-font-gray-3, rgba(0, 0, 0, 0.4)));
+  color: var(--td-cell-right-icon-color, var(--td-text-color-placeholder, var(--td-font-gray-3, rgba(0, 0, 0, 0.4))));
   font-size: var(--td-cell-right-icon-font-size, 48rpx);
 }
 .t-cell--hover {
@@ -109,7 +109,7 @@
 }
 .t-cell--required {
   font-size: var(--td-cell-required-font-size, var(--td-font-size-m, 32rpx));
-  color: var(--td-cell-required-color, var(--td-error-color-6, #d54941));
+  color: var(--td-cell-required-color, var(--td-error-color, var(--td-error-color-6, #d54941)));
 }
 .t-cell--middle {
   align-items: center;

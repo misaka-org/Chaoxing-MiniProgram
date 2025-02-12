@@ -31,6 +31,9 @@ let Slider = class Slider extends SuperComponent {
             `${prefix}-class-bar-disabled`,
             `${prefix}-class-cursor`,
         ];
+        this.options = {
+            pureDataPattern: /^__/,
+        };
         this.properties = props;
         this.controlledProps = [
             {
@@ -57,6 +60,7 @@ let Slider = class Slider extends SuperComponent {
             prefix,
             isVisibleToScreenReader: false,
             identifier: [-1, -1],
+            __inited: false,
         };
         this.observers = {
             value(newValue) {
@@ -186,6 +190,8 @@ let Slider = class Slider extends SuperComponent {
     }
     init() {
         return __awaiter(this, void 0, void 0, function* () {
+            if (this.data.__inited)
+                return;
             const line = yield getRect(this, '#sliderLine');
             const { blockSize } = this.data;
             const { theme, vertical } = this.properties;
@@ -205,6 +211,7 @@ let Slider = class Slider extends SuperComponent {
                 maxRange,
                 initialLeft,
                 initialRight,
+                __inited: true,
             });
             this.bus.emit('initial');
         });
@@ -381,7 +388,7 @@ let Slider = class Slider extends SuperComponent {
         }
     }
     onTouchEnd(e) {
-        this.triggerEvent('dragend', { e });
+        this.triggerEvent('dragend', { e, value: this.data._value });
         if (e.currentTarget.id === 'rightDot') {
             this.data.identifier[1] = -1;
         }

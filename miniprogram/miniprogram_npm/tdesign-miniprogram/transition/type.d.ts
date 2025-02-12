@@ -3,17 +3,13 @@ export interface TdTransitionProps {
         type: BooleanConstructor;
         value?: boolean;
     };
-    customClass?: {
-        type: StringConstructor;
-        value?: string;
-    };
-    destoryOnClose?: {
+    destoryOnHide?: {
         type: BooleanConstructor;
         value?: boolean;
     };
-    duration?: {
-        type: NumberConstructor;
-        value?: number;
+    durations?: {
+        type: null;
+        value?: number | number[];
     };
     name?: {
         type: StringConstructor;

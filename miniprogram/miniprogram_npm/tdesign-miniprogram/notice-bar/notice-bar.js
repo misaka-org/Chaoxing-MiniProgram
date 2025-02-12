@@ -27,14 +27,15 @@ let NoticeBar = class NoticeBar extends SuperComponent {
             `${prefix}-class-suffix-icon`,
         ];
         this.options = {
-            styleIsolation: 'apply-shared',
             multipleSlots: true,
+            pureDataPattern: /^__/,
         };
         this.properties = props;
         this.data = {
             prefix,
             classPrefix: name,
             loop: -1,
+            __ready: false,
         };
         this.observers = {
             marquee(val) {
@@ -49,6 +50,8 @@ let NoticeBar = class NoticeBar extends SuperComponent {
                 }
             },
             visible(visible) {
+                if (!this.data.__ready)
+                    return;
                 if (visible) {
                     this.show();
                 }
@@ -65,6 +68,8 @@ let NoticeBar = class NoticeBar extends SuperComponent {
                 });
             },
             content() {
+                if (!this.data.__ready)
+                    return;
                 this.clearNoticeBarAnimation();
                 this.initAnimation();
             },
@@ -81,6 +86,7 @@ let NoticeBar = class NoticeBar extends SuperComponent {
             },
             ready() {
                 this.show();
+                this.setData({ __ready: true });
             },
         };
         this.methods = {
@@ -91,7 +97,7 @@ let NoticeBar = class NoticeBar extends SuperComponent {
                     Promise.all([getRect(this, nodeID), getRect(this, warpID)])
                         .then(([nodeRect, wrapRect]) => {
                         const { marquee } = this.properties;
-                        if (nodeRect == null || wrapRect == null || !nodeRect.width || !wrapRect.width) {
+                        if (nodeRect == null || wrapRect == null || !nodeRect.width || !wrapRect.width || marquee === false) {
                             return;
                         }
                         if (marquee || wrapRect.width < nodeRect.width) {

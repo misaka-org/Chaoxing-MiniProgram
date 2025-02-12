@@ -1,33 +1,58 @@
 export interface TdSearchProps {
-    style?: {
-        type: StringConstructor;
-        value?: string;
-    };
     action?: {
         type: StringConstructor;
         value?: string;
+    };
+    adjustPosition?: {
+        type: BooleanConstructor;
+        value?: boolean;
+    };
+    alwaysEmbed?: {
+        type: BooleanConstructor;
+        value?: boolean;
     };
     center?: {
         type: BooleanConstructor;
         value?: boolean;
     };
-    disabled?: {
+    clearTrigger?: {
+        type: StringConstructor;
+        value?: 'always' | 'focus';
+    };
+    clearable?: {
         type: BooleanConstructor;
         value?: boolean;
     };
-    externalClasses?: {
-        type: ArrayConstructor;
-        value?: ['t-class', 't-class-input', 't-class-input-container', 't-class-cancel', 't-class-left', 't-class-right'];
+    confirmHold?: {
+        type: BooleanConstructor;
+        value?: boolean;
+    };
+    confirmType?: {
+        type: StringConstructor;
+        value?: 'send' | 'search' | 'next' | 'go' | 'done';
+    };
+    cursor: {
+        type: NumberConstructor;
+        value?: number;
+        required?: boolean;
     };
     cursorSpacing?: {
         type: NumberConstructor;
         value?: number;
     };
+    disabled?: {
+        type: BooleanConstructor;
+        value?: boolean;
+    };
     focus?: {
         type: BooleanConstructor;
         value?: boolean;
     };
-    label?: {
+    holdKeyboard?: {
+        type: BooleanConstructor;
+        value?: boolean;
+    };
+    leftIcon?: {
         type: StringConstructor;
         value?: string;
     };
@@ -39,39 +64,7 @@ export interface TdSearchProps {
         type: NumberConstructor;
         value?: number;
     };
-    confirmType?: {
-        type: StringConstructor;
-        value?: 'send' | 'search' | 'next' | 'go' | 'done';
-    };
-    alwaysEmbed?: {
-        type: BooleanConstructor;
-        value?: boolean;
-    };
-    confirmHold?: {
-        type: BooleanConstructor;
-        value?: boolean;
-    };
-    cursor: {
-        type: NumberConstructor;
-        value?: number;
-    };
-    selectionStart?: {
-        type: NumberConstructor;
-        value?: number;
-    };
-    selectionEnd?: {
-        type: NumberConstructor;
-        value?: number;
-    };
-    adjustPosition?: {
-        type: BooleanConstructor;
-        value?: boolean;
-    };
-    holdKeyboard?: {
-        type: BooleanConstructor;
-        value?: boolean;
-    };
-    placeholderStyle: {
+    placeholder?: {
         type: StringConstructor;
         value?: string;
     };
@@ -79,31 +72,36 @@ export interface TdSearchProps {
         type: StringConstructor;
         value?: string;
     };
-    leftIcon?: {
+    placeholderStyle: {
         type: StringConstructor;
         value?: string;
+        required?: boolean;
     };
-    placeholder?: {
-        type: StringConstructor;
-        value?: string;
+    readonly?: {
+        type: BooleanConstructor;
+        value?: boolean;
     };
-    rightIcon?: {
-        type: StringConstructor;
-        value?: string;
+    resultList?: {
+        type: ArrayConstructor;
+        value?: Array<string>;
+    };
+    selectionEnd?: {
+        type: NumberConstructor;
+        value?: number;
+    };
+    selectionStart?: {
+        type: NumberConstructor;
+        value?: number;
     };
     shape?: {
         type: StringConstructor;
         value?: 'square' | 'round';
     };
-    value?: {
+    type?: {
         type: StringConstructor;
-        value?: string;
+        value?: 'text' | 'number' | 'idcard' | 'digit' | 'nickname';
     };
-    clearable: {
-        type: BooleanConstructor;
-        value?: boolean;
-    };
-    type: {
+    value?: {
         type: StringConstructor;
         value?: string;
     };

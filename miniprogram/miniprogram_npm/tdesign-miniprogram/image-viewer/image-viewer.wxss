@@ -32,7 +32,6 @@
   bottom: 0;
   right: 0;
   z-index: 1001;
-  height: 100%;
   transform: translateZ(0);
   overflow: hidden;
 }
@@ -76,7 +75,7 @@
   height: var(--td-image-viewer-nav-height, 96rpx);
   background-color: var(--td-image-viewer-nav-bg-color, var(--td-font-gray-3, rgba(0, 0, 0, 0.4)));
   left: 0;
-  color: var(--td-image-viewer-nav-color, var(--td-font-white-1, #ffffff));
+  color: var(--td-image-viewer-nav-color, var(--td-text-color-anti, var(--td-font-white-1, #ffffff)));
   z-index: 1005;
 }
 .t-image-viewer__nav-close {

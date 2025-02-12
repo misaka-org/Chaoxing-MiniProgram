@@ -6,12 +6,6 @@ const props = {
         type: String,
         value: 'horizontal',
     },
-    externalClasses: {
-        type: Array,
-    },
-    operation: {
-        type: String,
-    },
     interval: {
         type: Number,
         value: 2000,
@@ -20,13 +14,15 @@ const props = {
         type: null,
         value: false,
     },
+    operation: {
+        type: String,
+    },
     prefixIcon: {
         type: null,
         value: true,
     },
     suffixIcon: {
         type: null,
-        value: null,
     },
     theme: {
         type: String,

@@ -1,8 +1,4 @@
 const props = {
-    placement: {
-        type: String,
-        value: null,
-    },
     allowUncheck: {
         type: Boolean,
         value: false,
@@ -26,16 +22,9 @@ const props = {
         type: Boolean,
         value: false,
     },
-    readonly: {
-        type: Boolean,
-        value: false,
-    },
     disabled: {
-        type: Boolean,
+        type: null,
         value: undefined,
-    },
-    externalClasses: {
-        type: Array,
     },
     icon: {
         type: null,
@@ -55,6 +44,14 @@ const props = {
     name: {
         type: String,
         value: '',
+    },
+    placement: {
+        type: String,
+        value: 'left',
+    },
+    readonly: {
+        type: Boolean,
+        value: false,
     },
     value: {
         type: null,

@@ -11,6 +11,10 @@ const props = {
         type: null,
         value: false,
     },
+    bordered: {
+        type: Boolean,
+        value: false,
+    },
     confirmHold: {
         type: Boolean,
         value: false,
@@ -19,27 +23,40 @@ const props = {
         type: String,
         value: 'return',
     },
+    cursor: {
+        type: Number,
+        value: -1,
+    },
     cursorSpacing: {
         type: Number,
         value: 0,
     },
-    disabled: {
+    disableDefaultPadding: {
         type: Boolean,
         value: false,
     },
-    externalClasses: {
-        type: Array,
+    disabled: {
+        type: null,
+        value: undefined,
+    },
+    fixed: {
+        type: Boolean,
+        value: false,
     },
     focus: {
         type: Boolean,
         value: false,
     },
-    label: {
-        type: String,
-    },
-    fixed: {
+    holdKeyboard: {
         type: Boolean,
         value: false,
+    },
+    indicator: {
+        type: Boolean,
+        value: false,
+    },
+    label: {
+        type: String,
     },
     maxcharacter: {
         type: Number,
@@ -56,23 +73,11 @@ const props = {
         type: String,
         value: '',
     },
-    value: {
-        type: String,
-        value: null,
+    selectionEnd: {
+        type: Number,
+        value: -1,
     },
-    defaultValue: {
-        type: String,
-        value: '',
-    },
-    bordered: {
-        type: Boolean,
-        value: false,
-    },
-    indicator: {
-        type: Boolean,
-        value: false,
-    },
-    cursor: {
+    selectionStart: {
         type: Number,
         value: -1,
     },
@@ -80,21 +85,12 @@ const props = {
         type: Boolean,
         value: true,
     },
-    selectionStart: {
-        type: Number,
-        value: -1,
+    value: {
+        type: null,
+        value: null,
     },
-    selectionEnd: {
-        type: Number,
-        value: -1,
-    },
-    disableDefaultPadding: {
-        type: Boolean,
-        value: false,
-    },
-    holdKeyboard: {
-        type: Boolean,
-        value: false,
+    defaultValue: {
+        type: null,
     },
 };
 export default props;

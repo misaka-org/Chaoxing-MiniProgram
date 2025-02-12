@@ -1,36 +1,37 @@
 /// <reference types="miniprogram-api-typings" />
 import { SuperComponent, ComponentsOptionsType } from '../common/src/index';
-import { MessageProps } from './message.interface';
+import { MessageType, MessageProps } from './message.interface';
 export default class Message extends SuperComponent {
-    externalClasses: string[];
     options: ComponentsOptionsType;
     properties: MessageProps;
     data: {
         prefix: string;
         classPrefix: string;
-        loop: number;
-        animation: any[];
-        showAnimation: any[];
-        wrapTop: number;
+        messageList: any[];
     };
+    index: number;
+    instances: any[];
+    gap: number;
     observers: {
-        marquee(val: any): void;
-        'icon, theme'(icon: any, theme: any): void;
-        link(v: any): void;
-        closeBtn(v: any): void;
+        visible(value: any): void;
     };
-    closeTimeoutContext: number;
-    nextAnimationContext: number;
-    resetAnimation: WechatMiniprogram.Animation;
-    ready(): void;
+    pageLifetimes: {
+        show(): void;
+    };
+    lifetimes: {
+        ready(): void;
+    };
     memoInitialData(): void;
-    resetData(cb: () => void): void;
-    detached(): void;
-    checkAnimation(): void;
-    clearMessageAnimation(): void;
-    show(): void;
-    hide(): void;
-    reset(): void;
+    setMessage(msg: MessageProps, theme?: MessageType): void;
+    addMessage(msgObj: MessageProps): void;
+    getOffsetHeight(index?: number): number;
+    showMessageItem(options: MessageProps, id: string, offsetHeight: number): WechatMiniprogram.Component.TrivialInstance;
+    close(id: any): void;
+    hide(id?: string): void;
+    hideAll(): void;
+    removeInstance(id: any): void;
+    removeMsg(id: any): void;
     handleClose(): void;
     handleLinkClick(): void;
+    handleDurationEnd(): void;
 }

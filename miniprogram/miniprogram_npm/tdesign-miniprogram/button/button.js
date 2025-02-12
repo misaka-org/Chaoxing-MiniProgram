@@ -8,7 +8,7 @@ import { SuperComponent, wxComponent } from '../common/src/index';
 import config from '../common/config';
 import props from './props';
 import { canIUseFormFieldButton } from '../common/version';
-import { setIcon } from '../common/utils';
+import { calcIcon } from '../common/utils';
 const { prefix } = config;
 const name = `${prefix}-button`;
 let Button = class Button extends SuperComponent {
@@ -30,8 +30,9 @@ let Button = class Button extends SuperComponent {
                 this.setClass();
             },
             icon(icon) {
-                const obj = setIcon('icon', icon, '');
-                this.setData(Object.assign({}, obj));
+                this.setData({
+                    _icon: calcIcon(icon, ''),
+                });
             },
         };
         this.lifetimes = {

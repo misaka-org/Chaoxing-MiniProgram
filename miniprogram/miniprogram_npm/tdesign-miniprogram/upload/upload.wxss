@@ -42,7 +42,7 @@
   justify-content: center;
   font-size: var(--td-upload-add-icon-font-size, 56rpx);
   background-color: var(--td-upload-add-bg-color, var(--td-bg-color-secondarycontainer, var(--td-gray-color-1, #f3f3f3)));
-  color: var(--td-upload-add-color, var(--td-font-gray-3, rgba(0, 0, 0, 0.4)));
+  color: var(--td-upload-add-color, var(--td-text-color-placeholder, var(--td-font-gray-3, rgba(0, 0, 0, 0.4))));
   border-radius: var(--td-upload-radius, var(--td-radius-default, 12rpx));
 }
 .t-upload__add-icon--disabled {
@@ -70,7 +70,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--td-upload-disabled-mask, rgba(255, 255, 255, 0.55));
+  background-color: var(--td-upload-disabled-mask, rgba(0, 0.6));
   z-index: 1;
 }
 .t-upload__close-btn {
@@ -92,13 +92,15 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--td-font-gray-3, rgba(0, 0, 0, 0.4));
+  background-color: var(--td-font-gray-2, rgba(0, 0, 0, 0.6));
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   border-radius: var(--td-upload-radius, var(--td-radius-default, 12rpx));
-  color: var(--td-font-white-1, #ffffff);
+  color: var(--td-text-color-anti, var(--td-font-white-1, #ffffff));
   padding: 32rpx 0;
+  box-sizing: border-box;
 }
 .t-upload__progress-text {
   font-size: 24rpx;

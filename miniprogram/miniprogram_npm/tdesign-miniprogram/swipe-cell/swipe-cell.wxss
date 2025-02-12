@@ -50,7 +50,7 @@
   padding: 0 var(--td-spacer-2, 32rpx);
 }
 .t-swipe-cell__icon {
-  font-size: var(--td-font-size-l, 40rpx);
+  font-size: var(--td-font-size-xl, 40rpx);
 }
 .t-swipe-cell__icon + .t-swipe-cell__text:not(:empty) {
   margin-left: var(--td-spacer, 16rpx);

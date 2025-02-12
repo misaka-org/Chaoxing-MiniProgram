@@ -1,7 +1,4 @@
 const props = {
-    action: {
-        type: String,
-    },
     align: {
         type: String,
         value: 'left',
@@ -17,12 +14,16 @@ const props = {
         type: Number,
         value: 3000,
     },
-    externalClasses: {
-        type: Array,
+    gap: {
+        type: null,
+        value: 12,
     },
     icon: {
         type: null,
         value: true,
+    },
+    link: {
+        type: null,
     },
     marquee: {
         type: null,
@@ -30,6 +31,10 @@ const props = {
     },
     offset: {
         type: Array,
+    },
+    single: {
+        type: Boolean,
+        value: true,
     },
     theme: {
         type: String,
@@ -46,9 +51,6 @@ const props = {
     zIndex: {
         type: Number,
         value: 15000,
-    },
-    link: {
-        type: null,
     },
 };
 export default props;

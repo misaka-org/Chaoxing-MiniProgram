@@ -3,17 +3,9 @@ export interface TdSkeletonProps {
         type: StringConstructor;
         value?: 'gradient' | 'flashed' | 'none';
     };
-    style?: {
-        type: StringConstructor;
-        value?: string;
-    };
     delay?: {
         type: NumberConstructor;
         value?: number;
-    };
-    externalClasses?: {
-        type: ArrayConstructor;
-        value?: ['t-class', 't-class-avatar', 't-class-image', 't-class-text'];
     };
     loading?: {
         type: BooleanConstructor;

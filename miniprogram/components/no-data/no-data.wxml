@@ -1,0 +1,5 @@
+<view class="no-data">
+			<image class="no-data" src="/static/svg/illustration/no-data.svg" mode="aspectFit"></image>
+			<text class="no-data">{{text}}</text>
+			<text class="no-data" wx:if="{{desc}}">{{desc}}</text>
+		</view>

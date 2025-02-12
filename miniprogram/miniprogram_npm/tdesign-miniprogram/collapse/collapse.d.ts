@@ -3,9 +3,6 @@ import type { CollapseValue, TdCollapseProps } from './type';
 export interface CollapseProps extends TdCollapseProps {
 }
 export default class Collapse extends SuperComponent {
-    options: {
-        addGlobalClass: boolean;
-    };
     externalClasses: string[];
     relations: RelationsOptions;
     controlledProps: {

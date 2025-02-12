@@ -1,19 +1,11 @@
 export interface TdResultProps {
-    style?: {
-        type: StringConstructor;
-        value?: string;
-    };
     description?: {
         type: StringConstructor;
         value?: string;
     };
-    externalClasses?: {
-        type: ArrayConstructor;
-        value?: ['t-class', 't-class-description', 't-class-image'];
-    };
     icon?: {
         type: null;
-        value?: boolean | string | object;
+        value?: string | boolean | object;
     };
     image?: {
         type: StringConstructor;

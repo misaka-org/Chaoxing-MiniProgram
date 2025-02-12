@@ -32,7 +32,6 @@ const props = {
     },
     defaultValue: {
         type: null,
-        value: null,
     },
 };
 export default props;

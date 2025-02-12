@@ -96,6 +96,10 @@
 .t-dropdown-item__footer-btn + .t-dropdown-item__footer-btn {
   margin-left: 32rpx;
 }
+.t-dropdown-item__body:empty,
+.t-dropdown-item__footer:empty {
+  display: none;
+}
 .t-dropdown-item__radio,
 .t-dropdown-item__checkbox {
   width: 100%;

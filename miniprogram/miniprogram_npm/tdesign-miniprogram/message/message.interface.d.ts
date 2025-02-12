@@ -15,10 +15,14 @@ export interface MessageProps {
     align?: string;
     theme?: MessageType;
     icon?: boolean | string;
+    link?: string | object;
     closeBtn?: boolean;
     action?: string;
     marquee?: MessageMarquee;
     offset?: object;
     duration?: number;
     zIndex?: number;
+    id?: string;
+    gap?: string | number;
+    single?: boolean;
 }

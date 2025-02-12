@@ -26,7 +26,7 @@
   transform: scale(1.5);
 }
 .t-indexes-anchor {
-  color: var(--td-indexes-anchor-color, var(--td-font-gray-1, rgba(0, 0, 0, 0.9)));
+  color: var(--td-indexes-anchor-color, var(--td-text-color-primary, var(--td-font-gray-1, rgba(0, 0, 0, 0.9))));
   font-size: var(--td-indexes-anchor-font-size, 28rpx);
   line-height: var(--td-indexes-anchor-line-height, 44rpx);
 }

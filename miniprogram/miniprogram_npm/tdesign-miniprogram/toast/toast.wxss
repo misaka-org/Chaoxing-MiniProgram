@@ -36,7 +36,7 @@
   background-color: var(--td-toast-bg-color, var(--td-font-gray-2, rgba(0, 0, 0, 0.6)));
   border-radius: var(--td-toast-radius, 8rpx);
   font-size: 28rpx;
-  color: var(--td-toast-color, var(--td-font-white-1, #ffffff));
+  color: var(--td-toast-color, var(--td-text-color-anti, var(--td-font-white-1, #ffffff)));
   max-width: var(--td-toast-max-width, 374rpx);
   width: fit-content;
   box-sizing: border-box;

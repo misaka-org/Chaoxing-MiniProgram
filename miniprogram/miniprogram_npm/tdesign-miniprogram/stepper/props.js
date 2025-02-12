@@ -4,14 +4,18 @@ const props = {
         value: false,
     },
     disabled: {
-        type: Boolean,
-        value: false,
+        type: null,
+        value: undefined,
     },
     externalClasses: {
         type: Array,
     },
     inputWidth: {
         type: Number,
+    },
+    integer: {
+        type: Boolean,
+        value: true,
     },
     max: {
         type: Number,
@@ -21,26 +25,24 @@ const props = {
         type: Number,
         value: 0,
     },
-    step: {
-        type: Number,
-        value: 1,
-    },
     size: {
         type: String,
         value: 'medium',
+    },
+    step: {
+        type: Number,
+        value: 1,
     },
     theme: {
         type: String,
         value: 'normal',
     },
     value: {
-        type: String,
-        optionalTypes: [Number],
+        type: null,
         value: null,
     },
     defaultValue: {
-        type: String,
-        optionalTypes: [Number],
+        type: null,
         value: 0,
     },
 };

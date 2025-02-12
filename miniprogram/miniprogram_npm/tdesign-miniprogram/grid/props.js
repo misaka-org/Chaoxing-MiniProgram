@@ -11,9 +11,6 @@ const props = {
         type: Number,
         value: 4,
     },
-    externalClasses: {
-        type: Array,
-    },
     gutter: {
         type: Number,
     },

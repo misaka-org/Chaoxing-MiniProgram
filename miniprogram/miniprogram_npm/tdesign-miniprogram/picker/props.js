@@ -15,12 +15,28 @@ const props = {
         type: Boolean,
         value: true,
     },
+    itemHeight: {
+        type: Number,
+        value: 80,
+    },
     keys: {
         type: Object,
+    },
+    popupProps: {
+        type: Object,
+        value: {},
     },
     title: {
         type: String,
         value: '',
+    },
+    usePopup: {
+        type: Boolean,
+        value: true,
+    },
+    usingCustomNavbar: {
+        type: Boolean,
+        value: false,
     },
     value: {
         type: Array,
@@ -32,10 +48,6 @@ const props = {
     visible: {
         type: Boolean,
         value: false,
-    },
-    popupProps: {
-        type: Object,
-        value: {},
     },
 };
 export default props;

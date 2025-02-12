@@ -8,10 +8,6 @@ export interface TdCalendarProps {
         type: null;
         value?: string | ButtonProps | null;
     };
-    style?: {
-        type: StringConstructor;
-        value?: string;
-    };
     firstDayOfWeek?: {
         type: NumberConstructor;
         value?: number;
@@ -20,6 +16,10 @@ export interface TdCalendarProps {
         type: undefined;
         value?: CalendarFormatType;
     };
+    localeText?: {
+        type: ObjectConstructor;
+        value?: CalendarLocaleText;
+    };
     maxDate?: {
         type: NumberConstructor;
         value?: number;
@@ -27,6 +27,10 @@ export interface TdCalendarProps {
     minDate?: {
         type: NumberConstructor;
         value?: number;
+    };
+    switchMode?: {
+        type: StringConstructor;
+        value?: 'none' | 'month' | 'year-month';
     };
     title?: {
         type: StringConstructor;
@@ -37,6 +41,10 @@ export interface TdCalendarProps {
         value?: 'single' | 'multiple' | 'range';
     };
     usePopup?: {
+        type: BooleanConstructor;
+        value?: boolean;
+    };
+    usingCustomNavbar?: {
         type: BooleanConstructor;
         value?: boolean;
     };
@@ -62,4 +70,11 @@ export interface TDate {
     className?: string;
     prefix?: string;
     suffix?: string;
+}
+export interface CalendarLocaleText {
+    title?: string;
+    weekdays?: string[];
+    monthTitle?: string;
+    months?: string[];
+    confirm?: string;
 }

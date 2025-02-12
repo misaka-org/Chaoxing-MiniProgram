@@ -58,7 +58,7 @@ export default class ImageViewer extends SuperComponent {
     }[];
     ready(): void;
     observers: {
-        visible(value: any): void;
+        'visible,initialIndex,images'(visible: any, initialIndex: any, images: any): void;
         closeBtn(v: any): void;
         deleteBtn(v: any): void;
     };

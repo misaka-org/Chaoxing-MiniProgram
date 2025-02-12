@@ -11,9 +11,6 @@ const props = {
         type: null,
         value: 200,
     },
-    externalClasses: {
-        type: Array,
-    },
     showOverlay: {
         type: Boolean,
         value: true,

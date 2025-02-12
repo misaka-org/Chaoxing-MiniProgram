@@ -1,8 +1,4 @@
 export interface TdRadioProps<T = RadioValue> {
-    placement?: {
-        type: StringConstructor;
-        value?: 'left' | 'right';
-    };
     allowUncheck?: {
         type: BooleanConstructor;
         value?: boolean;
@@ -27,25 +23,13 @@ export interface TdRadioProps<T = RadioValue> {
         type: BooleanConstructor;
         value?: boolean;
     };
-    style?: {
-        type: StringConstructor;
-        value?: string;
-    };
-    readonly?: {
-        type: BooleanConstructor;
-        value?: boolean;
-    };
     disabled?: {
         type: BooleanConstructor;
         value?: boolean;
     };
-    externalClasses?: {
-        type: ArrayConstructor;
-        value?: ['t-class', 't-class-icon', 't-class-label', 't-class-content', 't-class-border'];
-    };
     icon?: {
         type: null;
-        value?: 'circle' | 'line' | Array<string>;
+        value?: 'circle' | 'line' | 'dot' | Array<string>;
     };
     label?: {
         type: StringConstructor;
@@ -62,6 +46,14 @@ export interface TdRadioProps<T = RadioValue> {
     name?: {
         type: StringConstructor;
         value?: string;
+    };
+    placement?: {
+        type: StringConstructor;
+        value?: 'left' | 'right';
+    };
+    readonly?: {
+        type: BooleanConstructor;
+        value?: boolean;
     };
     value?: {
         type: null;

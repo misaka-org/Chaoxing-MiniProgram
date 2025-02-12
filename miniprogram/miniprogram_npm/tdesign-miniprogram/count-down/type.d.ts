@@ -7,10 +7,6 @@ export interface TdCountDownProps {
         type: StringConstructor;
         value?: string;
     };
-    style?: {
-        type: StringConstructor;
-        value?: string;
-    };
     format?: {
         type: StringConstructor;
         value?: string;
@@ -34,5 +30,6 @@ export interface TdCountDownProps {
     time: {
         type: NumberConstructor;
         value?: number;
+        required?: boolean;
     };
 }

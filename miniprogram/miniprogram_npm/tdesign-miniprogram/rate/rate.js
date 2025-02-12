@@ -68,6 +68,9 @@ let Rate = class Rate extends SuperComponent {
                 });
             },
             onTap(e) {
+                const { disabled } = this.properties;
+                if (disabled)
+                    return;
                 this.onTouch(e, 'tap');
             },
             onTouchStart() {

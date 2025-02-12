@@ -1,24 +1,24 @@
 export interface TdFooterProps {
-    text?: {
-        type: StringConstructor;
-        value?: string;
+    links?: {
+        type: ArrayConstructor;
+        value?: Array<LinkObj>;
     };
     logo?: {
         type: ObjectConstructor;
         value?: FooterLogo;
     };
-    links?: {
-        type: ArrayConstructor;
-        value?: Array<LinkObj>;
+    text?: {
+        type: StringConstructor;
+        value?: string;
     };
-}
-export interface FooterLogo {
-    icon: string;
-    title?: string;
-    titleUrl?: string;
 }
 export interface LinkObj {
     name: string;
     url?: string;
     openType?: 'navigate' | 'redirect' | 'relaunch' | 'switchTab' | 'navigateBack';
+}
+export interface FooterLogo {
+    icon: string;
+    title?: string;
+    url?: string;
 }

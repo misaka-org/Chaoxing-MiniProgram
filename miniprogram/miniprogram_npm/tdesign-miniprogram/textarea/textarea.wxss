@@ -34,7 +34,7 @@
 }
 .t-textarea__label:not(:empty) {
   font-size: var(--td-font-size-base, 28rpx);
-  color: var(--td-textarea-label-color, var(--td-font-gray-1, rgba(0, 0, 0, 0.9)));
+  color: var(--td-textarea-label-color, var(--td-text-color-primary, var(--td-font-gray-1, rgba(0, 0, 0, 0.9))));
   flex-shrink: 0;
   line-height: 44rpx;
   padding-bottom: var(--td-spacer, 16rpx);
@@ -62,15 +62,16 @@
   border: 0;
   resize: none;
   font-size: var(--td-font-size-m, 32rpx);
-  color: var(--td-textarea-text-color, var(--td-font-gray-1, rgba(0, 0, 0, 0.9)));
+  color: var(--td-textarea-text-color, var(--td-text-color-primary, var(--td-font-gray-1, rgba(0, 0, 0, 0.9))));
   line-height: 48rpx;
 }
 .t-textarea__placeholder {
-  color: var(--td-textarea-placeholder-color, var(--td-font-gray-3, rgba(0, 0, 0, 0.4)));
+  color: var(--td-textarea-placeholder-color, var(--td-text-color-placeholder, var(--td-font-gray-3, rgba(0, 0, 0, 0.4))));
   font-size: var(--td-font-size-m, 32rpx);
 }
 .t-textarea__indicator:not(:empty) {
-  color: var(--td-textarea-indicator-text-color, var(--td-font-gray-3, rgba(0, 0, 0, 0.4)));
+  flex-shrink: 0;
+  color: var(--td-textarea-indicator-text-color, var(--td-text-color-placeholder, var(--td-font-gray-3, rgba(0, 0, 0, 0.4))));
   font-size: var(--td-spacer-1, 24rpx);
   text-align: right;
   line-height: 40rpx;
@@ -78,8 +79,8 @@
 }
 .t-textarea--border {
   border-radius: var(--td-textarea-border-radius, var(--td-radius-default, 12rpx));
-  border: 2rpx solid var(--td-textarea-border-color, #dcdcdc);
+  border: 2rpx solid var(--td-textarea-border-color, var(--td-component-border, var(--td-gray-color-4, #dcdcdc)));
 }
 .t-textarea .t-is-disabled {
-  color: var(--td-textarea-disabled-text-color, var(--td-font-gray-4, rgba(0, 0, 0, 0.26)));
+  color: var(--td-textarea-disabled-text-color, var(--td-text-color-disabled, var(--td-font-gray-4, rgba(0, 0, 0, 0.26))));
 }

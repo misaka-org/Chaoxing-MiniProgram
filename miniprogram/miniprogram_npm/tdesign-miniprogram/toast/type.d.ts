@@ -1,8 +1,5 @@
+import { OverlayProps } from '../overlay/index';
 export interface TdToastProps {
-    style?: {
-        type: StringConstructor;
-        value?: string;
-    };
     direction?: {
         type: StringConstructor;
         value?: 'row' | 'column';
@@ -11,13 +8,9 @@ export interface TdToastProps {
         type: NumberConstructor;
         value?: number;
     };
-    externalClasses?: {
-        type: ArrayConstructor;
-        value?: ['t-class'];
-    };
     icon?: {
         type: null;
-        value?: string;
+        value?: string | object;
     };
     message?: {
         type: StringConstructor;
@@ -25,7 +18,7 @@ export interface TdToastProps {
     };
     overlayProps?: {
         type: ObjectConstructor;
-        value?: object;
+        value?: OverlayProps;
     };
     placement?: {
         type: StringConstructor;
@@ -42,5 +35,9 @@ export interface TdToastProps {
     theme?: {
         type: StringConstructor;
         value?: 'loading' | 'success' | 'error';
+    };
+    usingCustomNavbar?: {
+        type: BooleanConstructor;
+        value?: boolean;
     };
 }

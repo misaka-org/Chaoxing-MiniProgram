@@ -16,6 +16,7 @@ export default class Indexes extends SuperComponent {
     timer: any;
     groupTop: any[];
     sidebar: any;
+    currentTouchAnchor: any;
     observers: {
         indexList(v: any): void;
         height(v: any): void;

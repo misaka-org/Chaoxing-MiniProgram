@@ -32,7 +32,7 @@
     >
       <template
         is="image"
-        data="{{ class: classPrefix + '__image-host', tClass: this.getImageClass(prefix, navCurrent, index, list), style: 'height: ' + _.addUnit(height), src: _.isObject(item) ? item.value : item, mode: 'aspectFill', dataset: index, ...imageProps, bindload: 'onImageLoad' }}"
+        data="{{tClass: this.getImageClass(prefix, navCurrent, index, list), style: 'height: ' + _.addUnit(height), src: _.isObject(item) ? item.value : item, mode: 'aspectFill', dataset: index, ...imageProps, bindload: 'onImageLoad' }}"
       />
     </swiper-item>
   </swiper>
@@ -48,5 +48,6 @@
     show-controls="{{navigation.showControls || false}}"
     bind:nav-btn-change="onNavBtnChange"
   />
+  <slot name="navigation" />
   <slot name="nav" />
 </view>

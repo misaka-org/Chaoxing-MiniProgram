@@ -36,8 +36,9 @@ let Input = class Input extends SuperComponent {
         };
         this.lifetimes = {
             ready() {
-                const { value } = this.properties;
-                this.updateValue(value !== null && value !== void 0 ? value : '');
+                var _a;
+                const { value, defaultValue } = this.properties;
+                this.updateValue((_a = value !== null && value !== void 0 ? value : defaultValue) !== null && _a !== void 0 ? _a : '');
             },
         };
         this.observers = {
@@ -56,7 +57,7 @@ let Input = class Input extends SuperComponent {
                     _clearIcon: calcIcon(v, 'close-circle-filled'),
                 });
             },
-            clearTrigger() {
+            'clearTrigger, clearable, disabled, readonly'() {
                 this.updateClearIconVisible();
             },
         };
@@ -85,7 +86,11 @@ let Input = class Input extends SuperComponent {
                 }
             },
             updateClearIconVisible(value = false) {
-                const { clearTrigger } = this.properties;
+                const { clearTrigger, disabled, readonly } = this.properties;
+                if (disabled || readonly) {
+                    this.setData({ showClearIcon: false });
+                    return;
+                }
                 this.setData({ showClearIcon: value || clearTrigger === 'always' });
             },
             onInput(e) {
@@ -99,6 +104,12 @@ let Input = class Input extends SuperComponent {
             },
             onBlur(e) {
                 this.updateClearIconVisible();
+                if (typeof this.properties.format === 'function') {
+                    const v = this.properties.format(e.detail.value);
+                    this.updateValue(v);
+                    this.triggerEvent('blur', { value: this.data.value, cursor: this.data.count });
+                    return;
+                }
                 this.triggerEvent('blur', e.detail);
             },
             onConfirm(e) {

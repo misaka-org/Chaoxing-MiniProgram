@@ -23,7 +23,7 @@ let CollapsePanel = class CollapsePanel extends SuperComponent {
                 linked(target) {
                     const { value, expandIcon, disabled } = target.properties;
                     this.setData({
-                        ultimateExpandIcon: expandIcon || this.properties.expandIcon,
+                        ultimateExpandIcon: this.properties.expandIcon == null ? expandIcon : this.properties.expandIcon,
                         ultimateDisabled: this.properties.disabled == null ? disabled : this.properties.disabled,
                     });
                     this.updateExpanded(value);
@@ -39,9 +39,14 @@ let CollapsePanel = class CollapsePanel extends SuperComponent {
             ultimateExpandIcon: false,
             ultimateDisabled: false,
         };
+        this.observers = {
+            disabled(v) {
+                this.setData({ ultimateDisabled: !!v });
+            },
+        };
         this.methods = {
             updateExpanded(activeValues = []) {
-                if (!this.$parent || this.data.ultimateDisabled) {
+                if (!this.$parent) {
                     return;
                 }
                 const { value } = this.properties;

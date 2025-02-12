@@ -14,16 +14,9 @@ const props = {
     content: {
         type: null,
     },
-    style: {
-        type: String,
-        value: '',
-    },
     disabled: {
         type: Boolean,
         value: false,
-    },
-    externalClasses: {
-        type: Array,
     },
     icon: {
         type: null,

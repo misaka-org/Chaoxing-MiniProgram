@@ -3,21 +3,13 @@ export interface TdStickyProps {
         type: undefined;
         value?: null;
     };
-    style?: {
-        type: StringConstructor;
-        value?: string;
-    };
     disabled?: {
         type: BooleanConstructor;
         value?: boolean;
     };
-    externalClasses?: {
-        type: ArrayConstructor;
-        value?: ['t-class'];
-    };
     offsetTop?: {
-        type: NumberConstructor;
-        value?: number;
+        type: null;
+        value?: string | number;
     };
     zIndex?: {
         type: NumberConstructor;

@@ -8,14 +8,15 @@ import { SuperComponent, wxComponent } from '../common/src/index';
 import config from '../common/config';
 import props from './props';
 import { isObject, toCamel } from '../common/utils';
+import useCustomNavbar from '../mixins/using-custom-navbar';
 const { prefix } = config;
 const name = `${prefix}-dialog`;
 let Dialog = class Dialog extends SuperComponent {
     constructor() {
         super(...arguments);
+        this.behaviors = [useCustomNavbar];
         this.options = {
             multipleSlots: true,
-            addGlobalClass: true,
         };
         this.externalClasses = [
             `${prefix}-class`,
@@ -50,9 +51,10 @@ let Dialog = class Dialog extends SuperComponent {
                     const btn = buttonMap[key];
                     const base = {
                         block: true,
-                        class: [...cls, `${classPrefix}__button--${key}`],
-                        externalClass: [...externalCls, `${prefix}-class-${key}`],
+                        rootClass: [...cls, `${classPrefix}__button--${key}`],
+                        tClass: [...externalCls, `${prefix}-class-${key}`],
                         variant: rect.buttonVariant,
+                        openType: '',
                     };
                     if (key === 'cancel' && rect.buttonVariant === 'base') {
                         base.theme = 'light';
@@ -87,7 +89,7 @@ let Dialog = class Dialog extends SuperComponent {
                         this.close();
                     }
                 }
-                const hasOpenType = 'openType' in button;
+                const hasOpenType = !!button.openType;
                 if (!hasOpenType && ['confirm', 'cancel'].includes(type)) {
                     (_a = this[toCamel(`on-${type}`)]) === null || _a === void 0 ? void 0 : _a.call(this, type);
                 }
@@ -121,6 +123,7 @@ let Dialog = class Dialog extends SuperComponent {
             overlayClick() {
                 if (this.properties.closeOnOverlayClick) {
                     this.triggerEvent('close', { trigger: 'overlay' });
+                    this.close();
                 }
                 this.triggerEvent('overlay-click');
             },

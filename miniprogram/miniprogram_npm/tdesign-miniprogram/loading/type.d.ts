@@ -7,9 +7,9 @@ export interface TdLoadingProps {
         type: NumberConstructor;
         value?: number;
     };
-    externalClasses?: {
-        type: ArrayConstructor;
-        value?: ['t-class', 't-class-text', 't-class-indicator'];
+    fullscreen?: {
+        type: BooleanConstructor;
+        value?: boolean;
     };
     indicator?: {
         type: BooleanConstructor;

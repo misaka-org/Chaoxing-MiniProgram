@@ -1,35 +1,27 @@
 export interface TdNoticeBarProps {
     content?: {
         type: null;
-        value?: null;
-    };
-    style?: {
-        type: StringConstructor;
-        value?: string;
+        value?: string | string[];
     };
     direction?: {
         type: StringConstructor;
         value?: 'horizontal' | 'vertical';
     };
-    externalClasses?: {
-        type: ArrayConstructor;
-        value?: ['t-class', 't-class-content', 't-class-prefix-icon', 't-class-operation', 't-class-suffix-icon'];
+    interval?: {
+        type: NumberConstructor;
+        value?: number;
+    };
+    marquee?: {
+        type: null;
+        value?: boolean | NoticeBarMarquee;
     };
     operation?: {
         type: StringConstructor;
         value?: string;
     };
-    interval: {
-        type: NumberConstructor;
-        value: number;
-    };
-    marquee?: {
-        type: null;
-        value?: boolean | DrawMarquee;
-    };
     prefixIcon?: {
         type: null;
-        value?: boolean | string | object;
+        value?: string | boolean | object;
     };
     suffixIcon?: {
         type: null;
@@ -48,8 +40,7 @@ export interface TdNoticeBarProps {
         value?: boolean;
     };
 }
-export declare type NoticeBarTrigger = 'prefix-icon' | 'content' | 'operation' | 'suffix-icon';
-export interface DrawMarquee {
+export interface NoticeBarMarquee {
     speed?: number;
     loop?: number;
     delay?: number;

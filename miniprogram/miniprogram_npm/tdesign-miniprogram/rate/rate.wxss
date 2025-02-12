@@ -49,21 +49,21 @@
 }
 .t-rate__icon--selected-half {
   color: transparent;
-  background: linear-gradient(to right, var(--td-rate-selected-color, var(--td-warning-color, var(--td-warning-color-5, #e37318))) 0%, var(--td-rate-selected-color, var(--td-warning-color, var(--td-warning-color-5, #e37318))) 50%, var(--td-rate-unselected-color, var(--td-bg-color-secondarycomponent, var(--td-gray-color-4, #dcdcdc))) 51%, var(--td-rate-unselected-color, var(--td-bg-color-secondarycomponent, var(--td-gray-color-4, #dcdcdc))) 100%);
+  background: linear-gradient(to right, var(--td-rate-selected-color, var(--td-warning-color, var(--td-warning-color-5, #e37318))) 0%, var(--td-rate-selected-color, var(--td-warning-color, var(--td-warning-color-5, #e37318))) 50%, var(--td-rate-unselected-color, var(--td-component-border, var(--td-gray-color-4, #dcdcdc))) 51%, var(--td-rate-unselected-color, var(--td-component-border, var(--td-gray-color-4, #dcdcdc))) 100%);
   -webkit-background-clip: text;
   background-clip: text;
 }
 .t-rate__icon--unselected {
-  color: var(--td-rate-unselected-color, var(--td-bg-color-secondarycomponent, var(--td-gray-color-4, #dcdcdc)));
+  color: var(--td-rate-unselected-color, var(--td-component-border, var(--td-gray-color-4, #dcdcdc)));
 }
 .t-rate__text {
   font-size: var(--td-rate-text-font-size, var(--td-font-size-m, 32rpx));
-  color: var(--td-rate-text-color, var(--td-font-gray-4, rgba(0, 0, 0, 0.26)));
+  color: var(--td-rate-text-color, var(--td-text-color-disabled, var(--td-font-gray-4, rgba(0, 0, 0, 0.26))));
   margin-left: 32rpx;
   vertical-align: middle;
 }
 .t-rate__text--active {
-  color: var(--td-rate-text-active-color, var(--td-font-gray-1, rgba(0, 0, 0, 0.9)));
+  color: var(--td-rate-text-active-color, var(--td-text-color-primary, var(--td-font-gray-1, rgba(0, 0, 0, 0.9))));
   font-weight: var(--td-rate-text-active-font-weight, 600);
 }
 .t-rate__text--sr-only {
@@ -100,7 +100,7 @@
   border-radius: 6rpx;
 }
 .t-rate__tips-item--active {
-  background-color: var(--td-bg-color-secondarycontainer, var(--td-gray-color-1, #f3f3f3));
+  background-color: var(--td-bg-color-component, var(--td-gray-color-3, #e7e7e7));
 }
 .t-rate__tips-text {
   text-align: center;

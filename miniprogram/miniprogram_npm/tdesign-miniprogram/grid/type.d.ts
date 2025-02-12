@@ -15,14 +15,6 @@ export interface TdGridProps {
         type: NumberConstructor;
         value?: number;
     };
-    style?: {
-        type: StringConstructor;
-        value?: string;
-    };
-    externalClasses?: {
-        type: ArrayConstructor;
-        value?: ['t-class'];
-    };
     gutter?: {
         type: NumberConstructor;
         value?: number;

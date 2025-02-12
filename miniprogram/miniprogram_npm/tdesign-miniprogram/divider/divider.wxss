@@ -51,19 +51,21 @@
 .t-divider--horizontal::after {
   border-top-width: 1px;
   transform: scaleY(0.5);
+  transform-origin: bottom;
 }
 .t-divider--horizontal .t-divider__content:not(:empty) {
   margin: 0 24rpx;
 }
 .t-divider--vertical {
   flex-direction: column;
-  height: 1em;
+  height: 28rpx;
   margin: 0 16rpx;
 }
 .t-divider--vertical::before,
 .t-divider--vertical::after {
   border-left-width: 1px;
   transform: scaleX(0.5);
+  transform-origin: bottom;
 }
 .t-divider--vertical-center {
   align-items: center;
@@ -75,7 +77,7 @@
 .t-divider__content {
   font-size: var(--td-divider-content-font-size, 24rpx);
   line-height: var(--td-divider-content-line-height, 40rpx);
-  color: var(--td-divider-content-color, var(--td-font-gray-3, rgba(0, 0, 0, 0.4)));
+  color: var(--td-divider-content-color, var(--td-text-color-placeholder, var(--td-font-gray-3, rgba(0, 0, 0, 0.4))));
 }
 .t-divider--left::before,
 .t-divider--right::after {

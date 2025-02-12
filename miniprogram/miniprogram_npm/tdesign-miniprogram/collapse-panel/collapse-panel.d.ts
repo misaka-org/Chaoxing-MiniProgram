@@ -17,6 +17,9 @@ export default class CollapsePanel extends SuperComponent {
         ultimateExpandIcon: boolean;
         ultimateDisabled: boolean;
     };
+    observers: {
+        disabled(v: any): void;
+    };
     methods: {
         updateExpanded(activeValues?: any[]): void;
         updateStyle(expanded: boolean): Promise<void>;

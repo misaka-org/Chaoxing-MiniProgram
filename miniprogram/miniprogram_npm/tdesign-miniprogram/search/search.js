@@ -25,11 +25,47 @@ let Search = class Search extends SuperComponent {
             multipleSlots: true,
         };
         this.properties = props;
-        this.observers = {};
+        this.observers = {
+            resultList(val) {
+                const { isSelected } = this.data;
+                if (val.length) {
+                    if (isSelected) {
+                        this.setData({
+                            isShowResultList: false,
+                            isSelected: false,
+                        });
+                    }
+                    else {
+                        this.setData({
+                            isShowResultList: true,
+                        });
+                    }
+                }
+                else {
+                    this.setData({
+                        isShowResultList: false,
+                    });
+                }
+            },
+            'clearTrigger, clearable, disabled, readonly'() {
+                this.updateClearIconVisible();
+            },
+        };
         this.data = {
             classPrefix: name,
             prefix,
+            isShowResultList: false,
+            isSelected: false,
+            showClearIcon: true,
         };
+    }
+    updateClearIconVisible(value = false) {
+        const { clearTrigger, disabled, readonly } = this.properties;
+        if (disabled || readonly) {
+            this.setData({ showClearIcon: false });
+            return;
+        }
+        this.setData({ showClearIcon: value || String(clearTrigger) === 'always' });
     }
     onInput(e) {
         let { value } = e.detail;
@@ -38,20 +74,25 @@ let Search = class Search extends SuperComponent {
             const { characters } = getCharacterLength('maxcharacter', value, maxcharacter);
             value = characters;
         }
-        this.setData({ value });
+        this.setData({
+            value,
+        });
         this.triggerEvent('change', { value });
     }
     onFocus(e) {
         const { value } = e.detail;
+        this.updateClearIconVisible(true);
         this.triggerEvent('focus', { value });
     }
     onBlur(e) {
         const { value } = e.detail;
+        this.updateClearIconVisible();
         this.triggerEvent('blur', { value });
     }
     handleClear() {
         this.setData({ value: '' });
         this.triggerEvent('clear', { value: '' });
+        this.triggerEvent('change', { value: '' });
     }
     onConfirm(e) {
         const { value } = e.detail;
@@ -59,6 +100,16 @@ let Search = class Search extends SuperComponent {
     }
     onActionClick() {
         this.triggerEvent('action-click');
+    }
+    onSelectResultItem(e) {
+        const { index } = e.currentTarget.dataset;
+        const item = this.properties.resultList[index];
+        this.setData({
+            value: item,
+            isSelected: true,
+        });
+        this.triggerEvent('change', { value: item });
+        this.triggerEvent('selectresult', { index, item });
     }
 };
 Search = __decorate([

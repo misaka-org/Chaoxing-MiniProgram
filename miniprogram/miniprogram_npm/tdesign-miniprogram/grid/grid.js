@@ -25,10 +25,7 @@ let Grid = class Grid extends SuperComponent {
             contentStyle: '',
         };
         this.observers = {
-            'column,hover,align'() {
-                this.updateContentStyle();
-            },
-            'gutter,border'() {
+            'column,hover,align,gutter,border'() {
                 this.updateContentStyle();
                 this.doForChild((child) => child.updateStyle());
             },

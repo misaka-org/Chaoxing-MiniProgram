@@ -5,13 +5,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { SuperComponent, wxComponent } from '../common/src/index';
+import { rpx2px } from '../common/utils';
 import config from '../common/config';
 import props from './props';
+import useCustomNavbar from '../mixins/using-custom-navbar';
 const { prefix } = config;
 const name = `${prefix}-picker`;
 let Picker = class Picker extends SuperComponent {
     constructor() {
         super(...arguments);
+        this.behaviors = [useCustomNavbar];
         this.properties = props;
         this.externalClasses = [`${prefix}-class`, `${prefix}-class-confirm`, `${prefix}-class-cancel`, `${prefix}-class-title`];
         this.options = {
@@ -36,6 +39,13 @@ let Picker = class Picker extends SuperComponent {
                 });
             },
         };
+        this.lifetimes = {
+            attached() {
+                this.setData({
+                    pickItemHeight: rpx2px(this.properties.itemHeight),
+                });
+            },
+        };
         this.data = {
             prefix,
             classPrefix: name,
@@ -43,15 +53,18 @@ let Picker = class Picker extends SuperComponent {
             valueAlias: 'value',
             defaultPopUpProps: {},
             defaultPopUpzIndex: 11500,
+            pickItemHeight: 0,
         };
         this.methods = {
             updateChildren() {
+                const { pickItemHeight } = this.data;
                 const { value, defaultValue } = this.properties;
                 this.$children.forEach((child, index) => {
                     var _a, _b;
                     child.setData({
                         value: (_b = (_a = value === null || value === void 0 ? void 0 : value[index]) !== null && _a !== void 0 ? _a : defaultValue === null || defaultValue === void 0 ? void 0 : defaultValue[index]) !== null && _b !== void 0 ? _b : '',
                         columnIndex: index,
+                        pickItemHeight,
                     });
                     child.update();
                 });

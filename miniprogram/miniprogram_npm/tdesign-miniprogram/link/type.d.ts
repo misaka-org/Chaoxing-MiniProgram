@@ -4,6 +4,14 @@ export interface TdLinkProps {
         type: StringConstructor;
         value?: string;
     };
+    disabled?: {
+        type: BooleanConstructor;
+        value?: boolean;
+    };
+    hover?: {
+        type: BooleanConstructor;
+        value?: boolean;
+    };
     navigatorProps?: {
         type: ObjectConstructor;
         value?: object;
@@ -15,18 +23,6 @@ export interface TdLinkProps {
     size?: {
         type: StringConstructor;
         value?: SizeEnum;
-    };
-    status?: {
-        type: StringConstructor;
-        value?: 'normal' | 'active' | 'disabled';
-    };
-    disabled?: {
-        type: BooleanConstructor;
-        value?: boolean;
-    };
-    hover?: {
-        type: BooleanConstructor;
-        value?: boolean;
     };
     suffixIcon?: {
         type: null;

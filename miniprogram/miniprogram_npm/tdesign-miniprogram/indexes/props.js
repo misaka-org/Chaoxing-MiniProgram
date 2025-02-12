@@ -2,10 +2,6 @@ const props = {
     indexList: {
         type: null,
     },
-    list: {
-        type: Array,
-        value: [],
-    },
     sticky: {
         type: Boolean,
         value: true,

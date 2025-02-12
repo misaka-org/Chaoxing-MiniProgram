@@ -7,10 +7,6 @@ const props = {
         type: null,
         value: '',
     },
-    style: {
-        type: String,
-        value: '',
-    },
     firstDayOfWeek: {
         type: Number,
         value: 0,
@@ -18,11 +14,18 @@ const props = {
     format: {
         type: null,
     },
+    localeText: {
+        type: Object,
+    },
     maxDate: {
         type: Number,
     },
     minDate: {
         type: Number,
+    },
+    switchMode: {
+        type: String,
+        value: 'none',
     },
     title: {
         type: String,
@@ -34,6 +37,10 @@ const props = {
     usePopup: {
         type: Boolean,
         value: true,
+    },
+    usingCustomNavbar: {
+        type: Boolean,
+        value: false,
     },
     value: {
         type: null,

@@ -10,9 +10,6 @@ const props = {
         type: String,
         value: 'process',
     },
-    externalClasses: {
-        type: Array,
-    },
     layout: {
         type: String,
         value: 'horizontal',
@@ -20,10 +17,6 @@ const props = {
     readonly: {
         type: Boolean,
         value: false,
-    },
-    separator: {
-        type: String,
-        value: 'line',
     },
     sequence: {
         type: String,

@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "miniprogram-ci": "^2.0.10"
+    "tdesign-miniprogram": "^1.8.5"
   }
 }

@@ -2,6 +2,13 @@ const props = {
     content: {
         type: String,
     },
+    disabled: {
+        type: Boolean,
+        value: false,
+    },
+    hover: {
+        type: Boolean,
+    },
     navigatorProps: {
         type: Object,
     },
@@ -11,18 +18,6 @@ const props = {
     size: {
         type: String,
         value: 'medium',
-    },
-    status: {
-        type: String,
-        value: 'normal',
-    },
-    disabled: {
-        type: Boolean,
-        value: false,
-    },
-    hover: {
-        type: Boolean,
-        value: false,
     },
     suffixIcon: {
         type: null,

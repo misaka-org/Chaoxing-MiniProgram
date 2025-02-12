@@ -1,9 +1,18 @@
+import { PopupProps } from '../popup/index';
 export interface TdDateTimePickerProps {
+    autoClose?: {
+        type: BooleanConstructor;
+        value?: boolean;
+    };
     cancelBtn?: {
         type: StringConstructor;
         value?: string;
     };
     confirmBtn?: {
+        type: StringConstructor;
+        value?: string;
+    };
+    customLocale?: {
         type: StringConstructor;
         value?: string;
     };
@@ -14,6 +23,10 @@ export interface TdDateTimePickerProps {
     externalClasses?: {
         type: ArrayConstructor;
         value?: ['t-class', 't-class-confirm', 't-class-cancel', 't-class-title'];
+    };
+    filter?: {
+        type: undefined;
+        value?: (type: TimeModeValues, columns: DateTimePickerColumn) => DateTimePickerColumn;
     };
     format?: {
         type: StringConstructor;
@@ -26,6 +39,10 @@ export interface TdDateTimePickerProps {
     mode?: {
         type: null;
         value?: DateTimePickerMode;
+    };
+    popupProps?: {
+        type: ObjectConstructor;
+        value?: PopupProps;
     };
     showWeek?: {
         type: BooleanConstructor;
@@ -43,6 +60,10 @@ export interface TdDateTimePickerProps {
         type: StringConstructor;
         value?: string;
     };
+    usePopup?: {
+        type: BooleanConstructor;
+        value?: boolean;
+    };
     value?: {
         type: null;
         value?: DateValue;
@@ -55,14 +76,11 @@ export interface TdDateTimePickerProps {
         type: BooleanConstructor;
         value?: boolean;
     };
-    popupProps: {
-        type: Object;
-        value: {};
-    };
-    customLocale?: {
-        type: StringConstructor;
-        value: String;
-    };
+}
+export declare type DateTimePickerColumn = DateTimePickerColumnItem[];
+export interface DateTimePickerColumnItem {
+    label: string;
+    value: string;
 }
 export declare type DateTimePickerMode = TimeModeValues | Array<TimeModeValues>;
 export declare type TimeModeValues = 'year' | 'month' | 'date' | 'hour' | 'minute' | 'second';

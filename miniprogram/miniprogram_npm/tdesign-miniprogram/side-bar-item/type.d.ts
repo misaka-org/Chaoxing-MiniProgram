@@ -1,7 +1,8 @@
+import { BadgeProps } from '../badge/index';
 export interface TdSideBarItemProps {
     badgeProps?: {
         type: ObjectConstructor;
-        value?: object;
+        value?: BadgeProps;
     };
     disabled?: {
         type: BooleanConstructor;
@@ -9,6 +10,7 @@ export interface TdSideBarItemProps {
     };
     icon?: {
         type: null;
+        value?: string | object;
     };
     label?: {
         type: StringConstructor;

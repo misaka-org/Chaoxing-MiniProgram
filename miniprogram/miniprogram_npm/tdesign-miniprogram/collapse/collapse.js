@@ -12,9 +12,6 @@ const name = `${prefix}-collapse`;
 let Collapse = class Collapse extends SuperComponent {
     constructor() {
         super(...arguments);
-        this.options = {
-            addGlobalClass: true,
-        };
         this.externalClasses = [`${prefix}-class`];
         this.relations = {
             '../collapse-panel/collapse-panel': {

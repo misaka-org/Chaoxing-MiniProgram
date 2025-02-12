@@ -3,28 +3,57 @@ const props = {
         type: String,
         value: '',
     },
+    adjustPosition: {
+        type: Boolean,
+        value: true,
+    },
+    alwaysEmbed: {
+        type: Boolean,
+        value: false,
+    },
     center: {
         type: Boolean,
         value: false,
     },
-    disabled: {
+    clearTrigger: {
+        type: String,
+        value: 'always',
+    },
+    clearable: {
+        type: Boolean,
+        value: true,
+    },
+    confirmHold: {
         type: Boolean,
         value: false,
     },
-    externalClasses: {
-        type: Array,
+    confirmType: {
+        type: String,
+        value: 'search',
+    },
+    cursor: {
+        type: Number,
+        required: true,
     },
     cursorSpacing: {
         type: Number,
         value: 0,
     },
+    disabled: {
+        type: Boolean,
+        value: false,
+    },
     focus: {
         type: Boolean,
         value: false,
     },
-    label: {
+    holdKeyboard: {
+        type: Boolean,
+        value: false,
+    },
+    leftIcon: {
         type: String,
-        value: '',
+        value: 'search',
     },
     maxcharacter: {
         type: Number,
@@ -33,72 +62,46 @@ const props = {
         type: Number,
         value: -1,
     },
-    confirmType: {
-        type: String,
-        value: 'search',
-    },
-    alwaysEmbed: {
-        type: Boolean,
-        value: false,
-    },
-    confirmHold: {
-        type: Boolean,
-        value: false,
-    },
-    cursor: {
-        type: Number,
-    },
-    selectionStart: {
-        type: Number,
-        value: -1,
-    },
-    selectionEnd: {
-        type: Number,
-        value: -1,
-    },
-    adjustPosition: {
-        type: Boolean,
-        value: true,
-    },
-    holdKeyboard: {
-        type: Boolean,
-        value: false,
-    },
-    placeholderStyle: {
+    placeholder: {
         type: String,
         value: '',
     },
     placeholderClass: {
         type: String,
-        value: '',
+        value: 'input-placeholder',
     },
-    leftIcon: {
-        type: String,
-        value: 'search',
-    },
-    placeholder: {
+    placeholderStyle: {
         type: String,
         value: '',
+        required: true,
     },
-    rightIcon: {
-        type: String,
-        value: 'close-circle-filled',
+    readonly: {
+        type: null,
+        value: undefined,
+    },
+    resultList: {
+        type: Array,
+        value: [],
+    },
+    selectionEnd: {
+        type: Number,
+        value: -1,
+    },
+    selectionStart: {
+        type: Number,
+        value: -1,
     },
     shape: {
         type: String,
         value: 'square',
     },
-    value: {
-        type: String,
-        value: '',
-    },
-    clearable: {
-        type: Boolean,
-        value: true,
-    },
     type: {
         type: String,
         value: 'text',
+    },
+    value: {
+        type: String,
+        value: '',
     },
 };
 export default props;

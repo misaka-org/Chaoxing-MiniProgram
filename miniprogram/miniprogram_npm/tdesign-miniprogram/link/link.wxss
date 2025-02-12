@@ -95,10 +95,10 @@
   border-color: var(--td-link-warning-active-color, var(--td-warning-color-active, var(--td-warning-color-6, #be5a00)));
 }
 .t-link--default {
-  color: var(--td-link-default-color, var(--td-font-gray-1, rgba(0, 0, 0, 0.9)));
+  color: var(--td-link-default-color, var(--td-text-color-primary, var(--td-font-gray-1, rgba(0, 0, 0, 0.9))));
 }
 .t-link--default.t-link--underline::after {
-  border-color: var(--td-link-default-color, var(--td-font-gray-1, rgba(0, 0, 0, 0.9)));
+  border-color: var(--td-link-default-color, var(--td-text-color-primary, var(--td-font-gray-1, rgba(0, 0, 0, 0.9))));
 }
 .t-link--default.t-link--disabled {
   color: var(--td-link-default-disabled-color, var(--td-text-color-disabled, var(--td-font-gray-4, rgba(0, 0, 0, 0.26))));

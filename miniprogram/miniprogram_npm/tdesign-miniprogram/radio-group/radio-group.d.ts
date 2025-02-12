@@ -7,7 +7,7 @@ export default class RadioGroup extends SuperComponent {
         radioOptions: any[];
     };
     relations: RelationsOptions;
-    properties: import("./type").TdRadioGroupProps<import("../radio/type").RadioValue>;
+    properties: import("./type").TdRadioGroupProps<import("./type").RadioValue>;
     controlledProps: {
         key: string;
         event: string;
@@ -15,6 +15,7 @@ export default class RadioGroup extends SuperComponent {
     observers: {
         value(v: any): void;
         options(): void;
+        disabled(v: any): void;
     };
     methods: {
         getChildren(): any;

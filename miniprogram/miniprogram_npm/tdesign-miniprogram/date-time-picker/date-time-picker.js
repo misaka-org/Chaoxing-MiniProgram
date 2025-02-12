@@ -135,11 +135,16 @@ let DateTimePicker = class DateTimePicker extends SuperComponent {
                 return tempDate.month(month);
             },
             getColumnOptions() {
-                const { fullModes } = this.data;
+                const { fullModes, filter } = this.data;
                 const columnOptions = [];
                 fullModes === null || fullModes === void 0 ? void 0 : fullModes.forEach((mode) => {
                     const columnOption = this.getOptionByType(mode);
-                    columnOptions.push(columnOption);
+                    if (typeof filter === 'function') {
+                        columnOptions.push(filter(mode, columnOption));
+                    }
+                    else {
+                        columnOptions.push(columnOption);
+                    }
                 });
                 return columnOptions;
             },

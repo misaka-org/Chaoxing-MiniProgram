@@ -1,3 +1,4 @@
+import { KeysType } from '../common/common';
 export interface TdCheckboxGroupProps<T = CheckboxGroupValue> {
     borderless?: {
         type: BooleanConstructor;
@@ -6,6 +7,10 @@ export interface TdCheckboxGroupProps<T = CheckboxGroupValue> {
     disabled?: {
         type: BooleanConstructor;
         value?: boolean;
+    };
+    keys?: {
+        type: ObjectConstructor;
+        value?: KeysType;
     };
     max?: {
         type: NumberConstructor;

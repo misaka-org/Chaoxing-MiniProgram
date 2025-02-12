@@ -27,12 +27,11 @@ export default class TCalendar {
             return [];
         }
     }
-    getDays() {
-        const raw = '日一二三四五六';
+    getDays(weekdays) {
         const ans = [];
         let i = this.firstDayOfWeek % 7;
         while (ans.length < 7) {
-            ans.push(raw[i]);
+            ans.push(weekdays[i]);
             i = (i + 1) % 7;
         }
         return ans;

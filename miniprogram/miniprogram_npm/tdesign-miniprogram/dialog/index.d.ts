@@ -5,13 +5,16 @@ interface DialogAlertOptionsType {
     context?: Context;
     selector?: string;
     title?: string;
-    content: string;
+    content?: string;
     zIndex?: number;
     asyncClose?: boolean;
     confirmButtonText?: string;
     textAlign?: string;
     cancelBtn?: string | object;
     confirmBtn?: string | object;
+    showOverlay?: boolean;
+    closeOnOverlayClick?: boolean;
+    preventScrollThrough?: boolean;
 }
 interface DialogConfirmOptionsType extends DialogAlertOptionsType {
     cancelButtonText?: string;
@@ -33,7 +36,7 @@ interface DialogActionOptionsType {
 declare const _default: {
     alert(options: DialogAlertOptionsType): Promise<unknown>;
     confirm(options: DialogConfirmOptionsType): Promise<unknown>;
-    close(options: DialogConfirmOptionsType): Promise<void>;
+    close(options?: DialogConfirmOptionsType): Promise<void>;
     action(options: DialogActionOptionsType): Promise<{
         index: number;
     }>;

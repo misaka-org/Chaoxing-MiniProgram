@@ -6,23 +6,28 @@ export default class PullDownRefresh extends SuperComponent {
         pageY: number;
     } | null;
     isPulling: boolean;
-    loadingBarHeight: number;
     maxRefreshAnimateTimeFlag: number;
     closingAnimateTimeFlag: number;
+    refreshStatusTimer: any;
     externalClasses: string[];
     options: {
         multipleSlots: boolean;
+        pureDataPattern: RegExp;
     };
     relations: RelationsOptions;
     properties: import("./type").TdPullDownRefreshProps;
+    behaviors: string[];
     data: {
         prefix: string;
         classPrefix: string;
         barHeight: number;
+        tipsHeight: number;
         refreshStatus: number;
         loosing: boolean;
         enableToRefresh: boolean;
         scrollTop: number;
+        _maxBarHeight: number;
+        _loadingBarHeight: number;
     };
     lifetimes: {
         attached(): void;
@@ -30,14 +35,21 @@ export default class PullDownRefresh extends SuperComponent {
     };
     observers: {
         value(val: any): void;
+        barHeight(val: any): void;
+        maxBarHeight(v: any): void;
+        loadingBarHeight(v: any): void;
     };
     methods: {
+        resetTimer(): void;
         onScrollToBottom(): void;
         onScrollToTop(): void;
         onScroll(e: any): void;
         onTouchStart(e: WechatMiniprogram.Component.TrivialInstance): void;
         onTouchMove(e: WechatMiniprogram.Component.TrivialInstance): void;
         onTouchEnd(e: WechatMiniprogram.Component.TrivialInstance): void;
+        onDragStart(e: WechatMiniprogram.ScrollViewDragStart): void;
+        onDragging(e: WechatMiniprogram.ScrollViewDragging): void;
+        onDragEnd(e: WechatMiniprogram.ScrollViewDragEnd): void;
         doRefresh(): void;
         setRefreshBarHeight(value: number): Promise<unknown>;
         setScrollTop(scrollTop: number): void;

@@ -7,13 +7,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { SuperComponent, wxComponent } from '../common/src/index';
 import ImageProps from './props';
 import config from '../common/config';
-import { addUnit, getRect } from '../common/utils';
+import { addUnit, getRect, appBaseInfo } from '../common/utils';
+import { compareVersion } from '../common/version';
 const { prefix } = config;
 const name = `${prefix}-image`;
 let Image = class Image extends SuperComponent {
     constructor() {
         super(...arguments);
-        this.externalClasses = [`${prefix}-class`, `${prefix}-class-load`];
+        this.externalClasses = [`${prefix}-class`, `${prefix}-class-load`, `${prefix}-class-image`, `${prefix}-class-error`];
         this.options = {
             multipleSlots: true,
         };
@@ -25,7 +26,7 @@ let Image = class Image extends SuperComponent {
             innerStyle: '',
             classPrefix: name,
         };
-        this.preSrc = '';
+        this.preSrc = undefined;
         this.observers = {
             src() {
                 if (this.preSrc === this.properties.src)
@@ -38,15 +39,12 @@ let Image = class Image extends SuperComponent {
         };
         this.methods = {
             onLoaded(e) {
-                const sdkVersion = wx.getSystemInfoSync().SDKVersion;
-                const versionArray = sdkVersion.split('.').map((v) => parseInt(v, 10));
-                const { mode } = this.properties;
-                const isInCompatible = versionArray[0] < 2 ||
-                    (versionArray[0] === 2 && versionArray[1] < 10) ||
-                    (versionArray[0] === 2 && versionArray[1] === 10 && versionArray[2] < 3);
+                const sdkVersion = appBaseInfo.SDKVersion;
+                const { mode, tId } = this.properties;
+                const isInCompatible = compareVersion(sdkVersion, '2.10.3') < 0;
                 if (mode === 'heightFix' && isInCompatible) {
                     const { height: picHeight, width: picWidth } = e.detail;
-                    getRect(this, '#image').then((rect) => {
+                    getRect(this, `#${tId || 'image'}`).then((rect) => {
                         const { height } = rect;
                         const resultWidth = ((height / picHeight) * picWidth).toFixed(2);
                         this.setData({ innerStyle: `height: ${addUnit(height)}; width: ${resultWidth}px;` });

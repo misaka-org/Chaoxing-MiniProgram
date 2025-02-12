@@ -10,6 +10,7 @@ export default class SwiperCell extends SuperComponent {
         wrapperStyle: string;
         closed: boolean;
         classPrefix: string;
+        skipMove: boolean;
     };
     observers: {
         'left, right'(): void;
@@ -20,6 +21,8 @@ export default class SwiperCell extends SuperComponent {
         detached(): void;
     };
     setSwipeWidth(): void;
+    skipMove(): void;
+    catchMove(): void;
     open(): void;
     close(): void;
     closeOther(): void;

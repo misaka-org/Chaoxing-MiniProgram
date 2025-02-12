@@ -1,13 +1,18 @@
+import { ButtonProps } from '../button/index';
 export interface TdFabProps {
     buttonProps?: {
         type: ObjectConstructor;
-        value?: object;
+        value?: ButtonProps;
     };
-    style?: {
+    draggable?: {
+        type: null;
+        value?: boolean | FabDirectionEnum;
+    };
+    icon?: {
         type: StringConstructor;
         value?: string;
     };
-    icon?: {
+    style?: {
         type: StringConstructor;
         value?: string;
     };
@@ -15,9 +20,13 @@ export interface TdFabProps {
         type: StringConstructor;
         value?: string;
     };
-    draggable?: {
+    usingCustomNavbar?: {
         type: BooleanConstructor;
-        optionalTypes: Array<StringConstructor>;
-        value?: boolean | 'all' | 'vertical' | 'horizontal';
+        value?: boolean;
+    };
+    yBounds?: {
+        type: ArrayConstructor;
+        value?: Array<string | number>;
     };
 }
+export declare type FabDirectionEnum = 'all' | 'vertical' | 'horizontal';

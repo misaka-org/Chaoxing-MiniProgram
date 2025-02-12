@@ -23,9 +23,10 @@
         scroll-with-animation
         enable-passive
         show-scrollbar="{{false}}"
+        type="list"
         bind:scroll="onScroll"
       >
-        <view class="{{_.cls(classPrefix + '__nav', [placement])}}" aria-role="tablist">
+        <view class="{{_.cls(classPrefix + '__nav', [placement, ['evenly', spaceEvenly]])}}" aria-role="tablist">
           <view
             wx:for="{{tabs}}"
             wx:key="index"
@@ -42,9 +43,12 @@
               class="{{_.cls(classPrefix + '__item-inner', [theme, ['active', currentIndex === index]])}}"
               aria-hidden="{{ item.badgeProps.dot || item.badgeProps.count }}"
             >
-              <template wx:if="{{item.icon}}" is="icon" data="{{ class: classPrefix + '__icon', ...item.icon }}" />
+              <template wx:if="{{item.icon}}" is="icon" data="{{ tClass: classPrefix + '__icon', ...item.icon }}" />
               <block wx:if="{{item.badgeProps}}">
-                <template is="badge" data="{{ ...item.badgeProps, content: item.label }}" />
+                <template
+                  is="badge"
+                  data="{{ ...item.badgeProps, content: item.label, tClass: _.cls(classPrefix + '__badge', [ ['disabled', item.disabled], ['active', currentIndex === index]])}}"
+                />
               </block>
               <block wx:else>{{item.label}}</block>
             </view>

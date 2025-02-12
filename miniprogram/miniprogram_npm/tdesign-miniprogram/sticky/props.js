@@ -6,11 +6,8 @@ const props = {
         type: Boolean,
         value: false,
     },
-    externalClasses: {
-        type: Array,
-    },
     offsetTop: {
-        type: Number,
+        type: null,
         value: 0,
     },
     zIndex: {

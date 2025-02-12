@@ -5,9 +5,10 @@
   <t-draggable
     id="draggable"
     style="right: 16px; bottom: 32px; {{_._style([style, customStyle, moveStyle])}}"
-    t-class="{{prefix}}-fab__button"
     direction="{{draggable === true ? 'all' : draggable}}"
+    bind:start="onStart"
     bind:move="onMove"
+    bind:end="onEnd"
   >
     <template is="button" data="{{...buttonData}}" />
   </t-draggable>

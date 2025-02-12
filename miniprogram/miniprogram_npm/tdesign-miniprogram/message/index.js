@@ -14,10 +14,11 @@ import { getInstance } from '../common/utils';
 const showMessage = function (options, theme = MessageType.info) {
     const { context, selector = '#t-message' } = options, otherOptions = __rest(options, ["context", "selector"]);
     const instance = getInstance(context, selector);
+    if (typeof otherOptions.single !== 'boolean') {
+        otherOptions.single = true;
+    }
     if (instance) {
-        instance.resetData(() => {
-            instance.setData(Object.assign({ theme }, otherOptions), instance.show.bind(instance));
-        });
+        instance.setMessage(otherOptions, theme);
         return instance;
     }
     console.error('未找到组件,请确认 selector && context 是否正确');

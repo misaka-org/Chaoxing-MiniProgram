@@ -1,5 +1,9 @@
 import { TreeOptionData, KeysType } from '../common/common';
 export interface TdCascaderProps<CascaderOption extends TreeOptionData = TreeOptionData> {
+    checkStrictly?: {
+        type: BooleanConstructor;
+        value?: boolean;
+    };
     closeBtn?: {
         type: BooleanConstructor;
         value?: boolean;

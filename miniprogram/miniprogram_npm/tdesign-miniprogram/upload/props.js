@@ -10,8 +10,11 @@ const props = {
         type: Object,
     },
     disabled: {
-        type: Boolean,
-        value: false,
+        type: null,
+        value: undefined,
+    },
+    draggable: {
+        type: null,
     },
     files: {
         type: Array,
@@ -47,9 +50,6 @@ const props = {
     source: {
         type: String,
         value: 'media',
-    },
-    draggable: {
-        type: null,
     },
     transition: {
         type: Object,

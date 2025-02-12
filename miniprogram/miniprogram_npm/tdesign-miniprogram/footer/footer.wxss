@@ -34,7 +34,7 @@
 .t-footer__text {
   font-size: var(--td-footer-text-font-size, var(--td-font-size-s, 24rpx));
   line-height: var(--td-footer-text-line-height, 40rpx);
-  color: var(--td-footer-text-color, var(--td-font-gray-3, rgba(0, 0, 0, 0.4)));
+  color: var(--td-footer-text-color, var(--td-text-color-placeholder, var(--td-font-gray-3, rgba(0, 0, 0, 0.4))));
 }
 .t-footer__link-list + .t-footer__text:not(:empty) {
   margin-top: var(--td-footer-text-margin-top, 8rpx);
@@ -52,7 +52,7 @@
 }
 .t-footer__link-line {
   font-size: 24rpx;
-  color: var(--td-footer-link-dividing-line-color, var(--td-font-gray-3, rgba(0, 0, 0, 0.4)));
+  color: var(--td-footer-link-dividing-line-color, var(--td-text-color-placeholder, var(--td-font-gray-3, rgba(0, 0, 0, 0.4))));
   display: inline-block;
   padding: 0 var(--td-footer-link-dividing-line-padding, var(--td-spacer-1, 24rpx));
 }
@@ -67,6 +67,7 @@
   margin-right: var(--td-footer-logo-icon-margin-right, var(--td-spacer, 16rpx));
 }
 .t-footer__title {
+  color: var(--td-text-color-primary, var(--td-font-gray-1, rgba(0, 0, 0, 0.9)));
   font-weight: bold;
   font-size: var(--td-footer-logo-title-font-size, var(--td-font-size-m, 32rpx));
   line-height: var(--td-footer-logo-title-line-height, 48rpx);

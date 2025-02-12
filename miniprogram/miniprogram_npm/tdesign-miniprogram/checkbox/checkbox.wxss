@@ -73,7 +73,7 @@
   display: block;
   width: var(--td-checkbox-icon-size, 48rpx);
   height: var(--td-checkbox-icon-size, 48rpx);
-  color: var(--td-checkbox-icon-color, var(--td-gray-color-4, #dcdcdc));
+  color: var(--td-checkbox-icon-color, var(--td-component-border, var(--td-gray-color-4, #dcdcdc)));
   font-size: var(--td-checkbox-icon-size, 48rpx);
   margin-top: calc((var(--td-checkbox-title-line-height, 48rpx) - var(--td-checkbox-icon-size, 48rpx)) / 2);
 }
@@ -91,9 +91,9 @@
   margin-right: 16rpx;
 }
 .t-checkbox__icon-circle {
-  width: calc((var(--td-checkbox-icon-size, 48rpx) - 6rpx) * 2);
-  height: calc((var(--td-checkbox-icon-size, 48rpx) - 6rpx) * 2);
-  border: 6rpx solid var(--td-checkbox-icon-color, var(--td-gray-color-4, #dcdcdc));
+  width: calc((var(--td-checkbox-icon-size, 48rpx) - 4rpx) * 2);
+  height: calc((var(--td-checkbox-icon-size, 48rpx) - 4rpx) * 2);
+  border: calc(4rpx * 2) solid var(--td-checkbox-icon-color, var(--td-component-border, var(--td-gray-color-4, #dcdcdc)));
   border-radius: 50%;
   position: absolute;
   top: 50%;
@@ -105,10 +105,9 @@
   background: var(--td-checkbox-icon-disabled-bg-color, var(--td-bg-color-component-disabled, var(--td-gray-color-2, #eeeeee)));
 }
 .t-checkbox__icon-rectangle {
-  width: calc((var(--td-checkbox-icon-size, 48rpx) - 6rpx * 2) * 2);
-  height: calc((var(--td-checkbox-icon-size, 48rpx) - 6rpx * 2) * 2);
-  border: 6rpx solid var(--td-checkbox-icon-color, var(--td-gray-color-4, #dcdcdc));
-  border-radius: 4rpx;
+  width: calc((var(--td-checkbox-icon-size, 48rpx) - 4rpx * 2) * 2);
+  height: calc((var(--td-checkbox-icon-size, 48rpx) - 4rpx * 2) * 2);
+  border: calc(4rpx * 2) solid var(--td-checkbox-icon-color, var(--td-component-border, var(--td-gray-color-4, #dcdcdc)));
   position: absolute;
   top: 50%;
   left: 50%;
@@ -118,8 +117,8 @@
 .t-checkbox__icon-rectangle--disabled {
   background: var(--td-checkbox-icon-disabled-bg-color, var(--td-bg-color-component-disabled, var(--td-gray-color-2, #eeeeee)));
 }
-.t-checkbox__icon-line:before,
-.t-checkbox__icon-line:after {
+.t-checkbox__icon-line::before,
+.t-checkbox__icon-line::after {
   content: '';
   display: block;
   position: absolute;
@@ -128,7 +127,7 @@
   background: var(--td-checkbox-icon-checked-color, var(--td-brand-color, var(--td-primary-color-7, #0052d9)));
   transform-origin: top center;
 }
-.t-checkbox__icon-line:before {
+.t-checkbox__icon-line::before {
   height: 16rpx;
   left: 8rpx;
   top: 22rpx;
@@ -148,17 +147,17 @@
   flex: 1;
 }
 .t-checkbox__title {
-  color: var(--td-checkbox-title-color, var(--td-font-gray-1, rgba(0, 0, 0, 0.9)));
+  color: var(--td-checkbox-title-color, var(--td-text-color-primary, var(--td-font-gray-1, rgba(0, 0, 0, 0.9))));
   line-height: var(--td-checkbox-title-line-height, 48rpx);
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 .t-checkbox__title--disabled {
-  color: var(--td-checkbox-title-disabled-color, var(--td-font-gray-4, rgba(0, 0, 0, 0.26)));
+  color: var(--td-checkbox-title-disabled-color, var(--td-text-color-disabled, var(--td-font-gray-4, rgba(0, 0, 0, 0.26))));
 }
 .t-checkbox__description {
-  color: var(--td-checkbox-description-color, var(--td-font-gray-2, rgba(0, 0, 0, 0.6)));
+  color: var(--td-checkbox-description-color, var(--td-text-color-secondary, var(--td-font-gray-2, rgba(0, 0, 0, 0.6))));
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -166,7 +165,7 @@
   line-height: var(--td-checkbox-description-line-height, 44rpx);
 }
 .t-checkbox__description--disabled {
-  color: var(--td-checkbox-description-disabled-color, var(--td-font-gray-4, rgba(0, 0, 0, 0.26)));
+  color: var(--td-checkbox-description-disabled-color, var(--td-text-color-disabled, var(--td-font-gray-4, rgba(0, 0, 0, 0.26))));
 }
 .t-checkbox__title + .t-checkbox__description:not(:empty) {
   margin-top: 8rpx;
@@ -188,7 +187,7 @@
   padding-top: 16rpx;
   padding-bottom: 16rpx;
   text-align: center;
-  background-color: #f3f3f3;
+  background-color: var(--td-bg-color-secondarycontainer, var(--td-gray-color-1, #f3f3f3));
   border-radius: 12rpx;
 }
 .t-checkbox--tag.t-checkbox--checked {

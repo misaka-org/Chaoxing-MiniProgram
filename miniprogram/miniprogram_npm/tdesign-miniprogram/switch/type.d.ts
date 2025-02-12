@@ -1,4 +1,4 @@
-export interface TdSwitchProps {
+export interface TdSwitchProps<T = SwitchValue> {
     customValue?: {
         type: ArrayConstructor;
         value?: Array<SwitchValue>;
@@ -22,10 +22,6 @@ export interface TdSwitchProps {
     size?: {
         type: StringConstructor;
         value?: 'small' | 'medium' | 'large';
-    };
-    style?: {
-        type: StringConstructor;
-        value?: string;
     };
     value?: {
         type: null;

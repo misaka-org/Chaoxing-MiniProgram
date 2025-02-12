@@ -28,11 +28,10 @@
 .t-side-bar-item {
   display: flex;
   align-items: center;
-  justify-content: center;
   position: relative;
   padding: 32rpx;
   font-size: var(--td-side-bar-font-size, 32rpx);
-  color: var(--td-side-bar-color, var(--td-font-gray-1, rgba(0, 0, 0, 0.9)));
+  color: var(--td-side-bar-color, var(--td-text-color-primary, var(--td-font-gray-1, rgba(0, 0, 0, 0.9))));
   background: var(--td-side-bar-bg-color, var(--td-bg-color-secondarycontainer, var(--td-gray-color-1, #f3f3f3)));
   min-height: var(--td-side-bar-item-height, 112rpx);
   box-sizing: border-box;
@@ -43,6 +42,7 @@
   font-weight: 600;
   background: var(--td-bg-color-container, var(--td-font-white-1, #ffffff));
   color: var(--td-side-bar-active-color, var(--td-brand-color, var(--td-primary-color-7, #0052d9)));
+  --td-badge-content-text-color: var(--td-side-bar-active-color, var(--td-brand-color, var(--td-primary-color-7, #0052d9)));
 }
 .t-side-bar-item__icon {
   font-size: var(--td-side-bar-icon-size, 40rpx);
@@ -55,7 +55,7 @@
   right: 0;
   width: 100%;
   height: calc(var(--td-side-bar-border-radius, 18rpx) * 2);
-  background: #fff;
+  background: var(--td-bg-color-container, var(--td-font-white-1, #ffffff));
   pointer-events: none;
 }
 .t-side-bar-item__prefix::after,
@@ -79,7 +79,7 @@
   border-top-right-radius: var(--td-side-bar-border-radius, 18rpx);
 }
 .t-side-bar-item--disabled {
-  color: var(--td-side-bar-disabled-color, var(--td-font-gray-4, rgba(0, 0, 0, 0.26)));
+  color: var(--td-side-bar-disabled-color, var(--td-text-color-disabled, var(--td-font-gray-4, rgba(0, 0, 0, 0.26))));
 }
 .t-side-bar-item__line {
   width: 6rpx;

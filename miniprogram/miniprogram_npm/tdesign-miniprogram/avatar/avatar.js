@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { SuperComponent, wxComponent } from '../common/src/index';
 import config from '../common/config';
 import avatarProps from './props';
-import { setIcon } from '../common/utils';
+import { setIcon, systemInfo } from '../common/utils';
 const { prefix } = config;
 const name = `${prefix}-avatar`;
 let Avatar = class Avatar extends SuperComponent {
@@ -15,7 +15,6 @@ let Avatar = class Avatar extends SuperComponent {
         super(...arguments);
         this.options = {
             multipleSlots: true,
-            styleIsolation: 'apply-shared',
         };
         this.externalClasses = [
             `${prefix}-class`,
@@ -30,17 +29,17 @@ let Avatar = class Avatar extends SuperComponent {
             classPrefix: name,
             isShow: true,
             zIndex: 0,
-            borderedWithGroup: false,
+            systemInfo,
         };
         this.relations = {
             '../avatar-group/avatar-group': {
                 type: 'ancestor',
                 linked(parent) {
-                    var _a;
                     this.parent = parent;
                     this.setData({
-                        size: (_a = this.data.size) !== null && _a !== void 0 ? _a : parent.data.size,
-                        borderedWithGroup: true,
+                        shape: this.data.shape || parent.data.shape || 'circle',
+                        size: this.data.size || parent.data.size,
+                        bordered: true,
                     });
                 },
             },
@@ -56,9 +55,6 @@ let Avatar = class Avatar extends SuperComponent {
                 this.setData({
                     isShow: false,
                 });
-            },
-            updateCascading(zIndex) {
-                this.setData({ zIndex });
             },
             onLoadError(e) {
                 if (this.properties.hideOnLoadFailed) {

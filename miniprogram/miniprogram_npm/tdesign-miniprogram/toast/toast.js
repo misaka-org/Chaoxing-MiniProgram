@@ -9,6 +9,7 @@ import config from '../common/config';
 import props from './props';
 import transition from '../mixins/transition';
 import { calcIcon } from '../common/utils';
+import useCustomNavbar from '../mixins/using-custom-navbar';
 const { prefix } = config;
 const name = `${prefix}-toast`;
 let Toast = class Toast extends SuperComponent {
@@ -18,7 +19,7 @@ let Toast = class Toast extends SuperComponent {
         this.options = {
             multipleSlots: true,
         };
-        this.behaviors = [transition()];
+        this.behaviors = [transition(), useCustomNavbar];
         this.hideTimer = null;
         this.data = {
             prefix,

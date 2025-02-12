@@ -1,3 +1,4 @@
+import { ShapeEnum } from '../common/common';
 export interface TdAvatarGroupProps {
     cascading?: {
         type: StringConstructor;
@@ -7,17 +8,13 @@ export interface TdAvatarGroupProps {
         type: StringConstructor;
         value?: string;
     };
-    style?: {
-        type: StringConstructor;
-        value?: string;
-    };
-    externalClasses?: {
-        type: ArrayConstructor;
-        value?: ['t-class', 't-class-image', 't-class-content'];
-    };
     max?: {
         type: NumberConstructor;
         value?: number;
+    };
+    shape?: {
+        type: StringConstructor;
+        value?: ShapeEnum;
     };
     size?: {
         type: StringConstructor;

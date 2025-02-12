@@ -1,23 +1,9 @@
 import { SuperComponent } from '../common/src/index';
+import { TdOverlayProps } from './type';
+export interface OverlayProps extends TdOverlayProps {
+}
 export default class Overlay extends SuperComponent {
-    properties: {
-        zIndex: {
-            type: NumberConstructor;
-            value: number;
-        };
-        duration: {
-            type: NumberConstructor;
-            value: number;
-        };
-        backgroundColor: {
-            type: StringConstructor;
-            value: string;
-        };
-        preventScrollThrough: {
-            type: BooleanConstructor;
-            value: boolean;
-        };
-    };
+    properties: TdOverlayProps;
     behaviors: string[];
     data: {
         prefix: string;

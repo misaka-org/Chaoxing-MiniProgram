@@ -23,6 +23,10 @@ export interface TdDrawerProps {
         type: StringConstructor;
         value?: string;
     };
+    usingCustomNavbar?: {
+        type: BooleanConstructor;
+        value?: boolean;
+    };
     visible?: {
         type: BooleanConstructor;
         value?: boolean;

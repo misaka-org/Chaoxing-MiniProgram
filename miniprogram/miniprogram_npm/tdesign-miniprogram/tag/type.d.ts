@@ -1,12 +1,7 @@
-import { SizeEnum } from '../common/common';
 export interface TdTagProps {
     closable?: {
         type: null;
         value?: boolean | object;
-    };
-    style?: {
-        type: StringConstructor;
-        value?: string;
     };
     disabled?: {
         type: BooleanConstructor;
@@ -30,7 +25,7 @@ export interface TdTagProps {
     };
     size?: {
         type: StringConstructor;
-        value?: SizeEnum;
+        value?: 'small' | 'medium' | 'large' | 'extra-large';
     };
     theme?: {
         type: StringConstructor;

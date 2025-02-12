@@ -15,7 +15,7 @@ const props = {
     },
     closeOnOverlayClick: {
         type: Boolean,
-        value: undefined,
+        value: false,
     },
     confirmBtn: {
         type: null,
@@ -37,6 +37,10 @@ const props = {
     showOverlay: {
         type: Boolean,
         value: true,
+    },
+    style: {
+        type: String,
+        value: '',
     },
     title: {
         type: String,

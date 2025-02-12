@@ -1,9 +1,5 @@
 import { TreeOptionData, KeysType } from '../common/common';
 export interface TdTreeSelectProps<DataOption extends TreeOptionData = TreeOptionData> {
-    style?: {
-        type: StringConstructor;
-        value?: string;
-    };
     height?: {
         type: null;
         value?: string | number;

@@ -1,11 +1,6 @@
 const props = {
     badgeProps: {
         type: Object,
-        value: null,
-    },
-    destroyOnHide: {
-        type: Boolean,
-        value: true,
     },
     disabled: {
         type: Boolean,

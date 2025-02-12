@@ -7,7 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { SuperComponent, wxComponent } from '../common/src/index';
 import config from '../common/config';
 import props from './props';
-import { unitConvert } from '../common/utils';
+import { unitConvert, systemInfo } from '../common/utils';
+import useCustomNavbar from '../mixins/using-custom-navbar';
 const { prefix } = config;
 const name = `${prefix}-pull-down-refresh`;
 let PullDownRefresh = class PullDownRefresh extends SuperComponent {
@@ -16,12 +17,13 @@ let PullDownRefresh = class PullDownRefresh extends SuperComponent {
         this.pixelRatio = 1;
         this.startPoint = null;
         this.isPulling = false;
-        this.loadingBarHeight = 100;
         this.maxRefreshAnimateTimeFlag = 0;
         this.closingAnimateTimeFlag = 0;
+        this.refreshStatusTimer = null;
         this.externalClasses = [`${prefix}-class`, `${prefix}-class-loading`, `${prefix}-class-text`, `${prefix}-class-indicator`];
         this.options = {
             multipleSlots: true,
+            pureDataPattern: /^_/,
         };
         this.relations = {
             '../back-top/back-top': {
@@ -29,44 +31,36 @@ let PullDownRefresh = class PullDownRefresh extends SuperComponent {
             },
         };
         this.properties = props;
+        this.behaviors = [useCustomNavbar];
         this.data = {
             prefix,
             classPrefix: name,
             barHeight: 0,
+            tipsHeight: 0,
             refreshStatus: -1,
             loosing: false,
             enableToRefresh: true,
             scrollTop: 0,
+            _maxBarHeight: 0,
+            _loadingBarHeight: 0,
         };
         this.lifetimes = {
             attached() {
-                const { screenWidth } = wx.getSystemInfoSync();
-                const { loadingBarHeight, loadingTexts } = this.properties;
+                const { screenWidth } = systemInfo;
+                const { loadingTexts, maxBarHeight, loadingBarHeight } = this.properties;
                 this.setData({
+                    _maxBarHeight: unitConvert(maxBarHeight),
+                    _loadingBarHeight: unitConvert(loadingBarHeight),
                     loadingTexts: Array.isArray(loadingTexts) && loadingTexts.length >= 4
                         ? loadingTexts
                         : ['下拉刷新', '松手刷新', '正在刷新', '刷新完成'],
                 });
                 this.pixelRatio = 750 / screenWidth;
-                Object.defineProperty(this, 'maxBarHeight', {
-                    get() {
-                        return unitConvert(this.data.maxBarHeight);
-                    },
-                });
-                Object.defineProperty(this, 'loadingBarHeight', {
-                    get() {
-                        return unitConvert(this.data.loadingBarHeight);
-                    },
-                });
-                if (loadingBarHeight) {
-                    this.setData({
-                        computedLoadingBarHeight: unitConvert(loadingBarHeight),
-                    });
-                }
             },
             detached() {
                 clearTimeout(this.maxRefreshAnimateTimeFlag);
                 clearTimeout(this.closingAnimateTimeFlag);
+                this.resetTimer();
             },
         };
         this.observers = {
@@ -84,8 +78,29 @@ let PullDownRefresh = class PullDownRefresh extends SuperComponent {
                     this.doRefresh();
                 }
             },
+            barHeight(val) {
+                this.resetTimer();
+                if (val === 0 && this.data.refreshStatus !== -1) {
+                    this.refreshStatusTimer = setTimeout(() => {
+                        this.setData({ refreshStatus: -1 });
+                    }, 240);
+                }
+                this.setData({ tipsHeight: Math.min(val, this.data._loadingBarHeight) });
+            },
+            maxBarHeight(v) {
+                this.setData({ _maxBarHeight: unitConvert(v) });
+            },
+            loadingBarHeight(v) {
+                this.setData({ _loadingBarHeight: unitConvert(v) });
+            },
         };
         this.methods = {
+            resetTimer() {
+                if (this.refreshStatusTimer) {
+                    clearTimeout(this.refreshStatusTimer);
+                    this.refreshStatusTimer = null;
+                }
+            },
             onScrollToBottom() {
                 this.triggerEvent('scrolltolower');
             },
@@ -102,7 +117,7 @@ let PullDownRefresh = class PullDownRefresh extends SuperComponent {
                 this.triggerEvent('scroll', { scrollTop });
             },
             onTouchStart(e) {
-                if (this.isPulling || !this.data.enableToRefresh)
+                if (this.isPulling || !this.data.enableToRefresh || this.properties.disabled)
                     return;
                 const { touches } = e;
                 if (touches.length !== 1)
@@ -113,7 +128,7 @@ let PullDownRefresh = class PullDownRefresh extends SuperComponent {
                 this.isPulling = true;
             },
             onTouchMove(e) {
-                if (!this.startPoint)
+                if (!this.startPoint || this.properties.disabled)
                     return;
                 const { touches } = e;
                 if (touches.length !== 1)
@@ -125,7 +140,7 @@ let PullDownRefresh = class PullDownRefresh extends SuperComponent {
                 }
             },
             onTouchEnd(e) {
-                if (!this.startPoint)
+                if (!this.startPoint || this.properties.disabled)
                     return;
                 const { changedTouches } = e;
                 if (changedTouches.length !== 1)
@@ -135,7 +150,7 @@ let PullDownRefresh = class PullDownRefresh extends SuperComponent {
                 this.startPoint = null;
                 this.isPulling = false;
                 this.setData({ loosing: true });
-                if (barHeight > this.loadingBarHeight) {
+                if (barHeight > this.data._loadingBarHeight) {
                     this._trigger('change', { value: true });
                     this.triggerEvent('refresh');
                 }
@@ -143,9 +158,23 @@ let PullDownRefresh = class PullDownRefresh extends SuperComponent {
                     this.setData({ barHeight: 0 });
                 }
             },
+            onDragStart(e) {
+                const { scrollTop, scrollLeft } = e.detail;
+                this.triggerEvent('dragstart', { scrollTop, scrollLeft });
+            },
+            onDragging(e) {
+                const { scrollTop, scrollLeft } = e.detail;
+                this.triggerEvent('dragging', { scrollTop, scrollLeft });
+            },
+            onDragEnd(e) {
+                const { scrollTop, scrollLeft } = e.detail;
+                this.triggerEvent('dragend', { scrollTop, scrollLeft });
+            },
             doRefresh() {
+                if (this.properties.disabled)
+                    return;
                 this.setData({
-                    barHeight: this.loadingBarHeight,
+                    barHeight: this.data._loadingBarHeight,
                     refreshStatus: 2,
                     loosing: true,
                 });
@@ -158,9 +187,9 @@ let PullDownRefresh = class PullDownRefresh extends SuperComponent {
                 }, this.properties.refreshTimeout);
             },
             setRefreshBarHeight(value) {
-                const barHeight = Math.min(value, this.maxBarHeight);
+                const barHeight = Math.min(value, this.data._maxBarHeight);
                 const data = { barHeight };
-                if (barHeight >= this.loadingBarHeight) {
+                if (barHeight >= this.data._loadingBarHeight) {
                     data.refreshStatus = 1;
                 }
                 else {

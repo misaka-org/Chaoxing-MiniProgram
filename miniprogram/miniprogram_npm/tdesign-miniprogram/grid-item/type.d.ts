@@ -1,20 +1,13 @@
 import { BadgeProps } from '../badge/index';
+import { ImageProps } from '../image/index';
 export interface TdGridItemProps {
     badgeProps?: {
         type: ObjectConstructor;
         value?: BadgeProps;
     };
-    style?: {
-        type: StringConstructor;
-        value?: string;
-    };
     description?: {
         type: StringConstructor;
         value?: string;
-    };
-    externalClasses?: {
-        type: ArrayConstructor;
-        value?: ['t-class', 't-class-image', 't-class-text', 't-class-description'];
     };
     icon?: {
         type: null;
@@ -26,7 +19,7 @@ export interface TdGridItemProps {
     };
     imageProps?: {
         type: ObjectConstructor;
-        value?: object;
+        value?: ImageProps;
     };
     jumpType?: {
         type: StringConstructor;

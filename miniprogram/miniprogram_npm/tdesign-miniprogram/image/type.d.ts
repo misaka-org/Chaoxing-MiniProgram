@@ -1,15 +1,7 @@
 export interface TdImageProps {
-    style?: {
-        type: StringConstructor;
-        value?: string;
-    };
     error?: {
         type: StringConstructor;
         value?: string;
-    };
-    externalClasses?: {
-        type: ArrayConstructor;
-        value?: ['t-class', 't-class-load'];
     };
     height?: {
         type: null;
@@ -36,6 +28,10 @@ export interface TdImageProps {
         value?: boolean;
     };
     src?: {
+        type: StringConstructor;
+        value?: string;
+    };
+    tId?: {
         type: StringConstructor;
         value?: string;
     };

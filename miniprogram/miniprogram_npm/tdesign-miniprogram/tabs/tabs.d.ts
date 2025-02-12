@@ -3,6 +3,9 @@ import { TdTabsProps } from './type';
 export interface TabsProps extends TdTabsProps {
 }
 export default class Tabs extends SuperComponent {
+    options: {
+        pureDataPattern: RegExp;
+    };
     behaviors: string[];
     externalClasses: string[];
     relations: RelationsOptions;
@@ -18,6 +21,7 @@ export default class Tabs extends SuperComponent {
         prefix: string;
         classPrefix: string;
         tabs: any[];
+        currentLabels: any[];
         currentIndex: number;
         trackStyle: string;
         offset: number;
@@ -37,6 +41,7 @@ export default class Tabs extends SuperComponent {
         setCurrentIndex(index: number): void;
         getCurrentName(): any;
         calcScrollOffset(containerWidth: number, targetLeft: number, targetWidth: number, offset: number): number;
+        getTabHeight(): Promise<any>;
         getTrackSize(): Promise<number>;
         setTrack(): Promise<void>;
         onTabTap(event: any): void;

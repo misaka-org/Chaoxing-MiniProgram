@@ -1,15 +1,4 @@
 const props = {
-    externalClasses: {
-        type: Array,
-    },
-    visibilityHeight: {
-        type: Number,
-        value: 200,
-    },
-    scrollTop: {
-        type: Number,
-        value: 0,
-    },
     fixed: {
         type: Boolean,
         value: true,
@@ -18,6 +7,14 @@ const props = {
         type: null,
         value: true,
     },
+    scrollTop: {
+        type: Number,
+        value: 0,
+    },
+    style: {
+        type: String,
+        value: '',
+    },
     text: {
         type: String,
         value: '',
@@ -25,6 +22,10 @@ const props = {
     theme: {
         type: String,
         value: 'round',
+    },
+    visibilityHeight: {
+        type: Number,
+        value: 200,
     },
 };
 export default props;

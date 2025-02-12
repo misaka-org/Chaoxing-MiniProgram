@@ -23,6 +23,6 @@ export default class AvatarGroup extends SuperComponent {
     methods: {
         setClass(): void;
         handleMax(): void;
-        handleChildCascading(): void;
+        onCollapsedItemClick(e: WechatMiniprogram.CustomEvent): void;
     };
 }

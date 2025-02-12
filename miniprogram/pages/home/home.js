@@ -9,7 +9,11 @@ Page({
 	data: {
 		tab: 'login', // login / courses / activities / signin
 		typeDefine: ["拍照签到", "普通签到", "二维码签到", "手势签到", "位置签到", "签到码签到"],
-		swiperList: config.swiperList.map(item => `https://testingcf.jsdelivr.net/gh/${config.repository}@static${item}`),
+		swiperList: (config.swiperList || [
+			"/static/swiper/1.jpg",
+			"/static/swiper/2.jpg",
+			"/static/swiper/3.jpg",
+		]).map(item => `https://testingcf.jsdelivr.net/gh/${config.repository}@static${item}`),
 	},
 
 	onLoad(options) {
@@ -111,8 +115,8 @@ Page({
 
 	getUserLocation() { // 获取用户位置
 		wx.getLocation({
-			'type': 'gcj02',
-		})
+				'type': 'gcj02',
+			})
 			.then(gcj02 => {
 				log.info("获取用户位置", gcj02)
 				API.allToBaidu(gcj02.longitude, gcj02.latitude)

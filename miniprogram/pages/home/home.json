@@ -22,6 +22,6 @@
 		"t-divider": "tdesign-miniprogram/divider/divider",
 		"t-dropdown-menu": "tdesign-miniprogram/dropdown-menu/dropdown-menu",
 		"t-dropdown-item": "tdesign-miniprogram/dropdown-item/dropdown-item",
-		"no-data": "no-data/no-data"
+		"no-data": "/components/no-data/no-data"
 	}
 }

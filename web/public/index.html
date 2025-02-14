@@ -166,106 +166,106 @@
 
         <div class="center-notcie">如有侵权，请发邮件至 admin@micono.eu.org</div>
         <div class="center-notcie">本网页由公众号【御坂网络 Misaka】免费提供！</div>
-        <div class="center-notcie" id="gf">点击此处进入官方网页版</div>
+        <div class="center-notcie" id="gf"> > 官方网页版（找回密码） < </div>
 
-        <input type="text" id="username" placeholder="请输入账号（手机号）" />
-        <input type="password" id="password" placeholder="请输入密码（避免特殊符号）" />
-        <button onclick="login()" id="login">登录</button>
-        <div id="errorMessage" class="error"></div>
-    </div>
+                <input type="text" id="username" placeholder="请输入账号（手机号）" />
+                <input type="password" id="password" placeholder="请输入密码（避免特殊符号）" />
+                <button onclick="login()" id="login">登录</button>
+                <div id="errorMessage" class="error"></div>
+        </div>
 
-    <div class="course-container" hidden>
-        <h1>课程列表</h1>
-        <button onclick="getCourses()" id="get_courses">获取课程</button>
-        <div class="course-list" id="courseList"></div>
+        <div class="course-container" hidden>
+            <h1>课程列表</h1>
+            <button onclick="getCourses()" id="get_courses">获取课程</button>
+            <div class="course-list" id="courseList"></div>
 
-        <template id="courseTemplate">
-            <div class="course-item">
-                <a class="link" href="">
-                    <div class="course-title"></div>
-                    <div class="course-info"></div>
-                </a>
-            </div>
-        </template>
-    </div>
+            <template id="courseTemplate">
+                <div class="course-item">
+                    <a class="link" href="">
+                        <div class="course-title"></div>
+                        <div class="course-info"></div>
+                    </a>
+                </div>
+            </template>
+        </div>
 
-    <script type="module">
-        import API from "./utils/api.js?v=2";
+        <script type="module">
+            import API from "./utils/api.js?v=2";
 
-        let api = null;
+            let api = null;
 
-        window.getCourses = () => {
-            document.getElementById("courseList").textContent = "";
-            document.getElementById("get_courses").hidden = true;
-            api.getCourses().then((list) => {
-                const courseList = document.getElementById("courseList");
-                const template = document.getElementById("courseTemplate").content;
+            window.getCourses = () => {
+                document.getElementById("courseList").textContent = "";
+                document.getElementById("get_courses").hidden = true;
+                api.getCourses().then((list) => {
+                    const courseList = document.getElementById("courseList");
+                    const template = document.getElementById("courseTemplate").content;
 
-                const clone = document.importNode(template, true);
-                clone.querySelector(".course-title").textContent = "🎉🎉 小程序";
-                clone.querySelector(
-                    ".course-info"
-                ).textContent = `点击蓝字进入小程序，转发给好友以便下次使用~`;
-                clone.querySelector(".link").href = api.getMiniProgram();
-                courseList.appendChild(clone);
-
-                list.forEach(async (course) => {
                     const clone = document.importNode(template, true);
-                    clone.querySelector(".course-title").textContent =
-                        course.courseName;
+                    clone.querySelector(".course-title").textContent = "🎉🎉 小程序";
                     clone.querySelector(
                         ".course-info"
-                    ).textContent = `教师:${course.teacherName} · 班级:${course.className}`;
-                    clone.querySelector(".link").href = api.getWechatUrl(
-                        course.courseId,
-                        course.classId
-                    );
+                    ).textContent = `点击蓝字进入小程序，转发给好友以便下次使用~`;
+                    clone.querySelector(".link").href = api.getMiniProgram();
                     courseList.appendChild(clone);
+
+                    list.forEach(async (course) => {
+                        const clone = document.importNode(template, true);
+                        clone.querySelector(".course-title").textContent =
+                            course.courseName;
+                        clone.querySelector(
+                            ".course-info"
+                        ).textContent = `教师:${course.teacherName} · 班级:${course.className}`;
+                        clone.querySelector(".link").href = api.getWechatUrl(
+                            course.courseId,
+                            course.classId
+                        );
+                        courseList.appendChild(clone);
+                    });
                 });
-            });
-        };
-
-        window.login = () => {
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
-            const errorMessage = document.getElementById("errorMessage");
-            errorMessage.textContent = ""; // 清空之前的错误信息
-            document.getElementById("login").disabled = true;
-
-            if (!username || !password) {
-                errorMessage.textContent = "请填写用户名和密码";
-                return;
-            }
-
-            api = new API(username, password);
-            api
-                .login()
-                .then((res) => {
-                    if (res.status) {
-                        document.querySelector(".login-container").hidden = true;
-                        document.querySelector(".course-container").hidden = false;
-                        getCourses();
-                    } else {
-                        errorMessage.textContent = res.mes;
-                    }
-                })
-                .catch((err) => {
-                    errorMessage.textContent = "网络错误，请稍后再试";
-                    console.error(err);
-                })
-                .finally(() => {
-                    document.getElementById("login").disabled = false;
-                });
-        };
-
-        window.onload = () => {
-            document.getElementById("gf").onclick = () => {
-                window.open(
-                    "https://passport2.chaoxing.com/login?refer=https%3A%2F%2Fmooc1.chaoxing.com%2Fcourse%2Fphone%2Fcourselisthead%3Fpassed%3D1&fid=0&newversion=true&_blank=0"
-                );
             };
-        };
-    </script>
+
+            window.login = () => {
+                const username = document.getElementById("username").value;
+                const password = document.getElementById("password").value;
+                const errorMessage = document.getElementById("errorMessage");
+                errorMessage.textContent = ""; // 清空之前的错误信息
+                document.getElementById("login").disabled = true;
+
+                if (!username || !password) {
+                    errorMessage.textContent = "请填写用户名和密码";
+                    return;
+                }
+
+                api = new API(username, password);
+                api
+                    .login()
+                    .then((res) => {
+                        if (res.status) {
+                            document.querySelector(".login-container").hidden = true;
+                            document.querySelector(".course-container").hidden = false;
+                            getCourses();
+                        } else {
+                            errorMessage.textContent = res.mes;
+                        }
+                    })
+                    .catch((err) => {
+                        errorMessage.textContent = "网络错误，请稍后再试";
+                        console.error(err);
+                    })
+                    .finally(() => {
+                        document.getElementById("login").disabled = false;
+                    });
+            };
+
+            window.onload = () => {
+                document.getElementById("gf").onclick = () => {
+                    window.open(
+                        "https://passport2.chaoxing.com/login?refer=https%3A%2F%2Fmooc1.chaoxing.com%2Fcourse%2Fphone%2Fcourselisthead%3Fpassed%3D1&fid=0&newversion=true&_blank=0"
+                    );
+                };
+            };
+        </script>
 </body>
 
 </html>

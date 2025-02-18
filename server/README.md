@@ -4,7 +4,7 @@
 > 
 > 自用无需备案，体验版开启调试模式即可
 
-> 由于本人只用Caddy，不确定其他反代配置是否写对。有问题可以在 QQ频道 交流
+> 有问题可以在 QQ频道 交流
 
 ### 自建反代服务器
 
@@ -55,6 +55,8 @@ server {
     ssl_certificate_key /path/to/your/private.key;
 
     location /proxy/ {
+        rewrite ^/proxy/(.*)$ /$1 break;
+
         proxy_pass https://mobilelearn.chaoxing.com;
         proxy_set_header Host "mobilelearn.chaoxing.com";
         proxy_set_header Referer "https://mobilelearn.chaoxing.com";
@@ -76,6 +78,8 @@ server {
     server_name 192.168.x.x;
 
     location /proxy/ {
+        rewrite ^/proxy/(.*)$ /$1 break;
+        
         proxy_pass https://mobilelearn.chaoxing.com;
         proxy_set_header Host "mobilelearn.chaoxing.com";
         proxy_set_header Referer "https://mobilelearn.chaoxing.com";

@@ -5,6 +5,7 @@ tmp
 
 .vscode
 .DS_Store
+.next
 
 *yml
 *.log

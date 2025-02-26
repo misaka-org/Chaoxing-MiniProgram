@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #F5F5F5;
+  --foreground: #171717;
+}
+
+@font-face {
+  font-family: 'DingTalk';
+  src: url('https://cdn.micono.eu.org/fonts/钉钉进步体.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'DingTalk', Arial, Helvetica, sans-serif;
+}

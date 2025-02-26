@@ -1,24 +1,34 @@
-FROM python:3.12-alpine
+# 构建阶段
+FROM node:22-alpine AS build
 
-RUN apk add tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo Asia/Shanghai > /etc/timezone && apk add ca-certificates
-
-RUN apk add --update --no-cache python3 py3-pip nginx \
-    && mkdir -p /run/nginx \
-    && rm -rf /var/cache/apk/*
-
+# 设置工作目录
 WORKDIR /app
 
-COPY ./requirements.txt /app/requirements.txt
+# 将 package.json 和 package-lock.json 复制到工作目录
+COPY package.json package-lock.json ./
 
-RUN pip config set global.index-url http://mirrors.cloud.tencent.com/pypi/simple \
-    && pip config set global.trusted-host mirrors.cloud.tencent.com \
-    && pip install --upgrade pip --break-system-packages \
-    && pip install --user -r requirements.txt --break-system-packages
+# 安装项目依赖
+RUN npm install --frozen-lockfile
 
-COPY nginx.conf /etc/nginx/nginx.conf
+# 将项目源代码复制到容器中
+COPY . .
 
-COPY . /app
+# 构建 Next.js 项目
+RUN npm run build
 
-EXPOSE 80
+# 生产环境阶段
+FROM node:22-alpine
 
-CMD ["sh", "-c", "python3 app.py & nginx -g 'daemon off;'"]
+# 设置工作目录
+WORKDIR /app
+
+# 只复制构建阶段的输出和必要的文件
+COPY --from=build /app/.next /app/.next
+COPY --from=build /app/node_modules /app/node_modules
+COPY --from=build /app/package.json /app/package.json
+
+# 暴露容器的 3000 端口
+EXPOSE 3000
+
+# 启动 Next.js 项目
+CMD ["npm", "start"]

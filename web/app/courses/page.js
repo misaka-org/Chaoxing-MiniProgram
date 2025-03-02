@@ -5,14 +5,14 @@ import { useEffect, useState } from "react";
 import { getCourseList } from './action';
 
 const 加载中 = (
-    <div>
-        <p>加载中...</p>
+    <div className="flex justify-center items-center h-full mt-[40vh]">
+        <p className='text-gray-500 text-[10vw] font-bold'>加载中...</p>
     </div>
 )
 
 const 无数据 = (
-    <div>
-        <p>无数据</p>
+    <div className="flex justify-center items-center h-full mt-[40vh]">
+        <p className='text-gray-500 text-[10vw] font-bold'>无数据</p>
     </div>
 )
 
@@ -31,10 +31,15 @@ export default function CoursesPage() {
             return;
         }
 
-        setLoading(false);
         getCourseList(cookies)
             .then(res => {
+                setLoading(false);
                 console.info("课程", res);
+
+                if (!res.result) {
+                    router.push('/');
+                    return;
+                }
 
                 const data = res.channelList
                     .filter(item => item.cataName == '课程')
@@ -71,7 +76,9 @@ export default function CoursesPage() {
 
                 setCourses(data);
             })
-            .catch(() => setLoading(false));
+            .catch(() => {
+                router.push('/');
+            });
     }, []);
 
     if (loading) return 加载中;
@@ -86,34 +93,36 @@ export default function CoursesPage() {
             .join('&'))}`
 
     return (
-        <div className="w-[600px] mx-auto m-[20px]">
-            <h1 className="text-3xl font-bold mb-4 text-center">课程列表</h1>
-            <ul>
-                <li key="default" className="flex items-center mb-4 shadow-lg rounded-[10px] p-4 bg-white">
-                    <div className="flex-1">
-                        <h2 className="text-[20px] font-bold text-blue-500">🎉🎉 小程序版</h2>
-                        <p className="text-gray-500 text-[14px]">点击右侧按钮进入小程序</p>
-                    </div>
-                    <div className="flex items-center">
-                        <a href={小程序} className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2">打开</a>
-                    </div>
-                </li>
+        <div className="mx-auto m-[20px] w-full p-[20px]">
+            <main className="w-full max-w-[1200px] mx-auto">
+                <h1 className="text-3xl font-bold mb-4 text-center">课程列表</h1>
+                <ul>
+                    <li key="default-top" className="flex items-center mb-4 shadow-lg rounded-[10px] p-4 bg-white">
+                        <div className="flex-1">
+                            <h2 className="text-[20px] font-bold text-blue-500">🎉🎉 小程序版</h2>
+                            <p className="text-gray-500 text-[14px]">支持更多课程</p>
+                        </div>
+                        <div className="flex items-center">
+                            <a href={小程序} className="bg-green-500 text-white px-4 py-2 rounded-md mr-2 hover:bg-green-600">进入小程序</a>
+                        </div>
+                    </li>
 
-                {
-                    courses.map(course => (
-                        <li key={course.index} className="flex items-center mb-4 shadow-lg rounded-[10px] p-4 bg-white">
-                            <div className="flex-1">
-                                <h2 className="text-[20px] font-bold text-blue-500">{course.courseName}</h2>
-                                <p className="text-gray-500 text-[14px]">班级：{course.className}</p>
-                                <p className="text-gray-500 text-[14px]">教师：{course.teacherName}</p>
-                            </div>
-                            <div className="flex items-center">
-                                <a href={course.url} className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2">打开</a>
-                            </div>
-                        </li>
-                    ))
-                }
-            </ul>
+                    {
+                        courses.map(course => (
+                            <li key={course.index} className="flex items-center mb-4 shadow-lg rounded-[10px] p-4 bg-white">
+                                <div className="flex-1">
+                                    <h2 className="text-[20px] font-bold text-blue-500">{course.courseName}</h2>
+                                    <p className="text-gray-500 text-[14px]">班级：{course.className}</p>
+                                    <p className="text-gray-500 text-[14px]">教师：{course.teacherName}</p>
+                                </div>
+                                <div className="flex items-center">
+                                    <a href={course.url} className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2 hover:bg-blue-600">打开</a>
+                                </div>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </main>
         </div>
     );
 }

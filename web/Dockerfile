@@ -1,4 +1,4 @@
-# 构建阶段
+# ---- 构建阶段 ----
 FROM node:22-alpine AS build
 
 # 设置工作目录
@@ -16,8 +16,11 @@ COPY . .
 # 构建 Next.js 项目
 RUN npm run build
 
-# 生产环境阶段
+# ---- 生产环境阶段 ----
 FROM node:22-alpine
+
+# 设置时区
+ENV TZ=Asia/Shanghai
 
 # 设置工作目录
 WORKDIR /app

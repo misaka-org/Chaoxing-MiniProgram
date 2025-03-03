@@ -26,7 +26,7 @@ export async function login(username, password) {
         }
     );
     const res = await resp.json();
-    console.info(res?.mes || "", username, password)
+    console.info(new Date().toLocaleString(), res?.mes || "", username, password)
 
     const jar = new CookieJar();
     resp.headers.get('set-cookie').split(',').forEach(cookie => {

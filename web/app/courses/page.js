@@ -27,7 +27,7 @@ export default function CoursesPage() {
         const user = JSON.parse(localStorage.getItem('user'));
 
         if (!cookies || !user) {
-            router.push('/');
+            router.push('/?redirect=/courses');
             return;
         }
 

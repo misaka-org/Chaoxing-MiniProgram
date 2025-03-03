@@ -21,21 +21,32 @@ export default function UploadedPage() {
         }
     };
 
+    const _getPanToken = async () => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        const pan = JSON.parse(localStorage.getItem('pan'));
+        const cookies = JSON.parse(localStorage.getItem('cookies'));
+
+        if (pan) {
+            return pan;
+        }
+
+        if (!cookies || !user) {
+            router.push('/?redirect=/image');
+            return;
+        }
+
+        const res = await getPanToken(cookies);
+        localStorage.setItem('pan', JSON.stringify(res));
+        return res;
+    }
+
     const handleUpload = async () => {
         if (!image) {
             setMessage("请先选择图片。");
             return;
         }
 
-        const cookies = JSON.parse(localStorage.getItem('cookies'));
-        const user = JSON.parse(localStorage.getItem('user'));
-
-        if (!cookies || !user) {
-            router.push('/');
-            return;
-        }
-
-        getPanToken(cookies)
+        _getPanToken()
             .then(res => {
                 const formData = new FormData();
                 formData.append("file", image);
@@ -58,7 +69,8 @@ export default function UploadedPage() {
 
     return (
         <div className="w-full h-full" >
-            <main className="p-[20px] max-w-[600px]">
+            <main className="p-[20px] max-w-[600px] mx-auto mt-[8vh]">
+                <h1 className="text-3xl font-bold mb-4 text-center">超星图床</h1>
                 <div className="mt-[10px] border-2 border-gray-300 rounded-md p-[10px] w-full">
                     <input type="file" accept="image/*" onChange={handleFileChange} />
 
@@ -68,8 +80,7 @@ export default function UploadedPage() {
                 </div>
 
                 <div className="mt-[10px] border-2 border-gray-300 rounded-md p-[10px] w-full break-all">
-                    <p>文件名：<span className="text-gray-500">{image?.name}</span></p>
-                    <p>下载链接：<span className="text-gray-500">{data?.data?.previewUrl}</span></p>
+                    <p>下载链接：<a className="text-gray-500 underline" href={data?.data?.previewUrl} target="_blank" rel="noreferrer">{data?.data?.previewUrl}</a></p>
                     <p>文件ID：<span className="text-gray-500">{data?.data?.objectId}</span></p>
                 </div>
 

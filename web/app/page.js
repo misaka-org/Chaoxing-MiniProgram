@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { login } from './action';
 
 const 官方URL = "https://passport2.chaoxing.com/login?refer=https%3A%2F%2Fmooc1.chaoxing.com%2Fcourse%2Fphone%2Fcourselisthead%3Fpassed%3D1&fid=0&newversion=true&_blank=0"
-const 官方Btn = "> 官方网页版（找回密码）<"
 const 二维码 = "https://cdn.loricloud.cn/2025/02/26/67becd4a198ca.png"
 
 function InputBox() {
@@ -68,7 +67,11 @@ export default function Home() {
 
                 <p className="text-sm font-bold text-gray-400 text-center m-[8px]">如有侵权，请发邮件至 admin@micono.eu.org</p>
                 <p className="text-sm font-bold text-gray-400 text-center m-[8px]">本网页由公众号【御坂网络 Misaka】免费提供</p>
-                <a className="text-sm font-bold text-gray-500 text-center m-[8px] mb-[20px] underline block" href={官方URL} target="_blank" >{官方Btn}</a>
+                <p className='text-sm font-bold text-gray-400 text-center m-[8px]'>
+                    <a className="text-sm font-bold text-blue-600 text-center m-[8px] mb-[20px] underline" href={官方URL} target="_blank">官方网页版（找回密码）</a>
+                    <a className="text-sm font-bold text-blue-600 text-center m-[8px] mb-[20px] underline" href='./image' target="_blank">超星图床（需登录）</a>
+                </p>
+
 
                 <InputBox />
             </main ></div>

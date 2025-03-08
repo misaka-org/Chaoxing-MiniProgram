@@ -22,11 +22,12 @@ let RadioGroup = class RadioGroup extends SuperComponent {
             '../radio/radio': {
                 type: 'descendant',
                 linked(target) {
-                    const { value, disabled } = this.data;
+                    const { value, disabled, readonly } = this.data;
                     target.setData({
                         checked: value === target.data.value,
                     });
                     target.setDisabled(disabled);
+                    target.setReadonly(readonly);
                 },
             },
         };
@@ -76,7 +77,7 @@ let RadioGroup = class RadioGroup extends SuperComponent {
                 this._trigger('change', checked === false && allowUncheck ? { value: null, index } : { value, index });
             },
             initWithOptions() {
-                const { options, value, keys, disabled } = this.data;
+                const { options, value, keys, disabled, readonly } = this.data;
                 if (!(options === null || options === void 0 ? void 0 : options.length) || !Array.isArray(options)) {
                     this.setData({
                         radioOptions: [],
@@ -94,10 +95,11 @@ let RadioGroup = class RadioGroup extends SuperComponent {
                                 value: element,
                                 checked: value === element,
                                 disabled,
+                                readonly,
                             });
                         }
                         else if (typeName === 'object') {
-                            optionsValue.push(Object.assign(Object.assign({}, element), { label: element[(_a = keys === null || keys === void 0 ? void 0 : keys.label) !== null && _a !== void 0 ? _a : 'label'], value: element[(_b = keys === null || keys === void 0 ? void 0 : keys.value) !== null && _b !== void 0 ? _b : 'value'], checked: value === element[(_c = keys === null || keys === void 0 ? void 0 : keys.value) !== null && _c !== void 0 ? _c : 'value'], disabled: element.disabled || disabled }));
+                            optionsValue.push(Object.assign(Object.assign({}, element), { label: element[(_a = keys === null || keys === void 0 ? void 0 : keys.label) !== null && _a !== void 0 ? _a : 'label'], value: element[(_b = keys === null || keys === void 0 ? void 0 : keys.value) !== null && _b !== void 0 ? _b : 'value'], checked: value === element[(_c = keys === null || keys === void 0 ? void 0 : keys.value) !== null && _c !== void 0 ? _c : 'value'], disabled: element.disabled || disabled, readonly: element.readonly || readonly }));
                         }
                     });
                     this.setData({

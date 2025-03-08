@@ -89,6 +89,7 @@ style | Object | - | 样式 | N
 custom-style | Object | - | 样式，一般用于开启虚拟化组件节点场景 | N
 adjust-position | Boolean | true | 键盘弹起时，是否自动上推页面 | N
 align | String | left | 文本内容位置，居左/居中/居右。可选项：left/center/right | N
+allow-input-over-max | Boolean | false | 超出 `maxlength` 或 `maxcharacter` 之后是否允许继续输入 | N
 always-embed | Boolean | false | 强制 input 处于同层状态，默认 focus 时 input 会切到非同层状态 (仅在 iOS 下生效) | N
 auto-focus | Boolean | false | (即将废弃，请直接使用 focus )自动聚焦，拉起键盘 | N
 borderless | Boolean | false | 是否开启无边框模式 | N
@@ -151,7 +152,7 @@ validate | `(detail: { error?: 'exceed-maximum' \| 'below-minimum' })` | 字数�
 -- | --
 t-class | 根节点样式类
 t-class-clearable | 清空按钮样式类
-t-class-input | 标题样式类
+t-class-input | 输入框样式类
 t-class-label | 标签样式类
 t-class-prefix-icon | 前置图标样式类
 t-class-suffix | 后置样式类
@@ -161,29 +162,29 @@ t-class-tips | 提示样式类
 ### CSS Variables
 
 组件提供了下列 CSS 变量，可用于自定义样式。
-名称 | 默认值 | 描述 
+
+名称 | 默认值 | 描述
 -- | -- | --
---td-input-align-items | center | - 
---td-input-bg-color | @bg-color-container | - 
---td-input-border-color | @component-stroke | - 
---td-input-border-left-space | 32rpx | - 
---td-input-border-radius | @radius-default | - 
---td-input-border-right-space | 0 | - 
---td-input-default-text-color | @text-color-primary | - 
---td-input-default-tips-color | @text-color-placeholder | - 
---td-input-disabled-text-color | @text-color-disabled | - 
---td-input-error-text-color | @error-color | - 
---td-input-error-tips-color | @error-color | - 
---td-input-label-max-width | 5em | - 
---td-input-label-min-width | 2em | - 
---td-input-label-text-color | @text-color-primary | - 
---td-input-placeholder-text-color | @text-color-placeholder | - 
---td-input-placeholder-text-font-size | @font-size-m | - 
---td-input-prefix-icon-color | @text-color-primary | - 
---td-input-success-text-color | @success-color | - 
---td-input-success-tips-color | @success-color | - 
---td-input-suffix-icon-color | @text-color-placeholder | - 
---td-input-suffix-text-color | @text-color-primary | - 
---td-input-vertical-padding | 32rpx | - 
---td-input-warning-text-color | @warning-color | - 
---td-input-warning-tips-color | @warning-color | - 
+--td-input-align-items | center | -
+--td-input-bg-color | @bg-color-container | -
+--td-input-border-color | @component-stroke | -
+--td-input-border-left-space | 32rpx | -
+--td-input-border-right-space | 0 | -
+--td-input-default-text-color | @text-color-primary | -
+--td-input-default-tips-color | @text-color-placeholder | -
+--td-input-disabled-text-color | @text-color-disabled | -
+--td-input-error-text-color | @error-color | -
+--td-input-error-tips-color | @error-color | -
+--td-input-label-max-width | 5em | -
+--td-input-label-min-width | 2em | -
+--td-input-label-text-color | @text-color-primary | -
+--td-input-placeholder-text-color | @text-color-placeholder | -
+--td-input-placeholder-text-font-size | @font-size-m | -
+--td-input-prefix-icon-color | @text-color-primary | -
+--td-input-success-text-color | @success-color | -
+--td-input-success-tips-color | @success-color | -
+--td-input-suffix-icon-color | @text-color-placeholder | -
+--td-input-suffix-text-color | @text-color-primary | -
+--td-input-vertical-padding | 32rpx | -
+--td-input-warning-text-color | @warning-color | -
+--td-input-warning-tips-color | @warning-color | -

@@ -29,6 +29,10 @@ const props = {
         type: String,
         value: 'left',
     },
+    readonly: {
+        type: null,
+        value: undefined,
+    },
     value: {
         type: null,
         value: null,

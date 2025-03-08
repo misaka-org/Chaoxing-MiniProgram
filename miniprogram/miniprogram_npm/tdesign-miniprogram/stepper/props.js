@@ -7,9 +7,6 @@ const props = {
         type: null,
         value: undefined,
     },
-    externalClasses: {
-        type: Array,
-    },
     inputWidth: {
         type: Number,
     },

@@ -3,6 +3,10 @@ const props = {
         type: Boolean,
         value: true,
     },
+    allowInputOverMax: {
+        type: Boolean,
+        value: false,
+    },
     autofocus: {
         type: Boolean,
         value: false,
@@ -69,9 +73,17 @@ const props = {
         type: String,
         value: undefined,
     },
+    placeholderClass: {
+        type: String,
+        value: 'textarea-placeholder',
+    },
     placeholderStyle: {
         type: String,
         value: '',
+    },
+    readonly: {
+        type: null,
+        value: undefined,
     },
     selectionEnd: {
         type: Number,

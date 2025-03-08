@@ -7,6 +7,10 @@ const props = {
         type: String,
         value: 'left',
     },
+    allowInputOverMax: {
+        type: Boolean,
+        value: false,
+    },
     alwaysEmbed: {
         type: Boolean,
         value: false,

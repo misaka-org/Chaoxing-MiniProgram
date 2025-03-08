@@ -10,10 +10,6 @@ export default class Stepper extends SuperComponent {
             type: BooleanConstructor;
             value?: boolean;
         };
-        externalClasses?: {
-            type: ArrayConstructor;
-            value?: ["t-class", "t-class-input", "t-class-add", "t-class-minus"];
-        };
         inputWidth?: {
             type: NumberConstructor;
             value?: number;

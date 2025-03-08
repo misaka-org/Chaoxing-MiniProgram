@@ -32,6 +32,10 @@ export interface TdRadioGroupProps<T = RadioValue> {
         type: StringConstructor;
         value?: 'left' | 'right';
     };
+    readonly?: {
+        type: BooleanConstructor;
+        value?: boolean;
+    };
     value?: {
         type: null;
         value?: T;

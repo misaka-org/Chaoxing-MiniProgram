@@ -8,10 +8,6 @@ export interface TdStepperProps {
         type: BooleanConstructor;
         value?: boolean;
     };
-    externalClasses?: {
-        type: ArrayConstructor;
-        value?: ['t-class', 't-class-input', 't-class-add', 't-class-minus'];
-    };
     inputWidth?: {
         type: NumberConstructor;
         value?: number;

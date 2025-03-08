@@ -59,17 +59,21 @@ let Radio = class Radio extends SuperComponent {
             iconVal: [],
             _placement: '',
             _disabled: false,
+            _readonly: false,
         };
         this.observers = {
             disabled(v) {
                 this.setData({ _disabled: v });
             },
+            readonly(v) {
+                this.setData({ _readonly: v });
+            },
         };
         this.methods = {
             handleTap(e) {
-                const { _disabled, readonly, contentDisabled } = this.data;
+                const { _disabled, _readonly, contentDisabled } = this.data;
                 const { target } = e.currentTarget.dataset;
-                if (_disabled || readonly || (target === 'text' && contentDisabled))
+                if (_disabled || _readonly || (target === 'text' && contentDisabled))
                     return;
                 this.doChange();
             },
@@ -98,6 +102,11 @@ let Radio = class Radio extends SuperComponent {
             setDisabled(disabled) {
                 this.setData({
                     _disabled: this.data.disabled || disabled,
+                });
+            },
+            setReadonly(readonly) {
+                this.setData({
+                    _readonly: this.data.readonly || readonly,
                 });
             },
         };

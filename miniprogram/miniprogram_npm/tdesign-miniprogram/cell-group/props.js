@@ -1,9 +1,7 @@
 const props = {
     bordered: {
         type: Boolean,
-    },
-    externalClasses: {
-        type: Array,
+        value: false,
     },
     theme: {
         type: String,

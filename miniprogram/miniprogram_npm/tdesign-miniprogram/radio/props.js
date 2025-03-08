@@ -47,11 +47,10 @@ const props = {
     },
     placement: {
         type: String,
-        value: 'left',
     },
     readonly: {
-        type: Boolean,
-        value: false,
+        type: null,
+        value: undefined,
     },
     value: {
         type: null,

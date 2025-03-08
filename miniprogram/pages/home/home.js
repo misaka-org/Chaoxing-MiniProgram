@@ -162,7 +162,7 @@ Page({
 
 		let res = "";
 		if (this.data.hasValidate)
-			this.data.validate = ""; // 课后作业：此处请自行实现 GET请求 https://cx-api.yangrucheng.top/get_captcha
+			this.data.validate = ""; // 课后作业：此处请自行实现 GET请求 https://cx.micono.eu.org/api/validate
 
 		if (info.type == 0 || info.type == 1) { // 图片/普通
 			if (objectId == 0 && info.type == 0) {

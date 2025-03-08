@@ -150,6 +150,12 @@
 	background: white;
 }
 
+.signcode-info {
+	color: gray;
+	margin: 20rpx 30rpx 10rpx;
+	font-size: 25rpx;
+}
+
 .input-box {
 	width: 660rpx;
 	margin: 0 auto 30rpx;

@@ -1,4 +1,5 @@
-<view style="height: 180rpx"></view>
+
+<t-navbar title="Misaka 学习助手" t-class-title="nav-title"></t-navbar>
 
 <!-- 登录页 -->
 <view wx:if="{{tab=='login'}}">
@@ -21,7 +22,7 @@
 	</view>
 	<view class="license">
 		<view>本小程序使用 AGPLv3 协议</view>
-		<view>仓库地址：misaka-org/Chaoxing-MiniProgram</view>
+		<view>仓库地址：{{repository}}</view>
 	</view>
 </view>
 

@@ -23,11 +23,11 @@ jobs:
         with:
           node-version: '20'
 
-      - name: 写入私钥
+      - name: 写入私钥和默认配置文件
         run: |
           cd miniprogram
           echo "${{ secrets.KEY }}" > ./private.${{ secrets.APPID }}.key
-          echo '${{ secrets.CONFIG }}' > ./utils/config.js
+          wget -O ./utils/config.js https://raw.githubusercontent.com/misaka-org/Chaoxing-MiniProgram/refs/heads/main/resource/config.js
 
       - name: 安装依赖
         run: |

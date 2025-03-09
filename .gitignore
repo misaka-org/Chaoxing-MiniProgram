@@ -7,18 +7,16 @@ tmp
 .DS_Store
 .next
 
-*yml
+*.yml
 *.toml
 *.log
 *.sh
-docker.sh
 *.csv
 *.jpg
 
-config.js
-ci.config.js
-ci.py
-api.default.js
+miniprogram/utils/config.js
+miniprogram/utils/ci.config.js
+miniprogram/utils/api.default.js
 
 project.private.config.json
 package-lock.json

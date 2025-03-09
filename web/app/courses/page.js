@@ -116,7 +116,7 @@ export default function CoursesPage() {
                                     <p className="text-gray-500 text-[14px]">教师：{course.teacherName}</p>
                                 </div>
                                 <div className="flex items-center">
-                                    <a href={course.url} className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2 hover:bg-blue-600">打开</a>
+                                    <a href={course.url} className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2 hover:bg-blue-600">前往签到</a>
                                 </div>
                             </li>
                         ))

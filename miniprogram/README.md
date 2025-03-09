@@ -50,11 +50,7 @@
 	}
 	module.exports = config;
 	```
-3. 安装 [TDesign组件库](https://tdesign.tencent.com/miniprogram/getting-started)
-   
-   注意：请进入 `miniprogram` 目录下 再安装组件库
-
-4. 上传代码
+3. 上传代码
 
 ### 使用交流
 

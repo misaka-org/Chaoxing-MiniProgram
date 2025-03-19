@@ -1,11 +1,14 @@
 node_modules
 data
+dist
 log
 tmp
 
 .vscode
 .DS_Store
 .next
+.cache
+.temp
 
 *.yml
 *.toml

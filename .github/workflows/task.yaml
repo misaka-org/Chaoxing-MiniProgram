@@ -2,8 +2,8 @@ name: 执行上传任务
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]    
+    paths: [miniprogram/**]
   workflow_dispatch:
 
 jobs:

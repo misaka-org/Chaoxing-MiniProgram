@@ -135,6 +135,8 @@
 
 + [QQ频道](https://pd.qq.com/s/f1mli0e35)（推荐）
 + [Discussion](https://github.com/misaka-org/Chaoxing-MiniProgram/discussions)
++ [QQ](https://qm.qq.com/q/24Qzm6avhS)
++ [用户文档评论区](https://doc.micono.eu.org) （完善中）
 
 > 我们依靠非开源版中的广告获得收益，未来可能提供更多增值服务。但已有的免费签到渠道永远不会关闭！
 

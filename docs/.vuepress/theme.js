@@ -57,9 +57,9 @@ export default hopeTheme(
                  */
                 provider: "Giscus",
                 repo: "misaka-org/Chaoxing-MiniProgram",
-                repoId: "",
-                category: "",
-                categoryId: "",
+                repoId: "R_kgDOKWwF6Q",
+                category: "Announcements",
+                categoryId: "DIC_kwDOKWwF6c4CZj8e",
 
             },
             // 临时弹窗

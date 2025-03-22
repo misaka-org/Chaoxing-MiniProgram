@@ -16,7 +16,7 @@ category:
 
 ## 文档包括什么？
 
-文档仅包括普通用户使用教程，开发者请阅读仓库中的 README.md 文件。
+文档仅包括普通用户使用教程，开发者请阅读仓库中的 [README.md](https://github.com/misaka-org/Chaoxing-MiniProgram/blob/main/README.md) 文件。
 
 ## 什么情况下使用？
 
@@ -24,7 +24,14 @@ category:
 
 禁止以逃课、旷课等行为作为使用目的，由用户非法行为造成的后果均由用户自行负责。
 
-## 讨论
+## 用户交流
 
 + [QQ频道](https://pd.qq.com/s/f1mli0e35)（推荐）
 + [Discussion](https://github.com/misaka-org/Chaoxing-MiniProgram/discussions)
++ [QQ群](https://qm.qq.com/q/24Qzm6avhS)（有需要再加）
++ [用户文档评论区](https://doc.micono.eu.org)
++ [微信公众号](http://weixin.qq.com/r/mp/cxFrc67E2-OkreoQ90Rh)（只发通知，无人值守）
+
+## 扫码体验非开源版
+
+![qrcode](<https://github.com/user-attachments/assets/c279019d-d2fd-49b0-b1c7-b704e510438b> =200x)

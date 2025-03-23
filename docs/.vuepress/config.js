@@ -11,9 +11,8 @@ export default defineUserConfig({
   theme: theme,
   base: "/./",
   head: [
-    [
-      'link', { rel: 'icon', href: 'https://avatars.githubusercontent.com/u/163529042?v=4' }
-    ]
+    ['link', { rel: 'icon', href: 'https://avatars.githubusercontent.com/u/163529042?v=4' }],
+    ['meta', { name: 'algolia-site-verification', content: 'BEC25E1BD9B17162' }],
   ],
   locales: {
     "/": {

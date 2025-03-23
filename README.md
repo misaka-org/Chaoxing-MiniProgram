@@ -34,6 +34,7 @@
 > 项目贡献者不对您使用本项目造成的任何后果 (如封号、被教师约谈等) 负责！
 
 ## 🎉 版本对比
+
 <table style="text-align: center">
     <tr>
         <th colspan=2>版本对比</th>
@@ -85,13 +86,13 @@
     <tr>
         <td rowspan=2>部署教程</td>
         <td>服务端</td>
-        <td><a href="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/main/server/README.md">自行部署教程</a></td>
-        <td>默认使用我们的服务器 (<a href="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/main/server/README.md">可自行部署</a>)</td>
+        <td><a href="https://doc.micono.eu.org/guide/server.html">自行部署教程</a></td>
+        <td>默认使用我们的服务器 (<a href="https://doc.micono.eu.org/guide/server.html">可自行部署</a>)</td>
     </tr>
     <tr>
         <td>小程序端</td>
-        <td><a href="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/main/miniprogram/README.md">自行部署教程</a></td>
-        <td>填写问卷，提供小程序代码上传密钥 (<a href="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/main/miniprogram/no-open.md">填写教程</a>)</td>
+        <td><a href="https://doc.micono.eu.org/guide/miniprogram.html">自行部署教程</a></td>
+        <td>填写问卷，提供小程序代码上传密钥 (<a href="https://doc.micono.eu.org/guide/no-open.html">填写教程</a>)</td>
     </tr>
 </table>
 
@@ -131,12 +132,7 @@
 
 ## 🎗️ 交流学习
 
-<div style="display: none;" id="concat"></div>
-
-+ [QQ频道](https://pd.qq.com/s/f1mli0e35)（推荐）
-+ [Discussion](https://github.com/misaka-org/Chaoxing-MiniProgram/discussions)
-+ [QQ](https://qm.qq.com/q/24Qzm6avhS)
-+ [用户文档评论区](https://doc.micono.eu.org) （完善中）
+[加入用户交流群](https://doc.micono.eu.org/guide/)
 
 > 我们依靠非开源版中的广告获得收益，未来可能提供更多增值服务。但已有的免费签到渠道永远不会关闭！
 

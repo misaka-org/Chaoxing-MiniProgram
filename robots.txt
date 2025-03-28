@@ -1,0 +1,5 @@
+
+User-agent:*
+Disallow:
+
+Sitemap: https://doc.micono.eu.org/./sitemap.xml

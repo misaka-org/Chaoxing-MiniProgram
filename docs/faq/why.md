@@ -22,16 +22,17 @@ star: true
 
 ## 为什么课程加载不出来？
 
-先确认版本，小程序共有3个版本，另有网页版。
+先确认版本，小程序共有3个版本，另有网页版入口。反馈 BUG 时，请告知版本。
 
 | 开源版 | 非开源版v2 | 非开源版v3 | 网页版 |
 | :---: | :---: | :---: | :---: |
-|![1](<https://github.com/user-attachments/assets/8b7b3ea1-a44e-4542-a3fa-6c2c777af747> =200x) |![2](<https://github.com/user-attachments/assets/9acf1724-73cc-4fdd-a6f7-7aded8c80ba7> =200x) |![3](<https://github.com/user-attachments/assets/b1480560-033c-4018-b267-00ab76733458> =200x) | <https://cx.micono.eu.org> |
+|![1](</image/guide/小程序v0.jpg> =200x) |![2](</image/guide/小程序v2.jpg> =200x) |![3](</image/guide/小程序v3.jpg> =200x) | ![3](</image/guide/网页版.jpg> =200x)<https://cx.micono.eu.org> |
 
 ### 一个课程都没有？
 
-先检查 [学习通官方网页版](https://i.chaoxing.com)，如果也没有课程，放弃使用；如果有课程，请到 QQ群、频道反馈。
++ 先检查 [学习通官方网页版](https://i.chaoxing.com)，如果也没有课程，放弃使用。
++ 如果有课程，请到 QQ群、频道反馈问题。
 
 ### 缺少部分课程？
 
-请改用 **非开源版v3**
+v2 版可能存在此问题，请改用 **非开源版v3**

@@ -15,7 +15,6 @@ tmp
 *.log
 *.sh
 *.csv
-*.jpg
 
 miniprogram/utils/config.js
 miniprogram/utils/ci.config.js

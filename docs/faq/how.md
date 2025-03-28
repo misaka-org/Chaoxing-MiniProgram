@@ -14,7 +14,7 @@ order: 3
 
 滑动首页功能按钮，最右侧有个设置，把 **爱学习** 打开，首页就可以看到入口了。
 
-![1](<https://github.com/user-attachments/assets/063cfce0-2db0-40ec-9bb5-84953d26d5f6> =200x)
+![1](</image/guide/签到入口.jpg> =200x)
 
 ## 怎么请人代签？
 

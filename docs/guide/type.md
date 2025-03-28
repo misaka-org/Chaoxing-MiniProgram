@@ -5,8 +5,6 @@ category:
   - Guide
 tag:
   - Guide
-sticky: true
-star: true
 order: 1
 ---
 

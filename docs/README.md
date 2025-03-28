@@ -2,6 +2,7 @@
 home: true
 icon: iconfont icon-home
 title: 首页
+index: false
 heroImage: https://avatars.githubusercontent.com/u/163529042?v=4
 heroText: 御坂学习 微信小程序
 tagline: 一个原生微信小程序，使用 TDesign 组件库！

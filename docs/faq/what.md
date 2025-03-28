@@ -5,8 +5,6 @@ category:
   - FAQ
 tag:
   - FAQ
-sticky: true
-star: true
 order: 1
 ---
 

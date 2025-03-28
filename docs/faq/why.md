@@ -7,8 +7,6 @@ category:
 tag:
   - FAQ
   - Question
-sticky: true
-star: true
 ---
 
 ## 为什么账号或密码错误？

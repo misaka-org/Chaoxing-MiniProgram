@@ -117,8 +117,8 @@ Page({
 
 	getUserLocation() { // 获取用户位置
 		wx.getLocation({
-				'type': 'gcj02',
-			})
+			'type': 'gcj02',
+		})
 			.then(gcj02 => {
 				log.info("获取用户位置", gcj02)
 				API.allToBaidu(gcj02.longitude, gcj02.latitude)
@@ -195,7 +195,6 @@ Page({
 				params[key] = value;
 			});
 			const enc = params.enc;
-			API.submitEnc(info.activeId, enc);
 			res = await this.data.api.defaultSign(info.activeId, null, location.longitude, location.latitude, location.name, null, null, enc, userinfo.name, this.data.validate);
 		}
 

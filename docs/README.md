@@ -11,10 +11,6 @@ actions:
     link: /guide/
     type: primary
 
-  - text: 常见问题❓
-    link: /faq/
-    type: primary
-
   - text: Github🌱
     link: https://github.com/misaka-org/Chaoxing-MiniProgram
 

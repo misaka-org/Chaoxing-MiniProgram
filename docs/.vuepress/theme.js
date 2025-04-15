@@ -73,6 +73,8 @@ export default hopeTheme(
                 }
             ],
         },
+        contributors: false,
+        changelog: true,
     },
     {
         check: true,

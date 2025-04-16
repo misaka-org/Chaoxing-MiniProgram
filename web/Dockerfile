@@ -4,8 +4,8 @@ FROM node:22-alpine AS build
 # 设置工作目录
 WORKDIR /app
 
-# 将 package.json 和 package-lock.json 复制到工作目录
-COPY package.json package-lock.json ./
+# 将 package.json 复制到工作目录
+COPY package.json ./
 
 # 安装项目依赖
 RUN npm install --frozen-lockfile

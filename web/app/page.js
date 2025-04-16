@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { login } from './action';
 
 const 官方URL = "https://passport2.chaoxing.com/login?refer=https%3A%2F%2Fmooc1.chaoxing.com%2Fcourse%2Fphone%2Fcourselisthead%3Fpassed%3D1&fid=0&newversion=true&_blank=0"
-const 二维码 = "https://cdn.loricloud.cn/2025/02/26/67becd4a198ca.png"
+const 二维码 = "https://cdn.micono.eu.org/image/小程序码/签到小程序.png"
 
 function InputBox() {
     const username = useRef();

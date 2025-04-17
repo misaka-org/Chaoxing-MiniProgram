@@ -39,6 +39,7 @@ function InputBox() {
             "username": u,
             "password": p
         }));
+        localStorage.setItem('pan', "");
 
         e.preventDefault();
         const { redirect } = query;

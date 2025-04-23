@@ -1,0 +1,22 @@
+FROM node:lts-alpine
+
+ENV TZ=Asia/Shanghai
+
+RUN apk add --no-cache tzdata \
+    && cp /usr/share/zoneinfo/$TZ /etc/localtime \
+    && echo $TZ > /etc/timezone \
+    && apk del tzdata
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm config set registry https://mirrors.huaweicloud.com/repository/npm/ \
+    && npm config set strict-ssl false \
+    && npm install --omit=dev
+
+COPY . ./
+
+EXPOSE 8080
+
+CMD [ "node", "ci.js" ]

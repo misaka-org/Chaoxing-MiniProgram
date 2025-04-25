@@ -1,0 +1,54 @@
+name: 处理 Issue
+
+on:
+  issues:
+    types: [opened, reopened]
+
+jobs:
+  handle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 获取
+        id: issue-creator
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const opener = issue.user.login;
+            const authorizedAuthors = ['Misaka-1314']; 
+            const isAuthorized = authorizedAuthors.includes(opener);
+
+            if (!isAuthorized) {
+              core.setOutput('closeIssue', 'true');
+              core.setOutput('issueNumber', issue.number);
+              core.setOutput('issueCreator', opener);
+            } else {
+              core.setOutput('closeIssue', 'false');
+            }
+
+      - name: 处理
+        if: steps.issue-creator.outputs.closeIssue == 'true'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issue_number = ${{ steps.issue-creator.outputs.issueNumber }};
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const creator = "${{ steps.issue-creator.outputs.issueCreator }}";
+
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number,
+              body: `暂无计划`
+            });
+
+            await github.rest.issues.update({
+              owner,
+              repo,
+              issue_number,
+              state: 'closed',
+              reason: 'not_planned'
+            });
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

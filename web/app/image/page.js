@@ -18,6 +18,7 @@ export default function UploadedPage() {
         if (file) {
             setImage(file);
             setPreview(URL.createObjectURL(file));
+            setData({});
         }
     };
 

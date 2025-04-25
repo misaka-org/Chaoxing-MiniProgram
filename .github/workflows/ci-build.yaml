@@ -2,7 +2,8 @@ name: 构建 CI 镜像
 
 on:
   push:
-    branches: [main]
+    branches: [main]  
+    paths: [miniprogram/**]
   workflow_dispatch:
 
 jobs:
@@ -32,7 +33,12 @@ jobs:
           registry: ghcr.io
           username: misaka-org
           password: ${{ secrets.GITHUB_TOKEN }}
-
+      
+      - name: 写入默认配置文件
+        run: |
+          wget -O ./utils/config.js https://raw.githubusercontent.com/misaka-org/Chaoxing-MiniProgram/refs/heads/main/resource/config.js
+        working-directory: miniprogram
+  
       - name: 文件目录结构
         run: tree -a -L 2
 

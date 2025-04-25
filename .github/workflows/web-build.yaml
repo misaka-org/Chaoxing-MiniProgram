@@ -2,7 +2,8 @@ name: 构建 Web 镜像
 
 on:
   push:
-    branches: [main]
+    branches: [main]  
+    paths: [web/**]
   workflow_dispatch:
 
 jobs:

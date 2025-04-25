@@ -115,7 +115,7 @@ const upload = (appid, privateKey, username) => {
                     ignores: [],
                 }),
                 version: `开源版 v0.${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, '0')}.${String(now.getDate()).padStart(2, '0')}`,
-                robot: 5,
+                robot: Number(process.env.ROBOT || "5"),
                 desc: "御坂网络 Misaka",
                 setting: {
                     es6: true,

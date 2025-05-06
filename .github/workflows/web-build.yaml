@@ -2,7 +2,7 @@ name: 构建 Web 镜像
 
 on:
   push:
-    branches: [main]  
+    branches: [main]
     paths: [web/**]
   workflow_dispatch:
 
@@ -13,7 +13,7 @@ jobs:
       packages: write
       attestations: write
       id-token: write
-      
+
     runs-on: ubuntu-24.04
 
     steps:
@@ -37,7 +37,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: misaka-org
+          username: misaka-1314
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 文件目录结构

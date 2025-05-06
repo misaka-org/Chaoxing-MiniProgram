@@ -24,4 +24,4 @@ order: 50
 
 ## 支持作者
 
-![i](</image/sponsor-qrcode.png> =250x)
+<img src="/image/sponsor-qrcode.png" style="width: min(40vw, 250px)" />

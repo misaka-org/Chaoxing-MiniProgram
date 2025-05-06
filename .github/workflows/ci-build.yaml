@@ -2,7 +2,7 @@ name: 构建 CI 镜像
 
 on:
   push:
-    branches: [main]  
+    branches: [main]
     paths: [miniprogram/**]
   workflow_dispatch:
 
@@ -31,14 +31,14 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: misaka-org
+          username: misaka-1314
           password: ${{ secrets.GITHUB_TOKEN }}
-      
+
       - name: 写入默认配置文件
         run: |
-          wget -O ./utils/config.js https://raw.githubusercontent.com/misaka-org/Chaoxing-MiniProgram/refs/heads/main/resource/config.js
+          wget -O ./utils/config.js https://raw.githubusercontent.com/misaka-1314/Chaoxing-MiniProgram/refs/heads/main/resource/config.js
         working-directory: miniprogram
-  
+
       - name: 文件目录结构
         run: tree -a -L 2
 
@@ -49,9 +49,9 @@ jobs:
           file: ./miniprogram/Dockerfile
           push: true
           tags: |
-            ghcr.io/misaka-org/chaoxing:ci
+            ghcr.io/misaka-1314/chaoxing:ci
             ccr.ccs.tencentyun.com/misaka-public/chaoxing:ci
           labels: |
             image.source=御坂学习v3
-            image.author=github.com/YangRucheng
+            image.author=github.com/Misaka-1314
           platforms: linux/amd64

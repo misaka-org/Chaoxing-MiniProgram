@@ -24,7 +24,7 @@ tag:
 
 | 开源版 | 非开源版v2 | 非开源版v3 | 网页版 |
 | :---: | :---: | :---: | :---: |
-|![1](</image/guide/小程序v0.jpg> =200x) |![2](</image/guide/小程序v2.jpg> =200x) |![3](</image/guide/小程序v3.jpg> =200x) | ![3](</image/guide/网页版.jpg> =200x)<https://cx.micono.eu.org> |
+| <img src="/image/guide/小程序v0.jpg" style="width: min(30vw, 240px)" /> | <img src="/image/guide/小程序v2.jpg" style="width: min(30vw, 240px)" /> | <img src="/image/guide/小程序v3.jpg" style="width: min(30vw, 240px)" /> | <img src="/image/guide/网页版.jpg" style="width: min(30vw, 240px)" /> <https://cx.micono.eu.org> |
 
 ### 一个课程都没有？
 
@@ -39,7 +39,7 @@ v2 版可能存在此问题，请改用 **非开源版v3**
 
 滑动首页功能按钮，最右侧有个设置，把 **爱学习** 打开，首页就可以看到入口了。
 
-![1](</image/guide/签到入口.jpg> =200x)
+<img src="/image/guide/签到入口.jpg" style="width: min(30vw, 240px)" />
 
 ## 4. 怎么请人代签？
 

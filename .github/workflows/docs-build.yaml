@@ -1,4 +1,4 @@
-name: 执行上传任务
+name: 构建文档
 
 on:
   push:

@@ -2,16 +2,15 @@
 title: 开源小程序
 icon: iconfont icon-study
 category:
-  - Guide
+  - Advance
 tag:
-  - Guide
+  - Advance
 order: 10
 ---
 
 > 本开源小程序部署教程仅供有小程序开发基础的人阅读，不提供任何形式的指导！
-> Issue 或 Discussion 仅处理 Bug或功能请求！
 
-[非开源版部署教程](https://doc.micono.eu.org/guide/no-open.html)
+[非开源版部署教程](./no-open.html)
 
 ## 前置步骤
 
@@ -46,7 +45,7 @@ order: 10
     ```js
     const config = {
         baseUrl: "https://cx-proxy.example.com", // 更换为你的反代域名
-        repository: "misaka-org/Chaoxing-WechatMiniProgram", // 开源仓库地址
+        repository: "Misaka-1314/Chaoxing-WechatMiniProgram", // 开源仓库地址
 
         baiduMapKey: '', // 百度地图开发平台
         tianMapKey: '', // 天地图开放平台

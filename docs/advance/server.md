@@ -2,10 +2,10 @@
 title: 服务端
 icon: iconfont icon-study
 category:
-  - Guide
+  - Advance
 tag:
-  - Guide
-order: 11
+  - Advance
+order: 15
 ---
 
 # 反向代理服务端部署教程
@@ -29,7 +29,7 @@ example.com {
             header_up Host "mobilelearn.chaoxing.com"
             header_up Referer "https://mobilelearn.chaoxing.com"
             header_up Origin "https://mobilelearn.chaoxing.com"
-            header_up User-Agent "Mozilla/5.0 (iPhone Mac OS X) github.com/misaka-org"
+            header_up User-Agent "Mozilla/5.0 (iPhone Mac OS X) github.com/misaka-1314"
         }
     }
  reverse_proxy http://127.0.0.1:8080
@@ -45,7 +45,7 @@ http://192.168.x.x:8080 {
             header_up Host "mobilelearn.chaoxing.com"
             header_up Referer "https://mobilelearn.chaoxing.com"
             header_up Origin "https://mobilelearn.chaoxing.com"
-            header_up User-Agent "Mozilla/5.0 (iPhone Mac OS X) github.com/misaka-org"
+            header_up User-Agent "Mozilla/5.0 (iPhone Mac OS X) github.com/misaka-1314"
         }
     }
  reverse_proxy http://127.0.0.1:8080
@@ -71,7 +71,7 @@ server {
         proxy_set_header Host "mobilelearn.chaoxing.com";
         proxy_set_header Referer "https://mobilelearn.chaoxing.com";
         proxy_set_header Origin "https://mobilelearn.chaoxing.com";
-        proxy_set_header User-Agent "Mozilla/5.0 (iPhone Mac OS X) github.com/misaka-org";
+        proxy_set_header User-Agent "Mozilla/5.0 (iPhone Mac OS X) github.com/misaka-1314";
     }
 
     location / {
@@ -94,7 +94,7 @@ server {
         proxy_set_header Host "mobilelearn.chaoxing.com";
         proxy_set_header Referer "https://mobilelearn.chaoxing.com";
         proxy_set_header Origin "https://mobilelearn.chaoxing.com";
-        proxy_set_header User-Agent "Mozilla/5.0 (iPhone Mac OS X) github.com/misaka-org";
+        proxy_set_header User-Agent "Mozilla/5.0 (iPhone Mac OS X) github.com/misaka-1314";
     }
 
     location / {
@@ -127,11 +127,39 @@ export default {
             newRequest.headers.set('Host', 'mobilelearn.chaoxing.com')
             newRequest.headers.set('Referer', 'https://mobilelearn.chaoxing.com')
             newRequest.headers.set('Origin', 'https://mobilelearn.chaoxing.com')
-            newRequest.headers.set('User-Agent', 'Mozilla/5.0 (iPhone Mac OS X) github.com/misaka-org')
+            newRequest.headers.set('User-Agent', 'Mozilla/5.0 (iPhone Mac OS X) github.com/misaka-1314')
             return fetch(newRequest)
         } else {
-            return new Response('Powered by Misaka! github.com/misaka-org')
+            return new Response('Powered by Misaka! github.com/misaka-1314')
         }
     }
 }
+```
+
+### 使用 Python 反代
+
+```python
+from fastapi import FastAPI, Request, Response
+from urllib.parse import urljoin
+
+app = FastAPI(redoc_url=None, docs_url=None)
+
+ORIGIN_URL = "https://mobilelearn.chaoxing.com"
+
+@app.get("/{path:path}")
+async def proxy(
+    request: Request,
+):
+    path = request.url.path.replace("/proxy", "")
+    # 这里应该加入校验 path 和 cookies，防止恶意请求
+    async with httpx.AsyncClient(http2=True, timeout=10) as client:
+        resp = await client.get(
+            url=urljoin(ORIGIN_URL, path),
+            params=request.query_params,
+            cookies=dict(request.cookies),
+        )
+    return Response(
+        content=resp.content,
+        status_code=resp.status_code,
+    )
 ```

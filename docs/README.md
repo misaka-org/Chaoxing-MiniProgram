@@ -11,8 +11,12 @@ actions:
     link: /guide/
     type: primary
 
+  - text: 进阶篇🎉
+    link: /advance/
+    type: primary
+
   - text: Github🌱
-    link: https://github.com/misaka-org/Chaoxing-MiniProgram
+    link: https://github.com/Misaka-1314/Chaoxing-MiniProgram
 
 features:
   - title: 低服务器依赖
@@ -32,5 +36,5 @@ features:
     details: 一次扫码，为多人签到。
 
 copyright: false
-footer: AGPL-3.0 Licensed | Copyright © 2024 - 2025 By github.com/misaka-org
+footer: AGPL-3.0 Licensed | Copyright © 2024 - 2025 By github.com/misaka-1314
 ---

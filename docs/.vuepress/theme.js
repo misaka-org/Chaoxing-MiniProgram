@@ -4,7 +4,7 @@ export default hopeTheme(
     {
         docsDir: "docs",
         logo: "https://avatars.githubusercontent.com/u/163529042?v=4",
-        repo: "misaka-org/Chaoxing-MiniProgram",
+        repo: "Misaka-1314/Chaoxing-MiniProgram",
         hostname: "https://doc.micono.eu.org",
 
         author: {
@@ -33,9 +33,9 @@ export default hopeTheme(
         plugins: {
             // 搜索从设置转移到主题
             docsearch: {
-                appId: "",
-                apiKey: "",
-                indexName: "",
+                appId: "EGGX7QRHKZ",
+                apiKey: "87c654967a30997670c1c157b760a428",
+                indexName: "doc_micono_eu_org_eggx7qrhkz_pages",
             },
             // 目录的自动生成
             catalog: {
@@ -56,7 +56,7 @@ export default hopeTheme(
                  * Using Giscus 评论
                  */
                 provider: "Giscus",
-                repo: "misaka-org/Chaoxing-MiniProgram",
+                repo: "Misaka-1314/Chaoxing-MiniProgram",
                 repoId: "R_kgDOKWwF6Q",
                 category: "Announcements",
                 categoryId: "DIC_kwDOKWwF6c4CZj8e",

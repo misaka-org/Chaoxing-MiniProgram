@@ -2,7 +2,7 @@
 
 <img src="https://avatars.githubusercontent.com/u/163529042?v=4" width="300" height="300" style="border-radius: 50%"></img>
 
-<img alt="version" src="https://img.shields.io/github/last-commit/Misaka-OpenSource/Chaoxing-WechatMiniProgram.svg?style=for-the-badge&label=%E6%9C%80%E5%90%8E%E6%9B%B4%E6%96%B0&logo=velog&logoColor=BE95FF&color=7B68EE"/></img>
+<img alt="version" src="https://img.shields.io/github/last-commit/Misaka-OpenSource/Chaoxing-WechatMiniProgram.svg?style=for-the-badge&label=最后更新&logo=velog&logoColor=BE95FF&color=7B68EE"/></img>
 <img alt="stars" src="https://img.shields.io/github/stars/Misaka-OpenSource/Chaoxing-WechatMiniProgram.svg?style=for-the-badge&label=Stars&logo=undertale&logoColor=orange&color=orange"/></img>
 <img alt="forks" src="https://img.shields.io/github/forks/Misaka-OpenSource/Chaoxing-WechatMiniProgram.svg?style=for-the-badge&label=Forks&logo=stackshare&logoColor=f92f60&color=f92f60"/></img>
 <img alt="pr" src="https://img.shields.io/github/issues-pr-closed/Misaka-OpenSource/Chaoxing-WechatMiniProgram.svg?style=for-the-badge&label=PR&logo=addthis&logoColor=green&color=0AC18E"/></img>
@@ -20,7 +20,7 @@
 + 2024/09 基于本项目的小程序被举报封号，我们启动了自建小程序方案，鼓励用户注册小程序自用。
 + 2024/09 学习通官方以内容侵权为由投诉多个公众号的文章。
 + 2024/10 我们计划重启开源版本。
-+ 2024/12 截至 2025年3月8日的 [小程序上传数据](http://27.30.79.244:24800/)，已有846个小程序成功上传，另有114个填写有误。有需要的同学可以填写问卷！
++ 2024/12 截至 2025年4月30日的 [小程序上传数据](http://113.45.185.136:24800)，已有934个小程序成功上传，另有部分用户填写有误。有需要的同学可以填写问卷！
 
 ## 🎃 免责声明
 
@@ -29,7 +29,7 @@
 
 > 2022年2月11日，教育部等五部门关于加强普通高校在线客服课程教学管理的若干意见要求，严禁以任何形式传播考试内容及答案作弊手法。本项目不提供考试或作业答案！
 
-> 本项目默认您有基本的JavaSript、Python基础，能熟练部署服务器软件，部署交流请到 QQ频道 或 Discussion，过于简单的问题可能被直接关闭！
+> 本项目默认您有基本的 JavaSript、Python 基础，能熟练部署服务器软件，部署交流请到 QQ频道，过于简单的问题可能被直接关闭！
 
 > 项目贡献者不对您使用本项目造成的任何后果 (如封号、被教师约谈等) 负责！
 
@@ -70,7 +70,7 @@
     <tr>
         <td rowspan=2>其他差异</td>
         <td>滑块验证码</td>
-        <td><a href="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/39c95d5b4a20ce4e8b4f8e3ed7bd038cc15b4490/miniprogram/pages/home/home.js#L165">可接入免费接口</a></td>
+        <td><a href="https://github.com/Misaka-1314/Chaoxing-MiniProgram/blob/39c95d5b4a20ce4e8b4f8e3ed7bd038cc15b4490/miniprogram/pages/home/home.js#L165">可接入免费接口</a></td>
         <td>支持自动通过</td>
     </tr>
     <tr>
@@ -80,7 +80,7 @@
     </tr>
     <tr>
         <td colspan=2>使用方式 / 用户协议</td>
-        <td><a href="https://github.com/misaka-org/Chaoxing-MiniProgram/blob/main/LICENSE">GPLv3许可证</a></td>
+        <td><a href="https://github.com/Misaka-1314/Chaoxing-MiniProgram/blob/main/LICENSE">GPLv3许可证</a></td>
         <td>原则上仅供您和您的朋友使用，禁止倒卖、滥用！</td>
     </tr>
     <tr>

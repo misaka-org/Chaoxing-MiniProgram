@@ -12,7 +12,7 @@ order: 1
 
 打开学习通 App 的聊天页，课程是绿色图标，班级是黄色图标，群聊是学生头像拼接。
 
-![i](</image/guide/分辨签到类型.jpg> =300x)
+<img src="/image/guide/分辨签到类型.jpg" style="width: min(60vw, 300px)" />
 
 ### 1. 课程、班级签到
 

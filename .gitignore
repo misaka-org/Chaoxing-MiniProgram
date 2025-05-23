@@ -20,7 +20,7 @@ miniprogram/utils/config.js
 miniprogram/utils/ci.config.js
 miniprogram/utils/api.default.js
 
-web/app/api.js
+web/app/login/api.js
 
 project.private.config.json
 package-lock.json

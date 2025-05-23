@@ -27,7 +27,7 @@ export default function CoursesPage() {
         const user = JSON.parse(localStorage.getItem('user'));
 
         if (!cookies || !user) {
-            router.push('/?redirect=/courses');
+            router.push('./login?redirect=/courses');
             return;
         }
 
@@ -37,7 +37,7 @@ export default function CoursesPage() {
                 console.info("课程", res);
 
                 if (!res.result) {
-                    router.push('/');
+                    router.push('./login?redirect=/courses');
                     return;
                 }
 
@@ -77,7 +77,7 @@ export default function CoursesPage() {
                 setCourses(data);
             })
             .catch(() => {
-                router.push('/');
+                router.push('./login?redirect=/courses');
             });
     }, []);
 

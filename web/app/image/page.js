@@ -32,11 +32,16 @@ export default function UploadedPage() {
         }
 
         if (!cookies || !user) {
-            router.push('/?redirect=/image');
+            router.push('./login?redirect=/image');
             return;
         }
 
         const res = await getPanToken(cookies);
+        if (!res.result) {
+            setMessage(res.msg);
+            return;
+        }
+
         localStorage.setItem('pan', JSON.stringify(res));
         return res;
     }
@@ -74,7 +79,6 @@ export default function UploadedPage() {
                 <h1 className="text-3xl font-bold mb-4 text-center">超星图床</h1>
                 <div className="mt-[10px] border-2 border-gray-300 rounded-md p-[10px] w-full">
                     <input type="file" accept="image/*" onChange={handleFileChange} />
-
                     {
                         preview && <img src={preview} alt="Preview" className="w-[100%] max-h-[300px] mt-[10px]" referrerPolicy="no-referrer" />
                     }

@@ -128,7 +128,7 @@
 | <div align="center"> <img src="https://github.com/user-attachments/assets/25e6c246-3241-4b06-9a44-a9b8f5199f38"/> </div> | <div align="center"> <img src="https://github.com/user-attachments/assets/38596dfc-6212-45d2-b46c-a4aa11cdc241"/> </div> |
 
 <div align="center" style="font-weight:bold">扫码体验非开源版</div>  
-<img src="https://github.com/user-attachments/assets/c279019d-d2fd-49b0-b1c7-b704e510438b" width="250" height="250" style="border-radius: 50%"></img>
+<img src="https://cdn.micono.eu.org/image/小程序码/签到小程序.png" width="250" height="250" style="border-radius: 50%"></img>
 
 ## 🎗️ 交流学习
 

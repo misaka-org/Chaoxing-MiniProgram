@@ -29,4 +29,4 @@ category:
 
 ## 扫码体验非开源版
 
-<img src="/image/miniprogram-qrcdoe.png" style="width: min(50vw, 240px)" />
+<img src="https://cdn.micono.eu.org/image/小程序码/签到小程序.png" style="width: min(50vw, 240px)" />

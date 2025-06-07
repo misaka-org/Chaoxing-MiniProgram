@@ -48,7 +48,7 @@ export default function UploadedPage() {
 
     const handleUpload = async () => {
         if (!image) {
-            setMessage("请先选择图片。");
+            setMessage("请先选择图片！");
             return;
         }
 
@@ -80,7 +80,7 @@ export default function UploadedPage() {
                 <div className="mt-[10px] border-2 border-gray-300 rounded-md p-[10px] w-full">
                     <input type="file" accept="image/*" onChange={handleFileChange} />
                     {
-                        preview && <img src={preview} alt="Preview" className="w-[100%] max-h-[300px] mt-[10px]" referrerPolicy="no-referrer" />
+                        preview && <img src={preview} alt="Preview" className="w-[100%] max-h-[300px] mt-[10px] object-contain rounded-lg" referrerPolicy="no-referrer" />
                     }
                 </div>
 

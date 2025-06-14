@@ -2,11 +2,11 @@
 
 <img src="https://avatars.githubusercontent.com/u/163529042?v=4" width="300" height="300" style="border-radius: 50%"></img>
 
-<img alt="version" src="https://img.shields.io/github/last-commit/Misaka-OpenSource/Chaoxing-WechatMiniProgram.svg?style=for-the-badge&label=最后更新&logo=velog&logoColor=BE95FF&color=7B68EE"/></img>
-<img alt="stars" src="https://img.shields.io/github/stars/Misaka-OpenSource/Chaoxing-WechatMiniProgram.svg?style=for-the-badge&label=Stars&logo=undertale&logoColor=orange&color=orange"/></img>
-<img alt="forks" src="https://img.shields.io/github/forks/Misaka-OpenSource/Chaoxing-WechatMiniProgram.svg?style=for-the-badge&label=Forks&logo=stackshare&logoColor=f92f60&color=f92f60"/></img>
-<img alt="pr" src="https://img.shields.io/github/issues-pr-closed/Misaka-OpenSource/Chaoxing-WechatMiniProgram.svg?style=for-the-badge&label=PR&logo=addthis&logoColor=green&color=0AC18E"/></img>
-<img alt="issues" src="https://img.shields.io/github/issues/Misaka-OpenSource/Chaoxing-WechatMiniProgram.svg?style=for-the-badge&label=Issues&logo=openbugbounty&logoColor=e38dff&color=e38dff"/></img>
+<img alt="version" src="https://img.shields.io/github/last-commit/Misaka-1314/Chaoxing-MiniProgram.svg?style=for-the-badge&label=最后更新&logo=velog&logoColor=BE95FF&color=7B68EE"/></img>
+<img alt="stars" src="https://img.shields.io/github/stars/Misaka-1314/Chaoxing-MiniProgram.svg?style=for-the-badge&label=Stars&logo=undertale&logoColor=orange&color=orange"/></img>
+<img alt="forks" src="https://img.shields.io/github/forks/Misaka-1314/Chaoxing-MiniProgram.svg?style=for-the-badge&label=Forks&logo=stackshare&logoColor=f92f60&color=f92f60"/></img>
+<img alt="pr" src="https://img.shields.io/github/issues-pr-closed/Misaka-1314/Chaoxing-MiniProgram.svg?style=for-the-badge&label=PR&logo=addthis&logoColor=green&color=0AC18E"/></img>
+<img alt="issues" src="https://img.shields.io/github/issues/Misaka-1314/Chaoxing-MiniProgram.svg?style=for-the-badge&label=Issues&logo=openbugbounty&logoColor=e38dff&color=e38dff"/></img>
 
 </div></center>
 

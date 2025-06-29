@@ -16,92 +16,7 @@ order: 15
 >
 > 有问题可以在 QQ频道 交流
 
-## 自建反代服务器
-
-### Caddy 配置文件示例
-
-#### Caddy 使用域名 (使用https)
-
-```Caddyfile
-example.com {
-    handle_path /proxy/* {
-        reverse_proxy "https://mobilelearn.chaoxing.com" {
-            header_up Host "mobilelearn.chaoxing.com"
-            header_up Referer "https://mobilelearn.chaoxing.com"
-            header_up Origin "https://mobilelearn.chaoxing.com"
-            header_up User-Agent "Mozilla/5.0 (iPhone Mac OS X) github.com/misaka-1314"
-        }
-    }
- reverse_proxy http://127.0.0.1:8080
-}
-```
-
-#### Caddy 使用局域网 IP (使用http)
-
-```Caddyfile
-http://192.168.x.x:8080 {
-    handle_path /proxy/* {
-        reverse_proxy "https://mobilelearn.chaoxing.com" {
-            header_up Host "mobilelearn.chaoxing.com"
-            header_up Referer "https://mobilelearn.chaoxing.com"
-            header_up Origin "https://mobilelearn.chaoxing.com"
-            header_up User-Agent "Mozilla/5.0 (iPhone Mac OS X) github.com/misaka-1314"
-        }
-    }
- reverse_proxy http://127.0.0.1:8080
-}
-```
-
-### Nginx 配置文件示例
-
-#### Nginx 使用域名 (使用https)
-
-```nginx
-server {
-    listen 443 ssl;
-    server_name example.com;
-
-    ssl_certificate /path/to/your/certificate.crt;
-    ssl_certificate_key /path/to/your/private.key;
-
-    location /proxy/ {
-        rewrite ^/proxy/(.*)$ /$1 break;
-
-        proxy_pass https://mobilelearn.chaoxing.com;
-        proxy_set_header Host "mobilelearn.chaoxing.com";
-        proxy_set_header Referer "https://mobilelearn.chaoxing.com";
-        proxy_set_header Origin "https://mobilelearn.chaoxing.com";
-        proxy_set_header User-Agent "Mozilla/5.0 (iPhone Mac OS X) github.com/misaka-1314";
-    }
-
-    location / {
-        proxy_pass http://127.0.0.1:8080;
-    }
-}
-```
-
-#### Nginx 使用局域网 IP (使用http)
-
-```nginx
-server {
-    listen 8080;
-    server_name 192.168.x.x;
-
-    location /proxy/ {
-        rewrite ^/proxy/(.*)$ /$1 break;
-        
-        proxy_pass https://mobilelearn.chaoxing.com;
-        proxy_set_header Host "mobilelearn.chaoxing.com";
-        proxy_set_header Referer "https://mobilelearn.chaoxing.com";
-        proxy_set_header Origin "https://mobilelearn.chaoxing.com";
-        proxy_set_header User-Agent "Mozilla/5.0 (iPhone Mac OS X) github.com/misaka-1314";
-    }
-
-    location / {
-        proxy_pass http://127.0.0.1:8080;
-    }
-}
-```
+## 使用 CDN 或边缘函数反代
 
 ### 使用 Cloudflare Worker 反代
 
@@ -132,6 +47,93 @@ export default {
         } else {
             return new Response('Powered by Misaka! github.com/misaka-1314')
         }
+    }
+}
+```
+
+### 使用腾讯云 EdgeOne 边缘函数
+
+[![使用 EdgeOne 边缘函数部署](https://cdnstatic.tencentcs.com/edgeone/pages/deploy.svg)](https://edgeone.ai/pages/new?repository-url=https%3a%2f%2fgithub.com%2fMisaka-1314%2fChaoxing-MiniProgram%2ftree%2fmain%2fserver%2fedgeone&project-name=cx-proxy&repository-name=cx-proxy)
+
+### 使用腾讯云 EdgeOne CDN
+
+教程暂未完成
+
+## 自建反代服务器
+
+### Caddy 配置文件示例
+
+```Caddyfile
+example.com {
+    handle_path /proxy/* {
+        reverse_proxy "https://mobilelearn.chaoxing.com" {
+            header_up Host "mobilelearn.chaoxing.com"
+            header_up Referer "https://mobilelearn.chaoxing.com"
+            header_up Origin "https://mobilelearn.chaoxing.com"
+            header_up User-Agent "Mozilla/5.0 (iPhone Mac OS X) github.com/misaka-1314"
+        }
+    }
+ reverse_proxy http://127.0.0.1:8080
+}
+```
+
+```Caddyfile
+http://192.168.x.x:8080 {
+    handle_path /proxy/* {
+        reverse_proxy "https://mobilelearn.chaoxing.com" {
+            header_up Host "mobilelearn.chaoxing.com"
+            header_up Referer "https://mobilelearn.chaoxing.com"
+            header_up Origin "https://mobilelearn.chaoxing.com"
+            header_up User-Agent "Mozilla/5.0 (iPhone Mac OS X) github.com/misaka-1314"
+        }
+    }
+ reverse_proxy http://127.0.0.1:8080
+}
+```
+
+### Nginx 配置文件示例
+
+```nginx
+server {
+    listen 443 ssl;
+    server_name example.com;
+
+    ssl_certificate /path/to/your/certificate.crt;
+    ssl_certificate_key /path/to/your/private.key;
+
+    location /proxy/ {
+        rewrite ^/proxy/(.*)$ /$1 break;
+
+        proxy_pass https://mobilelearn.chaoxing.com;
+        proxy_set_header Host "mobilelearn.chaoxing.com";
+        proxy_set_header Referer "https://mobilelearn.chaoxing.com";
+        proxy_set_header Origin "https://mobilelearn.chaoxing.com";
+        proxy_set_header User-Agent "Mozilla/5.0 (iPhone Mac OS X) github.com/misaka-1314";
+    }
+
+    location / {
+        proxy_pass http://127.0.0.1:8080;
+    }
+}
+```
+
+```nginx
+server {
+    listen 8080;
+    server_name 192.168.x.x;
+
+    location /proxy/ {
+        rewrite ^/proxy/(.*)$ /$1 break;
+        
+        proxy_pass https://mobilelearn.chaoxing.com;
+        proxy_set_header Host "mobilelearn.chaoxing.com";
+        proxy_set_header Referer "https://mobilelearn.chaoxing.com";
+        proxy_set_header Origin "https://mobilelearn.chaoxing.com";
+        proxy_set_header User-Agent "Mozilla/5.0 (iPhone Mac OS X) github.com/misaka-1314";
+    }
+
+    location / {
+        proxy_pass http://127.0.0.1:8080;
     }
 }
 ```

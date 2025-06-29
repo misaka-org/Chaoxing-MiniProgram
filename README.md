@@ -2,7 +2,6 @@
 
 <img src="https://avatars.githubusercontent.com/u/163529042?v=4" width="300" height="300" style="border-radius: 50%"></img>
 
-<img alt="version" src="https://img.shields.io/github/last-commit/Misaka-1314/Chaoxing-MiniProgram.svg?style=for-the-badge&label=最后更新&logo=velog&logoColor=BE95FF&color=7B68EE"/></img>
 <img alt="stars" src="https://img.shields.io/github/stars/Misaka-1314/Chaoxing-MiniProgram.svg?style=for-the-badge&label=Stars&logo=undertale&logoColor=orange&color=orange"/></img>
 <img alt="forks" src="https://img.shields.io/github/forks/Misaka-1314/Chaoxing-MiniProgram.svg?style=for-the-badge&label=Forks&logo=stackshare&logoColor=f92f60&color=f92f60"/></img>
 <img alt="pr" src="https://img.shields.io/github/issues-pr-closed/Misaka-1314/Chaoxing-MiniProgram.svg?style=for-the-badge&label=PR&logo=addthis&logoColor=green&color=0AC18E"/></img>
@@ -10,17 +9,18 @@
 
 </div></center>
 
-<div align="center" style="font-weight:bold"><b>学习通快捷签到 自建微信小程序 · 签到如此简单！</b></div>  
+<div align="center" style="font-weight:bold"><b>学习通快捷签到 自建微信小程序，签到如此简单！<a href="https://doc.micono.eu.org">阅读文档</a></b></div>  
 
 ## ✨ 历程
 
 + 2024/03 我们开发了本项目，无需后端即可使用。
-+ 2024/04 学习通的mobilelearn子域拦截UA中含有小程序的请求, 只能由服务器转发请求, 本项目失去了无后端开发的优势，暂停维护。
-+ 2024/06 某SB同行大量举报学习通签到小程序。
++ 2024/04 学习通的 mobilelearn 子域拦截UA中含有小程序的请求, 只能由服务器转发请求, 本项目失去了无后端开发的优势，暂停维护。
++ 2024/06 某人才同行大量举报学习通签到小程序。
 + 2024/09 基于本项目的小程序被举报封号，我们启动了自建小程序方案，鼓励用户注册小程序自用。
 + 2024/09 学习通官方以内容侵权为由投诉多个公众号的文章。
 + 2024/10 我们计划重启开源版本。
 + 2024/12 截至 2025年4月30日的 [小程序上传数据](http://113.45.185.136:24800)，已有934个小程序成功上传，另有部分用户填写有误。有需要的同学可以填写问卷！
++ 2025/06 借助腾讯云 CDN 的自定义回源规则，可以无需服务器转发。
 
 ## 🎃 免责声明
 
@@ -30,8 +30,6 @@
 > 2022年2月11日，教育部等五部门关于加强普通高校在线客服课程教学管理的若干意见要求，严禁以任何形式传播考试内容及答案作弊手法。本项目不提供考试或作业答案！
 
 > 本项目默认您有基本的 JavaSript、Python 基础，能熟练部署服务器软件，部署交流请到 QQ频道，过于简单的问题可能被直接关闭！
-
-> 项目贡献者不对您使用本项目造成的任何后果 (如封号、被教师约谈等) 负责！
 
 ## 🎉 版本对比
 
@@ -86,17 +84,17 @@
     <tr>
         <td rowspan=2>部署教程</td>
         <td>服务端</td>
-        <td><a href="https://doc.micono.eu.org/guide/server.html">自行部署教程</a></td>
-        <td>默认使用我们的服务器 (<a href="https://doc.micono.eu.org/guide/server.html">可自行部署</a>)</td>
+        <td><a href="https://doc.micono.eu.org/advance/server.html">自行部署教程</a></td>
+        <td>默认使用我们的服务器 (<a href="https://doc.micono.eu.org/advance/server.html">可自行部署</a>)</td>
     </tr>
     <tr>
         <td>小程序端</td>
-        <td><a href="https://doc.micono.eu.org/guide/miniprogram.html">自行部署教程</a></td>
-        <td>填写问卷，提供小程序代码上传密钥 (<a href="https://doc.micono.eu.org/guide/no-open.html">填写教程</a>)</td>
+        <td><a href="https://doc.micono.eu.org/advance/miniprogram.html">自行部署教程</a></td>
+        <td>填写问卷，提供小程序代码上传密钥 (<a href="https://doc.micono.eu.org/advance/no-open.html">填写教程</a>)</td>
     </tr>
 </table>
 
-> 请注意：GPLv3具有“传染性”，即在您开发的软件中使用GPLv3自由软件的整体或部分，都将使您的软件也变成GPLv3自由软件。
+> 请注意：GPLv3 具有“传染性”，即在您开发的软件中使用 GPLv3 自由软件的整体或部分，都将使您的软件也变成 GPLv3 自由软件。
 
 > 无论选择哪种版本，部署及使用过程均未收取任何费用，如果您遭到欺骗，请立即申请退款！
 
@@ -120,7 +118,7 @@
 
 #### 网页入口
 
-> 为了防止小程序被封，我们隐藏了体验小程序的入口，使用网页跳转进入（这部分代码在 [这里](https://github.com/misaka-org/Chaoxing-MiniProgram/blob/main/web/README.md)）  
+> 为了防止小程序被封，我们隐藏了体验小程序的入口，使用网页跳转进入（这部分代码在 [这里](https://github.com/misaka-1314/Chaoxing-MiniProgram/blob/main/web/README.md)）  
 > 请注意：这不是网页版签到，只是小程序入口！  
 
 |                                                        **登录页**                                                        |                                                      **课程列表页**                                                      |
@@ -138,4 +136,8 @@
 
 ## 🏆 特别鸣谢
 
-本项目的小程序上传服务器 由 [萝莉猫](https://www.loricat.cn) 公益赞助！
++ 本项目的小程序上传服务器 由 [萝莉猫 IDC](https://www.loricat.cn) 公益赞助！
+
++ 本项目的 CDN 加速和安全保护由 [腾讯 EdgeOne](https://edgeone.ai/?from=github) 赞助！
+
+<img src="https://doc.micono.eu.org/image/ad/腾讯云 EdgeOne.png" width="250"></img>

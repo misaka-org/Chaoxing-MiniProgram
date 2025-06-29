@@ -1,0 +1,13 @@
+{
+    "headers": [
+        {
+            "source": "/*",
+            "headers": [
+                {
+                    "key": "X-Server",
+                    "value": "Misaka EdgeOne Function"
+                }
+            ]
+        }
+    ]
+}

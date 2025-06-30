@@ -140,4 +140,4 @@
 
 + 本项目的 CDN 加速和安全保护由 [腾讯 EdgeOne](https://edgeone.ai/?from=github) 赞助！
 
-<img src="https://doc.micono.eu.org/image/ad/腾讯云 EdgeOne.png" width="250"></img>
+<img src="https://doc.micono.eu.org/image/ad/腾讯云 EdgeOne.png" width="200"></img>

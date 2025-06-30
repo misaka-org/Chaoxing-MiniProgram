@@ -1,0 +1,8 @@
+name = "cx-proxy"
+compatibility_date = "2025-06-30"
+main = "_worker.js"
+pages_build_output_dir = "./"
+
+[observability.logs]
+enabled = true
+head_sampling_rate = 0.30

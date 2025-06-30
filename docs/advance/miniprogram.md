@@ -44,7 +44,7 @@ order: 10
 2. 在 `miniprogram/utils` 目录下创建 `config.js` 并填入下面的内容。
     ```js
     const config = {
-        baseUrl: "https://cx-proxy.example.com", // 更换为你的反代域名
+        baseUrl: "https://cx.micono.eu.org/edge/proxy", // 公益反代服务器（腾讯 EdgeOne），有条件请更换为你的反代域名
         repository: "Misaka-1314/Chaoxing-WechatMiniProgram", // 开源仓库地址
 
         baiduMapKey: '', // 百度地图开发平台

@@ -3,7 +3,12 @@
 	"compileType": "miniprogram",
 	"libVersion": "3.7.7",
 	"packOptions": {
-		"ignore": [],
+		"ignore": [
+			{
+				"value": "static/swiper",
+				"type": "folder"
+			}
+		],
 		"include": []
 	},
 	"setting": {

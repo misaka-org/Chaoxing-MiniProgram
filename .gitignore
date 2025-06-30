@@ -11,7 +11,6 @@ tmp
 .temp
 
 *.yml
-*.toml
 *.log
 *.sh
 *.csv

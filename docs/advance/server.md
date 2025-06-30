@@ -20,40 +20,20 @@ order: 15
 
 ### 使用 Cloudflare Worker 反代
 
-> 感谢赛博菩萨！
-
 把下面的反向代理脚本粘贴到 Workers 编辑器中。
 
 > 注意：Worker默认的域名已被墙，请自备域名；已知部分沿海城市阻断了CF的IP。
 
-```js
-export default {
-    async fetch(request, env, ctx) {
-        let url = new URL(request.url)
-        if (url.pathname.startsWith('/proxy/')) {
-            url.pathname = url.pathname.replace('/proxy', '')           
-            url.hostname = 'mobilelearn.chaoxing.com'
-            let newRequest = new Request(url, {
-                method: request.method,
-                headers: request.headers,
-                body: request.body,
-                redirect: 'follow'
-            })
-            newRequest.headers.set('Host', 'mobilelearn.chaoxing.com')
-            newRequest.headers.set('Referer', 'https://mobilelearn.chaoxing.com')
-            newRequest.headers.set('Origin', 'https://mobilelearn.chaoxing.com')
-            newRequest.headers.set('User-Agent', 'Mozilla/5.0 (iPhone Mac OS X) github.com/misaka-1314')
-            return fetch(newRequest)
-        } else {
-            return new Response('Powered by Misaka! github.com/misaka-1314')
-        }
-    }
-}
-```
+[![使用 Cloudflare Workers 部署](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/Misaka-1314/Chaoxing-MiniProgram/tree/main/server/cloudflare)
+
+:::warning
+请修改根目录为 `server/cloudflare`。
+如果部署有问题，请自行复制代码粘贴到 Cloudflare Workers！[去复制代码](https://github.com/Misaka-1314/Chaoxing-MiniProgram/blob/main/server/cloudflare/_worker.js)
+:::
 
 ### 使用腾讯云 EdgeOne 边缘函数
 
-[![使用 EdgeOne 边缘函数部署](https://cdnstatic.tencentcs.com/edgeone/pages/deploy.svg)](https://edgeone.ai/pages/new?repository-url=https%3a%2f%2fgithub.com%2fMisaka-1314%2fChaoxing-MiniProgram%2ftree%2fmain%2fserver%2fedgeone&project-name=cx-proxy&repository-name=cx-proxy)
+[![使用 腾讯云 EdgeOne 边缘函数部署](https://cdnstatic.tencentcs.com/edgeone/pages/deploy.svg)](https://edgeone.ai/pages/new?repository-url=https%3a%2f%2fgithub.com%2fMisaka-1314%2fChaoxing-MiniProgram%2ftree%2fmain%2fserver%2fedgeone&project-name=cx-proxy&repository-name=cx-proxy)
 
 ### 使用腾讯云 EdgeOne CDN
 

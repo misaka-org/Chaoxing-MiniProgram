@@ -1,0 +1,12 @@
+{
+  "name": "cx-proxy",
+  "version": "1.0.0",
+  "main": "_worker.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "wrangler": "^4.22.0"
+  }
+}

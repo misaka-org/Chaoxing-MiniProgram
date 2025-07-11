@@ -137,7 +137,4 @@
 ## 🏆 特别鸣谢
 
 + 本项目的小程序上传服务器 由 [萝莉猫 IDC](https://www.loricat.cn) 公益赞助！
-
 + 本项目的 CDN 加速和安全保护由 [腾讯 EdgeOne](https://edgeone.ai/?from=github) 赞助！
-
-<img src="https://doc.micono.eu.org/image/ad/腾讯云 EdgeOne.png" width="200"></img>

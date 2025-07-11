@@ -11,6 +11,7 @@ export default hopeTheme(
             name: "Misaka",
             url: "https://github.com/Misaka-1314",
         },
+        navbar: ["/guide/", "/advance/"],
 
         pageInfo: ["Author", "Original", "Date", "Category", "Tag", "ReadingTime"],
 
@@ -31,13 +32,15 @@ export default hopeTheme(
             codeTabs: true,     //支持代码块分组
         },
         plugins: {
-            // 搜索从设置转移到主题
-            docsearch: {
-                appId: "EGGX7QRHKZ",
-                apiKey: "87c654967a30997670c1c157b760a428",
-                indexName: "doc_micono_eu_org_eggx7qrhkz_pages",
+            // 本地搜索
+            search: {
+                locales: {
+                    "/": {
+                        placeholder: "搜索文档~♡",
+                    },
+                },
             },
-            // 目录的自动生成
+            // 目录自动生成
             catalog: {
                 frontmatter: () => ({
                     toc: false,
@@ -51,10 +54,8 @@ export default hopeTheme(
                     "https://npm.elemecdn.com/font6pro@6.4.0/css/all.min.css",
                 ]
             },
+            // Giscus 评论
             comment: {
-                /**
-                 * Using Giscus 评论
-                 */
                 provider: "Giscus",
                 repo: "Misaka-1314/Chaoxing-MiniProgram",
                 repoId: "R_kgDOKWwF6Q",
@@ -72,6 +73,28 @@ export default hopeTheme(
                     showOnce: true,
                 }
             ],
+            // 水印
+            watermark: {
+                watermarkOptions: {
+                    content: "御坂网络 Misaka 学习通签到小程序",
+                    movable: true,
+                },
+            },
+            // PWA
+            pwa: {
+                manifest: {
+                    icons: ['https://cdn.micono.eu.org/icon/logo.png'],
+                    name: "御坂网络 Misaka 学习通签到小程序",
+                    short_name: "Misaka 学习通小程序",
+                    start_url: "/",
+                },
+                favicon: 'https://cdn.micono.eu.org/icon/logo.png',
+                cacheImage: true,
+                cacheHTML: true,
+                update: "force",
+            },
+            // SEO
+            seo: true,
         },
         contributors: false,
         changelog: true,

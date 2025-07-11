@@ -15,25 +15,45 @@ order: 10
 ## 前置步骤
 
 1. 注册小程序 [微信公众平台](https://mp.weixin.qq.com)
-2. 设置小程序名称、类目等 (不能选游戏类目)
-3. 小程序备案 (免费，必须) + 小程序微信认证 (非企业30元/年，可选)
-4. 申请小程序开发接口 (需要 `wx.chooseLocation` 和 `wx.getLocation`，可去淘宝代开通)
-5. 设置小程序服务器域名 (需要已备案的域名用于反代官方服务器)
+2. 设置小程序名称、简称、简介、图标（随便填写）
+3. 设置小程序类目、主营类目 (推荐类目写在下面)
+4. 小程序备案 (免费，必须) + 小程序微信认证 (非企业30元/年，可选)
+5. 申请小程序开发接口 (需要 `wx.chooseLocation` 和 `wx.getLocation`，可去淘宝代开通)
+6. 设置小程序服务器域名 (需要已备案的域名用于反代官方服务器)
+
+推荐小程序类目
+
+```
+教育服务 > 在线教育
+工具 > 办公
+工具 > 计算器
+体育 > 在线健身
+工具 > 信息查询
+```
 
 服务器域名
-1. request域名  
+1. request 域名  
     ```
-    https://api.map.baidu.com  
-    https://api.tianditu.gov.cn  
-    https://mooc1-api.chaoxing.com  
-    https://pan-yz.chaoxing.com  
-    https://passport2-api.chaoxing.com  
-    https://passport2.chaoxing.com  
-    https://sso.chaoxing.com  
-    https://mobilewx.chaoxing.com  
-    https://cx-proxy.example.com // 更换为你的反代域名 
+    https://api.map.baidu.com;
+    https://api.tianditu.gov.cn;
+    https://mooc1-api.chaoxing.com;
+    https://pan-yz.chaoxing.com;
+    https://passport2-api.chaoxing.com;
+    https://passport2.chaoxing.com;
+    https://sso.chaoxing.com;
+    https://mobilewx.chaoxing.com;
+    https://mobilelearn.chaoxing.com;
+    https://proxy.yangrucheng.top;
+    https://x.chaoxing.com;
+    https://i.chaoxing.com;
+    https://im.chaoxing.com;
+    https://cx.example.com // 更换为你的反代域名 
     ``` 
-2. uploadFile域名  
+2. uploadFile 域名  
+    ```
+    https://pan-yz.chaoxing.com  
+    ```
+3. downloadFile 域名  
     ```
     https://pan-yz.chaoxing.com  
     ```

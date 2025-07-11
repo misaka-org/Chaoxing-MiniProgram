@@ -1,5 +1,5 @@
 ---
-title: 使用教程
+title: 小程序使用指南
 index: false
 icon: iconfont icon-creative
 category:
@@ -23,7 +23,6 @@ order: 0
 
 + [QQ频道](https://pd.qq.com/s/f1mli0e35)（推荐）
 + [QQ群](https://qm.qq.com/q/24Qzm6avhS)（有需要再加）
-+ [用户文档评论区](https://doc.micono.eu.org)
 + [微信公众号](http://weixin.qq.com/r/mp/cxFrc67E2-OkreoQ90Rh)（只发通知，无人值守）
 
 <img src="https://cdn.micono.eu.org/image/公众号/公众号卡片-白色.png" style="width: min(75vw, 360px)" />
@@ -31,3 +30,44 @@ order: 0
 ## 扫码体验非开源版
 
 <img src="https://cdn.micono.eu.org/image/小程序码/签到小程序.png" style="width: min(50vw, 240px)" />
+
+## 备用小程序列表
+
+:::tip
+请在手机上点开，电脑端点开没有用！
+:::
+
+### 1. 官方小程序
+
++ Misaka 御坂网络小助手（已关闭签到功能）
++ [Misaka 工具箱](weixin://dl/business/?appid=wxb42fe32e6e071916&path=pages/share/share&query=path%3D%2Fpackages%2Fsign-package%2Fpages%2Fhome%2Fhome%26appid%3Dwx0ba7981861be3afc)（已被举报，限制功能）
++ [Misaka 学习通](weixin://dl/business/?appid=wxb42fe32e6e071916&path=pages/share/share&query=path%3D%2Fpackages%2Fsign-package%2Fpages%2Fhome%2Fhome%26appid%3Dwxefe36d85978840fa)（已被举报，永久封号）
++ [早八不迟到 S](weixin://dl/business/?appid=wxb42fe32e6e071916&path=pages/share/share&query=path%3D%2Fpackages%2Fsign-package%2Fpages%2Fhome%2Fhome%26appid%3Dwx39fef30273f9b8c0)（已被举报，永久封号）
+
+### 2. 官方合作小程序
+
+:::tip
+由开发者负责维护并获得全部广告收入的小程序，确保版本最新。
+:::
+
++ [Misaka 博学笃行](weixin://dl/business/?appid=wxb42fe32e6e071916&path=pages/share/share&query=path%3D%2Fpackages%2Fsign-package%2Fpages%2Fhome%2Fhome%26appid%3Dwx41e4a5f024aed629)
++ [Misaka 盛德日新](weixin://dl/business/?appid=wxb42fe32e6e071916&path=pages/share/share&query=path%3D%2Fpackages%2Fsign-package%2Fpages%2Fhome%2Fhome%26appid%3Dwxcc1c7f35ffe42a48)（还在备案流程）
+
+### 3. 经验证的第三方小程序
+
+:::tip
+由小程序注册者自行发布更新的小程序，开发者获得激励广告收入，注册者获得贴片广告和插屏广告收入。
+开发者会定期检查确保小程序未经篡改，如你发现异常，请及时上报给开发者！
+:::
+
++ [晴天签到](weixin://dl/business/?appid=wxb42fe32e6e071916&path=pages/share/share&query=path%3D%2Fpackages%2Fsign-package%2Fpages%2Fhome%2Fhome%26appid%3Dwxace4e284835838c1)
++ [学习助手酱](weixin://dl/business/?appid=wxb42fe32e6e071916&path=pages/share/share&query=path%3D%2Fpackages%2Fsign-package%2Fpages%2Fhome%2Fhome%26appid%3Dwx46fbf2939d39da36)
++ [小鸟游六花也要谈恋爱](weixin://dl/business/?appid=wxb42fe32e6e071916&path=pages/share/share&query=path%3D%2Fpackages%2Fsign-package%2Fpages%2Fhome%2Fhome%26appid%3Dwx04a5dc776b4461db)
++ [西柚学习助手](weixin://dl/business/?appid=wxb42fe32e6e071916&path=pages/share/share&query=path%3D%2Fpackages%2Fsign-package%2Fpages%2Fhome%2Fhome%26appid%3Dwxb76f7f625b599619)
++ [沦陷的帮助工具](weixin://dl/business/?appid=wxb42fe32e6e071916&path=pages/share/share&query=path%3D%2Fpackages%2Fsign-package%2Fpages%2Fhome%2Fhome%26appid%3Dwx7baea52c07ae3ef3)
++ [哈轩云 HXuan](weixin://dl/business/?appid=wxb42fe32e6e071916&path=pages/share/share&query=path%3D%2Fpackages%2Fsign-package%2Fpages%2Fhome%2Fhome%26appid%3Dwx0beeef707e618f43)
++ [KJXTEC](weixin://dl/business/?appid=wxb42fe32e6e071916&path=pages/share/share&query=path%3D%2Fpackages%2Fsign-package%2Fpages%2Fhome%2Fhome%26appid%3Dwxb70e8cfee5b42ac7)
++ [学物止境](weixin://dl/business/?appid=wxb42fe32e6e071916&path=pages/share/share&query=path%3D%2Fpackages%2Fsign-package%2Fpages%2Fhome%2Fhome%26appid%3Dwx59679dc85a3d70a8)
++ [科宝工具箱](weixin://dl/business/?appid=wxb42fe32e6e071916&path=pages/share/share&query=path%3D%2Fpackages%2Fsign-package%2Fpages%2Fhome%2Fhome%26appid%3Dwx6a561c49a7163312)
++ [民大牧羊人](weixin://dl/business/?appid=wxb42fe32e6e071916&path=pages/share/share&query=path%3D%2Fpackages%2Fsign-package%2Fpages%2Fhome%2Fhome%26appid%3Dwx939bc528b81729a0)
++ [木月的学习小站](weixin://dl/business/?appid=wxb42fe32e6e071916&path=pages/share/share&query=path%3D%2Fpackages%2Fsign-package%2Fpages%2Fhome%2Fhome%26appid%3Dwxe15298e326c891be)

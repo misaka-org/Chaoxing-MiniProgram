@@ -1,8 +1,97 @@
+<!-- Script Setup -->
+<script lang="js" setup>
+import { ref, computed, onMounted, watch } from 'vue';
+import { NButton } from 'naive-ui';
+
+const list = ref([]);
+const title = ref('');
+const search = ref('');
+const msg = ref('正在加载数据，请稍候...');
+const focused = ref(false);
+const host = "https://doc.micono.eu.org";
+
+
+watch(search, (newVal) => {
+    localStorage.setItem('uploadTableSearch', newVal)
+})
+
+const filteredList = computed(() => {
+    const keyword = search.value.trim().toLowerCase().substring(-8);
+    const _list = [...list.value].map((item, index) => ({
+        ...item,
+        "updatetime": item.updatetime == item.createtime ? "未曾修改" : item.updatetime,
+        "uploadtime": item.uploadtime ? `${item.uploadtime} ${item.result}` : "排队等待上传",
+        "secret": item.secret ? "已配置" : "未配置",
+        "style-class": item.result.includes('失败') ? 'item-fail' : '',
+        "button": item.result.includes("成功") ? {
+            'text': '强制更新',
+            'type': 'primary',
+        } : {
+            'text': '申请重传',
+            'type': 'warning',
+        },
+        "index": index + 1,
+    })).reverse();
+
+    if (!keyword)
+        return _list;
+    else
+        return _list.filter(item => item.appid.includes(keyword) || item.remark.includes(keyword) || item.result.includes(keyword) || String(item.index).includes(keyword));
+})
+
+onMounted(() => {
+    msg.value = '正在刷新数据，请稍候';
+    search.value = localStorage.getItem('uploadTableSearch') || "";
+    const timer = setInterval(() => {
+        if ((msg.value.match(/\./g) || []).length >= 10)
+            msg.value = '正在刷新数据，请稍候';
+        else
+            msg.value += '.';
+    }, 1000);
+
+    const savedData = localStorage.getItem('uploadTableData');
+    if (savedData) list.value = JSON.parse(savedData)
+
+    fetch(`${host}/api/list`, {
+        method: 'GET',
+        credentials: 'omit',
+    })
+        .then(resp => resp.json())
+        .then(res => {
+            clearInterval(timer);
+            if (res.status === 0 && Array.isArray(res.data)) {
+                list.value = res.data;
+                msg.value = list.value.length ? '' : '暂无数据，请稍后再试！';
+                title.value = `小程序版本号：${res.tag}，共计 ${list.value.length} 条问卷数据，最近代码更新时间：${res.updatetime}`;
+                localStorage.setItem('uploadTableData', JSON.stringify(list.value));
+            }
+        })
+        .catch(err => {
+            clearInterval(timer);
+            console.error('数据加载失败:', err);
+            msg.value = '数据加载失败，请稍后重试！';
+        })
+})
+
+const upgrade = (item) => {
+    fetch(`${host}/api/force-upload/${item.appid.slice(-8)}?_=${new Date().getTime()}`, {
+        method: 'GET',
+        credentials: 'omit',
+    })
+        .then(resp => resp.json())
+        .then(res => {
+            alert(`${item.appid} ${res.msg}`);
+            if (window) window.location.reload();
+        })
+}
+</script>
+
+<!-- HTML -->
 <template>
     <div class="table-wrapper">
         <p v-if="title" class="table-title">{{ title }}</p>
 
-        <input v-model="search" type="search" placeholder="支持模糊搜索 AppID / 备注 / 上传结果" class="search-input"
+        <input v-model="search" type="search" placeholder="搜索 AppID / 备注 / 上传结果" class="search-input"
             @focus="focused = true" @blur="focused = false" :class="{ focused }" />
 
         <div class="table-scroll">
@@ -27,7 +116,11 @@
                         </tr>
                         <tr v-for="item in filteredList" :key="item.appid" :class="[item['style-class']]">
                             <td>{{ item.index }}</td>
-                            <td @click="upgrade(item)" class="can-click">{{ item.button }}</td>
+                            <td>
+                                <NButton @click="upgrade(item)" strong secondary :type="item.button.type">
+                                    {{ item.button.text }}
+                                </NButton>
+                            </td>
                             <td class="item-appid">{{ item.appid }}</td>
                             <td>{{ item.uploadtime }}</td>
                             <td>{{ item.remark }}</td>
@@ -42,87 +135,6 @@
         </div>
     </div>
 </template>
-
-<!-- Script Setup -->
-<script setup>
-import { ref, computed, onMounted, watch } from 'vue';
-
-const list = ref([]);
-const title = ref('');
-const msg = ref('正在加载数据，请稍候...');
-const search = ref(localStorage.getItem('uploadTableSearch') || '');
-const focused = ref(false);
-const host = "https://doc.micono.eu.org";
-
-watch(search, (newVal) => {
-    if (window && window.localStorage) localStorage.setItem('uploadTableSearch', newVal)
-})
-
-const filteredList = computed(() => {
-    const keyword = search.value.trim().toLowerCase().substring(-8);
-    const _list = [...list.value].map((item, index) => ({
-        ...item,
-        "updatetime": item.updatetime == item.createtime ? "未曾修改" : item.updatetime,
-        "uploadtime": item.uploadtime ? `${item.uploadtime} ${item.result}` : "排队等待上传",
-        "secret": item.secret ? "已配置" : "未配置",
-        "style-class": item.result.includes('失败') ? 'item-fail' : '',
-        "button": item.result.includes("成功") ? '强制更新' : '申请重传',
-        "index": index + 1,
-    })).reverse();
-
-    if (!keyword)
-        return _list;
-    else
-        return _list.filter(item => item.appid.includes(keyword) || item.remark.includes(keyword) || item.result.includes(keyword) || String(item.index).includes(keyword));
-})
-
-onMounted(() => {
-    msg.value = '正在刷新数据，请稍候';
-    const timer = setInterval(() => {
-        if ((msg.value.match(/\./g) || []).length >= 10)
-            msg.value = '正在刷新数据，请稍候';
-        else
-            msg.value += '.';
-    }, 1000);
-
-    if (window && window.localStorage) {
-        const savedData = localStorage.getItem('uploadTableData');
-        if (savedData) list.value = JSON.parse(savedData)
-    }
-
-    fetch(`${host}/api/list`, {
-        method: 'GET',
-        credentials: 'omit',
-    })
-        .then(resp => resp.json())
-        .then(res => {
-            clearInterval(timer);
-            if (res.status === 0 && Array.isArray(res.data)) {
-                list.value = res.data;
-                msg.value = list.value.length ? '' : '暂无数据，请稍后再试！';
-                title.value = `小程序版本号：${res.tag}，共计 ${list.value.length} 条问卷数据，最近代码更新时间：${res.updatetime}`;
-                if (window && window.localStorage) localStorage.setItem('uploadTableData', JSON.stringify(list.value));
-            }
-        })
-        .catch(err => {
-            clearInterval(timer);
-            console.error('数据加载失败:', err);
-            msg.value = '数据加载失败，请稍后重试！';
-        })
-})
-
-const upgrade = (item) => {
-    fetch(`${host}/api/force-upload/${item.appid.slice(-8)}`, {
-        method: 'GET',
-        credentials: 'omit',
-    })
-        .then(resp => resp.json())
-        .then(res => {
-            alert(`${item.appid} ${res.msg}`);
-            window.location.reload();
-        })
-}
-</script>
 
 <!-- Style -->
 <style scoped>
@@ -174,12 +186,6 @@ td {
     border-radius: 4px;
     font-size: 16px;
     margin: 12px 0;
-}
-
-.can-click {
-    cursor: pointer;
-    color: var(--vp-c-brand);
-    text-decoration: underline;
 }
 
 .item-fail {

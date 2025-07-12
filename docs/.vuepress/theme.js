@@ -13,23 +13,23 @@ export default hopeTheme(
         },
         navbar: ["/guide/", "/advance/"],
 
-        pageInfo: ["Author", "Original", "Date", "Category", "Tag", "ReadingTime"],
+        pageInfo: ["Author", "Original", "Date", "Category", "ReadingTime"],
 
         markdown: {
-            imgMark: true,      //支持图片标记
-            imgLazyload: true,  //支持图片懒加载
-            imgSize: true,      //支持图片大小
-            tabs: true,         //支持表格
-            gfm: true,          //支持完整的 GFM 语法
-            tasklist: true,     //支持任务列表
-            include: true,      //支持 include 语法
-            align: true,        //支持对齐
-            mark: true,         //支持标记
-            sub: true,          //支持下标
-            sup: true,          //支持上标
-            demo: true,         //支持 demo
-            plantuml: true,     //支持 PlantUML
-            codeTabs: true,     //支持代码块分组
+            imgMark: true,      // 支持图片标记
+            imgLazyload: true,  // 支持图片懒加载
+            imgSize: true,      // 支持图片大小
+            tabs: true,         // 支持表格
+            gfm: true,          // 支持完整的 GFM 语法
+            tasklist: true,     // 支持任务列表
+            include: true,      // 支持 include 语法
+            align: true,        // 支持对齐
+            mark: true,         // 支持标记
+            sub: true,          // 支持下标
+            sup: true,          // 支持上标
+            demo: true,         // 支持 demo
+            plantuml: true,     // 支持 PlantUML
+            codeTabs: true,     // 支持代码块分组
         },
         plugins: {
             // 本地搜索
@@ -49,7 +49,8 @@ export default hopeTheme(
             // 图标
             icon: {
                 assets: [
-                    "//at.alicdn.com/t/c/font_2410206_5vb9zlyghj.css",
+                    "https://at.alicdn.com/t/c/font_2410206_5vb9zlyghj.css",
+                    "https://at.alicdn.com/t/c/font_4691245_adcpm925j5a.css",
                     "https://npm.elemecdn.com/font6pro@6.4.0/css/fontawesome.min.css",
                     "https://npm.elemecdn.com/font6pro@6.4.0/css/all.min.css",
                 ]
@@ -68,7 +69,7 @@ export default hopeTheme(
                 {
                     path: "/",
                     title: '温馨提示',
-                    content: '<i class="fa-solid fa-light-emergency-on fa-bounce" style="color: #ff0000;"></i>&nbsp;<span style="color:rgb(255, 0, 0);font-weight:bold;">请勿在群聊发送您的账户密码！</span><br/><br/>本小程序由公众号【御坂网络 Misaka】提供支持',
+                    content: '<i class="fa-solid fa-light-emergency-on fa-bounce" style="color: red;"></i>&nbsp;<span style="color:rgb(223 96 96);font-weight:bold;">请勿在任何群聊、评论区发送您的账户密码！</span><br/><br/>本签到小程序由公众号【御坂网络 Misaka】提供技术支持',
                     actions: [],
                     showOnce: true,
                 }
@@ -83,12 +84,15 @@ export default hopeTheme(
             // PWA
             pwa: {
                 manifest: {
-                    icons: ['https://cdn.micono.eu.org/icon/logo.png'],
                     name: "御坂网络 Misaka 学习通签到小程序",
                     short_name: "Misaka 学习通小程序",
                     start_url: "/",
+                    icons: [{
+                        src: 'https://github.com/Misaka-1314.png',
+                        sizes: "252x252",
+                        type: "image/png",
+                    }],
                 },
-                favicon: 'https://cdn.micono.eu.org/icon/logo.png',
                 cacheImage: true,
                 cacheHTML: true,
                 update: "force",
@@ -97,7 +101,7 @@ export default hopeTheme(
             seo: true,
         },
         contributors: false,
-        changelog: true,
+        changelog: false,
     },
     {
         check: true,

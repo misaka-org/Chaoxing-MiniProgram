@@ -12,4 +12,6 @@ order: 16
 如有疑问请在 [QQ 群或者频道](../guide/README.md) 反馈，公众号私信无人值守！
 :::
 
-<UploadTable />
+<ClientOnly>
+    <UploadTable />
+</ClientOnly>

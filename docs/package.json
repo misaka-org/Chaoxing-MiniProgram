@@ -8,13 +8,13 @@
         "docs:build": "vuepress build .",
         "docs:dev": "vuepress dev .",
         "docs:update": "npx vp-update",
-        "dev": "npm run docs:dev",
+        "dev": "npm run docs:dev -",
         "build": "npm run docs:build"
     },
     "devDependencies": {
-        "@vuepress/plugin-docsearch": "2.0.0-rc.112",
         "@vuepress/plugin-pwa": "^2.0.0-rc.112",
         "@vuepress/plugin-seo": "^2.0.0-rc.112",
+        "@vuepress/plugin-slimsearch": "^2.0.0-rc.112",
         "@vuepress/plugin-watermark": "^2.0.0-rc.112",
         "markdown-it-emoji": "^3.0.0",
         "sass-embedded": "^1.86.0",
@@ -23,7 +23,7 @@
         "vuepress-theme-hope": "2.0.0-rc.94"
     },
     "dependencies": {
-        "naive-ui": "^2.42.0",
-        "@vuepress/bundler-vite": "2.0.0-rc.24"
+        "@vuepress/bundler-vite": "2.0.0-rc.24",
+        "naive-ui": "^2.42.0"
     }
 }

@@ -3,7 +3,7 @@ import { hopeTheme } from "vuepress-theme-hope";
 export default hopeTheme(
     {
         docsDir: "docs",
-        logo: "https://avatars.githubusercontent.com/u/163529042?v=4",
+        logo: "https://github.com/Misaka-1314.png",
         repo: "Misaka-1314/Chaoxing-MiniProgram",
         hostname: "https://doc.micono.eu.org",
 
@@ -11,7 +11,7 @@ export default hopeTheme(
             name: "Misaka",
             url: "https://github.com/Misaka-1314",
         },
-        navbar: ["/guide/", "/advance/"],
+        navbar: ["/guide/", "/advance/", "/tools/"],
 
         pageInfo: ["Author", "Original", "Date", "Category", "ReadingTime"],
 
@@ -33,12 +33,9 @@ export default hopeTheme(
         },
         plugins: {
             // 本地搜索
-            search: {
-                locales: {
-                    "/": {
-                        placeholder: "搜索文档~♡",
-                    },
-                },
+            slimsearch: {
+                indexContent: true,
+                suggestion: true,
             },
             // 目录自动生成
             catalog: {

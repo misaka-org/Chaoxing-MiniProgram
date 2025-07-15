@@ -52,7 +52,7 @@ onMounted(() => {
     const savedData = localStorage.getItem('uploadTableData');
     if (savedData) list.value = JSON.parse(savedData)
 
-    fetch(`${host}/api/list`, {
+    fetch(`${host}/api/miniprogram/list`, {
         method: 'GET',
         credentials: 'omit',
     })
@@ -74,7 +74,7 @@ onMounted(() => {
 })
 
 const upgrade = (item) => {
-    fetch(`${host}/api/force-upload/${item.appid.slice(-8)}?_=${new Date().getTime()}`, {
+    fetch(`${host}/api/miniprogram/force-upload/${item.appid.slice(-8)}?_=${new Date().getTime()}`, {
         method: 'GET',
         credentials: 'omit',
     })
@@ -91,7 +91,7 @@ const upgrade = (item) => {
     <div class="table-wrapper">
         <p v-if="title" class="table-title">{{ title }}</p>
 
-        <input v-model="search" type="search" placeholder="搜索 AppID / 备注 / 上传结果" class="search-input"
+        <input v-model="search" type="text" placeholder="搜索 AppID / 备注 / 上传结果" class="search-input"
             @focus="focused = true" @blur="focused = false" :class="{ focused }" />
 
         <div class="table-scroll">
@@ -195,5 +195,9 @@ td {
 
 .item-appid {
     font-family: 'Roboto Mono', 'Fira Code', 'JetBrains Mono', Consolas, 'Courier New', monospace;
+}
+
+.no-data {
+    text-align: left;
 }
 </style>

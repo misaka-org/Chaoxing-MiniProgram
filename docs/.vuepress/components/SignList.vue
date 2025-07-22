@@ -200,7 +200,7 @@ const connectIM = (username, password) => {
 
 <!-- HTML -->
 <template>
-    <div class="login-container">
+    <div class="main-container">
         <input v-model="username" placeholder="账号（手机号）" :disabled="loading" class="input" />
         <input v-model="password" placeholder="密码" type="password" :disabled="loading" class="input" />
 
@@ -289,7 +289,7 @@ td {
     text-align: left;
 }
 
-.login-container {
+.main-container {
     min-width: min(500px, 100%);
     max-width: 100%;
 }

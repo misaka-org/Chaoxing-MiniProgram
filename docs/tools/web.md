@@ -2,14 +2,12 @@
 title: 网页入口
 icon: iconfont icon-study
 category:
-  - Guide
-tag:
-  - Guide
+  - Tools
 order: 1
 ---
 
 :::tip
-网页入口用于小程序被举报封号时备用，部分功能不可用！获取签到由 [小北云](https://github.com/xunixianshituandui/xiaobei) 提供接口支持！
+网页入口用于小程序被举报封号时备用，部分功能不可用！由小北云提供部分接口！
 :::
 
 :::warning
@@ -18,6 +16,10 @@ order: 1
 
 :::warning
 请在手机端点击去签到按钮，电脑点击无法使用！
+:::
+
+:::warning
+仅显示最近24小时发布的签到，更多签到可前往 [小程序版](../guide/README.md) 使用！
 :::
 
 <ClientOnly>

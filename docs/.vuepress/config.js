@@ -14,6 +14,7 @@ export default defineUserConfig({
             }
         }
     }),
+    pagePatterns: ['**/*.md', '!.vuepress', '!node_modules', '!functions'],
     theme: theme,
     shouldPrefetch: false,
     base: "/./",

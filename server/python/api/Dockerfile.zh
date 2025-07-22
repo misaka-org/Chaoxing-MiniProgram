@@ -1,4 +1,4 @@
-FROM python:3.12-alpine
+FROM hdgigante/python-opencv:4.12.0-alpine
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tencent.com/g' /etc/apk/repositories \
     && apk add --update --no-cache python3 py3-pip tzdata ca-certificates \

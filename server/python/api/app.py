@@ -1,12 +1,17 @@
 from fastapi.responses import Response, JSONResponse, RedirectResponse
 from fastapi import FastAPI, HTTPException, Request, APIRouter
+from contextlib import asynccontextmanager
 from typing import Dict
+import logging
 import uvicorn
 import httpx
 import time
 
-app = FastAPI()
+from middleware import RealIPMiddleware
+import captcha
+
 api = APIRouter()
+cookies: Dict[int, httpx.Cookies] = {}
 client = httpx.AsyncClient(
     http2=True,
     timeout=15.0,
@@ -14,7 +19,16 @@ client = httpx.AsyncClient(
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
     },
 )
-cookies: Dict[int, httpx.Cookies] = {}
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    yield
+    await client.aclose()
+
+
+app = FastAPI(lifespan=lifespan, redoc_url=None, docs_url=None)
+app.add_middleware(RealIPMiddleware)
 
 
 @api.get("/state")
@@ -108,27 +122,35 @@ async def _(
     )
 
 
+@api.get("/validate")
+async def _():
+    for _ in range(5):
+        validate = await captcha.resolve()
+        if validate:
+            return {
+                "status": 0,
+                "msg": "滑块验证码通过成功",
+                "data": {
+                    "validate": validate,
+                },
+            }
+    raise HTTPException(status_code=400, detail="滑块验证码通过失败")
+
+
 app.include_router(api, prefix="/api", tags=["API"])
 
 
-@app.exception_handler(HTTPException)
-async def _(request: Request, exc: HTTPException):
-    if exc.status_code == 404:
-        return RedirectResponse(
-            url="https://doc.micono.eu.org/tools/web.html",
-            status_code=302,
-        )
-    else:
-        return JSONResponse(
-            {
-                "status": -1,
-                "msg": exc.detail,
-                "data": None,
-                "time": int(time.time()),
-            },
-            status_code=exc.status_code,
-        )
+@app.get("/")
+@app.get("/favicon.ico")
+async def favicon() -> RedirectResponse:
+    return RedirectResponse("https://cdn.micono.eu.org/icon/logo.png", status_code=301)
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    from logger import set_log_formatter
+
+    set_log_formatter()
+    try:
+        uvicorn.run(app, host="0.0.0.0", port=8000)
+    except KeyboardInterrupt:
+        logging.info("Ctrl+C 终止服务")

@@ -1,4 +1,4 @@
-FROM python:3.12-alpine
+FROM hdgigante/python-opencv:4.12.0-alpine
 
 RUN apk add --update --no-cache python3 py3-pip tzdata ca-certificates \
     && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \

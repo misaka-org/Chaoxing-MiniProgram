@@ -13,6 +13,7 @@
     },
     "devDependencies": {
         "@vuepress/plugin-pwa": "^2.0.0-rc.112",
+        "@vuepress/plugin-remove-pwa": "^2.0.0-rc.112",
         "@vuepress/plugin-seo": "^2.0.0-rc.112",
         "@vuepress/plugin-slimsearch": "^2.0.0-rc.112",
         "@vuepress/plugin-watermark": "^2.0.0-rc.112",

@@ -79,21 +79,7 @@ export default hopeTheme(
                 },
             },
             // PWA
-            pwa: {
-                manifest: {
-                    name: "御坂网络 Misaka 学习通签到小程序",
-                    short_name: "Misaka 学习通小程序",
-                    start_url: "/",
-                    icons: [{
-                        src: 'https://github.com/Misaka-1314.png',
-                        sizes: "252x252",
-                        type: "image/png",
-                    }],
-                },
-                cacheImage: true,
-                cacheHTML: true,
-                update: "force",
-            },
+            pwa: false,
             // SEO
             seo: true,
         },

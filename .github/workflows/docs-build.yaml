@@ -2,7 +2,7 @@ name: 构建文档
 
 on:
   push:
-    branches: [main]    
+    branches: [main]
     paths: [docs/**]
   workflow_dispatch:
 
@@ -23,10 +23,10 @@ jobs:
 
       - name: 提交文件
         run: |
-            git init
-            git config --local user.email "github-actions[bot]@users.noreply.github.com"
-            git config --local user.name "github-actions[bot]"
-            git add . && git commit -m "更新文档"
+          git init
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add . && git commit -m "更新文档"
         working-directory: docs/.vuepress/dist
 
       - name: 推送到 GitHub

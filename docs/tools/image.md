@@ -10,9 +10,6 @@ order: 1
 使用您的账号上传至超星图床，请确保图片符合超星云盘用户协议！
 :::
 
-
-<ImageUpload />
-
-<!-- <ClientOnly>
+<ClientOnly>
     <ImageUpload />
-</ClientOnly> -->
+</ClientOnly>

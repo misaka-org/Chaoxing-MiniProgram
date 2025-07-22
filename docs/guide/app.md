@@ -16,3 +16,8 @@ App 版仍在测试中，部分功能不可用，建议仅留作备用！
 
 + [GitHub Release](https://github.com/Misaka-1314/Chaoxing-MiniProgram/releases)
 + [云盘下载](https://alist.micono.eu.org)
+
+
+<ClientOnly>
+    <GitHubRelease />
+</ClientOnly>

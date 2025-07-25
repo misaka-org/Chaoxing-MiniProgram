@@ -23,12 +23,28 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"compileWorklet": false,
+		"uglifyFileName": false,
+		"uploadWithSourceMap": true,
+		"packNpmManually": false,
+		"minifyWXSS": true,
+		"minifyWXML": true,
+		"localPlugins": false,
+		"disableUseStrict": false,
+		"useCompilerPlugins": false,
+		"condition": true,
+		"swc": false,
+		"disableSWC": true
 	},
 	"condition": {},
 	"editorSetting": {
 		"tabIndent": "tab",
 		"tabSize": 4
 	},
-	"projectname": "Misaka 学习 开源版"
+	"projectname": "Misaka 学习 开源版",
+	"simulatorPluginLibVersion": {
+		"wxext14566970e7e9f62": "3.6.5-34"
+	},
+	"projectArchitecture": "multiPlatform"
 }

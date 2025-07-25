@@ -1,0 +1,33 @@
+{
+	"title": "隐私政策协议",
+	"confirm": "同意并接受",
+	"cancel": "暂不同意",
+	"message": "请你务必审慎阅读、充分理解“服务协议”和“隐私政策”各条款，包括但不限于：为了更好的向你提供服务，我们需要收集你的设备标识、操作日志等信息用于分析、优化应用性能。__a__和__b__了解详细信息。",
+	"messageLinks": {
+		"__a__": {
+			"text": "《服务协议》",
+			"url": "https://doc.micono.eu.org/guide/privacy.html#_1-服务协议"
+		},
+		"__b__": {
+			"text": "《隐私政策》",
+			"url": "https://doc.micono.eu.org/guide/privacy.html#_2-隐私政策"
+		}
+	},
+	"styles": {
+		"title": {
+			"color": "#000000"
+		},
+		"confirmButton": {
+			"color": "#000000"
+		},
+		"cancelButton": {
+			"color": "#000000"
+		},
+		"message": {
+			"color": "#000000"
+		},
+		"messageLinks": {
+			"color": "#0000ff"
+		}
+	}
+}

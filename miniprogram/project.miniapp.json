@@ -1,0 +1,96 @@
+{
+  "miniVersion": "v2",
+  "name": "Misaka 学习",
+  "version": "0.0.0",
+  "versionCode": 100,
+  "i18nFilePath": "i18n",
+  "mini-android": {
+    "resourcePath": "miniapp/android/nativeResources",
+    "sdkVersion": "1.6.14",
+    "toolkitVersion": "0.11.0",
+    "useExtendedSdk": {
+      "media": false,
+      "bluetooth": false,
+      "network": true,
+      "scanner": true,
+      "xweb": true,
+      "gdt": false
+    },
+    "icons": {
+      "hdpi": "",
+      "xhdpi": "",
+      "xxhdpi": "",
+      "xxxhdpi": ""
+    },
+    "splashscreen": {
+      "hdpi": "",
+      "xhdpi": "",
+      "xxhdpi": ""
+    },
+    "enableVConsole": "close",
+    "privacy": {
+      "enable": true,
+      "template": "privacy.miniapp.json"
+    },
+    "usePluginSdk": {
+      "map": "1.2.7"
+    },
+    "privateDescriptions": {
+      "ACCESS_FINE_LOCATION": "用于拾取坐标进行位置考勤",
+      "CAMERA": "拍摄指定照片用于考勤",
+      "POST_NOTIFICATIONS": "考勤提醒",
+      "READ_EXTERNAL_STORAGE": "指定照片用于考勤",
+      "READ_MEDIA_IMAGES": "指定照片用于考勤",
+      "WRITE_EXTERNAL_STORAGE": "指定照片用于考勤"
+    },
+    "schemes": {
+      "scheme": "misaka"
+    },
+    "map": {
+      "qmapAPIKey": "OLVBZ-7L2HG-YPGQE-I3NON-J3X5Z-3CFQL"
+    }
+  },
+  "mini-ios": {
+    "sdkVersion": "1.6.13",
+    "toolkitVersion": "0.0.9",
+    "useExtendedSdk": {
+      "WeAppOpenFuns": true,
+      "WeAppNetwork": false,
+      "WeAppBluetooth": false,
+      "WeAppMedia": false,
+      "WeAppLBS": true,
+      "WeAppOthers": false
+    },
+    "enableVConsole": "close",
+    "icons": {
+      "mainIcon120": "",
+      "mainIcon180": "",
+      "spotlightIcon80": "",
+      "spotlightIcon120": "",
+      "settingsIcon58": "",
+      "settingsIcon87": "",
+      "notificationIcon40": "",
+      "notificationIcon60": "",
+      "appStore1024": ""
+    },
+    "splashScreen": {
+      "customImage": ""
+    },
+    "privacy": {
+      "enable": false
+    },
+    "enableOpenUrlNavigate": true,
+    "buildCloud": {
+      "useRemote": false
+    },
+    "privateDescriptions": {
+      "NSPhotoLibraryUsageDescription": "指定照片用于考勤",
+      "NSCameraUsageDescription": "拍摄指定照片用于考勤",
+      "NSLocationWhenInUseUsageDescription": "用于拾取坐标进行位置考勤",
+      "NSLocationAlwaysUsageDescription": "用于拾取坐标进行位置考勤",
+      "NSLocationAlwaysAndWhenInUseUsageDescription": "用于拾取坐标进行位置考勤",
+      "NSPhotoLibraryAddUsageDescription": "指定照片用于考勤"
+    },
+    "enableDebugLog": true
+  }
+}

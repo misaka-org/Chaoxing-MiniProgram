@@ -54,7 +54,7 @@ order: 15
 
 ## 小程序上传结果
 
-[上传结果链接](http://113.45.185.136:24800/) 可能会更换链接
+[上传结果链接](https://doc.micono.eu.org/advance/upload.html) 可能会更换链接
 
 ## 使用小程序
 

@@ -17,26 +17,23 @@ watch(search, (newVal) => {
 
 const filteredList = computed(() => {
     const keyword = search.value.trim().toLowerCase().substring(-8);
-    const _list = [...list.value].map((item, index) => ({
+    const _list = [...list.value].map(item => ({
         ...item,
-        "updatetime": item.updatetime == item.createtime ? "未曾修改" : item.updatetime,
-        "uploadtime": item.uploadtime ? `${item.uploadtime} ${item.result}` : "排队等待上传",
         "secret": item.secret ? "已配置" : "未配置",
-        "style-class": item.result.includes('失败') ? 'item-fail' : '',
-        "button": item.result.includes("成功") ? {
+        "style-class": item.status.includes('失败') ? 'item-fail' : '',
+        "button": item.status.includes("成功") ? {
             'text': '强制更新',
             'type': 'primary',
         } : {
             'text': '申请重传',
             'type': 'warning',
         },
-        "index": index + 1,
-    })).reverse();
+    }));
 
     if (!keyword)
         return _list;
     else
-        return _list.filter(item => item.appid.includes(keyword) || item.remark.includes(keyword) || item.result.includes(keyword) || String(item.index).includes(keyword));
+        return _list.filter(item => item.appid.includes(keyword) || item.status.includes(keyword) || String(item.id).includes(keyword));
 })
 
 onMounted(() => {
@@ -62,7 +59,7 @@ onMounted(() => {
             if (res.status === 0 && Array.isArray(res.data)) {
                 list.value = res.data;
                 msg.value = list.value.length ? '' : '暂无数据，请稍后再试！';
-                title.value = `小程序版本号：${res.tag}，共计 ${list.value.length} 条问卷数据，最近代码更新时间：${res.updatetime}`;
+                title.value = `小程序版本号：v3，共计 ${list.value.length} 条问卷数据`;
                 localStorage.setItem('uploadTableData', JSON.stringify(list.value));
             }
         })
@@ -103,31 +100,27 @@ const upgrade = (item) => {
                             <th>操作</th>
                             <th>AppID</th>
                             <th>上传结果</th>
-                            <th>备注</th>
                             <th>手机号</th>
                             <th>Secret</th>
                             <th>填写问卷时间</th>
-                            <th>修改问卷时间</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-if="msg">
-                            <td colspan="9" class="no-data">{{ msg }}</td>
+                            <td colspan="7" class="no-data">{{ msg }}</td>
                         </tr>
                         <tr v-for="item in filteredList" :key="item.appid" :class="[item['style-class']]">
-                            <td>{{ item.index }}</td>
+                            <td>{{ item.id }}</td>
                             <td>
                                 <NButton @click="upgrade(item)" strong secondary :type="item.button.type">
                                     {{ item.button.text }}
                                 </NButton>
                             </td>
                             <td class="item-appid">{{ item.appid }}</td>
-                            <td>{{ item.uploadtime }}</td>
-                            <td>{{ item.remark }}</td>
+                            <td>{{ item.status }}</td>
                             <td>{{ item.mobile }}</td>
                             <td>{{ item.secret }}</td>
-                            <td>{{ item.createtime }}</td>
-                            <td>{{ item.updatetime }}</td>
+                            <td>{{ item.created_at }}</td>
                         </tr>
                     </tbody>
                 </table>

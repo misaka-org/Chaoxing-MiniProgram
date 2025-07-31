@@ -1,5 +1,8 @@
 from fastapi.exceptions import HTTPException
 from typing import Any
+import datetime
+import asyncio
+import logging
 import httpx
 import time
 import os
@@ -34,8 +37,9 @@ async def get_access_token(client: httpx.AsyncClient) -> str:
     if res["code"] != 0:
         raise HTTPException(status_code=400, detail=f"获取访问令牌失败: {resp.text}")
 
-    cache_values["access_token"] = res["data"]["app_access_token"]
-    cache_expire["access_token"] = time.time() + res["data"]["expire"] - 300
+    cache_values["access_token"] = res["app_access_token"]
+    cache_expire["access_token"] = time.time() + res["expire"] - 300
+    logging.info(f"获取访问令牌成功: {cache_values['access_token']}")
     return cache_values["access_token"]
 
 
@@ -56,31 +60,108 @@ async def list_records(client: httpx.AsyncClient) -> list[dict]:
             "page_size": 99,
         },
     )
-    res: dict = resp.json()
+    res1: dict = resp.json()
 
-    resp = await client.post(
-        url=f"https://open.feishu.cn/open-apis/bitable/v1/apps/{APP_TOKEN}/tables/{TABLE_ID}/records/search",
+    _list = []
+    page_token = ""
+    while True:
+        resp = await client.post(
+            url=f"https://open.feishu.cn/open-apis/bitable/v1/apps/{APP_TOKEN}/tables/{TABLE_ID}/records/search",
+            headers={
+                "Authorization": f"Bearer {await get_access_token(client)}",
+            },
+            params={
+                "user_id_type": "user_id",
+                "page_size": 500,
+                "page_token": page_token,
+            },
+            json={
+                "view_id": VIEW_ID,
+                "field_names": [i["field_name"] for i in res1["data"]["items"]],
+                "sort": [
+                    {
+                        "field_name": "提交时间",
+                        "desc": True,
+                    }
+                ],
+                "automatic_fields": False,
+            },
+        )
+        res: list = resp.json()
+        _list += [
+            {
+                **item["fields"],
+                "record_id": item["record_id"],
+            }
+            for item in res["data"]["items"]
+        ]
+
+        if res["data"]["has_more"]:
+            page_token = res["data"]["page_token"]
+        else:
+            break
+
+    _list = [
+        {
+            "id": int(item["序号(ID)"]),
+            "appid": "".join(
+                j.get("text", "") for j in item.get("AppID(小程序ID)", [])
+            ),
+            "key": "".join(
+                j.get("text", "") for j in item.get("小程序代码上传密钥", [])
+            ),
+            "secret": "".join(
+                j.get("text", "") for j in item.get("AppSecret(小程序密钥)", [])
+            ),
+            "name": "".join(j.get("text", "") for j in item.get("小程序名称", [])),
+            "mobile": "".join(
+                j.get("text", "") for j in item.get("手机号（学习通的）", [])
+            ),
+            "created_at": datetime.datetime.fromtimestamp(
+                item["提交时间"] / 1000
+            ).strftime(r"%Y-%m-%d %H:%M:%S"),
+            "status": "".join(j.get("text", "") for j in item.get("状态", [])),
+            "record_id": item["record_id"],
+        }
+        for item in _list
+    ]
+    _list = [
+        item
+        | {
+            "appid": item["appid"].strip(),
+            "key": item["key"].strip(),
+            "secret": item["secret"].strip(),
+            "name": item["name"].strip(),
+            "mobile": item["mobile"].strip(),
+            "status": item["status"].strip() or "排队中，请耐心等待",
+        }
+        for item in _list
+    ]
+
+    cache_values["records"] = _list
+    cache_expire["records"] = time.time() + 60
+    return cache_values["records"]
+
+
+async def update_record(client: httpx.AsyncClient, id: int, **body: dict) -> bool:
+    _list = await list_records(client)
+    record = next((item for item in _list if item["id"] == id), None)
+    if not record:
+        raise HTTPException(status_code=400, detail="记录未找到")
+
+    logging.debug(f"更新记录 {record['record_id']} {' '.join(body.keys())}")
+
+    await asyncio.sleep(0.5)
+    resp = await client.put(
+        url=f"https://open.feishu.cn/open-apis/bitable/v1/apps/{APP_TOKEN}/tables/{TABLE_ID}/records/{record['record_id']}",
         headers={
             "Authorization": f"Bearer {await get_access_token(client)}",
         },
-        params={
-            "user_id_type": "user_id",
-            "page_size": 9999,
-        },
         json={
-            "view_id": VIEW_ID,
-            "field_names": [i["field_name"] for i in res["data"]["items"]],
-            "sort": [
-                {
-                    "field_name": "提交时间",
-                    "desc": True,
-                }
-            ],
-            "automatic_fields": True,
+            "fields": body,
         },
     )
     res: dict = resp.json()
-
-    cache_values["records"] = res["data"]["items"]
-    cache_expire["records"] = time.time() + 60  # 1 minute
-    return cache_values["records"]
+    if res["code"] != 0:
+        logging.warning(f"修改未成功 {body} {res}")
+    return res["code"] == 0

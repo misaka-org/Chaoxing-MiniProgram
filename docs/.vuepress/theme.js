@@ -53,14 +53,7 @@ export default hopeTheme(
                 ]
             },
             // Giscus 评论
-            comment: {
-                provider: "Giscus",
-                repo: "Misaka-1314/Chaoxing-MiniProgram",
-                repoId: "R_kgDOKWwF6Q",
-                category: "Announcements",
-                categoryId: "DIC_kwDOKWwF6c4CZj8e",
-
-            },
+            comment: false,
             // 临时弹窗
             notice: [
                 {

@@ -1,7 +1,7 @@
 <!-- Script Setup -->
 <script setup lang="js">
 import { ref, onMounted, watch } from 'vue';
-import { NButton } from 'naive-ui';
+import { NButton, NCode } from 'naive-ui';
 
 const username = ref('');
 const password = ref('');
@@ -75,8 +75,12 @@ const upload = () => {
         })
             .then(res => res.json())
             .then(res => {
-                console.info("上传图片", res);
-                imageInfo.value = res.data;
+                const info = {
+                    ...res.data,
+                    "code": `<img src="${res.data.previewUrl}" referrerpolicy="no-referrer" />`,
+                }
+                imageInfo.value = info;
+                console.info("上传图片", info, res);
             })
     };
     fileInput.click();
@@ -102,14 +106,26 @@ const copy = text => navigator.clipboard.writeText(text)
         </div>
 
         <div v-if="imageInfo.previewUrl">
-            <div>ObjectId：{{ imageInfo.objectId }}</div>
+            <div>文件ID：{{ imageInfo.objectId }}</div>
             <div>文件名：{{ imageInfo.name }}</div>
             <div>
                 <span>图片链接：</span>
                 <a :href="imageInfo.previewUrl" rel="noreferrer" target="_blank">{{ imageInfo.previewUrl }}</a>
             </div>
         </div>
-        <img v-if="imageInfo.previewUrl" referrerpolicy="no-referrer" :src="imageInfo.previewUrl" class="image">
+        <div class="image-wrapper" v-if="imageInfo.previewUrl">
+            <img referrerpolicy="no-referrer" :src="imageInfo.previewUrl" class="image">
+        </div>
+        <NCode v-if="imageInfo.code" :code="imageInfo.code" />
+
+        <div class="button-container" v-if="imageInfo.previewUrl">
+            <NButton type="info" @click="copy(imageInfo.code)" class="button">
+                复制代码
+            </NButton>
+            <NButton type="info" @click="copy(imageInfo.previewUrl)" class="button">
+                复制链接
+            </NButton>
+        </div>
     </div>
 </template>
 
@@ -145,11 +161,18 @@ const copy = text => navigator.clipboard.writeText(text)
     flex: 1;
 }
 
+.image-wrapper {
+    display: inline-block;
+    max-width: 300px;
+}
+
 .image {
-    width: min(100%, 300px);
+    width: 100%;
+    max-width: 300px;
     height: auto;
     border-radius: 8px;
     object-fit: contain;
     margin-top: 12px;
+    display: block;
 }
 </style>

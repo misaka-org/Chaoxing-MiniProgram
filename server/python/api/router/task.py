@@ -117,9 +117,9 @@ async def _handle_key(item: dict) -> str:
 async def _upload(item: dict):
     """向代码上传服务器提交任务"""
     logging.info(f"开始上传 {item['id']:>4} {item['appid']}")
+    begin = datetime.datetime.now()
     while True:
         await asyncio.sleep(1.5)
-        begin = datetime.datetime.now()
         await update_record(client=client, id=item["id"], 状态="")
         try:
             body = {

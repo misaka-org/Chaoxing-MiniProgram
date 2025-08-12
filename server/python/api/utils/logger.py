@@ -4,6 +4,15 @@ import sys
 import os
 
 
+class FilterInvalidHttpRequest(logging.Filter):
+    def filter(self, record):
+        return all(
+            i
+            for i in ["Invalid HTTP request received."]
+            if i not in record.getMessage()
+        )
+
+
 def set_log_formatter():
     # 颜色代码
     TIME_COLOR = "\033[32m"
@@ -29,6 +38,7 @@ def set_log_formatter():
     console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setFormatter(color_formatter)
     logger.addHandler(console_handler)
+    logger.addFilter(FilterInvalidHttpRequest())
 
     # 文件输出（无颜色）
     if not os.path.exists("log"):

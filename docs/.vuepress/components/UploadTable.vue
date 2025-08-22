@@ -33,7 +33,9 @@ const filteredList = computed(() => {
     if (!keyword)
         return _list;
     else
-        return _list.filter(item => item.appid.includes(keyword) || item.status.includes(keyword) || String(item.id).includes(keyword));
+        return _list.filter(item =>
+            item.appid.includes(keyword) || String(item.id).includes(keyword)
+        );
 })
 
 onMounted(() => {

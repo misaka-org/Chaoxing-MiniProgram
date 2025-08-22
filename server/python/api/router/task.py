@@ -12,16 +12,13 @@ UPLOAD_SERVER = os.getenv("UPLOAD_SERVER")
 CALLBACK_SERVER = os.getenv("CALLBACK_SERVER")
 
 router = APIRouter()
-worker_flag = True
 
 
-@router.get("/state", description="获取当前任务状态")
+@router.get("/state", description="获取当前状态")
 async def _():
     return {
         "status": 0,
-        "data": {
-            "flag": worker_flag,
-        },
+        "data": None,
     }
 
 
@@ -117,9 +114,9 @@ async def _handle_key(item: dict) -> str:
 async def _upload(item: dict):
     """向代码上传服务器提交任务"""
     logging.info(f"开始上传 {item['id']:>4} {item['appid']}")
+    begin = datetime.datetime.now()
     while True:
         await asyncio.sleep(1.5)
-        begin = datetime.datetime.now()
         await update_record(client=client, id=item["id"], 状态="")
         try:
             body = {
@@ -129,11 +126,14 @@ async def _upload(item: dict):
                 "disable": False,
                 "callback": CALLBACK_SERVER,
             }
-            resp = await client.post(UPLOAD_SERVER, data=body)
+            resp = await client.post(url=UPLOAD_SERVER, timeout=10.0, data=body)
             res: dict = resp.json()
         except Exception:
             continue
         else:
+            if res["appid"] != item["appid"]:
+                continue
+
             now = datetime.datetime.now()
             if res["result"] in ["done"]:  # done
                 await update_record(
@@ -141,6 +141,7 @@ async def _upload(item: dict):
                     id=item["id"],
                     状态="上传成功",
                 )
+                break
 
             elif res["result"] in ["fail", "warn"]:  # fail / warn
                 await update_record(
@@ -148,6 +149,7 @@ async def _upload(item: dict):
                     id=item["id"],
                     状态="上传失败，" + res["result"],
                 )
+                break
 
             elif res["result"] in ["doing"]:  # doing / other
                 if (now - begin).seconds > 5 * 60:  # 超时
@@ -156,7 +158,8 @@ async def _upload(item: dict):
                         id=item["id"],
                         状态="上传失败，代码上传密钥疑似错误",
                     )
-                else:
+                    break
+                else:  # 未超时
                     continue
 
             else:  # fail
@@ -196,19 +199,14 @@ async def _upload(item: dict):
                         状态="上传失败，" + res["result"],
                     )
 
-            logging.info(f"上传结束 {item['id']:>4} {item['appid']} {res['result']}")
-            if res["appid"] == item["appid"]:
-                break
-            else:
-                continue
+    logging.info(f"上传结束 {item['id']:>4} {item['appid']} {res['result']}")
 
 
 async def worker():
-    global worker_flag
-
-    while worker_flag:
+    while True:
         _list = await list_records(client)
         _list = [item for item in _list if "成功" not in item.get("status", "排队中")]
+        _list.sort(key=lambda x: "失败" in x.get("status", "排队中"))
         logging.info(f"当前任务状态: {len(_list)} 条待处理记录")
 
         for item in _list:
@@ -244,7 +242,11 @@ async def worker():
                 continue
 
             await _auth_check(item)
-            await _upload(item)
+
+            try:
+                await asyncio.wait_for(_upload(item), timeout=5 * 60)
+            except asyncio.TimeoutError:
+                continue
 
         logging.info("任务处理完成")
         await asyncio.sleep(3600)

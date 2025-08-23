@@ -22,7 +22,7 @@ order: 0
 ## 用户交流
 
 + [QQ频道](https://pd.qq.com/s/f1mli0e35)（推荐）
-+ [QQ群](https://qm.qq.com/q/24Qzm6avhS)（有需要再加）
++ [QQ群](https://qm.qq.com/q/24Qzm6avhS)（有需要再加，入群需要登录过小程序）
 + [微信公众号](http://weixin.qq.com/r/mp/cxFrc67E2-OkreoQ90Rh)（只发通知，无人值守）
 
 <img src="https://cdn.micono.eu.org/image/公众号/公众号卡片-白色.png" style="width: min(75vw, 360px)" />

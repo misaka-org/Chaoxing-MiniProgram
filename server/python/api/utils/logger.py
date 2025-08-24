@@ -6,10 +6,13 @@ import os
 
 class FilterInvalidHttpRequest(logging.Filter):
     def filter(self, record):
-        return all(
-            i
-            for i in ["Invalid HTTP request received."]
-            if i not in record.getMessage()
+        msg = record.getMessage()
+        return not any(
+            kw in msg
+            for kw in [
+                "Invalid HTTP request received.",
+                "HTTP/2.0",
+            ]
         )
 
 

@@ -1,6 +1,6 @@
 FROM hdgigante/python-opencv:4.12.0-alpine
 
-RUN apk add --update --no-cache python3 py3-pip tzdata ca-certificates \
+RUN apk add --update --no-cache python3 py3-pip tzdata ca-certificates curl \
     && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo Asia/Shanghai > /etc/timezone \
     && rm -rf /var/cache/apk/*

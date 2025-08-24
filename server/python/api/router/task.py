@@ -1,10 +1,11 @@
+from fastapi import APIRouter, Query, Request
+from fastapi.exceptions import HTTPException
 from Crypto.PublicKey import RSA
-from fastapi import APIRouter, Query
 import datetime
 import asyncio
 import os
 
-from utils.feishu import list_records, update_record
+from utils.feishu import list_records, update_record, update_all_records
 from utils.logger import logging
 from const import client
 
@@ -46,10 +47,32 @@ async def _():
 async def _(
     appid: str = Query(min_length=8, max_length=8),
 ):
+    _list = await list_records(client)
+    record = next((item for item in _list if appid in item["appid"]), None)
+    if not record:
+        raise HTTPException(status_code=400, detail="记录未找到")
     await update_record(
         client=client,
-        id=appid,
+        id=record["id"],
         状态="",
+    )
+    return {
+        "status": 0,
+        "msg": "已强制重置任务状态",
+    }
+
+
+@router.get("/force/all", description="强制重置任务状态")
+async def _(
+    request: Request,
+):
+    # curl http://127.0.0.1:8000/api/task/force/all
+    if request.client.host != "127.0.0.1":
+        raise HTTPException(status_code=403, detail="暂不支持")
+
+    await update_all_records(
+        client=client,
+        状态="等待版本更新",
     )
     return {
         "status": 0,
@@ -111,9 +134,9 @@ async def _handle_key(item: dict) -> str:
         return key
 
 
-async def _upload(item: dict):
+async def _upload(item: dict, task_length: int):
     """向代码上传服务器提交任务"""
-    logging.info(f"开始上传 {item['id']:>4} {item['appid']}")
+    logging.info(f"{item['task-index']:>4}/{task_length} 开始上传 {item['appid']}")
     begin = datetime.datetime.now()
     while True:
         await asyncio.sleep(1.5)
@@ -199,18 +222,22 @@ async def _upload(item: dict):
                         状态="上传失败，" + res["result"],
                     )
 
-    logging.info(f"上传结束 {item['id']:>4} {item['appid']} {res['result']}")
+    logging.info(
+        f"{item['task-index']:>4}/{task_length} 上传结束 {item['appid']} {res['result']}"
+    )
 
 
 async def worker():
-    while True:
+    async def _task():
         _list = await list_records(client)
         _list = [item for item in _list if "成功" not in item.get("status", "排队中")]
         _list.sort(key=lambda x: "失败" in x.get("status", "排队中"))
         logging.info(f"当前任务状态: {len(_list)} 条待处理记录")
 
-        for item in _list:
+        for index, item in enumerate(_list):
+            item["task-index"] = index + 1
             await asyncio.sleep(0.1)
+
             if len(item["appid"]) != 18:
                 await update_record(
                     client=client,
@@ -244,9 +271,18 @@ async def worker():
             await _auth_check(item)
 
             try:
-                await asyncio.wait_for(_upload(item), timeout=5 * 60)
+                await asyncio.wait_for(_upload(item, len(_list)), timeout=5 * 60)
             except asyncio.TimeoutError:
                 continue
 
         logging.info("任务处理完成")
-        await asyncio.sleep(3600)
+
+    while True:
+        try:
+            await asyncio.wait_for(_task(), timeout=3600)
+        except asyncio.TimeoutError:
+            logging.info("任务处理超时")
+        except Exception as e:
+            logging.warning(f"任务处理异常 {e} {e.__class__.__name__}")
+        else:
+            await asyncio.sleep(3600)

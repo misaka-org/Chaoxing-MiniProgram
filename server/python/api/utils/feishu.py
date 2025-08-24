@@ -165,3 +165,31 @@ async def update_record(client: httpx.AsyncClient, id: int, **body: dict) -> boo
     if res["code"] != 0:
         logging.warning(f"修改未成功 {body} {res}")
     return res["code"] == 0
+
+
+async def update_all_records(client: httpx.AsyncClient, **body: dict) -> bool:
+    def chunked(iterable: list, size: int):
+        for i in range(0, len(iterable), size):
+            yield iterable[i : i + size]
+
+    _list = await list_records(client)
+    logging.debug(f"更新所有记录 {len(_list)} 条，字段：{' '.join(body.keys())}")
+
+    for batch in chunked(_list, 500):
+        await asyncio.sleep(0.5)
+        resp = await client.post(
+            url=f"https://open.feishu.cn/open-apis/bitable/v1/apps/{APP_TOKEN}/tables/{TABLE_ID}/records/batch_update",
+            params={"ignore_consistency_check": True},
+            headers={"Authorization": f"Bearer {await get_access_token(client)}"},
+            json={
+                "records": [
+                    {"record_id": item["record_id"], "fields": body} for item in batch
+                ]
+            },
+        )
+        resp.raise_for_status()
+        res: dict = resp.json()
+        if res["code"] != 0:
+            return False
+
+    return True

@@ -60,7 +60,11 @@ async def list_records(client: httpx.AsyncClient) -> list[dict]:
             "page_size": 99,
         },
     )
+    resp.raise_for_status()
     res1: dict = resp.json()
+    if res1["code"] != 0:
+        logging.error(f"获取字段失败 {resp.text}")
+        return []
 
     _list = []
     page_token = ""

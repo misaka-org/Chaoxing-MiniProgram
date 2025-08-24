@@ -283,6 +283,8 @@ async def worker():
         except asyncio.TimeoutError:
             logging.info("任务处理超时")
         except Exception as e:
-            logging.warning(f"任务处理异常 {e} {e.__class__.__name__}")
+            logging.warning(f"任务处理异常 {e} {e.__class__.__name__}", exc_info=True)
         else:
             await asyncio.sleep(3600)
+        finally:
+            await asyncio.sleep(30)

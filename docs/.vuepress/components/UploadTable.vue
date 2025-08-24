@@ -51,17 +51,24 @@ onMounted(() => {
     const savedData = localStorage.getItem('uploadTableData');
     if (savedData) list.value = JSON.parse(savedData)
 
-    fetch(`${host}/api/miniprogram/list`, {
-        method: 'GET',
-        credentials: 'omit',
-    })
-        .then(resp => resp.json())
-        .then(res => {
+
+    Promise.all([
+        fetch(`${host}/api/miniprogram/list`, {
+                method: 'GET',
+                credentials: 'omit',
+            }),
+        fetch(`${host}/api/github/update-time`, {
+                method: 'GET',
+                credentials: 'omit',
+            })
+    ])
+        .then(([resp1, resp2]) => Promise.all([resp1.json(), resp2.json()]))
+        .then(([res1, res2]) => {
             clearInterval(timer);
-            if (res.status === 0 && Array.isArray(res.data)) {
-                list.value = res.data;
+            if (res1.status === 0 && Array.isArray(res1.data)) {
+                list.value = res1.data;
                 msg.value = list.value.length ? '' : '暂无数据，请稍后再试！';
-                title.value = `小程序版本号：v3，共计 ${list.value.length} 条问卷数据`;
+                title.value = `小程序版本号：v3，共计 ${list.value.length} 条问卷数据，最后更新时间：${res2.data}`;
                 localStorage.setItem('uploadTableData', JSON.stringify(list.value));
             }
         })
@@ -90,8 +97,15 @@ const upgrade = (item) => {
     <div class="table-wrapper">
         <p v-if="title" class="table-title">{{ title }}</p>
 
-        <input v-model="search" type="text" placeholder="搜索 AppID / 备注 / 上传结果" class="search-input"
-            @focus="focused = true" @blur="focused = false" :class="{ focused }" />
+        <input
+            v-model="search"
+            type="text"
+            placeholder="搜索 AppID / 备注 / 上传结果"
+            class="search-input"
+            @focus="focused = true"
+            @blur="focused = false"
+            :class="{ focused }"
+        />
 
         <div class="table-scroll">
             <div class="table-content">
@@ -111,10 +125,19 @@ const upgrade = (item) => {
                         <tr v-if="msg">
                             <td colspan="7" class="no-data">{{ msg }}</td>
                         </tr>
-                        <tr v-for="item in filteredList" :key="item.appid" :class="[item['style-class']]">
+                        <tr
+                            v-for="item in filteredList"
+                            :key="item.appid"
+                            :class="[item['style-class']]"
+                        >
                             <td>{{ item.id }}</td>
                             <td>
-                                <NButton @click="upgrade(item)" strong secondary :type="item.button.type">
+                                <NButton
+                                    @click="upgrade(item)"
+                                    strong
+                                    secondary
+                                    :type="item.button.type"
+                                >
                                     {{ item.button.text }}
                                 </NButton>
                             </td>
@@ -189,7 +212,8 @@ td {
 }
 
 .item-appid {
-    font-family: 'Roboto Mono', 'Fira Code', 'JetBrains Mono', Consolas, 'Courier New', monospace;
+    font-family: "Roboto Mono", "Fira Code", "JetBrains Mono", Consolas,
+        "Courier New", monospace;
 }
 
 .no-data {

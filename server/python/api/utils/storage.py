@@ -1,6 +1,7 @@
 from typing import Optional, Any
 import sqlite3
 import pathlib
+import time
 
 pathlib.Path("data").mkdir(exist_ok=True)
 conn = sqlite3.connect("data/main.db")
@@ -32,15 +33,13 @@ def insert_record(
     key: str,
     mobile: str,
     name: str,
-    create_at: float,
-    upload_at: float,
-    status: str,
+    create_at: float = time.time(),
+    upload_at: float = None,
+    status: str = None,
 ):
     """插入小程序信息，重复则更新"""
     assert len(appid) == 18 and appid.startswith("wx"), "AppID 格式错误"
-    assert len(secret) == 32, "AppSecret 格式错误"
-    assert len(key) == 32, "AppKey 格式错误"
-    assert len(mobile) == 11 and mobile.isdigit(), "手机号格式错误"
+    assert len(key) > 1000, "代码上传密钥格式错误"
 
     cursor = conn.cursor()
     cursor.execute(
@@ -62,8 +61,8 @@ def insert_record(
 
 
 def update_record(
-    id: Optional[int],
-    appid: Optional[str],
+    id: Optional[int] = None,
+    appid: Optional[str] = None,
     **kwargs: Any,
 ) -> bool:
     """更新小程序信息"""
@@ -109,10 +108,10 @@ def update_record(
 
 
 def update_status(
-    id: Optional[int],
-    appid: Optional[str],
     upload_at: float,
     status: str,
+    id: Optional[int] = None,
+    appid: Optional[str] = None,
 ):
     """更新小程序上传状态"""
     update_record(
@@ -140,6 +139,19 @@ def update_all_status(status: str) -> None:
     """,
         (status,),
     )
+
+
+def count_records() -> dict:
+    """统计数量"""
+    cursor = conn.cursor()
+    cursor.execute("SELECT COUNT(*) FROM miniprogram;")
+    all_count = cursor.fetchone()[0]
+    cursor.execute("SELECT COUNT(*) FROM miniprogram WHERE status like '%成功%';")
+    success_count = cursor.fetchone()[0]
+    return {
+        "总数": all_count,
+        "成功": success_count,
+    }
 
 
 init()

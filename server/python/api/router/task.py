@@ -5,6 +5,7 @@ from pydantic import BaseModel
 import datetime
 import asyncio
 import time
+import csv
 import os
 
 from utils.storage import (
@@ -13,6 +14,7 @@ from utils.storage import (
     update_all_status,
     update_record,
     insert_record,
+    count_records,
 )
 from utils.logger import logging
 from const import client
@@ -32,6 +34,7 @@ async def _(
         "data": {
             "ip": request.client.host,
             "time": int(time.time()),
+            **count_records(),
         },
     }
 
@@ -40,7 +43,7 @@ async def _(
 async def _(
     request: Request,
 ):
-    _list = list_records(client)
+    _list = list_records()
     return {
         "status": 0,
         "data": [
@@ -69,6 +72,35 @@ async def _(
         "status": 0,
         "msg": "已强制重置任务状态",
     }
+
+
+@router.get("/load", description="从文件导入数据")
+async def _(
+    request: Request,
+):
+    # curl http://127.0.0.1:8000/api/task/load
+    if request.client.host != "127.0.0.1":
+        raise HTTPException(status_code=403, detail="暂不支持")
+
+    with open("data/load.csv", "r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)  # 按列名读
+        for row in reader:
+            item = {
+                "appid": row["AppID(小程序ID)"],
+                "secret": row["AppSecret(小程序密钥)"],
+                "key": row["小程序代码上传密钥"],
+                "mobile": row["手机号（学习通的）"],
+                "name": row["小程序名称"],
+            }
+            item["key"] = _handle_key(item)
+            if len(item["appid"]) != 18 or item["appid"][:2] != "wx":
+                continue
+            if not item["key"]:
+                continue
+            if not await _auth_check(item):
+                item["secret"] = ""
+            insert_record(**item)
+    return {"status": 0, "msg": "操作成功!"}
 
 
 @router.get("/force/all", description="强制重置任务状态")
@@ -118,7 +150,7 @@ async def _(
 async def _auth_check(item: dict) -> bool:
     """检查密钥可用性"""
     if len(item["appid"]) != 18 or len(item["secret"]) != 30:
-        return
+        return False
     resp = await client.post(
         url="https://api.weixin.qq.com/cgi-bin/stable_token",
         json={
@@ -139,13 +171,18 @@ async def _auth_check(item: dict) -> bool:
         )
         return True
     else:
-        update_record(id=item["id"], secret="")
+        if _id := item.get("id"):
+            update_record(id=_id, secret="")
         return False
 
 
 def _handle_key(item: dict) -> str:
     """预处理代码上传密钥"""
     key: str = item["key"]
+
+    def _clear(item: dict):
+        if _id := item.get("id"):
+            update_status(id=_id, status="")
 
     try:
         RSA.import_key(key)
@@ -160,10 +197,17 @@ def _handle_key(item: dict) -> str:
         try:
             RSA.import_key(result)
         except ValueError:
-            update_status(id=item["id"], status="")
+            _clear(item)
             return ""
         else:
             return result
+    except Exception as e:
+        logging.error(
+            f"处理代码上传密钥失败 {item['appid']} {e.__class__.__name__} {e}",
+            exc_info=True,
+        )
+        _clear(item)
+        return ""
     else:
         return key
 
@@ -174,7 +218,7 @@ async def _upload(item: dict, task_length: int):
     begin = datetime.datetime.now()
     while True:
         await asyncio.sleep(1.5)
-        update_record(client=client, id=item["id"], status="上传中")
+        update_record(id=item["id"], status="上传中")
         try:
             body = {
                 "appid": item["appid"],
@@ -245,9 +289,13 @@ async def _upload(item: dict, task_length: int):
 
 async def worker():
     async def _task():
-        _list: list[dict] = list_records(client)
-        _list = [item for item in _list if "成功" not in item.get("status", "排队中")]
-        _list.sort(key=lambda x: "失败" in x.get("status", "排队中"))
+        _list: list[dict] = list_records()
+        _list = [
+            item
+            for item in _list
+            if item and "成功" not in (item["status"] or "排队中")
+        ]
+        _list.sort(key=lambda x: "失败" in (x["status"] or "排队中"))
         logging.info(f"当前任务状态: {len(_list)} 条待处理记录")
 
         for index, item in enumerate(_list):

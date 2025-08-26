@@ -1,4 +1,5 @@
 from fastapi.responses import RedirectResponse, JSONResponse, Response
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.exceptions import HTTPException
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
@@ -10,6 +11,7 @@ import time
 
 from middleware import RealIPMiddleware
 from router.task import worker
+from utils import regex
 from const import client
 
 from router.base import router as base_router
@@ -26,6 +28,13 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan, redoc_url=None, docs_url=None)
 app.add_middleware(RealIPMiddleware)
+app.add_middleware(
+    middleware_class=CORSMiddleware,
+    allow_origin_regex=regex.origin_regex(["micono.eu.org", "misaka.it.com"]),
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 app.include_router(base_router, prefix="/api", tags=["API"])
@@ -33,10 +42,14 @@ app.include_router(task_router, prefix="/api/task", tags=["Task"])
 
 
 @app.get("/")
-@app.get("/image")
-@app.get("/login")
 async def root() -> RedirectResponse:
     return RedirectResponse("https://doc.micono.eu.org/tools/web.html", status_code=301)
+
+
+@app.get("/image")
+@app.get("/login")
+async def _() -> RedirectResponse:
+    return RedirectResponse("/", status_code=301)
 
 
 @app.get("/favicon.ico")
@@ -89,8 +102,6 @@ if __name__ == "__main__":
             workers=1,
             headers=[
                 ("X-Server-Start-Time", now.strftime(r"%Y-%m-%d %H:%M:%S")),
-                ("Access-Control-Allow-Credentials", "true"),
-                ("Access-Control-Allow-Methods", "GET, POST"),
             ],
         )
     except KeyboardInterrupt:

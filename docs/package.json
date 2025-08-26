@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "@vuepress/bundler-vite": "2.0.0-rc.24",
-        "naive-ui": "^2.42.0"
+        "naive-ui": "^2.42.0",
+        "vueuc": "^0.4.64"
     }
 }

@@ -1,7 +1,9 @@
 from fastapi.exceptions import HTTPException
 from fastapi import APIRouter, Request, Body
+from fastapi.responses import JSONResponse
 from Crypto.PublicKey import RSA
 from pydantic import BaseModel
+from zoneinfo import ZoneInfo
 import datetime
 import asyncio
 import time
@@ -44,22 +46,34 @@ async def _(
     request: Request,
 ):
     _list = list_records()
-    return {
-        "status": 0,
-        "data": [
-            {
-                "id": item["id"],
-                "appid": item["appid"][:4] + "******" + item["appid"][-8:],
-                "name": item["name"],
-                "secret": len(item["secret"]) == 30,
-                "mobile": item["mobile"][:3] + "******" + item["mobile"][-2:],
-                "create_at": item["create_at"],
-                "upload_at": item["upload_at"],
-                "status": item["status"],
-            }
-            for item in _list
-        ],
-    }
+    resp = JSONResponse(
+        {
+            "status": 0,
+            "data": [
+                {
+                    "id": item["id"],
+                    "appid": item["appid"][:4] + "******" + item["appid"][-8:],
+                    "name": item["name"],
+                    "secret": len(item["secret"]) == 30,
+                    "mobile": item["mobile"][:3] + "******" + item["mobile"][-2:],
+                    "create_at": datetime.datetime.fromtimestamp(
+                        item["create_at"], ZoneInfo("Asia/Shanghai")
+                    ).strftime(r"%Y-%m-%d %H:%M")
+                    if item["create_at"]
+                    else "",
+                    "upload_at": datetime.datetime.fromtimestamp(
+                        item["upload_at"], ZoneInfo("Asia/Shanghai")
+                    ).strftime(r"%Y-%m-%d %H:%M")
+                    if item["upload_at"]
+                    else "",
+                    "status": item["status"],
+                }
+                for item in _list
+            ],
+        }
+    )
+    resp.headers["Cache-Control"] = "max-age=600, public"
+    return resp
 
 
 @router.get("/force", description="强制重置任务状态")
@@ -67,10 +81,11 @@ async def _(
     request: Request,
     id: int,
 ):
-    update_status(id=id, status="")
+    res = update_status(id=id, status="")
     return {
         "status": 0,
-        "msg": "已强制重置任务状态",
+        "msg": "已强制重置任务状态" if res else "不存在",
+        "data": res,
     }
 
 
@@ -86,11 +101,11 @@ async def _(
         reader = csv.DictReader(f)  # 按列名读
         for row in reader:
             item = {
-                "appid": row["AppID(小程序ID)"],
-                "secret": row["AppSecret(小程序密钥)"],
-                "key": row["小程序代码上传密钥"],
-                "mobile": row["手机号（学习通的）"],
-                "name": row["小程序名称"],
+                "appid": row["AppID(小程序ID)"].strip(),
+                "secret": row["AppSecret(小程序密钥)"].strip(),
+                "key": row["小程序代码上传密钥"].strip(),
+                "mobile": row["手机号（学习通的）"].strip(),
+                "name": row["小程序名称"].strip(),
             }
             item["key"] = _handle_key(item)
             if len(item["appid"]) != 18 or item["appid"][:2] != "wx":
@@ -100,7 +115,10 @@ async def _(
             if not await _auth_check(item):
                 item["secret"] = ""
             insert_record(**item)
-    return {"status": 0, "msg": "操作成功!"}
+    return {
+        "status": 0,
+        "msg": "操作成功!",
+    }
 
 
 @router.get("/force/all", description="强制重置任务状态")
@@ -214,7 +232,7 @@ def _handle_key(item: dict) -> str:
 
 async def _upload(item: dict, task_length: int):
     """向代码上传服务器提交任务"""
-    logging.info(f"{item['task-index']:>4}/{task_length} 开始上传 {item['appid']}")
+    logging.info(f"{item['task-index']:04d}/{task_length} 开始上传 {item['appid']}")
     begin = datetime.datetime.now()
     while True:
         await asyncio.sleep(1.5)
@@ -237,9 +255,7 @@ async def _upload(item: dict, task_length: int):
 
             now = datetime.datetime.now()
             if res["result"] in ["done"]:  # done
-                update_status(
-                    id=item["id"], status="上传成功", upload_at=int(time.time())
-                )
+                update_status(id=item["id"], status="上传成功")
                 break
 
             elif res["result"] in ["fail", "warn"]:  # fail / warn
@@ -283,7 +299,7 @@ async def _upload(item: dict, task_length: int):
                     )
 
     logging.info(
-        f"{item['task-index']:>4}/{task_length} 上传结束 {item['appid']} {res['result']}"
+        f"{item['task-index']:04d}/{task_length} 上传结束 {item['appid']} {res['result']}"
     )
 
 

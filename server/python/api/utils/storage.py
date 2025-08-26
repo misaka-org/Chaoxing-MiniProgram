@@ -105,16 +105,17 @@ def update_record(
             appid,
         ),
     )
+    conn.commit()
 
 
 def update_status(
-    upload_at: float,
     status: str,
+    upload_at: float = time.time(),
     id: Optional[int] = None,
     appid: Optional[str] = None,
-):
+) -> bool:
     """更新小程序上传状态"""
-    update_record(
+    return update_record(
         id=id,
         appid=appid,
         upload_at=upload_at,

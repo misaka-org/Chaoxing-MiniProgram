@@ -7,6 +7,7 @@ import { NForm, NFormItem, NInput, NButton, NConfigProvider, darkTheme } from 'n
 const { isDarkMode } = useDarkMode();
 const naiveTheme = computed(() => (isDarkMode.value ? darkTheme : null));
 
+const host = "https://cx.micono.eu.org";
 const form = ref({})
 
 const rules = {
@@ -108,6 +109,21 @@ const submit = e => {
             alert("请检查输入内容！")
             return;
         }
+        fetch(`${host}/api/task/submit`, {
+            "method": "POST",
+            "body": JSON.stringify({
+                "appid": form.value.appid.trim(),
+                "secret": form.value.secret.trim(),
+                "key": form.value.key.trim(),
+                "mobile": form.value.mobile.trim(),
+                "name": form.value.name.trim(),
+            })
+        })
+            .then(resp => resp.json())
+            .then(res => {
+                console.info("提交小程序", res);
+                alert(res.msg)
+            })
     });
 };
 

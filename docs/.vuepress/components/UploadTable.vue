@@ -20,14 +20,22 @@ const filteredList = computed(() => {
     const _list = [...list.value].map(item => ({
         ...item,
         "secret": item.secret ? "已配置" : "未配置",
-        "style-class": item.status.includes('失败') ? 'item-fail' : '',
-        "button": item.status.includes("成功") ? {
-            'text': '强制更新',
-            'type': 'primary',
-        } : {
-            'text': '申请重传',
-            'type': 'warning',
-        },
+        "style-class": (item.status || "").includes('失败') ? 'item-fail' : '',
+        "button": (() => {
+            if (!item.status)
+                return null;
+            else if (item.status.includes("成功"))
+                return {
+                    'text': '强制更新',
+                    'type': 'primary',
+                }
+            else
+                return {
+                    'text': '申请重传',
+                    'type': 'warning',
+                }
+        })(),
+        "status": `${item.status || "排队中"} ${item.upload_at || ''}`
     }));
 
     if (!keyword)
@@ -121,7 +129,8 @@ const upgrade = (item) => {
                         <tr v-for="item in filteredList" :key="item.appid" :class="[item['style-class']]">
                             <td>{{ item.id }}</td>
                             <td>
-                                <NButton @click="upgrade(item)" strong secondary :type="item.button.type">
+                                <NButton @click="upgrade(item)" v-if="item.button" strong secondary
+                                    :type="item.button.type">
                                     {{ item.button.text }}
                                 </NButton>
                             </td>
@@ -129,7 +138,7 @@ const upgrade = (item) => {
                             <td>{{ item.status }}</td>
                             <td>{{ item.mobile }}</td>
                             <td>{{ item.secret }}</td>
-                            <td>{{ item.created_at }}</td>
+                            <td>{{ item.create_at }}</td>
                         </tr>
                     </tbody>
                 </table>

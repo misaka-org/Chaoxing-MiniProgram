@@ -8,7 +8,7 @@ const title = ref('');
 const search = ref('');
 const msg = ref('正在加载数据，请稍候...');
 const focused = ref(false);
-const host = "https://doc.micono.eu.org";
+const host = "https://cx.micono.eu.org";
 
 
 watch(search, (newVal) => {
@@ -53,11 +53,11 @@ onMounted(() => {
 
 
     Promise.all([
-        fetch(`${host}/api/miniprogram/list`, {
+        fetch(`${host}/api/task/list`, {
             method: 'GET',
             credentials: 'omit',
         }),
-        fetch(`${host}/api/github/update-time`, {
+        fetch("/api/github/update-time", {
             method: 'GET',
             credentials: 'omit',
         })
@@ -80,7 +80,7 @@ onMounted(() => {
 })
 
 const upgrade = (item) => {
-    fetch(`${host}/api/miniprogram/force-upload/${item.appid.slice(-8)}?_=${new Date().getTime()}`, {
+    fetch(`${host}/api/task/force?id=${item.id}&_=${new Date().getTime()}`, {
         method: 'GET',
         credentials: 'omit',
     })

@@ -8,7 +8,7 @@ const password = ref('');
 const imageInfo = ref({});
 const loading = ref(false);
 const canUpload = ref(false);
-const host = "https://doc.micono.eu.org";
+const host = "https://cx.micono.eu.org";
 
 watch(username, (newVal) => {
     localStorage.setItem('sign-username', newVal)
@@ -28,13 +28,13 @@ const login = () => {
     }
     loading.value = true;
 
-    fetch(`${host}/api/cx/login?username=${username.value}&password=${password.value}`, {
+    fetch(`${host}/api/login?username=${username.value}&password=${password.value}`, {
         method: 'GET',
     })
         .then(resp => resp.json())
         .then(res => {
             if (res.type == 1 && res.status)
-                return fetch(`${host}/api/cx/pan/token`, {
+                return fetch(`${host}/api/pan/token`, {
                     method: 'GET',
                     credentials: 'include',
                 });

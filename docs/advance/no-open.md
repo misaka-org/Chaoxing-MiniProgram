@@ -43,7 +43,7 @@ order: 15
 
 ## 二、填问卷自动上传小程序代码
 
-[问卷链接](https://misaka-network.feishu.cn/share/base/form/shrcnXqq4R4neOKTGy3SKMtfUta) 请在电脑端打开，手机粘贴有问题。
+[填写表格](./upload.md) 请在电脑端打开，手机粘贴有问题。
 
 支持修改填写记录，请勿重复填！
 打开微信公众平台，点击侧边 **管理** 中的 **开发管理**
@@ -69,7 +69,7 @@ order: 15
 
 ### 小程序上传结果
 
-[上传结果链接](https://doc.micono.eu.org/advance/upload.html) 
+[上传结果链接](./upload.md) 
 
 ## 三、使用小程序
 

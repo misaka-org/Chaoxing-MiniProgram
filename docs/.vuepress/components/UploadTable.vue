@@ -54,13 +54,13 @@ onMounted(() => {
 
     Promise.all([
         fetch(`${host}/api/miniprogram/list`, {
-                method: 'GET',
-                credentials: 'omit',
-            }),
+            method: 'GET',
+            credentials: 'omit',
+        }),
         fetch(`${host}/api/github/update-time`, {
-                method: 'GET',
-                credentials: 'omit',
-            })
+            method: 'GET',
+            credentials: 'omit',
+        })
     ])
         .then(([resp1, resp2]) => Promise.all([resp1.json(), resp2.json()]))
         .then(([res1, res2]) => {
@@ -94,18 +94,11 @@ const upgrade = (item) => {
 
 <!-- HTML -->
 <template>
-    <div class="table-wrapper">
+    <div class="container">
         <p v-if="title" class="table-title">{{ title }}</p>
 
-        <input
-            v-model="search"
-            type="text"
-            placeholder="搜索 AppID / 备注 / 上传结果"
-            class="search-input"
-            @focus="focused = true"
-            @blur="focused = false"
-            :class="{ focused }"
-        />
+        <input v-model="search" type="text" placeholder="搜索 AppID / 备注 / 上传结果" class="search-input"
+            @focus="focused = true" @blur="focused = false" :class="{ focused }" />
 
         <div class="table-scroll">
             <div class="table-content">
@@ -125,19 +118,10 @@ const upgrade = (item) => {
                         <tr v-if="msg">
                             <td colspan="7" class="no-data">{{ msg }}</td>
                         </tr>
-                        <tr
-                            v-for="item in filteredList"
-                            :key="item.appid"
-                            :class="[item['style-class']]"
-                        >
+                        <tr v-for="item in filteredList" :key="item.appid" :class="[item['style-class']]">
                             <td>{{ item.id }}</td>
                             <td>
-                                <NButton
-                                    @click="upgrade(item)"
-                                    strong
-                                    secondary
-                                    :type="item.button.type"
-                                >
+                                <NButton @click="upgrade(item)" strong secondary :type="item.button.type">
                                     {{ item.button.text }}
                                 </NButton>
                             </td>
@@ -156,6 +140,12 @@ const upgrade = (item) => {
 
 <!-- Style -->
 <style scoped>
+.container {
+    padding: 24px;
+    border: 1px solid var(--vp-c-divider);
+    border-radius: 8px;
+}
+
 .table-title {
     font-size: 14px;
     opacity: 0.5;

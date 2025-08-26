@@ -1,5 +1,5 @@
 ---
-title: 自动上传结果
+title: 自动上传代码
 icon: iconfont icon-study
 category:
   - Advance
@@ -9,11 +9,15 @@ order: 16
 ---
 
 :::tip
-如有疑问请在 [QQ 群或者频道](../guide/README.md) 反馈，公众号私信无人值守！
+正确填写表单并提交后，可在下方查看上传进度！
 :::
 
+<ClientOnly>
+    <InsertMiniprogram />
+</ClientOnly>
+
 :::tip
-表格可横向滑动，查看更多信息！支持 AppID 搜索。
+上传进度可能存在延迟，请耐心等待！
 :::
 
 <ClientOnly>

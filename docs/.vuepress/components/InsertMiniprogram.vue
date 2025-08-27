@@ -2,7 +2,7 @@
 <script setup lang="js">
 import { ref, computed } from 'vue';
 import { useDarkMode } from "vuepress-theme-hope/client";
-import { NForm, NFormItem, NInput, NButton, NConfigProvider, darkTheme } from 'naive-ui';
+import { NForm, NFormItem, NInput, NButton, NCode, NConfigProvider, darkTheme } from 'naive-ui';
 
 const { isDarkMode } = useDarkMode();
 const naiveTheme = computed(() => (isDarkMode.value ? darkTheme : null));
@@ -14,7 +14,6 @@ const rules = {
     appid: {
         required: true,
         validator(rule, value) {
-            console.info(rule, value, "debug")
             value = (value || "").trim();
             if (!value)
                 return new Error("需要填写 AppID");
@@ -22,7 +21,7 @@ const rules = {
                 return new Error("AppID 格式不正确");
             return true;
         },
-        trigger: ["input", "blur"],
+        trigger: ["input"],
     },
     secret: {
         required: true,
@@ -69,7 +68,7 @@ const rules = {
                 return new Error("手机号格式不正确");
             return true;
         },
-        trigger: ["input", "blur"],
+        trigger: ["input"],
     }, {
         level: 'warning',
         validator: (rule, value) => {
@@ -78,7 +77,7 @@ const rules = {
                 return new Error("填错手机号将无法进入小程序自定义信息修改页");
             return true;
         },
-        trigger: ["input", "blur"],
+        trigger: ["input"],
 
     }]
 };
@@ -88,17 +87,26 @@ const readKeyFile = () => {
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
     fileInput.accept = '.txt,.key';
+    fileInput.style.display = 'none';
+    document.body.appendChild(fileInput);
     fileInput.onchange = e => {
+        console.info("选择文件", e)
         const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = event =>
-                form.value.key = event.target.result;
-            reader.onerror = () =>
-                console.error('文件读取失败:', reader.error);
-            reader.readAsText(file);
+        if (!file) {
+            console.info("没有选择文件")
+            return;
         }
+        const reader = new FileReader();
+        reader.onload = event => {
+            console.info("读取文件", event);
+            form.value.key = event.target.result;
+        }
+        reader.onerror = () =>
+
+            console.error('文件读取失败:', reader.error);
+        reader.readAsText(file);
     };
+    fileInput.onerror = e => console.error('文件选择失败', e);
     fileInput.click();
 }
 
@@ -111,6 +119,9 @@ const submit = e => {
         }
         fetch(`${host}/api/task/submit`, {
             "method": "POST",
+            "headers": {
+                "Content-Type": "application/json",
+            },
             "body": JSON.stringify({
                 "appid": form.value.appid.trim(),
                 "secret": form.value.secret.trim(),
@@ -151,8 +162,8 @@ const submit = e => {
                         <span class="label-title">小程序代码上传密钥</span>
                         <NButton class="label-description" @click="readKeyFile">从文件中读取</NButton>
                     </template>
-                    <NInput v-model:value="form.key" class="width-font" type="textarea" disabled
-                        placeholder="点击上方按钮从文件读取" style="margin-top: 8px" />
+                    <NCode v-if="form.key" :code="form.key" class="width-font" show-line-numbers></NCode>
+                    <NCode v-else="form.key" code="点击上方按钮从文件中读取" class="width-font" show-line-numbers="true"></NCode>
                 </NFormItem>
                 <NFormItem label="mobile" path="mobile">
                     <template #label>

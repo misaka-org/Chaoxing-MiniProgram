@@ -1,6 +1,6 @@
 from fastapi.exceptions import HTTPException
-from fastapi import APIRouter, Request, Body
 from fastapi.responses import JSONResponse
+from fastapi import APIRouter, Request
 from Crypto.PublicKey import RSA
 from pydantic import BaseModel
 from zoneinfo import ZoneInfo
@@ -46,6 +46,7 @@ async def _(
     request: Request,
 ):
     _list = list_records()
+    _list.sort(key=lambda x: x["create_at"], reverse=True)
     resp = JSONResponse(
         {
             "status": 0,
@@ -54,7 +55,7 @@ async def _(
                     "id": item["id"],
                     "appid": item["appid"][:4] + "******" + item["appid"][-8:],
                     "name": item["name"],
-                    "secret": len(item["secret"]) == 30,
+                    "secret": len(item["secret"]) == 32,
                     "mobile": item["mobile"][:3] + "******" + item["mobile"][-2:],
                     "create_at": datetime.datetime.fromtimestamp(
                         item["create_at"], ZoneInfo("Asia/Shanghai")
@@ -72,7 +73,7 @@ async def _(
             ],
         }
     )
-    resp.headers["Cache-Control"] = "max-age=600, public"
+    resp.headers["Cache-Control"] = "max-age=30, public"
     return resp
 
 
@@ -93,12 +94,13 @@ async def _(
 async def _(
     request: Request,
 ):
-    # curl http://127.0.0.1:8000/api/task/load
+    # curl --max-time 0 http://127.0.0.1:8000/api/task/load
     if request.client.host != "127.0.0.1":
         raise HTTPException(status_code=403, detail="暂不支持")
 
     with open("data/load.csv", "r", encoding="utf-8") as f:
-        reader = csv.DictReader(f)  # 按列名读
+        reader = csv.DictReader(f)
+        _list = []
         for row in reader:
             item = {
                 "appid": row["AppID(小程序ID)"].strip(),
@@ -106,6 +108,9 @@ async def _(
                 "key": row["小程序代码上传密钥"].strip(),
                 "mobile": row["手机号（学习通的）"].strip(),
                 "name": row["小程序名称"].strip(),
+                "create_at": datetime.datetime.strptime(
+                    row["提交时间"], r"%Y/%m/%d %H:%M"
+                ).timestamp(),
             }
             item["key"] = _handle_key(item)
             if len(item["appid"]) != 18 or item["appid"][:2] != "wx":
@@ -114,7 +119,11 @@ async def _(
                 continue
             if not await _auth_check(item):
                 item["secret"] = ""
+            _list.append(item)
+        _list.sort(key=lambda x: x["create_at"])
+        for item in _list:
             insert_record(**item)
+            time.sleep(0.1)
     return {
         "status": 0,
         "msg": "操作成功!",
@@ -147,9 +156,9 @@ class SubmitBody(BaseModel):
 @router.post("/submit", description="提交小程序")
 async def _(
     request: Request,
-    body: SubmitBody = Body(...),
+    body: SubmitBody,
 ):
-    if not await _auth_check(dict(body)):
+    if not (await _auth_check(dict(body))):
         raise HTTPException(status_code=400, detail="AppID 或 Secret 错误")
 
     insert_record(
@@ -167,7 +176,7 @@ async def _(
 
 async def _auth_check(item: dict) -> bool:
     """检查密钥可用性"""
-    if len(item["appid"]) != 18 or len(item["secret"]) != 30:
+    if len(item["appid"]) != 18 or len(item["secret"]) != 32:
         return False
     resp = await client.post(
         url="https://api.weixin.qq.com/cgi-bin/stable_token",
@@ -311,6 +320,7 @@ async def worker():
             for item in _list
             if item and "成功" not in (item["status"] or "排队中")
         ]
+        _list.sort(key=lambda x: x["create_at"], reverse=True)
         _list.sort(key=lambda x: "失败" in (x["status"] or "排队中"))
         logging.info(f"当前任务状态: {len(_list)} 条待处理记录")
 
